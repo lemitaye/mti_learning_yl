@@ -4,8 +4,17 @@
 mirror_output <- function(files, kind = c("tables", "figures")) {
   kind <- match.arg(kind)
   destination <- Sys.getenv("MTI_OVERLEAF_DIR", unset =
-    "/Users/user/Library/CloudStorage/Dropbox/Apps/Overleaf/MTI and Employment Outcomes NFR")
+    "/Users/user/Library/CloudStorage/Dropbox/Apps/Overleaf/MTI and Employment - Revision (AE)")
   if (!nzchar(destination)) return(invisible(FALSE))
+  # The pre-revision project is an archive: never overwrite it, even through
+  # a stale environment override or a different spelling of the same path.
+  protected <- "/Users/user/Library/CloudStorage/Dropbox/Apps/Overleaf/MTI and Employment Outcomes NFR"
+  if (identical(normalizePath(destination, mustWork = FALSE),
+                normalizePath(protected, mustWork = FALSE))) {
+    warning("Overleaf export skipped: the original pre-revision project is protected.",
+            call. = FALSE)
+    return(invisible(FALSE))
+  }
   if (!dir.exists(destination)) {
     warning("Overleaf export skipped: project folder not found: ", destination,
             call. = FALSE)
@@ -23,7 +32,10 @@ mirror_output <- function(files, kind = c("tables", "figures")) {
       if (file.exists(target)) {
         if (identical(hash(src), hash(target))) next
         # Keep each prior destination version once, before overwriting it.
-        backup_dir <- file.path("output", "overleaf_backups", kind)
+        # Separate projects' version histories while preserving older backups.
+        # The normalized project folder name identifies this destination.
+        project_key <- gsub("[^A-Za-z0-9._-]", "_", basename(normalizePath(destination)))
+        backup_dir <- file.path("output", "overleaf_backups", project_key, kind)
         dir.create(backup_dir, recursive = TRUE, showWarnings = FALSE)
         backup <- file.path(backup_dir, paste0(basename(target), ".", hash(target), ".bak"))
         if (!file.exists(backup) && !file.copy(target, backup))

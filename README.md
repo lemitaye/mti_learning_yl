@@ -169,7 +169,7 @@ rerun regressions. Original Table 2 significance is not robust to clustering.
 
 Generated LaTeX tables and the employment figure are retained in `output/` and
 also mirrored to `tables/` and `figures/` in the Dropbox project
-`/Users/user/Library/CloudStorage/Dropbox/Apps/Overleaf/MTI and Employment Outcomes NFR`.
+`/Users/user/Library/CloudStorage/Dropbox/Apps/Overleaf/MTI and Employment - Revision (AE)`.
 `scripts/export_paths.R` centralizes this behavior. Override with
 `Sys.setenv(MTI_OVERLEAF_DIR = "/another/project")`; set it to `""` to disable
 external exports (also use this for isolated analysis tests). A missing or
@@ -217,3 +217,11 @@ processed CSVs and generated table bodies/diagnostics match the baseline.
 See `output/raw_data_update_audit/README.txt` and `replication_verification.json`.
 Latest constructed data have multiple Round 6 calls per child: do not assume
 `childid` plus `round` uniquely identifies records throughout R1--R7.
+
+The original Dropbox project `MTI and Employment Outcomes NFR` is protected as
+the pre-revision archive. Its eight tables and employment figure were restored
+from the backups preceding the first automated export. The helper rejects any
+attempt to export there, including through `MTI_OVERLEAF_DIR`. Revision exports
+go to `MTI and Employment - Revision (AE)`; version backups are now namespaced
+by destination folder under `output/overleaf_backups/`. Restoration evidence and
+a recovery snapshot are in `output/overleaf_project_recovery/`.
