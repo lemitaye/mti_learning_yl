@@ -1,4 +1,4 @@
-source("scripts/export_paths.R")
+source("code/export_paths.R")
 sandbox <- tempfile('dual-export-');dir.create(sandbox);setwd(sandbox)
 dir.create('local');dir.create('overleaf');writeLines('old','overleaf/table.tex')
 Sys.setenv(MTI_OVERLEAF_DIR=file.path(sandbox,'overleaf'))

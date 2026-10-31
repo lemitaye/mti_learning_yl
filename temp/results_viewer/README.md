@@ -7,7 +7,7 @@ It displays eight tables and the employment figure, with source and model notes.
 From the repository root:
 
 ```sh
-./results_viewer/build.sh
+./temp/results_viewer/build.sh
 ```
 
 The script works from any starting directory. It requires R with tidyverse and
@@ -22,10 +22,10 @@ into the manuscript. Tables are included directly from their source files and
 must already exist. Table 3 is included from output/tables/table_rev.tex. Keep this folder within the repository; it is not a
 standalone copy of the results.
 
-To refresh analysis first, run `Rscript scripts/master.R` from the repository
+To refresh analysis first, run `Rscript code/master.R` from the repository
 root, then rebuild the viewer. That analysis command overwrites data and outputs,
 including manuscript Table 3. To update only Table 2, run
-`Rscript scripts/table_main.R`, then rebuild.
+`Rscript code/table_main.R`, then rebuild.
 
 Each section identifies the source scripts, sample, estimator, controls, and
 known heading/unit inconsistencies. Viewer numbering is independent of manuscript

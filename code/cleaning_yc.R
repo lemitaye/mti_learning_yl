@@ -8,7 +8,7 @@
 
 
 # read data: ####
-source("scripts/raw_data_catalog.R")
+source("code/raw_data_catalog.R")
 
 # school survey:
 pupil_wave1 <- read_dta(raw_data_files[["school_pupils_w1"]])

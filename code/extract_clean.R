@@ -10,7 +10,7 @@
 
 
 # Load data: ####
-source("scripts/raw_data_catalog.R")
+source("code/raw_data_catalog.R")
 
 cons_all <- read_dta(raw_data_files[["constructed_legacy"]])
 

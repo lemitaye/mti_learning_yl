@@ -1,7 +1,7 @@
-# Run from the repository root: Rscript tests/check_table2_clustering.R
+# Run from the repository root: Rscript temp/tests/check_table2_clustering.R
 # Research regression checks against the existing Table 2 models and diagnostics.
 suppressPackageStartupMessages({library(readr); library(dplyr)})
-source('scripts/cluster_inference.R')
+source('code/cluster_inference.R')
 a <- read.csv('output/tables/tableII_mod_diagnostics.csv')
 d <- read_csv('data/non_aa_samp.csv', show_col_types = FALSE) %>%
   mutate_if(is.character, as.factor) %>% filter(raw_lang != 0)

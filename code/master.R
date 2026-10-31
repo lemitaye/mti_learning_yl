@@ -3,12 +3,12 @@
 # Project: Mother Tongue Instruction, Learning and Employment (Ethiopia)
 # Owners : Teferi Mergo (PhD) and Lemi Daba
 #
-# MASTER SCRIPT — runs the analysis pipeline for the manuscript in
-# MTI__learning_and_job_outcomes/. See README.md for reproduction limitations.
+# MASTER SCRIPT — runs the manuscript analysis pipeline.
+# See README.md for export destinations and reproduction limitations.
 #
 # HOW TO RUN (from the project root)
-#   R console: source("scripts/master.R")
-#   Terminal:  Rscript scripts/master.R
+#   R console: source("code/master.R")
+#   Terminal:  Rscript code/master.R
 #
 # Missing packages are installed automatically (internet access and a writable
 # R library are required). Existing packages are not deliberately upgraded.
@@ -30,12 +30,12 @@ local({
   }
 
   # Fail early if launched from the wrong directory or an incomplete checkout.
-  pipeline_scripts <- file.path("scripts", c(
+  pipeline_scripts <- file.path("code", c(
     "extract_clean.R", "cleaning_yc.R", "raw_data_catalog.R", "inventory_round7.R", "descriptives.R",
     "estimation.R", "export_res.R", "export_paths.R", "table_main.R", "cluster_inference.R", "table_rev.R"
   ))
   required_paths <- c(
-    "mti_learning_yl.Rproj", "raw_data",
+    "README.md", "rawdata",
     pipeline_scripts
   )
   missing_paths <- required_paths[!file.exists(required_paths)]
@@ -47,7 +47,7 @@ local({
   }
 
   # Check legacy replication inputs and newly added Round 7 resources.
-  source("scripts/raw_data_catalog.R", local = TRUE)
+  source("code/raw_data_catalog.R", local = TRUE)
   missing_inputs <- raw_data_files[!file.exists(raw_data_files)]
   if (length(missing_inputs)) stop("Raw inputs missing: ",
     paste(missing_inputs, collapse = ", "), call. = FALSE)
@@ -125,30 +125,26 @@ local({
 
 # ---- 1. Build analysis data (raw .dta -> data/*.csv) ------------------------
 message("Step 1/4: building analysis datasets.")
-source("scripts/extract_clean.R", echo = TRUE, max = 1000)  # -> data/aa_samp.csv, data/non_aa_samp.csv  (older cohort)
-source("scripts/cleaning_yc.R",   echo = TRUE, max = 1000)  # -> data/ylsample_yc.csv, data/schsur_yl_joined.csv (younger cohort)
+source("code/extract_clean.R", echo = TRUE, max = 1000)  # -> data/aa_samp.csv, data/non_aa_samp.csv  (older cohort)
+source("code/cleaning_yc.R",   echo = TRUE, max = 1000)  # -> data/ylsample_yc.csv, data/schsur_yl_joined.csv (younger cohort)
 
 # Inventory new releases separately; they do not enter the current models.
-source("scripts/inventory_round7.R")
+source("code/inventory_round7.R")
 
 # ---- 2. Descriptives: Table 1 + Figure 1 ------------------------------------
 message("Step 2/4: generating descriptive tables and figures.")
-source("scripts/descriptives.R",  echo = TRUE, max = 1000)  # -> output/tables/tableI.tex, output/figures/employ_gr.pdf
+source("code/descriptives.R",  echo = TRUE, max = 1000)  # -> output/tables/tableI.tex, output/figures/employ_gr.pdf
 
 # ---- 3. Estimation + regression tables --------------------------------------
 message("Step 3/4: estimating models and exporting regression tables.")
-source("scripts/estimation.R",    echo = TRUE, max = 1000)  # fits all models into the workspace
-source("scripts/export_res.R",    echo = TRUE, max = 1000)  # -> staged tables, including tableII_mod.tex with IV diagnostics
+source("code/estimation.R",    echo = TRUE, max = 1000)  # fits all models into the workspace
+source("code/export_res.R",    echo = TRUE, max = 1000)  # -> staged tables, including tableII_mod.tex with IV diagnostics
 
 # ---- 4. Table 3: "Likely Channels" (local output and Dropbox) ------
 message("Step 4/4: regenerating manuscript Table 3.")
-source("scripts/table_rev.R",     echo = TRUE, max = 1000)  # -> output/tables/table_rev.tex and Dropbox tables/
+source("code/table_rev.R",     echo = TRUE, max = 1000)  # -> output/tables/table_rev.tex and Dropbox tables/
 
 # ---- Done -------------------------------------------------------------------
-# Generated tables/figures land in output/. Review them, then copy the ones the
-# manuscript uses into MTI__learning_and_job_outcomes/tables|figures and compile
-# main.tex. See README.md for the table-number -> file mapping and the
-# reproduction-status caveats (only table_rev.R is byte-verified against the
-# current manuscript; export_res.R is an earlier vintage — see README).
-
-message("Pipeline complete. Review generated results before updating the manuscript.")
+# Results remain in output/ and mirror to the revision Overleaf project unless
+# MTI_OVERLEAF_DIR is empty. The original manuscript project is protected.
+message("Pipeline complete. Review generated results in output/ and the revision project.")

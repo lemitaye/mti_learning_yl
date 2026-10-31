@@ -15,20 +15,20 @@ intensity and ethnicity. Treat identification and mechanism claims as research
 claims to evaluate, especially in light of the referees' concerns.
 
 Start with this file, README.md, the relevant manuscript sections and scripts,
-and both reports in `other/referee_comment_Applied_Econ/`. CLAUDE.md provides
-additional background, but check its descriptions against the actual code.
+and both reports in `other/referee_comment_Applied_Econ/`. Historical assistant
+guidance in the archive is background only; check it against the active code.
 
 ## Repository map
 
 | Path | Role |
 | --- | --- |
-| `MTI__learning_and_job_outcomes/` | Active, self-contained LaTeX manuscript; described in existing documentation as the live Overleaf project. Local edits alone do not establish remote synchronization. |
-| `scripts/` | Active R extraction, cleaning, estimation, and export code. |
-| `raw_data/` | Original Stata inputs, questionnaires, dictionaries, and survey documentation. Read-only and git-ignored; do not redistribute inputs. |
+| Dropbox/Overleaf | Manuscript revision and protected original; destinations described below. |
+| `code/` | Active R extraction, cleaning, estimation, and export code. |
+| `rawdata/` | Original Stata inputs, questionnaires, dictionaries, and survey documentation. Read-only; new files are git-ignored, but some release documentation is already tracked. Do not redistribute survey inputs. |
 | `data/` | Four tracked analysis CSVs generated from raw inputs. Changes are substantive research artifacts. |
-| `output/tables/`, `output/figures/` | Staging areas for generated results, with one direct-to-manuscript exception below. |
+| `output/tables/`, `output/figures/` | Staging areas for generated results, mirrored to the revision project as described below. |
 | `other/referee_comment_Applied_Econ/` | Two referee reports; preserve the originals. |
-| `Archive/` | Historical scripts, drafts, reports, notes, and a nested collaboration repository. Consult for provenance when useful; keep inactive and preserve history. |
+| `_archive/` | Historical scripts, drafts, reports, notes, and a nested collaboration repository. Consult for provenance when useful; keep inactive and preserve history. |
 | `mti_learning_yl.Rproj` | RStudio project; use the repository root as the working directory. |
 
 `main.tex` includes `abstract`, `intro`, `literature`, `data`, `strategy`,
@@ -84,7 +84,7 @@ limitation; a response should identify the evidence and manuscript location.
 Run commands from the repository root. The intended full command is:
 
 ```sh
-Rscript scripts/master.R
+Rscript code/master.R
 ```
 
 This **writes data and results** and is not a harmless smoke test. Inspect the
@@ -92,12 +92,12 @@ known blockers below and preserve current manuscript tables before running it.
 
 | Order | Script | Output / dependency |
 | --- | --- | --- |
-| 1 | `scripts/extract_clean.R` | Older cohort: `data/aa_samp.csv`, `data/non_aa_samp.csv`. |
-| 2 | `scripts/cleaning_yc.R` | `data/ylsample_yc.csv`, `data/schsur_yl_joined.csv`. |
-| 3 | `scripts/descriptives.R` | `output/tables/tableI.tex`, `output/figures/employ_gr.pdf`. |
-| 4 | `scripts/estimation.R` | Regression objects in memory. |
-| 5 | `scripts/export_res.R` | `output/tables/tableII.tex` through `tableVI.tex`, using step 4 objects; also sources `table_main.R` for staged `tableII_mod.tex` and diagnostics CSV. |
-| 6 | `scripts/table_rev.R` | Directly overwrites `MTI__learning_and_job_outcomes/tables/table_rev.tex` by default. |
+| 1 | `code/extract_clean.R` | Older cohort: `data/aa_samp.csv`, `data/non_aa_samp.csv`. |
+| 2 | `code/cleaning_yc.R` | `data/ylsample_yc.csv`, `data/schsur_yl_joined.csv`. |
+| 3 | `code/descriptives.R` | `output/tables/tableI.tex`, `output/figures/employ_gr.pdf`. |
+| 4 | `code/estimation.R` | Regression objects in memory. |
+| 5 | `code/export_res.R` | `output/tables/tableII.tex` through `tableVI.tex`, using step 4 objects; also sources `table_main.R` for staged `tableII_mod.tex` and diagnostics CSV. |
+| 6 | `code/table_rev.R` | Writes `output/tables/table_rev.tex` and mirrors to the revision project. |
 
 `master.R`, `descriptives.R`, and `estimation.R` clear workspace objects.
 `export_res.R` relies on models from `estimation.R` in the **same R session** and
@@ -109,8 +109,7 @@ The master script loads `tidyverse`, `haven`, `scales`, `stargazer`, `AER`, `lfe
 `starpolishr` from `ChandlerLutz/starpolishr` on GitHub. `master.R` now installs
 missing CRAN packages and bootstraps `remotes` for GitHub installation when
 needed, then verifies availability before attaching packages. It also checks
-project paths and creates generated-output directories. There is no dependency
-lockfile or automated test suite in the active pipeline.
+project paths and creates generated-output directories. There is no dependency lockfile. Targeted checks live in `temp/tests/`.
 
 ### Known reproducibility issues (initial audit: 2026-10-31)
 
@@ -126,7 +125,7 @@ lockfile or automated test suite in the active pipeline.
   Figure 1 layers, and six staged table bodies matched exactly. Rebuilt CSVs
   matched repository copies; Table 3 matched the manuscript body. This does not
   resolve the historical table-generator differences described below.
-- Table 2 is now reconstructed by `scripts/table_main.R` (standalone or via
+- Table 2 is now reconstructed by `code/table_main.R` (standalone or via
   `export_res.R`), preserving original employment estimates/SEs/N and adding
   exact-sample F, partial R-squared, HC1 F, and Anderson–Rubin diagnostics.
   Table notes now reflect the actual controls. Diagnostics are staged in
@@ -188,7 +187,7 @@ Table numbers follow active `main.tex` input order, not filename numbering:
 | --- | --- | --- |
 | Table 1 | `tables/tableI.tex` | `descriptives.R`; output staged first. |
 | Table 2 | `tables/tableII_mod.tex` | `table_main.R`, also called by `export_res.R`; original estimates reproduced, diagnostics added. |
-| Table 3 | `tables/table_rev.tex` | `table_rev.R`; direct-write exception. |
+| Table 3 | `tables/table_rev.tex` | `table_rev.R`; local staging and revision export. |
 | Table 4 | `tables/tableIII.tex` | December 2023 version; generator mismatch. |
 | Table 5 | `tables/tableV.tex` | December 2023 version; generator mismatch. |
 | Figure 1 | `figures/employ_gr.pdf` | `descriptives.R`; output staged first. |
@@ -197,7 +196,7 @@ Table numbers follow active `main.tex` input order, not filename numbering:
 `tableII.tex`, `tableIV.tex`, and `tableVI.tex` are commented out in `main.tex`.
 Review staged results before copying them into the manuscript.
 
-Build from `MTI__learning_and_job_outcomes/`, for example:
+Build the manuscript from its Dropbox/Overleaf project directory, for example:
 
 ```sh
 latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
@@ -232,10 +231,10 @@ logs, references, citations, table numbering, and the rendered pages after edits
 
 ## Personal results viewer
 
-`results_viewer/` is a separate, nonpublication LaTeX notebook. Its `build.sh`
+`temp/results_viewer/` is a separate, nonpublication LaTeX notebook. Its `build.sh`
 refreshes a viewer-only employment PDF from the original descriptive plot
 expression and compiles `main.pdf`; it does not rerun regressions. It reads staged
-tables directly and the channel table from the manuscript. Keep source/model
+tables directly from `output/tables/`, including the channel table. Keep source/model
 notes and export-issue annotations current when changing the analysis. The
 viewer uses pdfLaTeX, independently of the manuscript's XeLaTeX requirement.
 
@@ -252,7 +251,7 @@ inference, or that more draws can fix its resolution. Its conditional validity,
 symmetry/CLT and independent-region assumptions are described in the viewer.
 Salary CR2 p-values are .172/.194 and no Table 2 coefficient rejects at 5%.
 Preserve this qualification when editing the narrative. Full diagnostics and
-cluster scores are staged; run `Rscript tests/check_table2_clustering.R` after
+cluster scores are staged; run `Rscript temp/tests/check_table2_clustering.R` after
 changes. The conventional Panel A stars are retained for comparison only.
 
 ## Dual output export
@@ -260,7 +259,7 @@ changes. The conventional Panel A stars are retained for comparison only.
 Generated LaTeX tables and the employment figure are retained in `output/` and
 also mirrored to `tables/` and `figures/` in the Dropbox project
 `/Users/user/Library/CloudStorage/Dropbox/Apps/Overleaf/MTI and Employment - Revision (AE)`.
-`scripts/export_paths.R` centralizes this behavior. Override with
+`code/export_paths.R` centralizes this behavior. Override with
 `Sys.setenv(MTI_OVERLEAF_DIR = "/another/project")`; set it to `""` to disable
 external exports (also use this for isolated analysis tests). A missing or
 unwritable destination produces a warning and retains local results.
@@ -278,23 +277,23 @@ system dependency. The default pipeline now needs no local manuscript folder.
 
 The active layout now follows the supplied release folders (`yl_r1` through
 `yl_r7`, phone/school surveys, and `yl_const_r1_r7`).
-`scripts/raw_data_catalog.R` is the authoritative path map for active scripts.
+`code/raw_data_catalog.R` is the authoritative path map for active scripts.
 The current models retain their original rounds and use
-`raw_data/legacy_constructed_r1_r5/ethiopia_constructed.dta`. The new constructed
+`rawdata/legacy_constructed_r1_r5/ethiopia_constructed.dta`. The new constructed
 release changes historical values/missingness and schema: **do not substitute it
 for the legacy input or assume the releases are interchangeable**. This choice
 was explicitly requested to preserve replication.
 
 Round 7 and the latest constructed release are inventoried separately by
-`scripts/inventory_round7.R`; this exports aggregate schema/row counts only and
+`code/inventory_round7.R`; this exports aggregate schema/row counts only and
 does not fit new models or change employment outcomes. All original raw files,
 including documentation not found by filename in the new release, remain in
 an ignored recoverable snapshot under `_archive/raw_data_snapshots/`.
 Audit reports, the source-to-local SHA-256 manifest, and the pre-migration
 analysis baseline are under `output/raw_data_update_audit/`. The reusable
-`scripts/audit_raw_release.R` compares matched Stata files; its command-line
+`code/audit_raw_release.R` compares matched Stata files; its command-line
 arguments specify both roots, a crosswalk CSV, and the report location.
-`scripts/audit_constructed_release.R` reports historical differences without
+`code/audit_constructed_release.R` reports historical differences without
 exporting participant records. Candidate aliases in that report are diagnostic
 suggestions, not automatic recoding rules. Dropbox export was disabled during
 migration verification.
@@ -315,3 +314,15 @@ attempt to export there, including through `MTI_OVERLEAF_DIR`. Revision exports
 go to `MTI and Employment - Revision (AE)`; version backups are now namespaced
 by destination folder under `output/overleaf_backups/`. Restoration evidence and
 a recovery snapshot are in `output/overleaf_project_recovery/`.
+
+## Folder reorganization verification (2026-10-31)
+
+Active analysis code is in `code/`, survey inputs in `rawdata/`, and personal
+validation/viewer files in `temp/tests/` and `temp/results_viewer/`. Run from the
+repository root with `Rscript code/master.R`; the ignored RStudio project file
+is optional. Viewer build paths account for the extra `temp/` directory.
+The full pipeline completed with Dropbox exports disabled. All 49 model
+coefficient/covariance/sample-size snapshots match the verified baseline; all
+four analysis CSVs, table bodies and diagnostics are unchanged. Figure text
+matches, targeted path/export/clustering checks pass, and the viewer compiles
+to 11 pages. Logs and comparison evidence: `output/layout_cleanup_audit/`.

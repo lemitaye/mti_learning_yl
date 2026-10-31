@@ -15,58 +15,61 @@ the 2012–13 School Survey, via an **IV / 2SLS** design.
 
 ```
 .
-├── README.md                          This file
-├── scripts/                           Analysis pipeline (run via scripts/master.R)
-├── raw_data/                          Young Lives raw Stata (.dta) inputs — read-only, git-ignored
-├── data/                              Processed analysis datasets (.csv) built from raw_data/
-├── output/                            Generated tables/figures (staging area — review, then copy into the manuscript)
-├── MTI__learning_and_job_outcomes/    The manuscript (LaTeX; the live Overleaf project)
-├── Archive/                           Superseded drafts, exploratory scripts, and notes (NOT needed to reproduce results)
-├── CLAUDE.md                          Guidance for AI coding assistants
-└── mti_learning_yl.Rproj
+├── code/                    Active R pipeline (Rscript code/master.R)
+├── rawdata/                 Read-only Young Lives releases and legacy inputs
+├── data/                    Processed analysis CSVs
+├── output/                  Generated results and audit reports (git-ignored)
+├── temp/results_viewer/     Personal LaTeX results notebook
+├── temp/tests/              Reproduction and export checks
+├── other/                   Referee reports and supporting material
+├── _archive/                Historical drafts, code and raw-data snapshots
+├── AGENTS.md                Repository guidance
+└── mti_learning_yl.Rproj     Local RStudio project (optional)
 ```
 
-The manuscript folder is self-contained (its own `tables/`, `figures/`, `refs.bib`).
-The pipeline and the manuscript reference nothing in `Archive/`.
+The manuscript lives in Dropbox/Overleaf. The revision project receives generated
+outputs; the original project is protected. Archived material is not required by
+the active pipeline. New raw inputs are ignored by Git; already tracked release
+documentation remains tracked.
 
 ---
 
 ## Reproducing the results
 
-**Requirements:** R (≥ 4.x) and a LaTeX distribution. `scripts/master.R` checks
+**Requirements:** R (≥ 4.x) and a LaTeX distribution. `code/master.R` checks
 the required packages and installs missing ones automatically (internet access
 and a writable R library are needed). It obtains `starpolishr` from GitHub,
 installing `remotes` if needed, and does not deliberately upgrade existing
 packages. For manual setup, the R packages are:
 `tidyverse`, `haven`, `scales`, `stargazer`, `AER`, `lfe`, `fastDummies`,
-`xtable`, and `starpolishr` (GitHub only):
+`xtable`, `clubSandwich`, and `starpolishr` (GitHub only):
 
 ```r
-install.packages(c("tidyverse","haven","scales","stargazer","AER","lfe","fastDummies","xtable"))
+install.packages(c("tidyverse","haven","scales","stargazer","AER","lfe","fastDummies","xtable","clubSandwich"))
 remotes::install_github("ChandlerLutz/starpolishr")
 ```
 
 **Run the whole pipeline** from the project root:
 
 ```r
-source("scripts/master.R")     # or:  Rscript scripts/master.R
+source("code/master.R")     # or:  Rscript code/master.R
 ```
 
-Generated tables/figures are written to `output/`. Review them and copy the ones
-the manuscript uses into `MTI__learning_and_job_outcomes/tables|figures`, then
-compile `main.tex` (`table_rev.R` already writes Table 3 straight into the
-manuscript). See the mapping and caveats below.
+Generated tables and figures are saved in `output/` and mirrored to the revision
+Dropbox/Overleaf project (see Dual output export below). Set
+`MTI_OVERLEAF_DIR=''` when validating locally. Review the generated results before
+using them in the manuscript; the historical table differences below still apply.
 
 ### Pipeline (order matters)
 
 | # | Script | Produces |
 |---|--------|----------|
-| 1 | `scripts/extract_clean.R` | `data/aa_samp.csv`, `data/non_aa_samp.csv` (older cohort) |
-| 2 | `scripts/cleaning_yc.R` | `data/ylsample_yc.csv`, `data/schsur_yl_joined.csv` (younger cohort) |
-| 3 | `scripts/descriptives.R` | `output/tables/tableI.tex`, `output/figures/employ_gr.pdf` |
-| 4 | `scripts/estimation.R` | fits all regression models into the R workspace |
-| 5 | `scripts/export_res.R` | `output/tables/tableII…VI.tex` plus `tableII_mod.tex` and its diagnostics CSV — **consumes step-4 models in memory** |
-| 6 | `scripts/table_rev.R` | `MTI__learning_and_job_outcomes/tables/table_rev.tex` (Table 3) |
+| 1 | `code/extract_clean.R` | `data/aa_samp.csv`, `data/non_aa_samp.csv` (older cohort) |
+| 2 | `code/cleaning_yc.R` | `data/ylsample_yc.csv`, `data/schsur_yl_joined.csv` (younger cohort) |
+| 3 | `code/descriptives.R` | `output/tables/tableI.tex`, `output/figures/employ_gr.pdf` |
+| 4 | `code/estimation.R` | fits all regression models into the R workspace |
+| 5 | `code/export_res.R` | `output/tables/tableII…VI.tex` plus `tableII_mod.tex` and its diagnostics CSV — **consumes step-4 models in memory** |
+| 6 | `code/table_rev.R` | `output/tables/table_rev.tex` (Table 3) |
 
 > **Workspace gotcha:** `descriptives.R` and `estimation.R` each start with
 > `rm(list = ls())` (each reloads its own data). `export_res.R` has **no**
@@ -93,7 +96,7 @@ match the file names.
 |----------|--------------------|--------------|---------------------|
 | Table 1 | `tableI.tex` | `descriptives.R` (xtable) | reproducible |
 | Table 2 | `tableII_mod.tex` | `table_main.R` (also sourced by `export_res.R`) | original estimates reproduced; IV diagnostics added |
-| Table 3 | `table_rev.tex` | `scripts/table_rev.R` | ✅ **byte-verified** against manuscript |
+| Table 3 | `table_rev.tex` | `code/table_rev.R` | ✅ **byte-verified** against manuscript |
 | Table 4 | `tableIII.tex` | `export_res.R` (see caveat) | ⚠ earlier vintage on disk |
 | Table 5 | `tableV.tex` | `export_res.R` (see caveat) | ⚠ earlier vintage on disk |
 | Figure 1 | `figures/employ_gr.pdf` | `descriptives.R` (ggsave) | reproducible |
@@ -104,7 +107,7 @@ Files present but **commented out** in `main.tex` (not currently in the paper):
 
 ### Table 2 diagnostics and reproduction caveat (Tables 4, 5)
 
-Table 2 is now reproducible with `Rscript scripts/table_main.R`. It stages
+Table 2 is now reproducible with `Rscript code/table_main.R`. It stages
 `output/tables/tableII_mod.tex` and `tableII_mod_diagnostics.csv`, retaining the
 original four employment-model coefficients, SEs, stars, and sample sizes. The
 generator uses the actual full controls in `estimation.R`; the former manuscript
@@ -121,13 +124,13 @@ employment columns does not establish reproduction of these other tables.
 
 ---
 
-## `Archive/` — what was set aside and why
+## `_archive/` — what was set aside and why
 
 Nothing here is needed to reproduce the paper; it is kept for provenance.
 
 | Folder | Contents |
 |--------|----------|
-| `legacy_scripts/` | Exploratory extraction scripts (`data_extract_r2–r5.R`, `data_extract_all.R`), `potential_preliminary.R`, and `revision.R` (the Oct-2023 draft superseded by `scripts/table_rev.R`) |
+| `legacy_scripts/` | Exploratory extraction scripts (`data_extract_r2–r5.R`, `data_extract_all.R`), `potential_preliminary.R`, and `revision.R` (the Oct-2023 draft superseded by `code/table_rev.R`) |
 | `old_tex_draft/` | `tex/,` — the earlier LaTeX draft, superseded by `MTI__learning_and_job_outcomes/` |
 | `young_lives_collaboration_repo/` | `Young-Lives---Collaboration/` — an older full copy of the paper (its own git history); the scripts used to write tables here |
 | `preliminary_reports/` | `estimations.Rmd/.md`, `estimations_cache/`, `main_preliminaries.*`, `markdown_files/` |
@@ -137,15 +140,15 @@ Nothing here is needed to reproduce the paper; it is kept for provenance.
 
 ## Personal results viewer
 
-`results_viewer/main.tex` is a local LaTeX notebook containing the staged tables,
+`temp/results_viewer/main.tex` is a local LaTeX notebook containing the staged tables,
 the channel table, and the employment figure, with short source/model notes.
-Run `./results_viewer/build.sh` to refresh its figure and compile
-`results_viewer/main.pdf` without rerunning regressions. See
-`results_viewer/README.md` for analysis-refresh commands and known export issues.
+Run `./temp/results_viewer/build.sh` to refresh its figure and compile
+`temp/results_viewer/main.pdf` without rerunning regressions. See
+`temp/results_viewer/README.md` for analysis-refresh commands and known export issues.
 
 ## Regional clustering for Table 2
 
-`table_main.R` now calls `scripts/cluster_inference.R`. It retains original
+`table_main.R` now calls `code/cluster_inference.R`. It retains original
 conventional inference for comparison and adds CR2/Satterthwaite regional
 inference, clustered AR tests and an enumerated within-region-orthogonalized AR
 sign-flip sensitivity check. `clubSandwich` is now a required package and is
@@ -160,7 +163,7 @@ exact randomization test or a cure for arbitrary regional shocks.
 The diagnostics CSV includes CR2 confidence intervals, effective d.f., first-stage
 and AR checks. `tableII_mod_cluster_audit.csv` records regional sample sizes,
 residual instrument variation and scores. Run
-`Rscript tests/check_table2_clustering.R` to verify estimates, samples,
+`Rscript temp/tests/check_table2_clustering.R` to verify estimates, samples,
 Satterthwaite calculations, row/cluster-label invariance and sign enumeration.
 The local viewer includes a detailed clustering note; its build still does not
 rerun regressions. Original Table 2 significance is not robust to clustering.
@@ -170,7 +173,7 @@ rerun regressions. Original Table 2 significance is not robust to clustering.
 Generated LaTeX tables and the employment figure are retained in `output/` and
 also mirrored to `tables/` and `figures/` in the Dropbox project
 `/Users/user/Library/CloudStorage/Dropbox/Apps/Overleaf/MTI and Employment - Revision (AE)`.
-`scripts/export_paths.R` centralizes this behavior. Override with
+`code/export_paths.R` centralizes this behavior. Override with
 `Sys.setenv(MTI_OVERLEAF_DIR = "/another/project")`; set it to `""` to disable
 external exports (also use this for isolated analysis tests). A missing or
 unwritable destination produces a warning and retains local results.
@@ -188,23 +191,23 @@ system dependency. The default pipeline now needs no local manuscript folder.
 
 The active layout now follows the supplied release folders (`yl_r1` through
 `yl_r7`, phone/school surveys, and `yl_const_r1_r7`).
-`scripts/raw_data_catalog.R` is the authoritative path map for active scripts.
+`code/raw_data_catalog.R` is the authoritative path map for active scripts.
 The current models retain their original rounds and use
-`raw_data/legacy_constructed_r1_r5/ethiopia_constructed.dta`. The new constructed
+`rawdata/legacy_constructed_r1_r5/ethiopia_constructed.dta`. The new constructed
 release changes historical values/missingness and schema: **do not substitute it
 for the legacy input or assume the releases are interchangeable**. This choice
 was explicitly requested to preserve replication.
 
 Round 7 and the latest constructed release are inventoried separately by
-`scripts/inventory_round7.R`; this exports aggregate schema/row counts only and
+`code/inventory_round7.R`; this exports aggregate schema/row counts only and
 does not fit new models or change employment outcomes. All original raw files,
 including documentation not found by filename in the new release, remain in
 an ignored recoverable snapshot under `_archive/raw_data_snapshots/`.
 Audit reports, the source-to-local SHA-256 manifest, and the pre-migration
 analysis baseline are under `output/raw_data_update_audit/`. The reusable
-`scripts/audit_raw_release.R` compares matched Stata files; its command-line
+`code/audit_raw_release.R` compares matched Stata files; its command-line
 arguments specify both roots, a crosswalk CSV, and the report location.
-`scripts/audit_constructed_release.R` reports historical differences without
+`code/audit_constructed_release.R` reports historical differences without
 exporting participant records. Candidate aliases in that report are diagnostic
 suggestions, not automatic recoding rules. Dropbox export was disabled during
 migration verification.
@@ -225,3 +228,15 @@ attempt to export there, including through `MTI_OVERLEAF_DIR`. Revision exports
 go to `MTI and Employment - Revision (AE)`; version backups are now namespaced
 by destination folder under `output/overleaf_backups/`. Restoration evidence and
 a recovery snapshot are in `output/overleaf_project_recovery/`.
+
+## Folder reorganization verification (2026-10-31)
+
+Active analysis code is in `code/`, survey inputs in `rawdata/`, and personal
+validation/viewer files in `temp/tests/` and `temp/results_viewer/`. Run from the
+repository root with `Rscript code/master.R`; the ignored RStudio project file
+is optional. Viewer build paths account for the extra `temp/` directory.
+The full pipeline completed with Dropbox exports disabled. All 49 model
+coefficient/covariance/sample-size snapshots match the verified baseline; all
+four analysis CSVs, table bodies and diagnostics are unchanged. Figure text
+matches, targeted path/export/clustering checks pass, and the viewer compiles
+to 11 pages. Logs and comparison evidence: `output/layout_cleanup_audit/`.
