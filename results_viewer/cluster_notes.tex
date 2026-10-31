@@ -1,0 +1,63 @@
+\section{Regional clustering: methods and conclusions}
+\textbf{Reproduce:} \path{Rscript scripts/table_main.R}. Helper:
+\path{scripts/cluster_inference.R}. Checks:
+\path{Rscript tests/check_table2_clustering.R}.
+Numerical results: \path{output/tables/tableII_mod_diagnostics.csv}.
+Region-level sample sizes and AR scores: \path{output/tables/tableII_mod_cluster_audit.csv}.
+
+All original 2SLS point estimates, samples and controls are retained.
+Clustering changes the inference. CR2 bias-adjusted regional variances use
+coefficient-specific Satterthwaite degrees of freedom, implemented by
+\texttt{clubSandwich} on equivalent \texttt{AER::ivreg} fits. Each fit is checked
+against the original \texttt{felm} estimate. These are small-sample approximations,
+not exact tests, and Wald inference also requires adequate identification.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+ & \multicolumn{2}{c}{Whole sample} & \multicolumn{2}{c}{Excluding Amhara}\\
+ & Salary & Wage & Salary & Wage\\\midrule
+Estimate & .0431 & .0292 & .0423 & .0289\\
+Conventional $p$ & .007 & .277 & .018 & .322\\
+CR2 SE & .0183 & .0095 & .0171 & .0169\\
+Satterthwaite d.f. & 1.62 & 1.95 & 1.31 & 1.44\\
+CR2 $p$ & .172 & .094 & .194 & .276\\
+AR CR2 $p$ & .123 & .274 & .081 & .438\\
+AR sign-flip $p$ & .250 & .250 & .500 & .500\\\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Conclusion.} Salary employment no longer rejects a zero effect at 5\%.
+None of the four CR2 tests rejects at 5\%; all CR2 95\% confidence intervals include
+zero. Whole-sample wage is marginal at 10\% under the Wald check, while the
+corresponding AR test is not. Conversely, the excluding-Amhara salary AR test is
+marginal at 10\%, while its Wald test is not. Neither is stable across methods.
+The evidence cannot establish a robust positive employment effect or a precise zero.
+
+\textbf{Weak-instrument check.} The CR2 AR test applies the same adjustment to
+$y$ on controls and $E_{is}$ under $H_0:\beta=0$. It avoids dividing by an estimated
+first-stage coefficient, but still relies on small-sample approximations.
+Clustered first-stage F statistics, d.f. and p-values are recorded in the CSV;
+with 3--4 regions they should not be assessed using many-cluster weak-IV cutoffs.
+
+\textbf{Sign-flip sensitivity.} Inspired by Wang--Zhang's wild AR score procedure,
+the instrument is orthogonalized against controls separately by region to avoid
+assuming the same instrument--control projection across regions. Null-restricted
+scores are aggregated by region and all $2^G$ Rademacher patterns are enumerated.
+This is a different set of test moments from the pooled instrument: it discards
+between-region variation, while leaving the reported point estimator unchanged.
+Tigray's residual instrument is zero; only three regions, or two excluding Amhara,
+are informative. Tied patterns are included. Attainable minimum two-sided
+p-values are .250 and .500. Additional draws would merely repeat these patterns.
+
+The check requires independent regions, conditional instrument validity within
+regions, and approximately symmetric cluster scores, supported asymptotically
+by suitable within-region weak dependence. It does not accommodate arbitrary
+common regional factor shocks, justify the exclusion restriction, or provide an
+exact finite-sample guarantee. Policy assignments are not permuted: no known
+random assignment mechanism is assumed. Webb weights or smaller administrative
+clusters should not be selected simply to obtain finer or smaller p-values.
+
+\textbf{Method sources:}
+\href{https://doi.org/10.1080/07350015.2016.1247004}{Pustejovsky and Tipton (2018)},
+\href{https://jepusto.github.io/clubSandwich/}{clubSandwich documentation}, and
+\href{https://doi.org/10.1016/j.jeconom.2024.105727}{Wang and Zhang (2024)}.

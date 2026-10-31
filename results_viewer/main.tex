@@ -25,7 +25,7 @@ This project reads current staged tables from \path{../output/tables/}. It does 
 
 \textbf{Reading guide.} Viewer table numbers differ from manuscript numbers. Section titles identify manuscript equivalents. All tables show the files as generated; the notes identify known export issues rather than silently changing their headings or units. Table 2 is reconstructed and verified; the legacy exports for manuscript Tables 4 and 5 are not exact reproductions of the December 2023 manuscript versions.
 
-\textbf{Common design.} Older-cohort data are built by \path{scripts/extract_clean.R}. Models generally filter \path{raw_lang != 0}, then use complete cases for each outcome and its covariates. Main 2SLS models use \path{lfe::felm}: $y=X\gamma+\beta IMTI+u$, with $IMTI$ instrumented by $E_{is}$. The salary variable is \path{wage_employII}; broader wage employment is \path{wage_employ} and includes salary positives. Missingness and exclusions differ. Conventional model standard errors are not region-clustered unless explicitly stated. The four-region inference issue remains open.
+\textbf{Common design.} Older-cohort data are built by \path{scripts/extract_clean.R}. Models generally filter \path{raw_lang != 0}, then use complete cases for each outcome and its covariates. Main 2SLS models use \path{lfe::felm}: $y=X\gamma+\beta IMTI+u$, with $IMTI$ instrumented by $E_{is}$. The salary variable is \path{wage_employII}; broader wage employment is \path{wage_employ} and includes salary positives. Missingness and exclusions differ. Conventional model standard errors are not region-clustered unless explicitly stated. Table 2 now includes CR2/Satterthwaite inference and a cluster sign-flip AR sensitivity check. Few-region inference remains fragile.
 
 \textbf{Main IV controls (X).} Child sex, BMI-for-age z-score, stunting, caregiver education, age and sex, household size, wealth, housing quality, consumer durables, electricity, land ownership and food-security categories. The main IV models have no region fixed effects. Standardized scores are constructed separately for Addis and non-Addis samples before outcome-specific missing-value exclusions.
 \tableofcontents
@@ -33,7 +33,7 @@ This project reads current staged tables from \path{../output/tables/}. It does 
 \entry{Summary statistics --- manuscript Table 1}{scripts/descriptives.R}{No regression: means, available-case counts and standard deviations, separately for non-Addis and Addis samples. Region indicators enter the non-Addis summary only. Input: the two older-cohort CSVs. Export: \path{output/tables/tableI.tex}.}
 \input{../output/tables/tableI.tex}
 
-\entry{Employment and instrument diagnostics --- manuscript Table 2}{scripts/table_main.R}{Four 2SLS regressions: salary and wage outcomes, whole non-Addis sample and excluding Amhara; common IV controls listed above. Each diagnostic uses its exact second-stage sample. Standalone generation or automatic call from \path{scripts/export_res.R}. Full-precision diagnostics: \path{output/tables/tableII_mod_diagnostics.csv}. Anderson--Rubin tests concern a zero MTI effect, not instrument strength; HC1 allows individual heteroskedasticity, not arbitrary region dependence.}
+\entry{Employment and instrument diagnostics --- manuscript Table 2}{scripts/table_main.R}{Four 2SLS regressions: salary and wage outcomes, whole non-Addis sample and excluding Amhara; common IV controls listed above. Each diagnostic uses its exact second-stage sample. Standalone generation or automatic call from \path{scripts/export_res.R}. Full-precision diagnostics: \path{output/tables/tableII_mod_diagnostics.csv}. Panel C reports regional CR2/Satterthwaite inference and a weak-IV-robust sign-flip sensitivity check; all four CR2 confidence intervals include zero. The original conventional stars in Panel A are retained only for comparison. The salary significance is not robust to clustering. See the clustering notes below.}
 \input{../output/tables/tableII_mod.tex}
 
 \entry{Cognitive channel --- manuscript Table 3}{scripts/table_rev.R}{OLS via \path{felm}, not a completed 2SLS channel analysis: $std\_lang=X\gamma+\delta(E_{is}\times IMTI)+u$. Same IV controls; non-Addis sample, whole and excluding Amhara. Language scores are standardized before excluding Amhara. This input comes from the manuscript because the generator writes directly there.}
@@ -59,4 +59,5 @@ This project reads current staged tables from \path{../output/tables/}. It does 
 \includegraphics[width=.95\linewidth]{assets/employ_gr.pdf}
 \caption{Percentage employed by Round 5, by region}
 \end{figure}
+\clearpage\input{cluster_notes.tex}
 \end{document}

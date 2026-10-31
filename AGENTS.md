@@ -238,3 +238,19 @@ expression and compiles `main.pdf`; it does not rerun regressions. It reads stag
 tables directly and the channel table from the manuscript. Keep source/model
 notes and export-issue annotations current when changing the analysis. The
 viewer uses pdfLaTeX, independently of the manuscript's XeLaTeX requirement.
+
+## Table 2 regional inference
+
+`table_main.R` sources `cluster_inference.R` locally. Required packages now
+include `clubSandwich` (master setup installs missing packages). Panel C provides
+CR2/Satterthwaite inference using equivalent AER IV fits and CR2 AR checks. A
+separate within-region-orthogonalized AR score sign-flip sensitivity calculation
+uses all sign patterns; it changes test moments, not point estimates. Tigray has
+zero residual instrument variation in this calculation, so only three/two
+regions are informative. Do not claim it is exact finite-sample randomization
+inference, or that more draws can fix its resolution. Its conditional validity,
+symmetry/CLT and independent-region assumptions are described in the viewer.
+Salary CR2 p-values are .172/.194 and no Table 2 coefficient rejects at 5%.
+Preserve this qualification when editing the narrative. Full diagnostics and
+cluster scores are staged; run `Rscript tests/check_table2_clustering.R` after
+changes. The conventional Panel A stars are retained for comparison only.

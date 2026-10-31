@@ -139,3 +139,25 @@ the channel table, and the employment figure, with short source/model notes.
 Run `./results_viewer/build.sh` to refresh its figure and compile
 `results_viewer/main.pdf` without rerunning regressions. See
 `results_viewer/README.md` for analysis-refresh commands and known export issues.
+
+## Regional clustering for Table 2
+
+`table_main.R` now calls `scripts/cluster_inference.R`. It retains original
+conventional inference for comparison and adds CR2/Satterthwaite regional
+inference, clustered AR tests and an enumerated within-region-orthogonalized AR
+sign-flip sensitivity check. `clubSandwich` is now a required package and is
+installed automatically by the master script. Standalone runs need it installed.
+
+Salary CR2 p-values are 0.172 and 0.194; no Table 2 coefficient rejects at 5%.
+Only four regions (three excluding Amhara) are available. In the sign-flip check,
+Tigray has no residual instrument variation, leaving three/two informative
+regions and extremely coarse p-values. This is a sensitivity analysis, not an
+exact randomization test or a cure for arbitrary regional shocks.
+
+The diagnostics CSV includes CR2 confidence intervals, effective d.f., first-stage
+and AR checks. `tableII_mod_cluster_audit.csv` records regional sample sizes,
+residual instrument variation and scores. Run
+`Rscript tests/check_table2_clustering.R` to verify estimates, samples,
+Satterthwaite calculations, row/cluster-label invariance and sign enumeration.
+The local viewer includes a detailed clustering note; its build still does not
+rerun regressions. Original Table 2 significance is not robust to clustering.

@@ -29,7 +29,7 @@ local({
   # Fail early if launched from the wrong directory or an incomplete checkout.
   pipeline_scripts <- file.path("scripts", c(
     "extract_clean.R", "cleaning_yc.R", "descriptives.R",
-    "estimation.R", "export_res.R", "table_main.R", "table_rev.R"
+    "estimation.R", "export_res.R", "table_main.R", "cluster_inference.R", "table_rev.R"
   ))
   required_paths <- c(
     "potential_research-Young_Lives.Rproj", "raw_data",
@@ -64,6 +64,7 @@ local({
     "scales",       # figure labels
     "stargazer",    # regression tables
     "AER",          # IV diagnostics
+    "clubSandwich", # CR2/Satterthwaite inference for few regional clusters
     "lfe",          # felm() estimation
     "fastDummies",  # descriptive-statistic indicators
     "xtable"        # summary-statistics LaTeX
