@@ -1,7 +1,7 @@
 # Mother Tongue Instruction, Learning and Employment: Evidence from Ethiopia
 
 Replication code and manuscript for the paper by **Teferi Mergo** (University of
-Waterloo) and **Lemi Daba** (SPIA CGIAR). The study estimates the causal effect
+Waterloo) and **Lemi Daba** (University of Maryland). The study estimates the causal effect
 of mother-tongue instruction (MTI) on cognitive test scores and employment using
 the **Young Lives** longitudinal survey of Ethiopia (rounds 1–5, 2002–2016) plus
 the 2012–13 School Survey, via an **IV / 2SLS** design.
@@ -24,7 +24,7 @@ the 2012–13 School Survey, via an **IV / 2SLS** design.
 ```
 
 The manuscript folder is self-contained (its own `tables/`, `figures/`, `refs.bib`).
-Nothing in `Archive/` is referenced by the pipeline or the manuscript.
+The pipeline and the manuscript reference nothing in `Archive/`.
 
 ---
 
@@ -106,7 +106,7 @@ Nothing here is needed to reproduce the paper; it is kept for provenance.
 | Folder | Contents |
 |--------|----------|
 | `legacy_scripts/` | Exploratory extraction scripts (`data_extract_r2–r5.R`, `data_extract_all.R`), `potential_preliminary.R`, and `revision.R` (the Oct-2023 draft superseded by `scripts/table_rev.R`) |
-| `old_tex_draft/` | `tex/` — the earlier LaTeX draft, superseded by `MTI__learning_and_job_outcomes/` |
+| `old_tex_draft/` | `tex/,` — the earlier LaTeX draft, superseded by `MTI__learning_and_job_outcomes/` |
 | `young_lives_collaboration_repo/` | `Young-Lives---Collaboration/` — an older full copy of the paper (its own git history); the scripts used to write tables here |
 | `preliminary_reports/` | `estimations.Rmd/.md`, `estimations_cache/`, `main_preliminaries.*`, `markdown_files/` |
 | `notes_and_drafts_docx/` | Word documents (literature notes, early framework drafts) |
