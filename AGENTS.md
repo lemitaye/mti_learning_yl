@@ -229,3 +229,12 @@ logs, references, citations, table numbering, and the rendered pages after edits
   Prefer aggregate diagnostics in reports and logs.
 - Report what changed, what was verified, and what remains unresolved. Update
   this guide and README.md if paths, workflow, or reproduction status change.
+
+## Personal results viewer
+
+`results_viewer/` is a separate, nonpublication LaTeX notebook. Its `build.sh`
+refreshes a viewer-only employment PDF from the original descriptive plot
+expression and compiles `main.pdf`; it does not rerun regressions. It reads staged
+tables directly and the channel table from the manuscript. Keep source/model
+notes and export-issue annotations current when changing the analysis. The
+viewer uses pdfLaTeX, independently of the manuscript's XeLaTeX requirement.

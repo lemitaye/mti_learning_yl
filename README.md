@@ -131,3 +131,11 @@ Nothing here is needed to reproduce the paper; it is kept for provenance.
 | `notes_and_drafts_docx/` | Word documents (literature notes, early framework drafts) |
 | `old_figures/` | `fig01.png`, `fig02.png` |
 | `session_files/` | `.RData`, `.Rhistory`, `.DS_Store` |
+
+## Personal results viewer
+
+`results_viewer/main.tex` is a local LaTeX notebook containing the staged tables,
+the channel table, and the employment figure, with short source/model notes.
+Run `./results_viewer/build.sh` to refresh its figure and compile
+`results_viewer/main.pdf` without rerunning regressions. See
+`results_viewer/README.md` for analysis-refresh commands and known export issues.
