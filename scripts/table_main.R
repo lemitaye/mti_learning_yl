@@ -127,6 +127,11 @@ local({
     '\\end{tablenotes}', '\\end{threeparttable}', '\\end{table}'
   )
   writeLines(L, out_file)
+  # Explicit output arguments remain isolated (useful for tests and previews).
+  if (!length(args)) {
+    source("scripts/export_paths.R", local = TRUE)
+    mirror_output(out_file, "tables")
+  }
   diagnostics_file <- sub('\\.tex$', '_diagnostics.csv', out_file)
   if (identical(diagnostics_file, out_file)) diagnostics_file <- paste0(out_file, '_diagnostics.csv')
   write.csv(stats, diagnostics_file, row.names = FALSE)

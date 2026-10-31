@@ -3,8 +3,7 @@
 # Author: Lemi Daba (tayelemi@gmail.com)
 # DEPENDS ON: data/non_aa_samp.csv  (produced by scripts/extract_clean.R)
 #
-# Produces Table 3 of the manuscript, tables/table_rev.tex in the Overleaf
-# project MTI__learning_and_job_outcomes.
+# Produces output/tables/table_rev.tex and mirrors it to the Overleaf Dropbox.
 #
 # "Testing Likely Channels: Impact of MTI on Cognitive Ability".
 # This is the first-stage relationship of the channels IV design: the effect of
@@ -20,7 +19,7 @@ library(lfe)
 # ---- output location (pass a path as arg to override) -----------------------
 args <- commandArgs(trailingOnly = TRUE)
 out_file <- if (length(args) >= 1) args[[1]] else
-  "MTI__learning_and_job_outcomes/tables/table_rev.tex"
+  "output/tables/table_rev.tex"
 
 # ---- data -------------------------------------------------------------------
 standardize <- function(x) (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
@@ -103,7 +102,14 @@ L <- c(
   "\\end{table} "
 )
 
+dir.create(dirname(out_file), recursive = TRUE, showWarnings = FALSE)
 writeLines(L, out_file)
+if (!length(args)) {
+  local({
+    source("scripts/export_paths.R", local = TRUE)
+    mirror_output("output/tables/table_rev.tex", "tables")
+  })
+}
 
 # ---- console summary (verification) -----------------------------------------
 cat("Wrote:", out_file, "\n\n")

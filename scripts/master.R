@@ -13,8 +13,11 @@
 # Missing packages are installed automatically (internet access and a writable
 # R library are required). Existing packages are not deliberately upgraded.
 # This script clears workspace objects and overwrites processed data/results,
-# including the manuscript's Table 3. Use a fresh R session for a full run.
+# including files mirrored to Overleaf. Use a fresh R session for a full run.
 ########################################################################~
+
+# Exports also mirror tables/figures to the Overleaf Dropbox project.
+# Override MTI_OVERLEAF_DIR, or set it to "" to keep exports local only.
 
 # ---- 0. Session and project setup -------------------------------------------
 rm(list = ls())
@@ -29,11 +32,11 @@ local({
   # Fail early if launched from the wrong directory or an incomplete checkout.
   pipeline_scripts <- file.path("scripts", c(
     "extract_clean.R", "cleaning_yc.R", "descriptives.R",
-    "estimation.R", "export_res.R", "table_main.R", "cluster_inference.R", "table_rev.R"
+    "estimation.R", "export_res.R", "export_paths.R", "table_main.R", "cluster_inference.R", "table_rev.R"
   ))
   required_paths <- c(
     "mti_learning_yl.Rproj", "raw_data",
-    "MTI__learning_and_job_outcomes/tables", pipeline_scripts
+    pipeline_scripts
   )
   missing_paths <- required_paths[!file.exists(required_paths)]
   if (length(missing_paths)) {
@@ -128,9 +131,9 @@ message("Step 3/4: estimating models and exporting regression tables.")
 source("scripts/estimation.R",    echo = TRUE, max = 1000)  # fits all models into the workspace
 source("scripts/export_res.R",    echo = TRUE, max = 1000)  # -> staged tables, including tableII_mod.tex with IV diagnostics
 
-# ---- 4. Table 3: "Likely Channels" (writes straight to the manuscript) ------
+# ---- 4. Table 3: "Likely Channels" (local output and Dropbox) ------
 message("Step 4/4: regenerating manuscript Table 3.")
-source("scripts/table_rev.R",     echo = TRUE, max = 1000)  # -> MTI__learning_and_job_outcomes/tables/table_rev.tex
+source("scripts/table_rev.R",     echo = TRUE, max = 1000)  # -> output/tables/table_rev.tex and Dropbox tables/
 
 # ---- Done -------------------------------------------------------------------
 # Generated tables/figures land in output/. Review them, then copy the ones the

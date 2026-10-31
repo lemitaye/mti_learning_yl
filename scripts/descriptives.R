@@ -157,7 +157,8 @@ employ_gr <- non_aa_samp %>%
 ggsave(
   filename = "output/figures/employ_gr.pdf",
   plot = employ_gr,
-  device = cairo_pdf,
+  # Base PDF works without the optional Cairo/XQuartz system libraries.
+  device = grDevices::pdf,
   width = 200,
   height = 120,
   units = "mm"
@@ -367,3 +368,10 @@ print(
 # 
 
 
+
+# Local outputs are complete before attempting the optional Dropbox mirror.
+local({
+  source("scripts/export_paths.R", local = TRUE)
+  mirror_output("output/tables/tableI.tex", "tables")
+  mirror_output("output/figures/employ_gr.pdf", "figures")
+})
