@@ -223,3 +223,7 @@ star_tex_write(tabVI,
 
 
 
+
+# Table 2 in manuscript order: employment models plus first-stage diagnostics.
+# Writes to staging, preserving manuscript files until reviewed.
+source("scripts/table_main.R")

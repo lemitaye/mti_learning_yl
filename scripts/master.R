@@ -29,7 +29,7 @@ local({
   # Fail early if launched from the wrong directory or an incomplete checkout.
   pipeline_scripts <- file.path("scripts", c(
     "extract_clean.R", "cleaning_yc.R", "descriptives.R",
-    "estimation.R", "export_res.R", "table_rev.R"
+    "estimation.R", "export_res.R", "table_main.R", "table_rev.R"
   ))
   required_paths <- c(
     "potential_research-Young_Lives.Rproj", "raw_data",
@@ -125,7 +125,7 @@ source("scripts/descriptives.R",  echo = TRUE, max = 1000)  # -> output/tables/t
 # ---- 3. Estimation + regression tables --------------------------------------
 message("Step 3/4: estimating models and exporting regression tables.")
 source("scripts/estimation.R",    echo = TRUE, max = 1000)  # fits all models into the workspace
-source("scripts/export_res.R",    echo = TRUE, max = 1000)  # -> output/tables/tableII..VI.tex  (uses step-3 models)
+source("scripts/export_res.R",    echo = TRUE, max = 1000)  # -> staged tables, including tableII_mod.tex with IV diagnostics
 
 # ---- 4. Table 3: "Likely Channels" (writes straight to the manuscript) ------
 message("Step 4/4: regenerating manuscript Table 3.")

@@ -96,7 +96,7 @@ known blockers below and preserve current manuscript tables before running it.
 | 2 | `scripts/cleaning_yc.R` | `data/ylsample_yc.csv`, `data/schsur_yl_joined.csv`. |
 | 3 | `scripts/descriptives.R` | `output/tables/tableI.tex`, `output/figures/employ_gr.pdf`. |
 | 4 | `scripts/estimation.R` | Regression objects in memory. |
-| 5 | `scripts/export_res.R` | `output/tables/tableII.tex` through `tableVI.tex`, using step 4 objects. |
+| 5 | `scripts/export_res.R` | `output/tables/tableII.tex` through `tableVI.tex`, using step 4 objects; also sources `table_main.R` for staged `tableII_mod.tex` and diagnostics CSV. |
 | 6 | `scripts/table_rev.R` | Directly overwrites `MTI__learning_and_job_outcomes/tables/table_rev.tex` by default. |
 
 `master.R`, `descriptives.R`, and `estimation.R` clear workspace objects.
@@ -126,10 +126,14 @@ lockfile or automated test suite in the active pipeline.
   Figure 1 layers, and six staged table bodies matched exactly. Rebuilt CSVs
   matched repository copies; Table 3 matched the manuscript body. This does not
   resolve the historical table-generator differences described below.
-- Manuscript Tables 2, 4, and 5 have December 2023 generation headers, whereas
-  `export_res.R` is an older generator. It does not generate `tableII_mod.tex`.
-  Recover/reconstruct and validate the relevant specifications before replacing
-  these tables; successful execution alone would not establish reproduction.
+- Table 2 is now reconstructed by `scripts/table_main.R` (standalone or via
+  `export_res.R`), preserving original employment estimates/SEs/N and adding
+  exact-sample F, partial R-squared, HC1 F, and Anderson–Rubin diagnostics.
+  Table notes now reflect the actual controls. Diagnostics are staged in
+  `output/tables/tableII_mod_diagnostics.csv`; review before copying the table.
+  HC1 diagnostics allow individual heteroskedasticity, not regional dependence.
+- Manuscript Tables 4 and 5 retain a December-2023/November-2022 generator
+  mismatch. Validate their specifications before replacing them.
 - Existing README.md/CLAUDE.md describe Table 3 as previously byte-verified.
   This audit did not rerun it. Its writer emits a timestamp and output path, so
   compare estimates, standard errors, sample sizes, and table body rather than
@@ -183,7 +187,7 @@ Table numbers follow active `main.tex` input order, not filename numbering:
 | Paper | Manuscript file | Generator / status |
 | --- | --- | --- |
 | Table 1 | `tables/tableI.tex` | `descriptives.R`; output staged first. |
-| Table 2 | `tables/tableII_mod.tex` | December 2023 version; current export does not reproduce it. |
+| Table 2 | `tables/tableII_mod.tex` | `table_main.R`, also called by `export_res.R`; original estimates reproduced, diagnostics added. |
 | Table 3 | `tables/table_rev.tex` | `table_rev.R`; direct-write exception. |
 | Table 4 | `tables/tableIII.tex` | December 2023 version; generator mismatch. |
 | Table 5 | `tables/tableV.tex` | December 2023 version; generator mismatch. |
