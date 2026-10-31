@@ -254,3 +254,22 @@ Salary CR2 p-values are .172/.194 and no Table 2 coefficient rejects at 5%.
 Preserve this qualification when editing the narrative. Full diagnostics and
 cluster scores are staged; run `Rscript tests/check_table2_clustering.R` after
 changes. The conventional Panel A stars are retained for comparison only.
+
+## Dual output export
+
+Generated LaTeX tables and the employment figure are retained in `output/` and
+also mirrored to `tables/` and `figures/` in the Dropbox project
+`/Users/user/Library/CloudStorage/Dropbox/Apps/Overleaf/MTI and Employment Outcomes NFR`.
+`scripts/export_paths.R` centralizes this behavior. Override with
+`Sys.setenv(MTI_OVERLEAF_DIR = "/another/project")`; set it to `""` to disable
+external exports (also use this for isolated analysis tests). A missing or
+unwritable destination produces a warning and retains local results.
+Existing changed destination files are backed up by content hash under
+`output/overleaf_backups/` before replacement. This includes legacy exports
+whose specifications/headings differ from the historical manuscript tables.
+Only generated tables/figures are mirrored; manuscript prose, raw data and CSV
+diagnostics are not copied. Table 3 now writes `output/tables/table_rev.tex`; the archived local manuscript
+is not updated or required. The personal viewer reads this staged copy. Explicit output-path arguments to
+`table_main.R` and `table_rev.R` do not trigger the Dropbox mirror.
+Descriptive figures use the base PDF device to avoid the optional Cairo/XQuartz
+system dependency. The default pipeline now needs no local manuscript folder.
