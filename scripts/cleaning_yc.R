@@ -8,18 +8,19 @@
 
 
 # read data: ####
+source("scripts/raw_data_catalog.R")
 
 # school survey:
-pupil_wave1 <- read_dta("raw_data/school_survey_2012-13/wave_1/et_pupilleveldata_r2.dta")
-school_wave1 <- read_dta("raw_data/school_survey_2012-13/wave_1/et_schoolleveldata_r2.dta")
-pupil_math_w2 <- read_dta("raw_data/school_survey_2012-13/wave_2/etpupilmathstest.dta")
-pupil_liter_w2 <- read_dta("raw_data/school_survey_2012-13/wave_2/etpupilliteracytest.dta")
+pupil_wave1 <- read_dta(raw_data_files[["school_pupils_w1"]])
+school_wave1 <- read_dta(raw_data_files[["school_schools_w1"]])
+pupil_math_w2 <- read_dta(raw_data_files[["school_math_w2"]])
+pupil_liter_w2 <- read_dta(raw_data_files[["school_literacy_w2"]])
 
 
 # young lives data:
-cons_all <- read_dta("raw_data/Rounds_1-5_Constructed_Files/ethiopia_constructed.dta")
-child_r3 <- read_dta("raw_data/Round_3_2009/et_yc_childlevel.dta")
-cognitive_r4 <- read_dta("raw_data/Round_4_2013-14/et_r4_yccog_youngerchild.dta")
+cons_all <- read_dta(raw_data_files[["constructed_legacy"]])
+child_r3 <- read_dta(raw_data_files[["r3_yc"]])
+cognitive_r4 <- read_dta(raw_data_files[["r4_yc_cognitive"]])
 
 
 

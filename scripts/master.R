@@ -31,7 +31,7 @@ local({
 
   # Fail early if launched from the wrong directory or an incomplete checkout.
   pipeline_scripts <- file.path("scripts", c(
-    "extract_clean.R", "cleaning_yc.R", "descriptives.R",
+    "extract_clean.R", "cleaning_yc.R", "raw_data_catalog.R", "inventory_round7.R", "descriptives.R",
     "estimation.R", "export_res.R", "export_paths.R", "table_main.R", "cluster_inference.R", "table_rev.R"
   ))
   required_paths <- c(
@@ -45,6 +45,12 @@ local({
       paste(missing_paths, collapse = ", "), call. = FALSE
     )
   }
+
+  # Check legacy replication inputs and newly added Round 7 resources.
+  source("scripts/raw_data_catalog.R", local = TRUE)
+  missing_inputs <- raw_data_files[!file.exists(raw_data_files)]
+  if (length(missing_inputs)) stop("Raw inputs missing: ",
+    paste(missing_inputs, collapse = ", "), call. = FALSE)
 
   # Create generated-output folders if this is a fresh checkout.
   for (path in c("data", "output/tables", "output/figures")) {
@@ -121,6 +127,9 @@ local({
 message("Step 1/4: building analysis datasets.")
 source("scripts/extract_clean.R", echo = TRUE, max = 1000)  # -> data/aa_samp.csv, data/non_aa_samp.csv  (older cohort)
 source("scripts/cleaning_yc.R",   echo = TRUE, max = 1000)  # -> data/ylsample_yc.csv, data/schsur_yl_joined.csv (younger cohort)
+
+# Inventory new releases separately; they do not enter the current models.
+source("scripts/inventory_round7.R")
 
 # ---- 2. Descriptives: Table 1 + Figure 1 ------------------------------------
 message("Step 2/4: generating descriptive tables and figures.")

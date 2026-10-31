@@ -273,3 +273,37 @@ is not updated or required. The personal viewer reads this staged copy. Explicit
 `table_main.R` and `table_rev.R` do not trigger the Dropbox mirror.
 Descriptive figures use the base PDF device to avoid the optional Cairo/XQuartz
 system dependency. The default pipeline now needs no local manuscript folder.
+
+## Raw-data release migration (R7)
+
+The active layout now follows the supplied release folders (`yl_r1` through
+`yl_r7`, phone/school surveys, and `yl_const_r1_r7`).
+`scripts/raw_data_catalog.R` is the authoritative path map for active scripts.
+The current models retain their original rounds and use
+`raw_data/legacy_constructed_r1_r5/ethiopia_constructed.dta`. The new constructed
+release changes historical values/missingness and schema: **do not substitute it
+for the legacy input or assume the releases are interchangeable**. This choice
+was explicitly requested to preserve replication.
+
+Round 7 and the latest constructed release are inventoried separately by
+`scripts/inventory_round7.R`; this exports aggregate schema/row counts only and
+does not fit new models or change employment outcomes. All original raw files,
+including documentation not found by filename in the new release, remain in
+an ignored recoverable snapshot under `_archive/raw_data_snapshots/`.
+Audit reports, the source-to-local SHA-256 manifest, and the pre-migration
+analysis baseline are under `output/raw_data_update_audit/`. The reusable
+`scripts/audit_raw_release.R` compares matched Stata files; its command-line
+arguments specify both roots, a crosswalk CSV, and the report location.
+`scripts/audit_constructed_release.R` reports historical differences without
+exporting participant records. Candidate aliases in that report are diagnostic
+suggestions, not automatic recoding rules. Dropbox export was disabled during
+migration verification.
+
+Migration verification completed: 1,610 supplied files were copied with SHA-256
+checks. Of 1,058 legacy non-constructed Stata files, 1,050 match exactly; seven
+Peru files and one Vietnam file differ. No parse errors remain. All current
+Ethiopia inputs and all 49 fitted-model snapshots are unchanged; the four
+processed CSVs and generated table bodies/diagnostics match the baseline.
+See `output/raw_data_update_audit/README.txt` and `replication_verification.json`.
+Latest constructed data have multiple Round 6 calls per child: do not assume
+`childid` plus `round` uniquely identifies records throughout R1--R7.

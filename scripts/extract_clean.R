@@ -10,14 +10,15 @@
 
 
 # Load data: ####
+source("scripts/raw_data_catalog.R")
 
-cons_all <- read_dta("raw_data/Rounds_1-5_Constructed_Files/ethiopia_constructed.dta")
+cons_all <- read_dta(raw_data_files[["constructed_legacy"]])
 
-child_r3 <- read_dta("raw_data/Round_3_2009/et_oc_childlevel.dta")
+child_r3 <- read_dta(raw_data_files[["r3_oc"]])
 
-cognitive_r4 <- read_dta("raw_data/Round_4_2013-14/et_r4_occog_olderchild.dta")
+cognitive_r4 <- read_dta(raw_data_files[["r4_oc_cognitive"]])
 
-occh_activity <- read_dta("raw_data/Round_5_2016/et_r5_occh_activity.dta")
+occh_activity <- read_dta(raw_data_files[["r5_oc_activity"]])
 
 # clean data: ####
 
