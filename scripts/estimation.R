@@ -305,20 +305,24 @@ stargazer(
 #   type = "text"
 # )
 
-# Amhara vs. Oromia
-rf1oa <- lm(f_rf1, data = orom.amh)
-rf2oa <- lm(f_rf2, data = orom.amh)
-rf3oa <- lm(f_rf3, data = orom.amh)
-rf4oa <- lm(f_rf4, data = orom.amh)
-rf5oa <- lm(f_rf5, data = orom.amh)
-
-stargazer(
-  rf2oa, rf3oa, rf4oa, rf5oa ,rf1oa, 
-  keep = c("T"),
-  keep.stat = c("n","rsq"),
-  type = "text"
-)
-
+# Inactive exploratory Amhara/Oromia comparison (not used by export_res.R).
+# Its dataset construction above is commented out, and the current f_rf*
+# formulas target Tigray. Keep this block inactive until it is specified
+# explicitly; it is not part of the manuscript results.
+# # Amhara vs. Oromia
+# rf1oa <- lm(f_rf1, data = orom.amh)
+# rf2oa <- lm(f_rf2, data = orom.amh)
+# rf3oa <- lm(f_rf3, data = orom.amh)
+# rf4oa <- lm(f_rf4, data = orom.amh)
+# rf5oa <- lm(f_rf5, data = orom.amh)
+#
+# stargazer(
+#   rf2oa, rf3oa, rf4oa, rf5oa ,rf1oa,
+#   keep = c("T"),
+#   keep.stat = c("n","rsq"),
+#   type = "text"
+# )
+#
 # Dist. of IMTI (Oromia vs. Tigray)
 
 orom.tig %>% 

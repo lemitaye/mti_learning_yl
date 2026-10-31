@@ -48,11 +48,13 @@ non_aa_samp %>%
   geom_col() +
   coord_flip() 
 
+# Use the analysis sample; non_aa_descr is built later for Table 1 and
+# drops region and renames wage_employII, so it is unsuitable for these plots.
 plot_by_region <- function(var) {
-  non_aa_descr %>% 
+  non_aa_samp %>%
     group_by(region) %>% 
     summarise(mean_wage = mean({{var}}, na.rm = TRUE)) %>% 
-    ggplot(aes(fct_reorder(region, mean), mean_wage)) +
+    ggplot(aes(fct_reorder(region, mean_wage), mean_wage)) +
     geom_col() +
     coord_flip()
 }
@@ -69,7 +71,7 @@ non_aa_samp %>%
 plot_by_region(raw_maths)
 plot_by_region(raw_lang)
 
-non_aa_descr %>% 
+non_aa_samp %>%
   group_by(region) %>% 
   summarise(mean_lang = mean(raw_lang, na.rm = TRUE)) %>% 
   ggplot(aes(fct_reorder(region, mean_lang), mean_lang)) +
@@ -103,10 +105,12 @@ standardize <- function(x){
 non_aa_samp %>% 
   select(region, raw_maths, raw_lang) %>% 
   group_by(region) %>% 
-  summarise(
+  # Standardization returns one value per child, not one summary per region.
+  mutate(
     std_maths = standardize(raw_maths),
     std_lang = standardize(raw_lang)
-  ) %>% 
+  ) %>%
+  ungroup() %>%
   pivot_longer(c(std_maths, std_lang), names_to = "test_type", values_to = "std_score") %>% 
   ggplot(aes(color = region, linetype = region)) +
   geom_density(aes(std_score)) +

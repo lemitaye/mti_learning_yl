@@ -106,14 +106,26 @@ checking its package and workspace dependencies first.
 
 The master script loads `tidyverse`, `haven`, `scales`, `stargazer`, `AER`, `lfe`,
 `starpolishr`, `fastDummies`, and `xtable`. Existing setup instructions obtain
-`starpolishr` from `ChandlerLutz/starpolishr` on GitHub. There is no dependency
+`starpolishr` from `ChandlerLutz/starpolishr` on GitHub. `master.R` now installs
+missing CRAN packages and bootstraps `remotes` for GitHub installation when
+needed, then verifies availability before attaching packages. It also checks
+project paths and creates generated-output directories. There is no dependency
 lockfile or automated test suite in the active pipeline.
 
 ### Known reproducibility issues (initial audit: 2026-10-31)
 
-- `estimation.R` actively fits `rf1oa` through `rf5oa` using `orom.amh`, whose
-  construction is commented out. Because this script clears its workspace, the
-  intended full pipeline cannot be assumed to finish in a clean session.
+- Resolved during debugging: the unused `rf1oa`–`rf5oa` exploratory block is now
+  commented out alongside its inactive `orom.amh` setup. Its formulas also
+  targeted Tigray; do not reactivate it without specifying that comparison.
+- Resolved during debugging: exploratory plots in `descriptives.R` now use
+  `non_aa_samp` and the correct ordering column, and within-region score
+  standardization uses `mutate()` rather than multirow `summarise()`.
+- The repaired master pipeline completed in isolated copies on 2026-10-31.
+  Against original result-producing code with broken exploratory blocks skipped,
+  all 49 regression coefficient/covariance/sample-size snapshots, Table 1 data,
+  Figure 1 layers, and six staged table bodies matched exactly. Rebuilt CSVs
+  matched repository copies; Table 3 matched the manuscript body. This does not
+  resolve the historical table-generator differences described below.
 - Manuscript Tables 2, 4, and 5 have December 2023 generation headers, whereas
   `export_res.R` is an older generator. It does not generate `tableII_mod.tex`.
   Recover/reconstruct and validate the relevant specifications before replacing

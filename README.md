@@ -30,7 +30,11 @@ The pipeline and the manuscript reference nothing in `Archive/`.
 
 ## Reproducing the results
 
-**Requirements:** R (≥ 4.x) and a LaTeX distribution. R packages:
+**Requirements:** R (≥ 4.x) and a LaTeX distribution. `scripts/master.R` checks
+the required packages and installs missing ones automatically (internet access
+and a writable R library are needed). It obtains `starpolishr` from GitHub,
+installing `remotes` if needed, and does not deliberately upgrade existing
+packages. For manual setup, the R packages are:
 `tidyverse`, `haven`, `scales`, `stargazer`, `AER`, `lfe`, `fastDummies`,
 `xtable`, and `starpolishr` (GitHub only):
 
@@ -65,6 +69,15 @@ manuscript). See the mapping and caveats below.
 > `rm(list = ls())` (each reloads its own data). `export_res.R` has **no**
 > `rm()` and depends on the models `estimation.R` leaves in memory, so it must
 > run in the same session immediately after it. `master.R` handles this order.
+
+---
+
+The full pipeline was verified in isolated copies on 31 October 2026 after
+repairing exploratory plotting errors and disabling an unused, incomplete
+Amhara/Oromia comparison. Against the original result-producing code with those
+broken exploratory blocks skipped, regression estimates, uncertainty, sample
+sizes, and generated table bodies were unchanged. The historical manuscript
+table differences described below remain unresolved.
 
 ---
 
