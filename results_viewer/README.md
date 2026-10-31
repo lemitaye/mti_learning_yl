@@ -19,8 +19,7 @@ data, reusing the `non_aa_samp` and `employ_gr` expressions in descriptives.R.
 It uses the base PDF device because Cairo/XQuartz is unavailable locally.
 It does not run regressions, rewrite manuscript files, or copy staged results
 into the manuscript. Tables are included directly from their source files and
-must already exist. Table 3 is included from the manuscript because its generator
-writes there directly. Keep this folder within the repository; it is not a
+must already exist. Table 3 is included from output/tables/table_rev.tex. Keep this folder within the repository; it is not a
 standalone copy of the results.
 
 To refresh analysis first, run `Rscript scripts/master.R` from the repository
