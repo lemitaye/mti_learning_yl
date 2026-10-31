@@ -1,4 +1,4 @@
-# Small-G checks for Table 2; sourced locally by table_main.R.
+# Small-G checks for Table 2; sourced locally by 07_table_main.R.
 # CR2/Satterthwaite: https://jepusto.github.io/clubSandwich/
 # Wild AR score sign changes: Wang & Zhang (2024), section 2.3.2 / Theorem 6.1
 # https://arxiv.org/pdf/2108.13707

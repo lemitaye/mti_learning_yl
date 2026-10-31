@@ -84,7 +84,7 @@ limitation; a response should identify the evidence and manuscript location.
 Run commands from the repository root. The intended full command is:
 
 ```sh
-Rscript code/master.R
+Rscript code/_master.R
 ```
 
 This **writes data and results** and is not a harmless smoke test. Inspect the
@@ -92,21 +92,21 @@ known blockers below and preserve current manuscript tables before running it.
 
 | Order | Script | Output / dependency |
 | --- | --- | --- |
-| 1 | `code/extract_clean.R` | Older cohort: `data/aa_samp.csv`, `data/non_aa_samp.csv`. |
-| 2 | `code/cleaning_yc.R` | `data/ylsample_yc.csv`, `data/schsur_yl_joined.csv`. |
-| 3 | `code/descriptives.R` | `output/tables/tableI.tex`, `output/figures/employ_gr.pdf`. |
-| 4 | `code/estimation.R` | Regression objects in memory. |
-| 5 | `code/export_res.R` | `output/tables/tableII.tex` through `tableVI.tex`, using step 4 objects; also sources `table_main.R` for staged `tableII_mod.tex` and diagnostics CSV. |
-| 6 | `code/table_rev.R` | Writes `output/tables/table_rev.tex` and mirrors to the revision project. |
+| 1 | `code/01_extract_clean.R` | Older cohort: `data/aa_samp.csv`, `data/non_aa_samp.csv`. |
+| 2 | `code/02_cleaning_yc.R` | `data/ylsample_yc.csv`, `data/schsur_yl_joined.csv`. |
+| 3 | `code/03_descriptives.R` | `output/tables/tableI.tex`, `output/figures/employ_gr.pdf`. |
+| 4 | `code/05_estimation.R` | Regression objects in memory. |
+| 5 | `code/06_export_res.R` | `output/tables/tableII.tex` through `tableVI.tex`, using step 4 objects; also sources `07_table_main.R` for staged `tableII_mod.tex` and diagnostics CSV. |
+| 6 | `code/09_table_rev.R` | Writes `output/tables/table_rev.tex` and mirrors to the revision project. |
 
-`master.R`, `descriptives.R`, and `estimation.R` clear workspace objects.
-`export_res.R` relies on models from `estimation.R` in the **same R session** and
+`_master.R`, `03_descriptives.R`, and `05_estimation.R` clear workspace objects.
+`06_export_res.R` relies on models from `05_estimation.R` in the **same R session** and
 on already loaded packages. Standalone script execution generally requires
 checking its package and workspace dependencies first.
 
 The master script loads `tidyverse`, `haven`, `scales`, `stargazer`, `AER`, `lfe`,
 `starpolishr`, `fastDummies`, and `xtable`. Existing setup instructions obtain
-`starpolishr` from `ChandlerLutz/starpolishr` on GitHub. `master.R` now installs
+`starpolishr` from `ChandlerLutz/starpolishr` on GitHub. `_master.R` now installs
 missing CRAN packages and bootstraps `remotes` for GitHub installation when
 needed, then verifies availability before attaching packages. It also checks
 project paths and creates generated-output directories. There is no dependency lockfile. Targeted checks live in `temp/tests/`.
@@ -116,7 +116,7 @@ project paths and creates generated-output directories. There is no dependency l
 - Resolved during debugging: the unused `rf1oa`–`rf5oa` exploratory block is now
   commented out alongside its inactive `orom.amh` setup. Its formulas also
   targeted Tigray; do not reactivate it without specifying that comparison.
-- Resolved during debugging: exploratory plots in `descriptives.R` now use
+- Resolved during debugging: exploratory plots in `03_descriptives.R` now use
   `non_aa_samp` and the correct ordering column, and within-region score
   standardization uses `mutate()` rather than multirow `summarise()`.
 - The repaired master pipeline completed in isolated copies on 2026-10-31.
@@ -125,8 +125,8 @@ project paths and creates generated-output directories. There is no dependency l
   Figure 1 layers, and six staged table bodies matched exactly. Rebuilt CSVs
   matched repository copies; Table 3 matched the manuscript body. This does not
   resolve the historical table-generator differences described below.
-- Table 2 is now reconstructed by `code/table_main.R` (standalone or via
-  `export_res.R`), preserving original employment estimates/SEs/N and adding
+- Table 2 is now reconstructed by `code/07_table_main.R` (standalone or via
+  `06_export_res.R`), preserving original employment estimates/SEs/N and adding
   exact-sample F, partial R-squared, HC1 F, and Anderson–Rubin diagnostics.
   Table notes now reflect the actual controls. Diagnostics are staged in
   `output/tables/tableII_mod_diagnostics.csv`; review before copying the table.
@@ -170,13 +170,13 @@ project paths and creates generated-output directories. There is no dependency l
 - Main IV models use `lfe::felm`, with `(IMTI ~ E_is)` in its IV formula slot.
   Do not infer clustering from the package or from a separate first-stage model:
   inspect each formula and exported uncertainty calculation.
-- `table_rev.R` fits `std_lang ~ inst + controls`, with `inst = E_is * IMTI`,
+- `09_table_rev.R` fits `std_lang ~ inst + controls`, with `inst = E_is * IMTI`,
   using `felm` without an IV slot. This is an OLS association, despite its
   comments calling it a channel first stage. It is not a completed 2SLS channel
   analysis. Standardization occurs after the language-score filter and before
   excluding Amhara. Describe the implemented estimator accurately.
-- `export_res.R` builds tables with `stargazer` and `starpolishr`; positional
-  header/row insertions are sensitive to layout changes. `table_rev.R` writes
+- `06_export_res.R` builds tables with `stargazer` and `starpolishr`; positional
+  header/row insertions are sensitive to layout changes. `09_table_rev.R` writes
   LaTeX directly.
 
 ## Manuscript result mapping and build
@@ -185,12 +185,12 @@ Table numbers follow active `main.tex` input order, not filename numbering:
 
 | Paper | Manuscript file | Generator / status |
 | --- | --- | --- |
-| Table 1 | `tables/tableI.tex` | `descriptives.R`; output staged first. |
-| Table 2 | `tables/tableII_mod.tex` | `table_main.R`, also called by `export_res.R`; original estimates reproduced, diagnostics added. |
-| Table 3 | `tables/table_rev.tex` | `table_rev.R`; local staging and revision export. |
+| Table 1 | `tables/tableI.tex` | `03_descriptives.R`; output staged first. |
+| Table 2 | `tables/tableII_mod.tex` | `07_table_main.R`, also called by `06_export_res.R`; original estimates reproduced, diagnostics added. |
+| Table 3 | `tables/table_rev.tex` | `09_table_rev.R`; local staging and revision export. |
 | Table 4 | `tables/tableIII.tex` | December 2023 version; generator mismatch. |
 | Table 5 | `tables/tableV.tex` | December 2023 version; generator mismatch. |
-| Figure 1 | `figures/employ_gr.pdf` | `descriptives.R`; output staged first. |
+| Figure 1 | `figures/employ_gr.pdf` | `03_descriptives.R`; output staged first. |
 | Appendix map | `figures/map.png` | Static source image; attribution in `main.tex`. |
 
 `tableII.tex`, `tableIV.tex`, and `tableVI.tex` are commented out in `main.tex`.
@@ -240,7 +240,7 @@ viewer uses pdfLaTeX, independently of the manuscript's XeLaTeX requirement.
 
 ## Table 2 regional inference
 
-`table_main.R` sources `cluster_inference.R` locally. Required packages now
+`07_table_main.R` sources `08_cluster_inference.R` locally. Required packages now
 include `clubSandwich` (master setup installs missing packages). Panel C provides
 CR2/Satterthwaite inference using equivalent AER IV fits and CR2 AR checks. A
 separate within-region-orthogonalized AR score sign-flip sensitivity calculation
@@ -259,7 +259,7 @@ changes. The conventional Panel A stars are retained for comparison only.
 Generated LaTeX tables and the employment figure are retained in `output/` and
 also mirrored to `tables/` and `figures/` in the Dropbox project
 `/Users/user/Library/CloudStorage/Dropbox/Apps/Overleaf/MTI and Employment - Revision (AE)`.
-`code/export_paths.R` centralizes this behavior. Override with
+`code/04_export_paths.R` centralizes this behavior. Override with
 `Sys.setenv(MTI_OVERLEAF_DIR = "/another/project")`; set it to `""` to disable
 external exports (also use this for isolated analysis tests). A missing or
 unwritable destination produces a warning and retains local results.
@@ -269,7 +269,7 @@ whose specifications/headings differ from the historical manuscript tables.
 Only generated tables/figures are mirrored; manuscript prose, raw data and CSV
 diagnostics are not copied. Table 3 now writes `output/tables/table_rev.tex`; the archived local manuscript
 is not updated or required. The personal viewer reads this staged copy. Explicit output-path arguments to
-`table_main.R` and `table_rev.R` do not trigger the Dropbox mirror.
+`07_table_main.R` and `09_table_rev.R` do not trigger the Dropbox mirror.
 Descriptive figures use the base PDF device to avoid the optional Cairo/XQuartz
 system dependency. The default pipeline now needs no local manuscript folder.
 
@@ -277,7 +277,7 @@ system dependency. The default pipeline now needs no local manuscript folder.
 
 The active layout now follows the supplied release folders (`yl_r1` through
 `yl_r7`, phone/school surveys, and `yl_const_r1_r7`).
-`code/raw_data_catalog.R` is the authoritative path map for active scripts.
+`temp/raw_data_catalog.R` is the authoritative path map for active scripts.
 The current models retain their original rounds and use
 `rawdata/legacy_constructed_r1_r5/ethiopia_constructed.dta`. The new constructed
 release changes historical values/missingness and schema: **do not substitute it
@@ -285,15 +285,15 @@ for the legacy input or assume the releases are interchangeable**. This choice
 was explicitly requested to preserve replication.
 
 Round 7 and the latest constructed release are inventoried separately by
-`code/inventory_round7.R`; this exports aggregate schema/row counts only and
+`temp/inventory_round7.R`; this exports aggregate schema/row counts only and
 does not fit new models or change employment outcomes. All original raw files,
 including documentation not found by filename in the new release, remain in
 an ignored recoverable snapshot under `_archive/raw_data_snapshots/`.
 Audit reports, the source-to-local SHA-256 manifest, and the pre-migration
 analysis baseline are under `output/raw_data_update_audit/`. The reusable
-`code/audit_raw_release.R` compares matched Stata files; its command-line
+`temp/audit_raw_release.R` compares matched Stata files; its command-line
 arguments specify both roots, a crosswalk CSV, and the report location.
-`code/audit_constructed_release.R` reports historical differences without
+`temp/audit_constructed_release.R` reports historical differences without
 exporting participant records. Candidate aliases in that report are diagnostic
 suggestions, not automatic recoding rules. Dropbox export was disabled during
 migration verification.
@@ -319,10 +319,32 @@ a recovery snapshot are in `output/overleaf_project_recovery/`.
 
 Active analysis code is in `code/`, survey inputs in `rawdata/`, and personal
 validation/viewer files in `temp/tests/` and `temp/results_viewer/`. Run from the
-repository root with `Rscript code/master.R`; the ignored RStudio project file
+repository root with `Rscript code/_master.R`; the ignored RStudio project file
 is optional. Viewer build paths account for the extra `temp/` directory.
 The full pipeline completed with Dropbox exports disabled. All 49 model
 coefficient/covariance/sample-size snapshots match the verified baseline; all
 four analysis CSVs, table bodies and diagnostics are unchanged. Figure text
 matches, targeted path/export/clustering checks pass, and the viewer compiles
 to 11 pages. Logs and comparison evidence: `output/layout_cleanup_audit/`.
+
+## Script order and temporary helpers
+
+Run `Rscript code/_master.R` from the repository root. Analysis scripts are
+numbered in the order first sourced, including nested helpers:
+
+1. `code/01_extract_clean.R`
+2. `code/02_cleaning_yc.R`
+3. `code/03_descriptives.R`
+4. `code/04_export_paths.R` (loaded by descriptive/table exporters)
+5. `code/05_estimation.R`
+6. `code/06_export_res.R`
+7. `code/07_table_main.R` (sourced by the regression exporter)
+8. `code/08_cluster_inference.R` (loaded by the Table 2 generator)
+9. `code/09_table_rev.R`
+
+The raw-data catalog, Round 7 inventory and two release-audit scripts live
+directly in `temp/`. The catalog and inventory remain pipeline dependencies;
+keep them available. The release audits are standalone utilities. The master
+loads the catalog during setup and inventories Round 7 after data extraction.
+Numbering describes source order, not standalone execution: regression exports
+still require fitted objects from estimation in the same R session.

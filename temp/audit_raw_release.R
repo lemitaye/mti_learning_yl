@@ -1,7 +1,7 @@
 # Read-only dataset comparison; metadata differences are reported separately.
 library(haven)
 args <- commandArgs(trailingOnly=TRUE)
-if(length(args)!=4) stop("Usage: Rscript code/audit_raw_release.R OLD_ROOT NEW_ROOT CROSSWALK_CSV REPORT_CSV")
+if(length(args)!=4) stop("Usage: Rscript temp/audit_raw_release.R OLD_ROOT NEW_ROOT CROSSWALK_CSV REPORT_CSV")
 m <- read.csv(args[3]); r <- args[2]
 m$old <- file.path(args[1], sub("^(raw_data|rawdata)/", "", m$old))
 values<-function(d)lapply(d,function(x){attributes(x)<-NULL;x})

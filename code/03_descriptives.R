@@ -1,6 +1,6 @@
 
 # Date created: April 30, 2022
-# Depends on: extract_clean.R
+# Depends on: 01_extract_clean.R
 
 # Figures and Descriptive Statistics
 
@@ -371,7 +371,7 @@ print(
 
 # Local outputs are complete before attempting the optional Dropbox mirror.
 local({
-  source("code/export_paths.R", local = TRUE)
+  source("code/04_export_paths.R", local = TRUE)
   mirror_output("output/tables/tableI.tex", "tables")
   mirror_output("output/figures/employ_gr.pdf", "figures")
 })

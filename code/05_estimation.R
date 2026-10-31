@@ -1,8 +1,8 @@
 
 # Date created: March 29, 2022
-# DEPENDS ON: "extract_clean.R"
+# DEPENDS ON: "01_extract_clean.R"
 
-# This script runs the main regressions using the data generated in "extract_clean.R"
+# This script runs the main regressions using the data generated in "01_extract_clean.R"
 
 rm(list = ls())
 
@@ -305,7 +305,7 @@ stargazer(
 #   type = "text"
 # )
 
-# Inactive exploratory Amhara/Oromia comparison (not used by export_res.R).
+# Inactive exploratory Amhara/Oromia comparison (not used by 06_export_res.R).
 # Its dataset construction above is commented out, and the current f_rf*
 # formulas target Tigray. Keep this block inactive until it is specified
 # explicitly; it is not part of the manuscript results.

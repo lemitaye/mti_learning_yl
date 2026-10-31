@@ -15,17 +15,17 @@ scales, plus a LaTeX distribution with latexmk and standard packages listed in
 main.tex. It uses pdfLaTeX and Latin Modern, with no system font dependency.
 
 The build refreshes only the viewer's employment PDF from existing processed
-data, reusing the `non_aa_samp` and `employ_gr` expressions in descriptives.R.
+data, reusing the `non_aa_samp` and `employ_gr` expressions in 03_descriptives.R.
 It uses the base PDF device because Cairo/XQuartz is unavailable locally.
 It does not run regressions, rewrite manuscript files, or copy staged results
 into the manuscript. Tables are included directly from their source files and
 must already exist. Table 3 is included from output/tables/table_rev.tex. Keep this folder within the repository; it is not a
 standalone copy of the results.
 
-To refresh analysis first, run `Rscript code/master.R` from the repository
+To refresh analysis first, run `Rscript code/_master.R` from the repository
 root, then rebuild the viewer. That analysis command overwrites data and outputs,
 including manuscript Table 3. To update only Table 2, run
-`Rscript code/table_main.R`, then rebuild.
+`Rscript code/07_table_main.R`, then rebuild.
 
 Each section identifies the source scripts, sample, estimator, controls, and
 known heading/unit inconsistencies. Viewer numbering is independent of manuscript

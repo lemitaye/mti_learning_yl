@@ -1,29 +1,34 @@
 
-# Date created: March 25, 2022
-# 
-# Description: This script loads the necessary data from several rounds of the
-#   Young Lives Data sets, selects relevant variables, joins separate files, 
-#   cleans, merges, constructs new variables (both outcomes and covariates) and
-#   produces file(s) ready for analyses.
-
-# Note: load the necessary packages in "master.R" before running this script
 
 
-# Load data: ####
-source("code/raw_data_catalog.R")
+#### CLEANING YOUNG LIVES - YOUNGER COHORT DATA SET ####~
 
+# Date created: October 29, 2022
+# Author: Lemi Daba (tayelemi@gmail.com)
+
+
+# read data: ####
+source("temp/raw_data_catalog.R")
+
+# school survey:
+pupil_wave1 <- read_dta(raw_data_files[["school_pupils_w1"]])
+school_wave1 <- read_dta(raw_data_files[["school_schools_w1"]])
+pupil_math_w2 <- read_dta(raw_data_files[["school_math_w2"]])
+pupil_liter_w2 <- read_dta(raw_data_files[["school_literacy_w2"]])
+
+
+# young lives data:
 cons_all <- read_dta(raw_data_files[["constructed_legacy"]])
+child_r3 <- read_dta(raw_data_files[["r3_yc"]])
+cognitive_r4 <- read_dta(raw_data_files[["r4_yc_cognitive"]])
 
-child_r3 <- read_dta(raw_data_files[["r3_oc"]])
 
-cognitive_r4 <- read_dta(raw_data_files[["r4_oc_cognitive"]])
-
-occh_activity <- read_dta(raw_data_files[["r5_oc_activity"]])
 
 # clean data: ####
+# (repeat the same steps used in cleaning the older cohort data)
 
 cons_oc <- cons_all %>% 
-  filter(yc == 0) %>%  # filter older cohort 
+  filter(yc == 1) %>%  # filter younger cohort 
   filter(is.na(deceased)) %>% # filter non-deceased
   mutate(child_id = str_remove(childid, "ET") %>% as.numeric()) %>% 
   select(
@@ -102,7 +107,7 @@ test_r3 <- child_r3 %>%
       lang_math_test == 16 ~ "Wolayta",
       lang_math_test %in% c(88, NA) ~ NA_character_,
     )
-    )
+  )
 
 # Extract time invariant characteristics from "constructed" file: 
 time_invar <- cons_oc %>% 
@@ -115,7 +120,7 @@ time_invar <- cons_oc %>%
     chldrel, # religion
     preprim, # attended pre-primary school
     agegr1 # age at start of grade 1
-    ) %>% 
+  ) %>% 
   mutate(
     chlang = case_when(
       chlang == 1 ~  "Afar",
@@ -144,14 +149,14 @@ time_invar <- cons_oc %>%
   )
 
 
-activity_r5 <- occh_activity %>% 
-  select(
-    child_id = CHILDCODE, # id
-    no_activ = ACTIDR5,   # No. of Paid Activities
-    type_activ = ACTR5     # Type of activity_r5
-  ) %>% 
-  # Filter the main activity (child-activity combination)
-  filter(no_activ ==  1) 
+# activity_r5 <- occh_activity %>% 
+#   select(
+#     child_id = CHILDCODE, # id
+#     no_activ = ACTIDR5,   # No. of Paid Activities
+#     type_activ = ACTR5     # Type of activity_r5
+#   ) %>% 
+#   # Filter the main activity (child-activity combination)
+#   filter(no_activ ==  1) 
 
 
 # Variables from round 5
@@ -328,7 +333,7 @@ language_primary <- vars_r4 %>%
         TRUE ~ lang_math_test
       ) %>% factor()
   ) %>% select(-hghgrade_r4) 
-  # select(child_id, lang_primary)
+# select(child_id, lang_primary)
 
 
 # join everything together ####
@@ -339,8 +344,8 @@ joined <- time_invar %>%
   left_join(vars_r2, by = "child_id") %>% 
   left_join(vars_r3, by = "child_id") %>% 
   left_join(vars_r4, by = "child_id") %>% 
-  left_join(vars_r5, by = "child_id") %>% 
-  left_join(activity_r5, by = "child_id") 
+  left_join(vars_r5, by = "child_id") # %>% 
+  # left_join(activity_r5, by = "child_id") 
 
 # Generate a single "region" and "highest leve of education" variables
 joined <- joined %>% 
@@ -405,118 +410,118 @@ top_code <- function(var, ceil) {
 
 # Generate main outcome variables and others
 joined <- joined %>% 
-    mutate(
-      
-      active = case_when(
-        hwork_r5 == 0 ~ 0, 
-        hwork_r5 > 0 ~ 1
-      ),
-      
-      wage_employ = case_when(
-        # The following get 1:
-        #    5: Wage Employment (Agriculture)
-        #   12: Wage Employment (Unsalaried; Non-agriculture)
-        #   13: Regular Salaried Employment
-        type_activ %in% c(5, 12, 13) ~ 1,
-        
-        # If both "type_activ" and "active" are missing, they get NA.
-        is.na(type_activ) & is.na(active) ~ NA_real_,
-        
-        # Moreover, self employed are excluded:
-        type_activ %in% c(1, 2, 3, 4, 8, 9, 10, 11, 19) ~ NA_real_,
-        
-        # Otherwise, 0.
-        TRUE ~ 0
-      ),
-      
-      self_employ = case_when(
-        # run "joined %>% count(type_activ)" to see the list:
-        type_activ %in% c(1, 2, 3, 4, 8, 9, 10, 11) ~ 1,
-        
-        # If both "type_activ" and "active" are missing, they get NA.
-        is.na(type_activ) & is.na(active) ~ NA_real_,
-        
-        # Moreover, wage employed are excluded:
-        type_activ %in% c(5, 12, 13, 19) ~ NA_real_,
-        
-        # Otherwise, 0.
-        TRUE ~ 0
-      ),
-      
-      wage_employII = case_when(
-        # The following get 1:
-        #   12: Wage Employment (Unsalaried; Non-agriculture)
-        #   13: Regular Salaried Employment
-        type_activ %in% c(13) ~ 1,
-        
-        # If both "type_activ" and "active" are missing, they get NA.
-        is.na(type_activ) & is.na(active) ~ NA_real_,
-        
-        # Moreover, self employed in non-agri are excluded:
-        type_activ %in% c(8, 9, 10, 11, 19) ~ NA_real_,
-        
-        # Otherwise, 0.
-        TRUE ~ 0
-      ),
-      
-      self_employII = case_when(
-        # select self employed in non-agriculture
-        type_activ %in% c(8, 9, 10, 11) ~ 1,
-        
-        # If both "type_activ" and "active" are missing, they get NA.
-        is.na(type_activ) & is.na(active) ~ NA_real_,
-        
-        # Moreover, wage employed are excluded:
-        type_activ %in% c(13, 19) ~ NA_real_,
-        
-        # Otherwise, 0.
-        TRUE ~ 0
-      ),
-      
-      chsex = case_when(
-        chsex == 1 ~ "Male", chsex == 2 ~ "Female"
-      ) %>% factor(),
-      
-      rural_3 = case_when(
-        typesite_r3 == 1 ~ 0, typesite_r3 == 2 ~ 1
-      ) 
+  mutate(
+    
+    # active = case_when(
+    #   hwork_r5 == 0 ~ 0, 
+    #   hwork_r5 > 0 ~ 1
+    # ),
+    # 
+    # wage_employ = case_when(
+    #   # The following get 1:
+    #   #    5: Wage Employment (Agriculture)
+    #   #   12: Wage Employment (Unsalaried; Non-agriculture)
+    #   #   13: Regular Salaried Employment
+    #   type_activ %in% c(5, 12, 13) ~ 1,
+    #   
+    #   # If both "type_activ" and "active" are missing, they get NA.
+    #   is.na(type_activ) & is.na(active) ~ NA_real_,
+    #   
+    #   # Moreover, self employed are excluded:
+    #   type_activ %in% c(1, 2, 3, 4, 8, 9, 10, 11, 19) ~ NA_real_,
+    #   
+    #   # Otherwise, 0.
+    #   TRUE ~ 0
+    # ),
+    # 
+    # self_employ = case_when(
+    #   # run "joined %>% count(type_activ)" to see the list:
+    #   type_activ %in% c(1, 2, 3, 4, 8, 9, 10, 11) ~ 1,
+    #   
+    #   # If both "type_activ" and "active" are missing, they get NA.
+    #   is.na(type_activ) & is.na(active) ~ NA_real_,
+    #   
+    #   # Moreover, wage employed are excluded:
+    #   type_activ %in% c(5, 12, 13, 19) ~ NA_real_,
+    #   
+    #   # Otherwise, 0.
+    #   TRUE ~ 0
+    # ),
+    # 
+    # wage_employII = case_when(
+    #   # The following get 1:
+    #   #   12: Wage Employment (Unsalaried; Non-agriculture)
+    #   #   13: Regular Salaried Employment
+    #   type_activ %in% c(13) ~ 1,
+    #   
+    #   # If both "type_activ" and "active" are missing, they get NA.
+    #   is.na(type_activ) & is.na(active) ~ NA_real_,
+    #   
+    #   # Moreover, self employed in non-agri are excluded:
+    #   type_activ %in% c(8, 9, 10, 11, 19) ~ NA_real_,
+    #   
+    #   # Otherwise, 0.
+    #   TRUE ~ 0
+    # ),
+    # 
+    # self_employII = case_when(
+    #   # select self employed in non-agriculture
+    #   type_activ %in% c(8, 9, 10, 11) ~ 1,
+    #   
+    #   # If both "type_activ" and "active" are missing, they get NA.
+    #   is.na(type_activ) & is.na(active) ~ NA_real_,
+    #   
+    #   # Moreover, wage employed are excluded:
+    #   type_activ %in% c(13, 19) ~ NA_real_,
+    #   
+    #   # Otherwise, 0.
+    #   TRUE ~ 0
+    # ),
+    
+    chsex = case_when(
+      chsex == 1 ~ "Male", chsex == 2 ~ "Female"
+    ) %>% factor(),
+    
+    rural_3 = case_when(
+      typesite_r3 == 1 ~ 0, typesite_r3 == 2 ~ 1
+    ) 
   )
 
 # Generate instruments
 joined <- joined %>% 
   mutate(
     IMTI = case_when(
-
+      
       region == "Tigray" & chlang == "Tigrigna" & lang_primary == "Tigrigna"
       ~ top_code(hghgrade_final_num, 8),
-
+      
       region == "Oromia" & chlang == "Afaan Oromo" & lang_primary == "Afaan Oromo"
       ~ top_code(hghgrade_final_num, 8),
-
+      
       region == "Oromia" & chlang == "Amaharic" & lang_primary == "Amharic"
       ~ top_code(hghgrade_final_num, 8),
-
+      
       region == "Amhara" & chlang == "Amharic" & lang_primary == "Amharic"
       ~ top_code(hghgrade_final_num, 6),
-
+      
       region == "Amhara" & chlang == "Afaan Oromo" & lang_primary == "Afaan Oromo"
       ~ top_code(hghgrade_final_num, 8),
-
+      
       region == "SNNP" & chlang == "Sidamigna" & lang_primary == "Sidamigna"
       ~ top_code(hghgrade_final_num, 4),
-
+      
       region == "SNNP" & chlang == "Wolayta" & lang_primary == "Wolayta"
       ~ top_code(hghgrade_final_num, 4),
-
+      
       region == "SNNP" & chlang == "Hadiya" & lang_primary == "Hadiya"
       ~ top_code(hghgrade_final_num, 4),
-
+      
       region == "SNNP" & chlang == "Amharic" & lang_primary == "Amharic"
       ~ top_code(hghgrade_final_num, 4),
-
+      
       region == "Addis Ababa" & chethnic == "Amhara" & lang_primary == "Amharic"
       ~ top_code(hghgrade_final_num, 6),
-
+      
       TRUE ~ 0
     ),
     
@@ -555,14 +560,83 @@ joined <- joined %>%
 joined <- joined %>% 
   select(-starts_with(c("region_r", "hghgrade_r"))) 
 
-# Split the sample to two (AA and Non-AA):
-aa_samp <- joined %>% 
-  filter(region ==  "Addis Ababa")
+# save cleaned data: (should put at the end)
+write_csv(joined, "data/ylsample_yc.csv")
 
-non_aa_samp <- joined %>% 
-  filter(region !=  "Addis Ababa")
 
-write_csv(aa_samp, "data/aa_samp.csv")
-write_csv(non_aa_samp, "data/non_aa_samp.csv")
+
+# Linking with School Survey Data ####
+
+# function to calculate test scores:
+calculate_score <- function(tbl, var_start, var_end) {
+  
+  tbl %>% 
+    select(schlid:childid, {{ var_start }}:{{ var_end }}) %>% 
+    pivot_longer(cols = {{ var_start }}:{{ var_end }},
+                 names_to = "question_no",
+                 values_to = "result") %>% 
+    mutate(result = case_when(
+      result %in% c(0, 2) ~ 0,
+      result == 1 ~ 1,
+      TRUE ~ NaN
+    )) %>% 
+    group_by(schlid, classid, pupilid, ylchild, childid) %>% 
+    summarize(score = sum(result, na.rm = TRUE), .groups = "drop")
+  
+}
+
+w1_math_score <- pupil_wave1 %>% 
+  select(
+    schlid, classid, pupilid, ylchild, childid, cmcorr01:cmcorr25
+    ) %>% 
+  calculate_score(cmcorr01, cmcorr25) %>% 
+  rename(maths_score_w1 = score)
+
+w1_literacy_score <- pupil_wave1 %>% 
+  select(
+    schlid, classid, pupilid, ylchild, childid, cvcorr01:cvcorr25
+  ) %>% 
+  calculate_score(cvcorr01, cvcorr25) %>% 
+  rename(literacy_score_w1 = score)
+
+
+w2_math_scores <- calculate_score(
+  pupil_math_w2, cmcorrrt01, cmcorrrt25
+  ) %>% 
+  rename(maths_score_w2 = score)
+
+w2_literacy_scores <- calculate_score(
+  pupil_liter_w2, cvcorrrt01, cvcorrrt25
+  ) %>% 
+  rename(literacy_score_w2 = score)
+
+
+# joining all into one data set:
+school_surv_12 <- w1_math_score %>% 
+  inner_join(w1_literacy_score) %>% 
+  inner_join(w2_math_scores) %>% 
+  inner_join(w2_literacy_scores) # %>% 
+  # left_join(school_wave1 %>% select(schlid, region, urban), 
+  #   by = "schlid")
+
+
+# Joining with young lives data
+
+schsur_yl_joined <- school_surv_12 %>% 
+  filter(ylchild == 1) %>% 
+  mutate(childid = str_remove(childid, "ET") %>% as.numeric()) %>% 
+  inner_join(joined, by = c("childid" = "child_id"), 
+             suffix = c("_sch", "_yl")) %>% 
+  select(-c(schlid, classid, pupilid, ylchild))
+
+# save joined data:
+write_csv(schsur_yl_joined, "data/schsur_yl_joined.csv")
+
+
+
+
+
+
+
 
 
