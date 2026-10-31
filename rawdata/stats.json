@@ -1,0 +1,6080 @@
+{
+ "et_oc": {
+  "file": "rawdata/yl_r3/UKDA-6853-stata/stata/stata13/r3_oc/ethiopia/et_oc_householdlevel.dta",
+  "n": 974,
+  "vars": [
+   {
+    "var": "spndr301",
+    "label": "money value in birr of purchases in last 30 days on tobacco/cigarettes",
+    "n": 974,
+    "nonmiss": 973,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 5.5,
+    "median_pos": 40.0
+   },
+   {
+    "var": "spndr302",
+    "label": "money value in birr of purchases in last 30 days on personal care items",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 98.6,
+    "median_pos": 30.0
+   },
+   {
+    "var": "spndr303",
+    "label": "money value in birr of purchases in last 30 days on firewood, kerosene, gas, bat",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 88.2,
+    "median_pos": 30.0
+   },
+   {
+    "var": "spndr304",
+    "label": "money value in birr of purchases in last 30 days on internet use",
+    "n": 974,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 0.5,
+    "median_pos": 20.0
+   },
+   {
+    "var": "spndr305",
+    "label": "money value in birr of purchases in last 30 days on public transport",
+    "n": 974,
+    "nonmiss": 973,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 55.2,
+    "median_pos": 40.0
+   },
+   {
+    "var": "spndr306",
+    "label": "money value in birr of purchases in last 30 days on security(guards)/house maid",
+    "n": 974,
+    "nonmiss": 973,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 4.5,
+    "median_pos": 40.0
+   },
+   {
+    "var": "bgyrr307",
+    "label": "amount spent in last 12 months on rent (house for residence)",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 32.3,
+    "median_pos": 150.0
+   },
+   {
+    "var": "bgyrr312",
+    "label": "amount spent in last 12 months on dwelling maintenance",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 25.7,
+    "median_pos": 413.88
+   },
+   {
+    "var": "bgyrr320",
+    "label": "amount spent in last 12 months on cleaning materials",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 53.6,
+    "median_pos": 15.0
+   },
+   {
+    "var": "bgyrr313",
+    "label": "amount spent in last 12 months on rent (business, market stall)",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 5.9,
+    "median_pos": 240.0
+   },
+   {
+    "var": "bgyrr314",
+    "label": "amount spent in last 12 months on business license/tax",
+    "n": 974,
+    "nonmiss": 973,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 72.5,
+    "median_pos": 50.0
+   },
+   {
+    "var": "bgyrr315",
+    "label": "amount spent in last 12 months on water supply",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 68.8,
+    "median_pos": 100.4
+   },
+   {
+    "var": "bgyrr316",
+    "label": "amount spent in last 12 months on electricity rates",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 50.3,
+    "median_pos": 180.0
+   },
+   {
+    "var": "bgyrr317",
+    "label": "amount spent in last 12 months on telephone rates & mobile phone card purchase",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 42.6,
+    "median_pos": 400.0
+   },
+   {
+    "var": "bgyrr319",
+    "label": "amount spent in last 12 months on vehicle maintenance",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 2.8,
+    "median_pos": 240.0
+   },
+   {
+    "var": "bgyrr321",
+    "label": "amount spent in last 12 months on fees and paperwork",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 2.5,
+    "median_pos": 40.0
+   },
+   {
+    "var": "bgyrr304",
+    "label": "amount spent in last 12 months on legal advice, support, aid",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 3.2,
+    "median_pos": 100.0
+   },
+   {
+    "var": "bgyrr305",
+    "label": "amount spent in last 12 months on bribes",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 0.5,
+    "median_pos": 200.0
+   },
+   {
+    "var": "bgyrr306",
+    "label": "amount spent in last 12 months on festivals/celebrations/iddir/community contrib",
+    "n": 974,
+    "nonmiss": 973,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 97.0,
+    "median_pos": 400.0
+   },
+   {
+    "var": "bgyrr311",
+    "label": "amount spent in last 12 months on one-off family events",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 64.8,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr301",
+    "label": "amount spent in last 12 months on clothing - adult men",
+    "n": 974,
+    "nonmiss": 965,
+    "pct_nonmiss": 99.1,
+    "pct_pos": 66.1,
+    "median_pos": 295.0
+   },
+   {
+    "var": "spyrr302",
+    "label": "amount spent in last 12 months on clothing - adult women",
+    "n": 974,
+    "nonmiss": 968,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 75.0,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr303",
+    "label": "amount spent in last 12 months on clothing - girls (not school uniform)",
+    "n": 974,
+    "nonmiss": 966,
+    "pct_nonmiss": 99.2,
+    "pct_pos": 76.2,
+    "median_pos": 170.0
+   },
+   {
+    "var": "spyrr304",
+    "label": "amount spent in last 12 months on clothing - boys (not school uniform)",
+    "n": 974,
+    "nonmiss": 969,
+    "pct_nonmiss": 99.5,
+    "pct_pos": 76.7,
+    "median_pos": 180.0
+   },
+   {
+    "var": "spyrr305",
+    "label": "amount spent in last 12 months on footwear - adult men",
+    "n": 974,
+    "nonmiss": 966,
+    "pct_nonmiss": 99.2,
+    "pct_pos": 64.9,
+    "median_pos": 120.0
+   },
+   {
+    "var": "spyrr306",
+    "label": "amount spent in last 12 months on footwear - adult women",
+    "n": 974,
+    "nonmiss": 969,
+    "pct_nonmiss": 99.5,
+    "pct_pos": 83.1,
+    "median_pos": 50.0
+   },
+   {
+    "var": "spyrr307",
+    "label": "amount spent in last 12 months on footwear - girls",
+    "n": 974,
+    "nonmiss": 968,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 80.2,
+    "median_pos": 60.0
+   },
+   {
+    "var": "spyrr308",
+    "label": "amount spent in last 12 months on footwear - boys",
+    "n": 974,
+    "nonmiss": 969,
+    "pct_nonmiss": 99.5,
+    "pct_pos": 77.4,
+    "median_pos": 70.0
+   },
+   {
+    "var": "spyrr309",
+    "label": "amount spent in last 12 months on school uniform - boys",
+    "n": 974,
+    "nonmiss": 946,
+    "pct_nonmiss": 97.1,
+    "pct_pos": 32.0,
+    "median_pos": 120.0
+   },
+   {
+    "var": "spyrr310",
+    "label": "amount spent in last 12 months on school uniform - girls",
+    "n": 974,
+    "nonmiss": 945,
+    "pct_nonmiss": 97.0,
+    "pct_pos": 33.9,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr311",
+    "label": "amount spent in last 12 months on school fees or donations to school - boys",
+    "n": 974,
+    "nonmiss": 966,
+    "pct_nonmiss": 99.2,
+    "pct_pos": 57.9,
+    "median_pos": 26.0
+   },
+   {
+    "var": "spyrr312",
+    "label": "amount spent in last 12 months on school fees or donations to school - girls",
+    "n": 974,
+    "nonmiss": 968,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 58.2,
+    "median_pos": 25.0
+   },
+   {
+    "var": "spyrr324",
+    "label": "amount spent in last 12 months on school fees or donations to school - adult men",
+    "n": 974,
+    "nonmiss": 951,
+    "pct_nonmiss": 97.6,
+    "pct_pos": 10.2,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr325",
+    "label": "amount spent in last 12 months on school fees or donations to school - adult wom",
+    "n": 974,
+    "nonmiss": 952,
+    "pct_nonmiss": 97.7,
+    "pct_pos": 10.4,
+    "median_pos": 80.0
+   },
+   {
+    "var": "spyrr313",
+    "label": "amount spent in last 12 months on payment for tuition - boys",
+    "n": 974,
+    "nonmiss": 966,
+    "pct_nonmiss": 99.2,
+    "pct_pos": 6.9,
+    "median_pos": 88.0
+   },
+   {
+    "var": "spyrr314",
+    "label": "amount spent in last 12 months on payment for tuition - girls",
+    "n": 974,
+    "nonmiss": 968,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 6.9,
+    "median_pos": 60.0
+   },
+   {
+    "var": "spyrr315",
+    "label": "amount spent in last 12 months on school books and stationery",
+    "n": 974,
+    "nonmiss": 973,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 95.7,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr316",
+    "label": "amount spent in last 12 months on transport to school",
+    "n": 974,
+    "nonmiss": 973,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 8.4,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr317",
+    "label": "amount spent in last 12 months on medical consultations and treatment",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 59.1,
+    "median_pos": 80.0
+   },
+   {
+    "var": "spyrr318",
+    "label": "amount spent in last 12 months on medicine or drugs direct from the pharmacy",
+    "n": 974,
+    "nonmiss": 973,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 53.3,
+    "median_pos": 75.0
+   },
+   {
+    "var": "spyrr319",
+    "label": "amount spent in last 12 months on traditional medicines",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 7.5,
+    "median_pos": 28.0
+   },
+   {
+    "var": "spyrr320",
+    "label": "amount spent in last 12 months on other medical expenses",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 4.0,
+    "median_pos": 40.0
+   },
+   {
+    "var": "spyrr321",
+    "label": "amount spent in last 12 months on cinema/entertainment/video/tv show",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 11.9,
+    "median_pos": 96.0
+   },
+   {
+    "var": "spyrr322",
+    "label": "amount spent in last 12 months on presents or treats for children",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 5.1,
+    "median_pos": 42.0
+   },
+   {
+    "var": "spyrr323",
+    "label": "amount spent in last 12 months on jewellery",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 17.6,
+    "median_pos": 24.0
+   },
+   {
+    "var": "spyrr326",
+    "label": "amount spent in last 12 months on other transport costs for adults or children",
+    "n": 974,
+    "nonmiss": 973,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 47.6,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr327",
+    "label": "amount spent in last 12 months on other non-food items",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 20.5,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spnmr303",
+    "label": "of money spent on clothing for girls - how much was for name?",
+    "n": 974,
+    "nonmiss": 507,
+    "pct_nonmiss": 52.1,
+    "pct_pos": 79.7,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr304",
+    "label": "of money spent on clothing for boys - how much was for name?",
+    "n": 974,
+    "nonmiss": 536,
+    "pct_nonmiss": 55.0,
+    "pct_pos": 82.1,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr307",
+    "label": "of money spent on footwear for girls - how much was for name?",
+    "n": 974,
+    "nonmiss": 539,
+    "pct_nonmiss": 55.3,
+    "pct_pos": 80.9,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr308",
+    "label": "of money spent on footwear for boys - how much was for name?",
+    "n": 974,
+    "nonmiss": 545,
+    "pct_nonmiss": 56.0,
+    "pct_pos": 83.1,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr309",
+    "label": "of money spent on school uniform (boys) - how much was for name?",
+    "n": 974,
+    "nonmiss": 238,
+    "pct_nonmiss": 24.4,
+    "pct_pos": 68.9,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr310",
+    "label": "of money spent on school uniform (girls) - how much was for name?",
+    "n": 974,
+    "nonmiss": 235,
+    "pct_nonmiss": 24.1,
+    "pct_pos": 68.1,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr311",
+    "label": "of money spent on schooling fees (boys) - how much was for name?",
+    "n": 974,
+    "nonmiss": 420,
+    "pct_nonmiss": 43.1,
+    "pct_pos": 79.5,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr312",
+    "label": "of money spent on schooling fees (girls) - how much was for name?",
+    "n": 974,
+    "nonmiss": 407,
+    "pct_nonmiss": 41.8,
+    "pct_pos": 81.6,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr313",
+    "label": "of money spent on tuition fees (boys) - how much was for name?",
+    "n": 974,
+    "nonmiss": 47,
+    "pct_nonmiss": 4.8,
+    "pct_pos": 63.8,
+    "median_pos": 2.5
+   },
+   {
+    "var": "spnmr314",
+    "label": "of money spent on tuition fees (girls) - how much was for name?",
+    "n": 974,
+    "nonmiss": 53,
+    "pct_nonmiss": 5.4,
+    "pct_pos": 69.8,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr315",
+    "label": "of money spent on school books and stationery - how much was for name?",
+    "n": 974,
+    "nonmiss": 926,
+    "pct_nonmiss": 95.1,
+    "pct_pos": 92.3,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr316",
+    "label": "of money spent on transport to school - how much was for name?",
+    "n": 974,
+    "nonmiss": 84,
+    "pct_nonmiss": 8.6,
+    "pct_pos": 36.9,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr317",
+    "label": "of money spent on medical consultation & treatment - how much was for name?",
+    "n": 974,
+    "nonmiss": 570,
+    "pct_nonmiss": 58.5,
+    "pct_pos": 27.9,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr318",
+    "label": "of money spent on medicines or drugs direct from the pharmacy - how much was for",
+    "n": 974,
+    "nonmiss": 513,
+    "pct_nonmiss": 52.7,
+    "pct_pos": 27.9,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr319",
+    "label": "of money spent on traditional medicines - how much was for name?",
+    "n": 974,
+    "nonmiss": 80,
+    "pct_nonmiss": 8.2,
+    "pct_pos": 23.8,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr320",
+    "label": "of money spent on other medical expenditure - how much was for name?",
+    "n": 974,
+    "nonmiss": 44,
+    "pct_nonmiss": 4.5,
+    "pct_pos": 29.5,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr321",
+    "label": "of money spent on cinema/entertainment/video/tv show - how much was for name?",
+    "n": 974,
+    "nonmiss": 113,
+    "pct_nonmiss": 11.6,
+    "pct_pos": 61.1,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr322",
+    "label": "of money spent on presents or treats for children - how much was for name?",
+    "n": 974,
+    "nonmiss": 55,
+    "pct_nonmiss": 5.6,
+    "pct_pos": 56.4,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr323",
+    "label": "of money spent on jewellery - how much was for name?",
+    "n": 974,
+    "nonmiss": 174,
+    "pct_nonmiss": 17.9,
+    "pct_pos": 54.0,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr326",
+    "label": "of money spent on other transport costs - how much was for name?",
+    "n": 974,
+    "nonmiss": 450,
+    "pct_nonmiss": 46.2,
+    "pct_pos": 32.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr327",
+    "label": "of money spent on other non-food items - how much was for name?",
+    "n": 974,
+    "nonmiss": 180,
+    "pct_nonmiss": 18.5,
+    "pct_pos": 15.6,
+    "median_pos": 1.0
+   },
+   {
+    "var": "hhsize",
+    "label": "household size",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 6.0
+   },
+   {
+    "var": "tconsrpa",
+    "label": "total real consumption per adult - base 2006",
+    "n": 974,
+    "nonmiss": 973,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 100.0,
+    "median_pos": 118.81
+   },
+   {
+    "var": "foodexp",
+    "label": "monthly current expenditure in food items, in birr",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 769.0
+   },
+   {
+    "var": "nfoodexp",
+    "label": "monthly current expenditure in non-food items, in birr",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 328.92
+   },
+   {
+    "var": "totalexp",
+    "label": "total monthly current expenditure, in birr",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 1132.1
+   },
+   {
+    "var": "foodexp_pa",
+    "label": "monthly expenditure in food items per adult, in curr birr",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 141.94
+   },
+   {
+    "var": "nfoodexp_pa",
+    "label": "monthly expenditure in non-food items per adult, in curr birr",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 61.75
+   },
+   {
+    "var": "totalexp_pa",
+    "label": "total monthly expenditure per adult, in curr birr",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 210.05
+   },
+   {
+    "var": "foodexp_r",
+    "label": "monthly expenditure on food items, in real 2006 birr",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 402.42
+   },
+   {
+    "var": "nfoodexp_r",
+    "label": "monthly expenditure on non-food items, in real 2006 birr",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 207.76
+   },
+   {
+    "var": "totalexp_r",
+    "label": "total monthly expenditure, in real 2006 birr",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 634.26
+   },
+   {
+    "var": "totalexp_rpa",
+    "label": "total monthly expenditure per adult, in real 2006 birr",
+    "n": 974,
+    "nonmiss": 974,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 117.97
+   }
+  ]
+ },
+ "in_oc": {
+  "file": "rawdata/yl_r3/UKDA-6853-stata/stata/stata13/r3_oc/india/in_oc_householdlevel.dta",
+  "n": 976,
+  "vars": [
+   {
+    "var": "spndr301",
+    "label": "money value in rupees of purchases in last 30 days on tobacco/cigarettes",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 47.5,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spndr302",
+    "label": "money value in rupees of purchases in last 30 days on personal care items",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 99.6,
+    "median_pos": 190.0
+   },
+   {
+    "var": "spndr303",
+    "label": "money value in rupees of purchases in last 30 days on firewood, kerosene, gas, b",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 92.6,
+    "median_pos": 180.0
+   },
+   {
+    "var": "spndr304",
+    "label": "money value in rupees of purchases in last 30 days on internet use",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 6.8,
+    "median_pos": 90.0
+   },
+   {
+    "var": "spndr305",
+    "label": "money value in rupees of purchases in last 30 days on public transport",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 79.8,
+    "median_pos": 135.0
+   },
+   {
+    "var": "spndr306",
+    "label": "money value in rupees of purchases in last 30 days on security(guards)/house mai",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 5.0,
+    "median_pos": 15.0
+   },
+   {
+    "var": "bgyrr307",
+    "label": "amount spent in last 12 months on rent (house for residence)",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 15.6,
+    "median_pos": 9300.0
+   },
+   {
+    "var": "bgyrr312",
+    "label": "amount spent in last 12 months on dwelling maintenance",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 57.5,
+    "median_pos": 300.0
+   },
+   {
+    "var": "bgyrr320",
+    "label": "amount spent in last 12 months on cleaning materials",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 80.4,
+    "median_pos": 150.0
+   },
+   {
+    "var": "bgyrr313",
+    "label": "amount spent in last 12 months on rent (business, market stall)",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 4.4,
+    "median_pos": 3000.0
+   },
+   {
+    "var": "bgyrr314",
+    "label": "amount spent in last 12 months on business license/tax",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 3.3,
+    "median_pos": 1225.0
+   },
+   {
+    "var": "bgyrr315",
+    "label": "amount spent in last 12 months on water rates/purchasing water",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 24.3,
+    "median_pos": 360.0
+   },
+   {
+    "var": "bgyrr316",
+    "label": "amount spent in last 12 months on electricity rates",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 75.3,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "bgyrr317",
+    "label": "amount spent in last 12 months on telephone rates & mobile phone card purchase",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 67.7,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "bgyrr319",
+    "label": "amount spent in last 12 months on vehicle maintenance",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 19.4,
+    "median_pos": 3600.0
+   },
+   {
+    "var": "bgyrr321",
+    "label": "amount spent in last 12 months on fees and paperwork",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 5.1,
+    "median_pos": 400.0
+   },
+   {
+    "var": "bgyrr304",
+    "label": "amount spent in last 12 months on legal advice, support, aid",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 1.4,
+    "median_pos": 5000.0
+   },
+   {
+    "var": "bgyrr305",
+    "label": "amount spent in last 12 months on bribes",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 2.6,
+    "median_pos": 1500.0
+   },
+   {
+    "var": "bgyrr306",
+    "label": "amount spent in last 12 months on festivals/celebrations/iddir/community contrib",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 97.4,
+    "median_pos": 2000.0
+   },
+   {
+    "var": "bgyrr311",
+    "label": "amount spent in last 12 months on one-off family events",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 36.4,
+    "median_pos": 2500.0
+   },
+   {
+    "var": "spyrr301",
+    "label": "amount spent in last 12 months on clothing - adult men",
+    "n": 976,
+    "nonmiss": 930,
+    "pct_nonmiss": 95.3,
+    "pct_pos": 96.0,
+    "median_pos": 1000.0
+   },
+   {
+    "var": "spyrr302",
+    "label": "amount spent in last 12 months on clothing - adult women",
+    "n": 976,
+    "nonmiss": 970,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 97.4,
+    "median_pos": 1000.0
+   },
+   {
+    "var": "spyrr303",
+    "label": "amount spent in last 12 months on clothing - girls (not school uniform)",
+    "n": 976,
+    "nonmiss": 781,
+    "pct_nonmiss": 80.0,
+    "pct_pos": 91.9,
+    "median_pos": 1000.0
+   },
+   {
+    "var": "spyrr304",
+    "label": "amount spent in last 12 months on clothing - boys (not schooll uniform)",
+    "n": 976,
+    "nonmiss": 827,
+    "pct_nonmiss": 84.7,
+    "pct_pos": 93.6,
+    "median_pos": 1000.0
+   },
+   {
+    "var": "spyrr305",
+    "label": "amount spent in last 12 months on footwear - adult men",
+    "n": 976,
+    "nonmiss": 935,
+    "pct_nonmiss": 95.8,
+    "pct_pos": 96.0,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr306",
+    "label": "amount spent in last 12 months on footwear - adult women",
+    "n": 976,
+    "nonmiss": 970,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 97.8,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spyrr307",
+    "label": "amount spent in last 12 months on footwear - girls",
+    "n": 976,
+    "nonmiss": 779,
+    "pct_nonmiss": 79.8,
+    "pct_pos": 92.6,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr308",
+    "label": "amount spent in last 12 months on footwear - boys",
+    "n": 976,
+    "nonmiss": 830,
+    "pct_nonmiss": 85.0,
+    "pct_pos": 92.7,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr309",
+    "label": "amount spent in last 12 months on school uniform - boys",
+    "n": 976,
+    "nonmiss": 828,
+    "pct_nonmiss": 84.8,
+    "pct_pos": 64.0,
+    "median_pos": 600.0
+   },
+   {
+    "var": "spyrr310",
+    "label": "amount spent in last 12 months on school uniform - girls",
+    "n": 976,
+    "nonmiss": 762,
+    "pct_nonmiss": 78.1,
+    "pct_pos": 56.3,
+    "median_pos": 500.0
+   },
+   {
+    "var": "spyrr311",
+    "label": "amount spent in last 12 months on school fees or donations to school - boys",
+    "n": 976,
+    "nonmiss": 834,
+    "pct_nonmiss": 85.5,
+    "pct_pos": 47.6,
+    "median_pos": 1400.0
+   },
+   {
+    "var": "spyrr312",
+    "label": "amount spent in last 12 months on school fees or donations to school - girls",
+    "n": 976,
+    "nonmiss": 775,
+    "pct_nonmiss": 79.4,
+    "pct_pos": 39.6,
+    "median_pos": 450.0
+   },
+   {
+    "var": "spyrr324",
+    "label": "amount spent in last 12 months on school fees or donations to school - adult men",
+    "n": 976,
+    "nonmiss": 759,
+    "pct_nonmiss": 77.8,
+    "pct_pos": 6.1,
+    "median_pos": 3725.0
+   },
+   {
+    "var": "spyrr325",
+    "label": "amount spent in last 12 months on school fees or donations to school - adult wom",
+    "n": 976,
+    "nonmiss": 753,
+    "pct_nonmiss": 77.2,
+    "pct_pos": 2.3,
+    "median_pos": 3000.0
+   },
+   {
+    "var": "spyrr313",
+    "label": "amount spent in last 12 months on payment for tuition - boys",
+    "n": 976,
+    "nonmiss": 847,
+    "pct_nonmiss": 86.8,
+    "pct_pos": 10.0,
+    "median_pos": 700.0
+   },
+   {
+    "var": "spyrr314",
+    "label": "amount spent in last 12 months on payment for tuition - girls",
+    "n": 976,
+    "nonmiss": 789,
+    "pct_nonmiss": 80.8,
+    "pct_pos": 9.1,
+    "median_pos": 900.0
+   },
+   {
+    "var": "spyrr315",
+    "label": "amount spent in last 12 months on school books and stationery",
+    "n": 976,
+    "nonmiss": 969,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 90.2,
+    "median_pos": 1000.0
+   },
+   {
+    "var": "spyrr316",
+    "label": "amount spent in last 12 months on transport to school",
+    "n": 976,
+    "nonmiss": 967,
+    "pct_nonmiss": 99.1,
+    "pct_pos": 35.7,
+    "median_pos": 900.0
+   },
+   {
+    "var": "spyrr317",
+    "label": "amount spent in last 12 months on medical consultations and treatment",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 90.9,
+    "median_pos": 400.0
+   },
+   {
+    "var": "spyrr318",
+    "label": "amount spent in last 12 months on medicine or drugs direct from the pharmacy",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 95.9,
+    "median_pos": 1500.0
+   },
+   {
+    "var": "spyrr319",
+    "label": "amount spent in last 12 months on traditional medicines",
+    "n": 976,
+    "nonmiss": 974,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 4.5,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr320",
+    "label": "amount spent in last 12 months on other medical expenses",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 26.1,
+    "median_pos": 250.0
+   },
+   {
+    "var": "spyrr321",
+    "label": "amount spent in last 12 months on cinema/entertainment/video/tv show",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 67.6,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "spyrr322",
+    "label": "amount spent in last 12 months on presents or treats for children",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 24.5,
+    "median_pos": 400.0
+   },
+   {
+    "var": "spyrr323",
+    "label": "amount spent in last 12 months on jewellery",
+    "n": 976,
+    "nonmiss": 974,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 18.0,
+    "median_pos": 4000.0
+   },
+   {
+    "var": "spyrr326",
+    "label": "amount spent in last 12 months on other transport costs for adults or children",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 71.3,
+    "median_pos": 1000.0
+   },
+   {
+    "var": "spyrr327",
+    "label": "amount spent in last 12 months on other non-food items",
+    "n": 976,
+    "nonmiss": 975,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 27.9,
+    "median_pos": 300.0
+   },
+   {
+    "var": "spnmr303",
+    "label": "of money spent on clothing for girls - how much was for name?",
+    "n": 976,
+    "nonmiss": 573,
+    "pct_nonmiss": 58.7,
+    "pct_pos": 86.2,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr304",
+    "label": "of money spent on clothing for boys - how much was for name?",
+    "n": 976,
+    "nonmiss": 540,
+    "pct_nonmiss": 55.3,
+    "pct_pos": 88.5,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr307",
+    "label": "of money spent on footwear for girls - how much was for name?",
+    "n": 976,
+    "nonmiss": 576,
+    "pct_nonmiss": 59.0,
+    "pct_pos": 86.3,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr308",
+    "label": "of money spent on footwear for boys - how much was for name?",
+    "n": 976,
+    "nonmiss": 543,
+    "pct_nonmiss": 55.6,
+    "pct_pos": 86.4,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr309",
+    "label": "of money spent on school uniform (boys) - how much was for name?",
+    "n": 976,
+    "nonmiss": 422,
+    "pct_nonmiss": 43.2,
+    "pct_pos": 81.0,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr310",
+    "label": "of money spent on school uniform (girls) - how much was for name?",
+    "n": 976,
+    "nonmiss": 382,
+    "pct_nonmiss": 39.1,
+    "pct_pos": 72.5,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr311",
+    "label": "of money spent on schooling fees (boys) - how much was for name?",
+    "n": 976,
+    "nonmiss": 314,
+    "pct_nonmiss": 32.2,
+    "pct_pos": 79.6,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr312",
+    "label": "of money spent on schooling fees (girls) - how much was for name?",
+    "n": 976,
+    "nonmiss": 291,
+    "pct_nonmiss": 29.8,
+    "pct_pos": 66.7,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr313",
+    "label": "of money spent on tuition fees (boys) - how much was for name?",
+    "n": 976,
+    "nonmiss": 99,
+    "pct_nonmiss": 10.1,
+    "pct_pos": 53.5,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr314",
+    "label": "of money spent on tuition fees (girls) - how much was for name?",
+    "n": 976,
+    "nonmiss": 109,
+    "pct_nonmiss": 11.2,
+    "pct_pos": 32.1,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr315",
+    "label": "of money spent on school books and stationery - how much was for name?",
+    "n": 976,
+    "nonmiss": 845,
+    "pct_nonmiss": 86.6,
+    "pct_pos": 89.8,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr316",
+    "label": "of money spent on transport to school - how much was for name?",
+    "n": 976,
+    "nonmiss": 324,
+    "pct_nonmiss": 33.2,
+    "pct_pos": 71.3,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr317",
+    "label": "of money spent on medical consultation & treatment - how much was for name?",
+    "n": 976,
+    "nonmiss": 880,
+    "pct_nonmiss": 90.2,
+    "pct_pos": 64.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr318",
+    "label": "of money spent on medicines or drugs direct from the pharmacy - how much was for",
+    "n": 976,
+    "nonmiss": 930,
+    "pct_nonmiss": 95.3,
+    "pct_pos": 67.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr319",
+    "label": "of money spent on traditional medicines - how much was for name?",
+    "n": 976,
+    "nonmiss": 45,
+    "pct_nonmiss": 4.6,
+    "pct_pos": 40.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr320",
+    "label": "of money spent on other medical expenditure - how much was for name?",
+    "n": 976,
+    "nonmiss": 250,
+    "pct_nonmiss": 25.6,
+    "pct_pos": 57.2,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr321",
+    "label": "of money spent on cinema/entertainment/video/tv show - how much was for name?",
+    "n": 976,
+    "nonmiss": 649,
+    "pct_nonmiss": 66.5,
+    "pct_pos": 70.3,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr322",
+    "label": "of money spent on presents or treats for children - how much was for name?",
+    "n": 976,
+    "nonmiss": 237,
+    "pct_nonmiss": 24.3,
+    "pct_pos": 85.7,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr323",
+    "label": "of money spent on jewellery - how much was for name?",
+    "n": 976,
+    "nonmiss": 166,
+    "pct_nonmiss": 17.0,
+    "pct_pos": 50.6,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr326",
+    "label": "of money spent on other transport costs - how much was for name?",
+    "n": 976,
+    "nonmiss": 689,
+    "pct_nonmiss": 70.6,
+    "pct_pos": 79.8,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr327",
+    "label": "of money spent on other non-food items - how much was for name?",
+    "n": 976,
+    "nonmiss": 269,
+    "pct_nonmiss": 27.6,
+    "pct_pos": 75.1,
+    "median_pos": 1.0
+   },
+   {
+    "var": "hhsize",
+    "label": "household size",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 5.0
+   },
+   {
+    "var": "foodexp",
+    "label": "Monthly food consumption, current rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 2746.0
+   },
+   {
+    "var": "nfoodexp",
+    "label": "Monthly nonfood consumption, current rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 2511.67
+   },
+   {
+    "var": "totalexp",
+    "label": "Monthly total consumption, current rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 5665.42
+   },
+   {
+    "var": "ltotalexp",
+    "label": "Monthly total consumption (limited basket), current rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 3370.83
+   },
+   {
+    "var": "foodexppc",
+    "label": "Monthly food consumption per capita, current rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 573.67
+   },
+   {
+    "var": "foodexpr",
+    "label": "Monthly food consumption, real 2006 rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 2221.33
+   },
+   {
+    "var": "nfoodexppc",
+    "label": "Monthly nonfood consumption per capita, current rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 519.03
+   },
+   {
+    "var": "nfoodexpr",
+    "label": "Monthly nonfood consumption, real 2006 rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 2073.75
+   },
+   {
+    "var": "totalexppc",
+    "label": "Monthly total consumption per capita, current rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 1165.13
+   },
+   {
+    "var": "totalexpr",
+    "label": "Monthly total consumption, real 2006 rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 4580.32
+   },
+   {
+    "var": "totalexprpc",
+    "label": "Monthly total consumption per capita, real 2006 rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 943.92
+   },
+   {
+    "var": "ltotalexppc",
+    "label": "Monthly total consumption per capita (limited basket), current rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 708.67
+   },
+   {
+    "var": "ltotalexpr",
+    "label": "Monthly total consumption (limited basket), real 2006 rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 2677.93
+   },
+   {
+    "var": "ltotalexprpc",
+    "label": "Monthly total consumption per capita (limited basket), real 2006 rupees",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.9,
+    "median_pos": 567.61
+   }
+  ]
+ },
+ "pe_oc": {
+  "file": "rawdata/yl_r3/UKDA-6853-stata/stata/stata13/r3_oc/peru/pe_oc_householdlevel.dta",
+  "n": 714,
+  "vars": [
+   {
+    "var": "spndr301",
+    "label": "in the last 30 days how much have you spent on - tobacco/cigarettes",
+    "n": 714,
+    "nonmiss": 672,
+    "pct_nonmiss": 94.1,
+    "pct_pos": 13.5,
+    "median_pos": 5.0
+   },
+   {
+    "var": "spndr302",
+    "label": "in the last 30 days how much have you spent on - personal hygiene",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 98.5,
+    "median_pos": 23.0
+   },
+   {
+    "var": "spndr303",
+    "label": "in the last 30 days how much have you spent on - firewood, parrafin, gas, batter",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 76.9,
+    "median_pos": 32.0
+   },
+   {
+    "var": "spndr304",
+    "label": "in the last 30 days how much have you spent on - internet",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 11.0,
+    "median_pos": 26.0
+   },
+   {
+    "var": "spndr305",
+    "label": "in the last 30 days how much have you spent on - transport, local and between to",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 77.9,
+    "median_pos": 48.0
+   },
+   {
+    "var": "spndr306",
+    "label": "in the last 30 days how much have you spent on - security",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 1.9,
+    "median_pos": 20.0
+   },
+   {
+    "var": "spndr325",
+    "label": "in the last 30 days how much have you spent on - telephone (landline)",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 23.4,
+    "median_pos": 35.0
+   },
+   {
+    "var": "spndr326",
+    "label": "in the last 30 days how much have you spent on - cell phone",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 59.9,
+    "median_pos": 15.0
+   },
+   {
+    "var": "spndr327",
+    "label": "in the last 30 days how much have you spent on - electricity",
+    "n": 714,
+    "nonmiss": 674,
+    "pct_nonmiss": 94.4,
+    "pct_pos": 86.9,
+    "median_pos": 24.0
+   },
+   {
+    "var": "spndr328",
+    "label": "in the last 30 days how much have you spent on - water supply",
+    "n": 714,
+    "nonmiss": 674,
+    "pct_nonmiss": 94.4,
+    "pct_pos": 79.5,
+    "median_pos": 15.0
+   },
+   {
+    "var": "spndr329",
+    "label": "in the last 30 days how much have you spent on - rent of your house or flat",
+    "n": 714,
+    "nonmiss": 674,
+    "pct_nonmiss": 94.4,
+    "pct_pos": 9.2,
+    "median_pos": 95.0
+   },
+   {
+    "var": "spndr330",
+    "label": "in the last 30 days how much have you spent on - maintenance, repairs on your ho",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 8.3,
+    "median_pos": 89.0
+   },
+   {
+    "var": "spndr331",
+    "label": "in the last 30 days how much have you spent on - household cleaning materials",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 92.9,
+    "median_pos": 15.0
+   },
+   {
+    "var": "spndr332",
+    "label": "in the last 30 days how much have you spent on - rental for your businesss",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 4.7,
+    "median_pos": 127.5
+   },
+   {
+    "var": "spndr333",
+    "label": "in the last 30 days how much have you spent on - cable tv",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 13.9,
+    "median_pos": 40.0
+   },
+   {
+    "var": "spndr334",
+    "label": "in the last 30 days how much have you spent on - servant",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 1.9,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spndr335",
+    "label": "in the last 30 days how much have you spent on - other",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 2.4,
+    "median_pos": 37.5
+   },
+   {
+    "var": "spndr336",
+    "label": "what is the money value of the total amount purchased by the hh in the last 30 d",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 5.8,
+    "median_pos": 30.0
+   },
+   {
+    "var": "spndr314",
+    "label": "in the last 12 months how much have you spent on - licenses (for businesss)",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 3.3,
+    "median_pos": 65.0
+   },
+   {
+    "var": "spndr319",
+    "label": "in the last 12 months how much have you spent on - vehicle maintenance",
+    "n": 714,
+    "nonmiss": 673,
+    "pct_nonmiss": 94.3,
+    "pct_pos": 11.3,
+    "median_pos": 420.0
+   },
+   {
+    "var": "spndr342",
+    "label": "in the last 12 months how much have you spent on - access to the legal system",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 2.8,
+    "median_pos": 500.0
+   },
+   {
+    "var": "spndr352",
+    "label": "in the last 12 months how much have you spent on - tips, backhanders, bribes to ",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 2.1,
+    "median_pos": 45.0
+   },
+   {
+    "var": "spndr362",
+    "label": "in the last 12 months how much have you spent on - festivals, parties, celebrati",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 4.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spndr311",
+    "label": "in the last 12 months how much have you spent on - departure of a household memb",
+    "n": 714,
+    "nonmiss": 675,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 6.7,
+    "median_pos": 250.0
+   },
+   {
+    "var": "spndr322",
+    "label": "in the last 12 months how much have you spent on - rates, local government payme",
+    "n": 714,
+    "nonmiss": 672,
+    "pct_nonmiss": 94.1,
+    "pct_pos": 10.1,
+    "median_pos": 120.0
+   },
+   {
+    "var": "spyrr301",
+    "label": "in last 12 mths amount spent on - clothes for adult males",
+    "n": 714,
+    "nonmiss": 479,
+    "pct_nonmiss": 67.1,
+    "pct_pos": 100.0,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spyrr302",
+    "label": "in last 12 mths amount spent on - clothes for adult females",
+    "n": 714,
+    "nonmiss": 525,
+    "pct_nonmiss": 73.5,
+    "pct_pos": 100.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr32a",
+    "label": "in last 12 mths amount spent on - clothes for adults",
+    "n": 714,
+    "nonmiss": 7,
+    "pct_nonmiss": 1.0,
+    "pct_pos": 100.0,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spyrr303",
+    "label": "in last 12 mths amount spent on - clothes for girls",
+    "n": 714,
+    "nonmiss": 482,
+    "pct_nonmiss": 67.5,
+    "pct_pos": 100.0,
+    "median_pos": 120.0
+   },
+   {
+    "var": "spyrr304",
+    "label": "in last 12 mths amount spent on - clothes for boys",
+    "n": 714,
+    "nonmiss": 513,
+    "pct_nonmiss": 71.8,
+    "pct_pos": 100.0,
+    "median_pos": 113.0
+   },
+   {
+    "var": "spyrr3tl",
+    "label": "in last 12 mths amount spent on - clothes for children",
+    "n": 714,
+    "nonmiss": 4,
+    "pct_nonmiss": 0.6,
+    "pct_pos": 100.0,
+    "median_pos": 160.0
+   },
+   {
+    "var": "spyrr305",
+    "label": "in last 12 mths amount spent on - footwear for men",
+    "n": 714,
+    "nonmiss": 451,
+    "pct_nonmiss": 63.2,
+    "pct_pos": 100.0,
+    "median_pos": 62.0
+   },
+   {
+    "var": "spyrr306",
+    "label": "in last 12 mths amount spent on - footwear for women",
+    "n": 714,
+    "nonmiss": 498,
+    "pct_nonmiss": 69.7,
+    "pct_pos": 100.0,
+    "median_pos": 50.0
+   },
+   {
+    "var": "spyrr307",
+    "label": "in last 12 mths amount spent on - footwear for girls",
+    "n": 714,
+    "nonmiss": 452,
+    "pct_nonmiss": 63.3,
+    "pct_pos": 100.0,
+    "median_pos": 60.0
+   },
+   {
+    "var": "spyrr308",
+    "label": "in last 12 mths amount spent on - footwear for boys",
+    "n": 714,
+    "nonmiss": 476,
+    "pct_nonmiss": 66.7,
+    "pct_pos": 100.0,
+    "median_pos": 80.0
+   },
+   {
+    "var": "spyrr309",
+    "label": "in last 12 mths amount spent on - school uniform boys",
+    "n": 714,
+    "nonmiss": 425,
+    "pct_nonmiss": 59.5,
+    "pct_pos": 100.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr310",
+    "label": "in last 12 mths amount spent on - school uniform girls",
+    "n": 714,
+    "nonmiss": 394,
+    "pct_nonmiss": 55.2,
+    "pct_pos": 100.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr311",
+    "label": "in last 12 mths amount spent on - matriculation, school fees",
+    "n": 714,
+    "nonmiss": 237,
+    "pct_nonmiss": 33.2,
+    "pct_pos": 100.0,
+    "median_pos": 80.0
+   },
+   {
+    "var": "spyrr312",
+    "label": "in last 12 mths amount spent on - other payments to schools",
+    "n": 714,
+    "nonmiss": 507,
+    "pct_nonmiss": 71.0,
+    "pct_pos": 100.0,
+    "median_pos": 25.0
+   },
+   {
+    "var": "spyrr313",
+    "label": "in last 12 mths amount spent on - payment for private classes",
+    "n": 714,
+    "nonmiss": 48,
+    "pct_nonmiss": 6.7,
+    "pct_pos": 100.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr315",
+    "label": "in last 12 mths amount spent on - books, school stationery",
+    "n": 714,
+    "nonmiss": 643,
+    "pct_nonmiss": 90.1,
+    "pct_pos": 100.0,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr316",
+    "label": "in last 12 mths amount spent on - transport to school",
+    "n": 714,
+    "nonmiss": 23,
+    "pct_nonmiss": 3.2,
+    "pct_pos": 100.0,
+    "median_pos": 350.0
+   },
+   {
+    "var": "spyr316b",
+    "label": "in last 12 mths amount spent on - other educational expenses",
+    "n": 714,
+    "nonmiss": 126,
+    "pct_nonmiss": 17.6,
+    "pct_pos": 100.0,
+    "median_pos": 160.0
+   },
+   {
+    "var": "spyrr317",
+    "label": "in last 12 mths amount spent on - medical consult fees, consultation, treatment",
+    "n": 714,
+    "nonmiss": 269,
+    "pct_nonmiss": 37.7,
+    "pct_pos": 100.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr318",
+    "label": "in last 12 mths amount spent on - purchase of other medicine",
+    "n": 714,
+    "nonmiss": 443,
+    "pct_nonmiss": 62.0,
+    "pct_pos": 100.0,
+    "median_pos": 60.0
+   },
+   {
+    "var": "spyrr319",
+    "label": "in last 12 mths amount spent on - cinema, entertainment",
+    "n": 714,
+    "nonmiss": 323,
+    "pct_nonmiss": 45.2,
+    "pct_pos": 100.0,
+    "median_pos": 30.0
+   },
+   {
+    "var": "spyrr320",
+    "label": "in last 12 mths amount spent on - presents for children",
+    "n": 714,
+    "nonmiss": 214,
+    "pct_nonmiss": 30.0,
+    "pct_pos": 100.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr321",
+    "label": "in last 12 mths amount spent on - jewellery",
+    "n": 714,
+    "nonmiss": 118,
+    "pct_nonmiss": 16.5,
+    "pct_pos": 100.0,
+    "median_pos": 28.5
+   },
+   {
+    "var": "spyrr322",
+    "label": "in last 12 mths amount spent on - other transport costs",
+    "n": 714,
+    "nonmiss": 162,
+    "pct_nonmiss": 22.7,
+    "pct_pos": 100.0,
+    "median_pos": 110.0
+   },
+   {
+    "var": "spyrr323",
+    "label": "in last 12 mths amount spent on - other costs/transfer",
+    "n": 714,
+    "nonmiss": 112,
+    "pct_nonmiss": 15.7,
+    "pct_pos": 100.0,
+    "median_pos": 600.0
+   },
+   {
+    "var": "spyrr324",
+    "label": "in last 12 mths amount spent on - other items",
+    "n": 714,
+    "nonmiss": 32,
+    "pct_nonmiss": 4.5,
+    "pct_pos": 100.0,
+    "median_pos": 820.0
+   },
+   {
+    "var": "spyrr325",
+    "label": "in last 12 mths amount spent on - home improvements",
+    "n": 714,
+    "nonmiss": 154,
+    "pct_nonmiss": 21.6,
+    "pct_pos": 100.0,
+    "median_pos": 550.0
+   },
+   {
+    "var": "spyrr326",
+    "label": "in last 12 mths amount spent on - debt relief",
+    "n": 714,
+    "nonmiss": 189,
+    "pct_nonmiss": 26.5,
+    "pct_pos": 100.0,
+    "median_pos": 1400.0
+   },
+   {
+    "var": "spyrr327",
+    "label": "in last 12 mths amount spent on - other items",
+    "n": 714,
+    "nonmiss": 5,
+    "pct_nonmiss": 0.7,
+    "pct_pos": 100.0,
+    "median_pos": 300.0
+   },
+   {
+    "var": "spyrr328",
+    "label": "in last 12 mths amount spent on - other items",
+    "n": 714,
+    "nonmiss": 1,
+    "pct_nonmiss": 0.1,
+    "pct_pos": 100.0,
+    "median_pos": 400.0
+   },
+   {
+    "var": "spnmr303",
+    "label": "how much expenditure was specifically for name - clothes for girls",
+    "n": 714,
+    "nonmiss": 482,
+    "pct_nonmiss": 67.5,
+    "pct_pos": 60.6,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr304",
+    "label": "how much expenditure was specifically for name - clothes for boys",
+    "n": 714,
+    "nonmiss": 515,
+    "pct_nonmiss": 72.1,
+    "pct_pos": 65.0,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr3tl",
+    "label": "how much expenditure was specifically for name - clothes for children",
+    "n": 714,
+    "nonmiss": 4,
+    "pct_nonmiss": 0.6,
+    "pct_pos": 100.0,
+    "median_pos": 2.5
+   },
+   {
+    "var": "spnmr307",
+    "label": "how much expenditure was specifically for name - footwear for girls",
+    "n": 714,
+    "nonmiss": 452,
+    "pct_nonmiss": 63.3,
+    "pct_pos": 62.2,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr308",
+    "label": "how much expenditure was specifically for name - footwear for boys",
+    "n": 714,
+    "nonmiss": 476,
+    "pct_nonmiss": 66.7,
+    "pct_pos": 66.2,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr309",
+    "label": "how much expenditure was specifically for name - school uniform boys",
+    "n": 714,
+    "nonmiss": 424,
+    "pct_nonmiss": 59.4,
+    "pct_pos": 68.4,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr310",
+    "label": "how much expenditure was specifically for name - school uniform girls",
+    "n": 714,
+    "nonmiss": 394,
+    "pct_nonmiss": 55.2,
+    "pct_pos": 60.7,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr311",
+    "label": "how much expenditure was specifically for name - matriculation, school fees",
+    "n": 714,
+    "nonmiss": 235,
+    "pct_nonmiss": 32.9,
+    "pct_pos": 86.8,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr312",
+    "label": "how much expenditure was specifically for name - other payments to schools",
+    "n": 714,
+    "nonmiss": 507,
+    "pct_nonmiss": 71.0,
+    "pct_pos": 90.5,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr313",
+    "label": "how much expenditure was specifically for name - payment for private classes",
+    "n": 714,
+    "nonmiss": 47,
+    "pct_nonmiss": 6.6,
+    "pct_pos": 76.6,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr315",
+    "label": "how much expenditure was specifically for name - books, school stationery",
+    "n": 714,
+    "nonmiss": 640,
+    "pct_nonmiss": 89.6,
+    "pct_pos": 95.0,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr316",
+    "label": "how much expenditure was specifically for name - transport to school",
+    "n": 714,
+    "nonmiss": 23,
+    "pct_nonmiss": 3.2,
+    "pct_pos": 69.6,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnm316b",
+    "label": "how much expenditure was specifically for name - other educational expenses",
+    "n": 714,
+    "nonmiss": 125,
+    "pct_nonmiss": 17.5,
+    "pct_pos": 50.4,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr317",
+    "label": "how much expenditure was specifically for name - medical consult fees, consultat",
+    "n": 714,
+    "nonmiss": 268,
+    "pct_nonmiss": 37.5,
+    "pct_pos": 38.8,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr318",
+    "label": "how much expenditure was specifically for name - purchase of other medicine",
+    "n": 714,
+    "nonmiss": 440,
+    "pct_nonmiss": 61.6,
+    "pct_pos": 55.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr319",
+    "label": "how much expenditure was specifically for name - cinema, entertainment",
+    "n": 714,
+    "nonmiss": 322,
+    "pct_nonmiss": 45.1,
+    "pct_pos": 83.9,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr320",
+    "label": "how much expenditure was specifically for name - presents for children",
+    "n": 714,
+    "nonmiss": 213,
+    "pct_nonmiss": 29.8,
+    "pct_pos": 77.5,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr321",
+    "label": "how much expenditure was specifically for name - jewellery",
+    "n": 714,
+    "nonmiss": 117,
+    "pct_nonmiss": 16.4,
+    "pct_pos": 53.0,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr322",
+    "label": "how much expenditure was specifically for name - other transport costs",
+    "n": 714,
+    "nonmiss": 162,
+    "pct_nonmiss": 22.7,
+    "pct_pos": 50.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr323",
+    "label": "how much expenditure was specifically for name - other costs/transfer",
+    "n": 714,
+    "nonmiss": 113,
+    "pct_nonmiss": 15.8,
+    "pct_pos": 23.9,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr324",
+    "label": "how much expenditure was specifically for name - other items",
+    "n": 714,
+    "nonmiss": 32,
+    "pct_nonmiss": 4.5,
+    "pct_pos": 15.6,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr325",
+    "label": "how much expenditure was specifically for name - home improvements",
+    "n": 714,
+    "nonmiss": 154,
+    "pct_nonmiss": 21.6,
+    "pct_pos": 9.1,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr326",
+    "label": "how much expenditure was specifically for name - debt relief",
+    "n": 714,
+    "nonmiss": 190,
+    "pct_nonmiss": 26.6,
+    "pct_pos": 11.1,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr327",
+    "label": "how much expenditure was specifically for name - other items",
+    "n": 714,
+    "nonmiss": 5,
+    "pct_nonmiss": 0.7,
+    "pct_pos": 0.0,
+    "median_pos": null
+   },
+   {
+    "var": "spnmr328",
+    "label": "how much expenditure was specifically for name - other items",
+    "n": 714,
+    "nonmiss": 1,
+    "pct_nonmiss": 0.1,
+    "pct_pos": 0.0,
+    "median_pos": null
+   },
+   {
+    "var": "hhsize",
+    "label": "how many people live in this household?",
+    "n": 714,
+    "nonmiss": 678,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 100.0,
+    "median_pos": 5.0
+   },
+   {
+    "var": "foodexp",
+    "label": "monthly current expenditure in food items, in soles",
+    "n": 714,
+    "nonmiss": 678,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 99.6,
+    "median_pos": 539.2
+   },
+   {
+    "var": "nfoodexp",
+    "label": "monthly current expenditure in non-food items, in soles",
+    "n": 714,
+    "nonmiss": 678,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 99.6,
+    "median_pos": 313.5
+   },
+   {
+    "var": "totalexp",
+    "label": "total monthly current expenditure, in soles",
+    "n": 714,
+    "nonmiss": 678,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 99.6,
+    "median_pos": 890.67
+   },
+   {
+    "var": "foodexp_pc",
+    "label": "monthly expenditure in food items per capita, in curr soles",
+    "n": 714,
+    "nonmiss": 678,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 99.6,
+    "median_pos": 105.76
+   },
+   {
+    "var": "nfoodexp_pc",
+    "label": "monthly expenditure in non-food items per capita, in curr soles",
+    "n": 714,
+    "nonmiss": 678,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 99.6,
+    "median_pos": 63.17
+   },
+   {
+    "var": "totalexp_pc",
+    "label": "total monthly expenditure per capita, in curr soles",
+    "n": 714,
+    "nonmiss": 678,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 99.6,
+    "median_pos": 170.92
+   },
+   {
+    "var": "foodexp_r",
+    "label": "monthly expenditure on food items, in real 2006 soles",
+    "n": 714,
+    "nonmiss": 678,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 99.6,
+    "median_pos": 562.02
+   },
+   {
+    "var": "nfoodexp_r",
+    "label": "monthly expenditure on non-food items, in real 2006 soles",
+    "n": 714,
+    "nonmiss": 678,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 99.6,
+    "median_pos": 333.66
+   },
+   {
+    "var": "totalexp_r",
+    "label": "total monthly expenditure, in real 2006 soles",
+    "n": 714,
+    "nonmiss": 678,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 99.6,
+    "median_pos": 934.45
+   },
+   {
+    "var": "totalexp_rpc",
+    "label": "total monthly expenditure per capita, in real 2006 soles",
+    "n": 714,
+    "nonmiss": 678,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 99.6,
+    "median_pos": 176.32
+   }
+  ]
+ },
+ "vn_oc": {
+  "file": "rawdata/yl_r3/UKDA-6853-stata/stata/stata13/r3_oc/vietnam/vn_oc_householdlevel.dta",
+  "n": 976,
+  "vars": [
+   {
+    "var": "SPNDR301",
+    "label": "amount purchased by household in last 30 days of - Tobacco, cigarettes, etc.",
+    "n": 976,
+    "nonmiss": 970,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 64.1,
+    "median_pos": 75.0
+   },
+   {
+    "var": "SPNDR302",
+    "label": "amount purchased by household in last 30 days of - Personal care items",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 99.9,
+    "median_pos": 70.0
+   },
+   {
+    "var": "SPNDR303",
+    "label": "amount purchased by household in last 30 days of - Firewood/Kerosene/gas/batteri",
+    "n": 976,
+    "nonmiss": 968,
+    "pct_nonmiss": 99.2,
+    "pct_pos": 63.7,
+    "median_pos": 75.0
+   },
+   {
+    "var": "SPNDR304",
+    "label": "amount purchased by household in last 30 days of - Internet use",
+    "n": 976,
+    "nonmiss": 969,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 16.5,
+    "median_pos": 80.0
+   },
+   {
+    "var": "SPNDR305",
+    "label": "amount purchased by household in last 30 days of - Public transport",
+    "n": 976,
+    "nonmiss": 969,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 20.9,
+    "median_pos": 100.0
+   },
+   {
+    "var": "SPNDR306",
+    "label": "amount purchased by household in last 30 days of - Security guards/house maid",
+    "n": 976,
+    "nonmiss": 963,
+    "pct_nonmiss": 98.7,
+    "pct_pos": 12.4,
+    "median_pos": 5.0
+   },
+   {
+    "var": "SPNDR307",
+    "label": "amount purchased by household in last 30 days of - Petrol for motorcycles/cars",
+    "n": 976,
+    "nonmiss": 967,
+    "pct_nonmiss": 99.1,
+    "pct_pos": 81.7,
+    "median_pos": 200.0
+   },
+   {
+    "var": "BGYRR307",
+    "label": "household spent in the last 12 months on - Rent (house for residence)",
+    "n": 976,
+    "nonmiss": 962,
+    "pct_nonmiss": 98.6,
+    "pct_pos": 6.0,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "BGYRR312",
+    "label": "household spent in the last 12 months on - Minor repairs & home maintenance",
+    "n": 976,
+    "nonmiss": 970,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 13.7,
+    "median_pos": 3000.0
+   },
+   {
+    "var": "BGYRR322",
+    "label": "household spent in the last 12 months on - Major repairs & building new house",
+    "n": 976,
+    "nonmiss": 970,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 13.0,
+    "median_pos": 30000.0
+   },
+   {
+    "var": "BGYRR320",
+    "label": "household spent in the last 12 months on - Cleaning materials",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 91.0,
+    "median_pos": 120.0
+   },
+   {
+    "var": "BGYRR313",
+    "label": "household spent in the last 12 months on - Rent (business/market stall)",
+    "n": 976,
+    "nonmiss": 962,
+    "pct_nonmiss": 98.6,
+    "pct_pos": 5.9,
+    "median_pos": 1800.0
+   },
+   {
+    "var": "BGYRR314",
+    "label": "household spent in the last 12 months on - Business license",
+    "n": 976,
+    "nonmiss": 963,
+    "pct_nonmiss": 98.7,
+    "pct_pos": 14.4,
+    "median_pos": 200.0
+   },
+   {
+    "var": "BGYRR315",
+    "label": "household spent in the last 12 months on - Water supply",
+    "n": 976,
+    "nonmiss": 966,
+    "pct_nonmiss": 99.0,
+    "pct_pos": 25.8,
+    "median_pos": 480.0
+   },
+   {
+    "var": "BGYRR316",
+    "label": "household spent in the last 12 months on - Electricity rates",
+    "n": 976,
+    "nonmiss": 971,
+    "pct_nonmiss": 99.5,
+    "pct_pos": 96.1,
+    "median_pos": 720.0
+   },
+   {
+    "var": "BGYRR317",
+    "label": "household spent in the last 12 months on - Telephone rates/mobile phone plan",
+    "n": 976,
+    "nonmiss": 970,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 87.4,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "BGYRR319",
+    "label": "household spent in the last 12 months on - Vehicle maintenance",
+    "n": 976,
+    "nonmiss": 969,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 86.0,
+    "median_pos": 400.0
+   },
+   {
+    "var": "BGYRR321",
+    "label": "household spent in the last 12 months on - Fees and paperwork",
+    "n": 976,
+    "nonmiss": 969,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 16.9,
+    "median_pos": 50.0
+   },
+   {
+    "var": "BGYRR304",
+    "label": "household spent in the last 12 months on - Legal advice, support, aid",
+    "n": 976,
+    "nonmiss": 970,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 0.4,
+    "median_pos": 525.0
+   },
+   {
+    "var": "BGYRR305",
+    "label": "household spent in the last 12 months on - Bribes",
+    "n": 976,
+    "nonmiss": 968,
+    "pct_nonmiss": 99.2,
+    "pct_pos": 2.2,
+    "median_pos": 300.0
+   },
+   {
+    "var": "BGYRR306",
+    "label": "household spent in the last 12 months on - Festivals/celebrations/community cont",
+    "n": 976,
+    "nonmiss": 970,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 73.5,
+    "median_pos": 100.0
+   },
+   {
+    "var": "BGYRR311",
+    "label": "household spent in the last 12 months on - One-off family events",
+    "n": 976,
+    "nonmiss": 968,
+    "pct_nonmiss": 99.2,
+    "pct_pos": 9.3,
+    "median_pos": 7000.0
+   },
+   {
+    "var": "SPYRR301",
+    "label": "spent in the last 12 months on - clothing for adult males",
+    "n": 976,
+    "nonmiss": 957,
+    "pct_nonmiss": 98.1,
+    "pct_pos": 93.1,
+    "median_pos": 400.0
+   },
+   {
+    "var": "SPYRR302",
+    "label": "spent in the last 12 months on - clothing for adult females",
+    "n": 976,
+    "nonmiss": 969,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 94.7,
+    "median_pos": 400.0
+   },
+   {
+    "var": "SPYRR303",
+    "label": "spent in the last 12 months on - clothing for girls",
+    "n": 976,
+    "nonmiss": 823,
+    "pct_nonmiss": 84.3,
+    "pct_pos": 77.9,
+    "median_pos": 400.0
+   },
+   {
+    "var": "SPYRR304",
+    "label": "spent in the last 12 months on - clothing for boys",
+    "n": 976,
+    "nonmiss": 872,
+    "pct_nonmiss": 89.3,
+    "pct_pos": 80.3,
+    "median_pos": 300.0
+   },
+   {
+    "var": "SPYRR305",
+    "label": "spent in the last 12 months on - footwear for adult men",
+    "n": 976,
+    "nonmiss": 955,
+    "pct_nonmiss": 97.8,
+    "pct_pos": 94.9,
+    "median_pos": 100.0
+   },
+   {
+    "var": "SPYRR306",
+    "label": "spent in the last 12 months on - footwear for adult women",
+    "n": 976,
+    "nonmiss": 968,
+    "pct_nonmiss": 99.2,
+    "pct_pos": 96.9,
+    "median_pos": 100.0
+   },
+   {
+    "var": "SPYRR307",
+    "label": "spent in the last 12 months on - footwear for girls",
+    "n": 976,
+    "nonmiss": 823,
+    "pct_nonmiss": 84.3,
+    "pct_pos": 79.0,
+    "median_pos": 115.0
+   },
+   {
+    "var": "SPYRR308",
+    "label": "spent in the last 12 months on - footwear for boys",
+    "n": 976,
+    "nonmiss": 869,
+    "pct_nonmiss": 89.0,
+    "pct_pos": 81.8,
+    "median_pos": 100.0
+   },
+   {
+    "var": "SPYRR309",
+    "label": "spent in the last 12 months on - school uniform for boys",
+    "n": 976,
+    "nonmiss": 861,
+    "pct_nonmiss": 88.2,
+    "pct_pos": 61.8,
+    "median_pos": 200.0
+   },
+   {
+    "var": "SPYRR310",
+    "label": "spent in the last 12 months on - school uniform for girls",
+    "n": 976,
+    "nonmiss": 820,
+    "pct_nonmiss": 84.0,
+    "pct_pos": 62.2,
+    "median_pos": 250.0
+   },
+   {
+    "var": "SPYRR311",
+    "label": "spent in the last 12 months on - schooling fees or donations to school (boys)",
+    "n": 976,
+    "nonmiss": 857,
+    "pct_nonmiss": 87.8,
+    "pct_pos": 63.6,
+    "median_pos": 320.0
+   },
+   {
+    "var": "SPYRR312",
+    "label": "spent in the last 12 months on - schooling fees or donations to school (girls)",
+    "n": 976,
+    "nonmiss": 813,
+    "pct_nonmiss": 83.3,
+    "pct_pos": 65.2,
+    "median_pos": 312.0
+   },
+   {
+    "var": "SPYRR324",
+    "label": "spent in the last 12 months on - schooling fees or donations to school (adult me",
+    "n": 976,
+    "nonmiss": 894,
+    "pct_nonmiss": 91.6,
+    "pct_pos": 8.8,
+    "median_pos": 2500.0
+   },
+   {
+    "var": "SPYRR325",
+    "label": "spent in the last 12 months on - schooling fees or donations to school (adult wo",
+    "n": 976,
+    "nonmiss": 895,
+    "pct_nonmiss": 91.7,
+    "pct_pos": 9.7,
+    "median_pos": 3400.0
+   },
+   {
+    "var": "SPYRR313",
+    "label": "spent in the last 12 months on - payment for extra tuition (boys)",
+    "n": 976,
+    "nonmiss": 851,
+    "pct_nonmiss": 87.2,
+    "pct_pos": 47.5,
+    "median_pos": 785.0
+   },
+   {
+    "var": "SPYRR314",
+    "label": "spent in the last 12 months on - payment for extra tuition (girls)",
+    "n": 976,
+    "nonmiss": 809,
+    "pct_nonmiss": 82.9,
+    "pct_pos": 52.7,
+    "median_pos": 1032.5
+   },
+   {
+    "var": "SPYRR315",
+    "label": "spent in the last 12 months on - school books and stationery",
+    "n": 976,
+    "nonmiss": 960,
+    "pct_nonmiss": 98.4,
+    "pct_pos": 92.9,
+    "median_pos": 425.0
+   },
+   {
+    "var": "SPYRR316",
+    "label": "spent in the last 12 months on - transport to school",
+    "n": 976,
+    "nonmiss": 956,
+    "pct_nonmiss": 98.0,
+    "pct_pos": 24.0,
+    "median_pos": 80.0
+   },
+   {
+    "var": "SPYRR317",
+    "label": "spent in the last 12 months on - medical consultation & treatment",
+    "n": 976,
+    "nonmiss": 961,
+    "pct_nonmiss": 98.5,
+    "pct_pos": 53.2,
+    "median_pos": 210.0
+   },
+   {
+    "var": "SPYRR318",
+    "label": "spent in the last 12 months on - prescribed and non-prescribed drugs",
+    "n": 976,
+    "nonmiss": 970,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 91.4,
+    "median_pos": 500.0
+   },
+   {
+    "var": "SPYR319A",
+    "label": "spent in the last 12 months on - voluntary & students' insurance or pooled money",
+    "n": 976,
+    "nonmiss": 961,
+    "pct_nonmiss": 98.5,
+    "pct_pos": 62.1,
+    "median_pos": 200.0
+   },
+   {
+    "var": "SPYR319B",
+    "label": "spent in the last 12 months on - receipt of aid for members who were sick, contr",
+    "n": 976,
+    "nonmiss": 962,
+    "pct_nonmiss": 98.6,
+    "pct_pos": 15.7,
+    "median_pos": 400.0
+   },
+   {
+    "var": "SPYRR320",
+    "label": "spent in the last 12 months on - other medical expenditure",
+    "n": 976,
+    "nonmiss": 965,
+    "pct_nonmiss": 98.9,
+    "pct_pos": 18.2,
+    "median_pos": 100.0
+   },
+   {
+    "var": "SPYRR321",
+    "label": "spent in the last 12 months on - cinema/entertainment/video/TV",
+    "n": 976,
+    "nonmiss": 963,
+    "pct_nonmiss": 98.7,
+    "pct_pos": 18.4,
+    "median_pos": 50.0
+   },
+   {
+    "var": "SPYRR322",
+    "label": "spent in the last 12 months on - presents or treats for children",
+    "n": 976,
+    "nonmiss": 964,
+    "pct_nonmiss": 98.8,
+    "pct_pos": 25.8,
+    "median_pos": 200.0
+   },
+   {
+    "var": "SPYRR323",
+    "label": "spent in the last 12 months on - jewellery",
+    "n": 976,
+    "nonmiss": 965,
+    "pct_nonmiss": 98.9,
+    "pct_pos": 8.3,
+    "median_pos": 850.0
+   },
+   {
+    "var": "SPYRR326",
+    "label": "spent in the last 12 months on - other transport costs",
+    "n": 976,
+    "nonmiss": 969,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 30.3,
+    "median_pos": 400.0
+   },
+   {
+    "var": "SPYRR327",
+    "label": "spent in the last 12 months on - other non-food expenditure",
+    "n": 976,
+    "nonmiss": 965,
+    "pct_nonmiss": 98.9,
+    "pct_pos": 85.8,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "SPNMR303",
+    "label": "spent on items for NAME - clothing for girls",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 93.1,
+    "median_pos": 4.0
+   },
+   {
+    "var": "SPNMR304",
+    "label": "spent on items for NAME - clothing for boys",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 89.9,
+    "median_pos": 4.0
+   },
+   {
+    "var": "SPNMR307",
+    "label": "spent on items for NAME - footwear for girls",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 92.9,
+    "median_pos": 4.0
+   },
+   {
+    "var": "SPNMR308",
+    "label": "spent on items for NAME - footwear for boys",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 90.3,
+    "median_pos": 4.0
+   },
+   {
+    "var": "SPNMR309",
+    "label": "spent on items for NAME - school uniform for boys",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 89.0,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR310",
+    "label": "spent on items for NAME - school uniform for girls",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 92.2,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR311",
+    "label": "spent on items for NAME - schooling fees or donations to school (boys)",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 91.3,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR312",
+    "label": "spent on items for NAME - schooling fees or donations to school (girls)",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 92.1,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR313",
+    "label": "spent on items for NAME - payment for extra tuition (boys)",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 91.6,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR314",
+    "label": "spent on items for NAME - payment for extra tuition (girls)",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 92.5,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR315",
+    "label": "spent on items for NAME - school books and stationery",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 93.6,
+    "median_pos": 3.0
+   },
+   {
+    "var": "SPNMR316",
+    "label": "spent on items for NAME - transport to school",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 89.5,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR317",
+    "label": "spent on items for NAME - medical consultation & treatment",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 68.4,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR318",
+    "label": "spent on items for NAME - prescribed and non-prescribed drugs",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 81.3,
+    "median_pos": 1.0
+   },
+   {
+    "var": "SPNMR320",
+    "label": "spent on items for NAME - other medical expenditure",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 83.8,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR321",
+    "label": "spent on items for NAME - cinema/entertainment/video/TV",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 90.9,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR322",
+    "label": "spent on items for NAME - presents or treats for children",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 92.0,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR323",
+    "label": "spent on items for NAME - jewellery",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 88.4,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR326",
+    "label": "spent on items for NAME - other transport costs",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 76.2,
+    "median_pos": 88.0
+   },
+   {
+    "var": "SPNMR327",
+    "label": "spent on items for NAME - any other non-food expenditure",
+    "n": 976,
+    "nonmiss": 972,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 29.2,
+    "median_pos": 88.0
+   },
+   {
+    "var": "foodexp",
+    "label": "monthly current expenditure in food items, in '000 vnd",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.6,
+    "median_pos": 1702.0
+   },
+   {
+    "var": "nfoodexp",
+    "label": "monthly current expenditure in non-food items, in '000 vnd",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.6,
+    "median_pos": 922.67
+   },
+   {
+    "var": "totalexp",
+    "label": "total monthly current expenditure, in '000 vnd",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.6,
+    "median_pos": 2668.62
+   },
+   {
+    "var": "foodexp_pc",
+    "label": "monthly expenditure in food items per capita, in curr '000 vnd",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.6,
+    "median_pos": 386.2
+   },
+   {
+    "var": "nfoodexp_pc",
+    "label": "monthly expenditure in non-food items per capita, in curr '000 vnd",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.6,
+    "median_pos": 208.63
+   },
+   {
+    "var": "totalexp_pc",
+    "label": "total monthly expenditure per capita, in curr '000 vnd",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.6,
+    "median_pos": 604.76
+   },
+   {
+    "var": "foodexp_r",
+    "label": "monthly expenditure on food items, in real 2006 vnd",
+    "n": 976,
+    "nonmiss": 974,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 99.6,
+    "median_pos": 1141.14
+   },
+   {
+    "var": "nfoodexp_r",
+    "label": "monthly expenditure on non-food items, in real 2006 vnd",
+    "n": 976,
+    "nonmiss": 974,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 99.6,
+    "median_pos": 616.39
+   },
+   {
+    "var": "totalexp_r",
+    "label": "total monthly expenditure, in real 2006 vnd",
+    "n": 976,
+    "nonmiss": 974,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 99.6,
+    "median_pos": 1785.84
+   },
+   {
+    "var": "totalexp_rpc",
+    "label": "total monthly expenditure per capita, in real 2006 vnd",
+    "n": 976,
+    "nonmiss": 974,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 99.6,
+    "median_pos": 405.08
+   },
+   {
+    "var": "hhsize",
+    "label": "household size",
+    "n": 976,
+    "nonmiss": 976,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 4.0
+   }
+  ]
+ },
+ "et_yc": {
+  "file": "rawdata/yl_r3/UKDA-6853-stata/stata/stata13/r3_yc/ethiopia/et_yc_householdlevel.dta",
+  "n": 1885,
+  "vars": [
+   {
+    "var": "spndr301",
+    "label": "money value in birr of purchases in last 30 days on tobacco/cigarettes",
+    "n": 1885,
+    "nonmiss": 1884,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 5.5,
+    "median_pos": 30.0
+   },
+   {
+    "var": "spndr302",
+    "label": "money value in birr of purchases in last 30 days on personal care items",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 98.7,
+    "median_pos": 28.0
+   },
+   {
+    "var": "spndr303",
+    "label": "money value in birr of purchases in last 30 days on firewood, kerosene, gas, bat",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 88.4,
+    "median_pos": 27.0
+   },
+   {
+    "var": "spndr304",
+    "label": "money value in birr of purchases in last 30 days on internet use",
+    "n": 1885,
+    "nonmiss": 1880,
+    "pct_nonmiss": 99.7,
+    "pct_pos": 1.1,
+    "median_pos": 41.0
+   },
+   {
+    "var": "spndr305",
+    "label": "money value in birr of purchases in last 30 days on public transport",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 56.1,
+    "median_pos": 30.0
+   },
+   {
+    "var": "spndr306",
+    "label": "money value in birr of purchases in last 30 days on security(guards)/house maid",
+    "n": 1885,
+    "nonmiss": 1884,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 5.4,
+    "median_pos": 55.0
+   },
+   {
+    "var": "bgyrr307",
+    "label": "amount spent in last 12 months on rent (house for residence)",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 26.2,
+    "median_pos": 216.0
+   },
+   {
+    "var": "bgyrr312",
+    "label": "amount spent in last 12 months on dwelling maintenance",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 23.4,
+    "median_pos": 500.0
+   },
+   {
+    "var": "bgyrr320",
+    "label": "amount spent in last 12 months on cleaning materials",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 52.3,
+    "median_pos": 15.0
+   },
+   {
+    "var": "bgyrr313",
+    "label": "amount spent in last 12 months on rent (business, market stall)",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 5.7,
+    "median_pos": 426.0
+   },
+   {
+    "var": "bgyrr314",
+    "label": "amount spent in last 12 months on business license/tax",
+    "n": 1885,
+    "nonmiss": 1882,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 71.4,
+    "median_pos": 45.0
+   },
+   {
+    "var": "bgyrr315",
+    "label": "amount spent in last 12 months on water supply",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 65.9,
+    "median_pos": 80.12
+   },
+   {
+    "var": "bgyrr316",
+    "label": "amount spent in last 12 months on electricity rates",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 43.3,
+    "median_pos": 144.0
+   },
+   {
+    "var": "bgyrr317",
+    "label": "amount spent in last 12 months on telephone rates & mobile phone card purchase",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 37.3,
+    "median_pos": 360.0
+   },
+   {
+    "var": "bgyrr319",
+    "label": "amount spent in last 12 months on vehicle maintenance",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 3.3,
+    "median_pos": 160.0
+   },
+   {
+    "var": "bgyrr321",
+    "label": "amount spent in last 12 months on fees and paperwork",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 2.8,
+    "median_pos": 38.5
+   },
+   {
+    "var": "bgyrr304",
+    "label": "amount spent in last 12 months on legal advice, support, aid",
+    "n": 1885,
+    "nonmiss": 1884,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 3.3,
+    "median_pos": 100.0
+   },
+   {
+    "var": "bgyrr305",
+    "label": "amount spent in last 12 months on bribes",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 0.6,
+    "median_pos": 145.0
+   },
+   {
+    "var": "bgyrr306",
+    "label": "amount spent in last 12 months on festivals/celebrations/iddir/community contrib",
+    "n": 1885,
+    "nonmiss": 1883,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 97.2,
+    "median_pos": 350.0
+   },
+   {
+    "var": "bgyrr311",
+    "label": "amount spent in last 12 months on one-off family events",
+    "n": 1885,
+    "nonmiss": 1883,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 61.7,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr301",
+    "label": "amount spent in last 12 months on clothing - adult men",
+    "n": 1885,
+    "nonmiss": 1863,
+    "pct_nonmiss": 98.8,
+    "pct_pos": 68.5,
+    "median_pos": 250.0
+   },
+   {
+    "var": "spyrr302",
+    "label": "amount spent in last 12 months on clothing - adult women",
+    "n": 1885,
+    "nonmiss": 1882,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 78.4,
+    "median_pos": 194.0
+   },
+   {
+    "var": "spyrr303",
+    "label": "amount spent in last 12 months on clothing - girls (not school uniform)",
+    "n": 1885,
+    "nonmiss": 1861,
+    "pct_nonmiss": 98.7,
+    "pct_pos": 79.8,
+    "median_pos": 140.0
+   },
+   {
+    "var": "spyrr304",
+    "label": "amount spent in last 12 months on clothing - boys (not schooll uniform)",
+    "n": 1885,
+    "nonmiss": 1868,
+    "pct_nonmiss": 99.1,
+    "pct_pos": 79.6,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spyrr305",
+    "label": "amount spent in last 12 months on footwear - adult men",
+    "n": 1885,
+    "nonmiss": 1864,
+    "pct_nonmiss": 98.9,
+    "pct_pos": 71.1,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr306",
+    "label": "amount spent in last 12 months on footwear - adult women",
+    "n": 1885,
+    "nonmiss": 1882,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 86.9,
+    "median_pos": 45.0
+   },
+   {
+    "var": "spyrr307",
+    "label": "amount spent in last 12 months on footwear - girls",
+    "n": 1885,
+    "nonmiss": 1859,
+    "pct_nonmiss": 98.6,
+    "pct_pos": 81.8,
+    "median_pos": 45.0
+   },
+   {
+    "var": "spyrr308",
+    "label": "amount spent in last 12 months on footwear - boys",
+    "n": 1885,
+    "nonmiss": 1868,
+    "pct_nonmiss": 99.1,
+    "pct_pos": 80.5,
+    "median_pos": 50.5
+   },
+   {
+    "var": "spyrr309",
+    "label": "amount spent in last 12 months on school uniform - boys",
+    "n": 1885,
+    "nonmiss": 1773,
+    "pct_nonmiss": 94.1,
+    "pct_pos": 27.7,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr310",
+    "label": "amount spent in last 12 months on school uniform - girls",
+    "n": 1885,
+    "nonmiss": 1764,
+    "pct_nonmiss": 93.6,
+    "pct_pos": 27.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr311",
+    "label": "amount spent in last 12 months on school fees or donations to school - boys",
+    "n": 1885,
+    "nonmiss": 1837,
+    "pct_nonmiss": 97.5,
+    "pct_pos": 52.6,
+    "median_pos": 24.0
+   },
+   {
+    "var": "spyrr312",
+    "label": "amount spent in last 12 months on school fees or donations to school - girls",
+    "n": 1885,
+    "nonmiss": 1834,
+    "pct_nonmiss": 97.3,
+    "pct_pos": 52.2,
+    "median_pos": 25.0
+   },
+   {
+    "var": "spyrr324",
+    "label": "amount spent in last 12 months on school fees or donations to school - adult men",
+    "n": 1885,
+    "nonmiss": 1796,
+    "pct_nonmiss": 95.3,
+    "pct_pos": 7.3,
+    "median_pos": 90.0
+   },
+   {
+    "var": "spyrr325",
+    "label": "amount spent in last 12 months on school fees or donations to school - adult wom",
+    "n": 1885,
+    "nonmiss": 1801,
+    "pct_nonmiss": 95.5,
+    "pct_pos": 6.8,
+    "median_pos": 70.0
+   },
+   {
+    "var": "spyrr313",
+    "label": "amount spent in last 12 months on payment for tuition - boys",
+    "n": 1885,
+    "nonmiss": 1840,
+    "pct_nonmiss": 97.6,
+    "pct_pos": 7.6,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr314",
+    "label": "amount spent in last 12 months on payment for tuition - girls",
+    "n": 1885,
+    "nonmiss": 1834,
+    "pct_nonmiss": 97.3,
+    "pct_pos": 7.2,
+    "median_pos": 120.0
+   },
+   {
+    "var": "spyrr315",
+    "label": "amount spent in last 12 months on school books and stationery",
+    "n": 1885,
+    "nonmiss": 1869,
+    "pct_nonmiss": 99.2,
+    "pct_pos": 94.9,
+    "median_pos": 75.0
+   },
+   {
+    "var": "spyrr316",
+    "label": "amount spent in last 12 months on transport to school",
+    "n": 1885,
+    "nonmiss": 1868,
+    "pct_nonmiss": 99.1,
+    "pct_pos": 5.4,
+    "median_pos": 220.0
+   },
+   {
+    "var": "spyrr317",
+    "label": "amount spent in last 12 months on medical consultations and treatment",
+    "n": 1885,
+    "nonmiss": 1882,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 60.8,
+    "median_pos": 60.0
+   },
+   {
+    "var": "spyrr318",
+    "label": "amount spent in last 12 months on medicine or drugs direct from the pharmacy",
+    "n": 1885,
+    "nonmiss": 1883,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 56.6,
+    "median_pos": 80.0
+   },
+   {
+    "var": "spyrr319",
+    "label": "amount spent in last 12 months on traditional medicines",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 9.3,
+    "median_pos": 20.0
+   },
+   {
+    "var": "spyrr320",
+    "label": "amount spent in last 12 months on other medical expenses",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 5.3,
+    "median_pos": 40.0
+   },
+   {
+    "var": "spyrr321",
+    "label": "amount spent in last 12 months on cinema/entertainment/video/tv show",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 7.6,
+    "median_pos": 80.0
+   },
+   {
+    "var": "spyrr322",
+    "label": "amount spent in last 12 months on presents or treats for children",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 6.7,
+    "median_pos": 40.0
+   },
+   {
+    "var": "spyrr323",
+    "label": "amount spent in last 12 months on jewellery",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 14.1,
+    "median_pos": 20.0
+   },
+   {
+    "var": "spyrr326",
+    "label": "amount spent in last 12 months on other transport costs for adults or children",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 46.7,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spyrr327",
+    "label": "amount spent in last 12 months on other non-food items",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 22.8,
+    "median_pos": 101.0
+   },
+   {
+    "var": "spnmr303",
+    "label": "of money spent on clothing for girls - how much was for name?",
+    "n": 1885,
+    "nonmiss": 1026,
+    "pct_nonmiss": 54.4,
+    "pct_pos": 78.0,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr304",
+    "label": "of money spent on clothing for boys - how much was for name?",
+    "n": 1885,
+    "nonmiss": 1087,
+    "pct_nonmiss": 57.7,
+    "pct_pos": 81.3,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr307",
+    "label": "of money spent on footwear for girls - how much was for name?",
+    "n": 1885,
+    "nonmiss": 1045,
+    "pct_nonmiss": 55.4,
+    "pct_pos": 79.0,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr308",
+    "label": "of money spent on footwear for boys - how much was for name?",
+    "n": 1885,
+    "nonmiss": 1114,
+    "pct_nonmiss": 59.1,
+    "pct_pos": 81.3,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr309",
+    "label": "of money spent on school uniform (boys) - how much was for name?",
+    "n": 1885,
+    "nonmiss": 380,
+    "pct_nonmiss": 20.2,
+    "pct_pos": 62.4,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr310",
+    "label": "of money spent on school uniform (girls) - how much was for name?",
+    "n": 1885,
+    "nonmiss": 339,
+    "pct_nonmiss": 18.0,
+    "pct_pos": 53.4,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr311",
+    "label": "of money spent on schooling fees (boys) - how much was for name?",
+    "n": 1885,
+    "nonmiss": 728,
+    "pct_nonmiss": 38.6,
+    "pct_pos": 73.1,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr312",
+    "label": "of money spent on schooling fees (girls) - how much was for name?",
+    "n": 1885,
+    "nonmiss": 663,
+    "pct_nonmiss": 35.2,
+    "pct_pos": 67.3,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr313",
+    "label": "of money spent on tuition fees (boys) - how much was for name?",
+    "n": 1885,
+    "nonmiss": 111,
+    "pct_nonmiss": 5.9,
+    "pct_pos": 70.3,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr314",
+    "label": "of money spent on tuition fees (girls) - how much was for name?",
+    "n": 1885,
+    "nonmiss": 102,
+    "pct_nonmiss": 5.4,
+    "pct_pos": 71.6,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr315",
+    "label": "of money spent on school books and stationery - how much was for name?",
+    "n": 1885,
+    "nonmiss": 1728,
+    "pct_nonmiss": 91.7,
+    "pct_pos": 85.9,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr316",
+    "label": "of money spent on transport to school - how much was for name?",
+    "n": 1885,
+    "nonmiss": 106,
+    "pct_nonmiss": 5.6,
+    "pct_pos": 20.8,
+    "median_pos": 2.5
+   },
+   {
+    "var": "spnmr317",
+    "label": "of money spent on medical consultation & treatment - how much was for name?",
+    "n": 1885,
+    "nonmiss": 1143,
+    "pct_nonmiss": 60.6,
+    "pct_pos": 34.8,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr318",
+    "label": "of money spent on medicines or drugs direct from the pharmacy - how much was for",
+    "n": 1885,
+    "nonmiss": 1062,
+    "pct_nonmiss": 56.3,
+    "pct_pos": 36.6,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr319",
+    "label": "of money spent on traditional medicines - how much was for name?",
+    "n": 1885,
+    "nonmiss": 180,
+    "pct_nonmiss": 9.5,
+    "pct_pos": 19.4,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr320",
+    "label": "of money spent on other medical expenditure - how much was for name?",
+    "n": 1885,
+    "nonmiss": 102,
+    "pct_nonmiss": 5.4,
+    "pct_pos": 28.4,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr321",
+    "label": "of money spent on cinema/entertainment/video/tv show - how much was for name?",
+    "n": 1885,
+    "nonmiss": 132,
+    "pct_nonmiss": 7.0,
+    "pct_pos": 60.6,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr322",
+    "label": "of money spent on presents or treats for children - how much was for name?",
+    "n": 1885,
+    "nonmiss": 128,
+    "pct_nonmiss": 6.8,
+    "pct_pos": 57.8,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr323",
+    "label": "of money spent on jewellery - how much was for name?",
+    "n": 1885,
+    "nonmiss": 266,
+    "pct_nonmiss": 14.1,
+    "pct_pos": 32.3,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr326",
+    "label": "of money spent on other transport costs - how much was for name?",
+    "n": 1885,
+    "nonmiss": 859,
+    "pct_nonmiss": 45.6,
+    "pct_pos": 13.9,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr327",
+    "label": "of money spent on other non-food items - how much was for name?",
+    "n": 1885,
+    "nonmiss": 379,
+    "pct_nonmiss": 20.1,
+    "pct_pos": 21.1,
+    "median_pos": 1.0
+   },
+   {
+    "var": "hhsize",
+    "label": "household size",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 6.0
+   },
+   {
+    "var": "tconsrpa",
+    "label": "total real consumption per adult - base 2006",
+    "n": 1885,
+    "nonmiss": 1882,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 100.0,
+    "median_pos": 118.63
+   },
+   {
+    "var": "foodexp",
+    "label": "monthly current expenditure in food items, in birr",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 691.0
+   },
+   {
+    "var": "nfoodexp",
+    "label": "monthly current expenditure in non-food items, in birr",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 286.75
+   },
+   {
+    "var": "totalexp",
+    "label": "total monthly current expenditure, in birr",
+    "n": 1885,
+    "nonmiss": 1885,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 1027.92
+   },
+   {
+    "var": "foodexp_pa",
+    "label": "monthly expenditure in food items per adult, in curr birr",
+    "n": 1885,
+    "nonmiss": 1884,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 100.0,
+    "median_pos": 143.93
+   },
+   {
+    "var": "nfoodexp_pa",
+    "label": "monthly expenditure in non-food items per adult, in curr birr",
+    "n": 1885,
+    "nonmiss": 1884,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 100.0,
+    "median_pos": 57.94
+   },
+   {
+    "var": "totalexp_pa",
+    "label": "total monthly expenditure per adult, in curr birr",
+    "n": 1885,
+    "nonmiss": 1884,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 100.0,
+    "median_pos": 210.08
+   },
+   {
+    "var": "foodexp_r",
+    "label": "monthly expenditure on food items, in real 2006 birr",
+    "n": 1885,
+    "nonmiss": 1883,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 100.0,
+    "median_pos": 367.89
+   },
+   {
+    "var": "nfoodexp_r",
+    "label": "monthly expenditure on non-food items, in real 2006 birr",
+    "n": 1885,
+    "nonmiss": 1883,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 100.0,
+    "median_pos": 181.8
+   },
+   {
+    "var": "totalexp_r",
+    "label": "total monthly expenditure, in real 2006 birr",
+    "n": 1885,
+    "nonmiss": 1883,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 100.0,
+    "median_pos": 574.93
+   },
+   {
+    "var": "totalexp_rpa",
+    "label": "total monthly expenditure per adult, in real 2006 birr",
+    "n": 1885,
+    "nonmiss": 1882,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 100.0,
+    "median_pos": 117.68
+   }
+  ]
+ },
+ "in_yc": {
+  "file": "rawdata/yl_r3/UKDA-6853-stata/stata/stata13/r3_yc/india/in_yc_householdlevel.dta",
+  "n": 1931,
+  "vars": [
+   {
+    "var": "spndr301",
+    "label": "money value in rupees of purchases in last 30 days on tobacco/cigarettes",
+    "n": 1931,
+    "nonmiss": 1930,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 44.8,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spndr302",
+    "label": "money value in rupees of purchases in last 30 days on personal care items",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.6,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spndr303",
+    "label": "money value in rupees of purchases in last 30 days on firewood, kerosene, gas, b",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 92.7,
+    "median_pos": 160.0
+   },
+   {
+    "var": "spndr304",
+    "label": "money value in rupees of purchases in last 30 days on internet use",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 1.3,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spndr305",
+    "label": "money value in rupees of purchases in last 30 days on public transport",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 82.7,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spndr306",
+    "label": "money value in rupees of purchases in last 30 days on security(guards)/house mai",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 4.5,
+    "median_pos": 10.0
+   },
+   {
+    "var": "bgyrr307",
+    "label": "amount spent in last 12 months on rent (house for residence)",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 19.8,
+    "median_pos": 9600.0
+   },
+   {
+    "var": "bgyrr312",
+    "label": "amount spent in last 12 months on dwelling maintenance",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 57.8,
+    "median_pos": 300.0
+   },
+   {
+    "var": "bgyrr320",
+    "label": "amount spent in last 12 months on cleaning materials",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 83.0,
+    "median_pos": 140.0
+   },
+   {
+    "var": "bgyrr313",
+    "label": "amount spent in last 12 months on rent (business, market stall)",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 3.8,
+    "median_pos": 6000.0
+   },
+   {
+    "var": "bgyrr314",
+    "label": "amount spent in last 12 months on business license/tax",
+    "n": 1931,
+    "nonmiss": 1930,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 3.7,
+    "median_pos": 1000.0
+   },
+   {
+    "var": "bgyrr315",
+    "label": "amount spent in last 12 months on water rates/purchasing water",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 22.6,
+    "median_pos": 360.0
+   },
+   {
+    "var": "bgyrr316",
+    "label": "amount spent in last 12 months on electricity rates",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 75.1,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "bgyrr317",
+    "label": "amount spent in last 12 months on telephone rates & mobile phone card purchase",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 63.5,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "bgyrr319",
+    "label": "amount spent in last 12 months on vehicle maintenance",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 21.8,
+    "median_pos": 4900.0
+   },
+   {
+    "var": "bgyrr321",
+    "label": "amount spent in last 12 months on fees and paperwork",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 3.8,
+    "median_pos": 275.0
+   },
+   {
+    "var": "bgyrr304",
+    "label": "amount spent in last 12 months on legal advice, support, aid",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 1.1,
+    "median_pos": 5000.0
+   },
+   {
+    "var": "bgyrr305",
+    "label": "amount spent in last 12 months on bribes",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 2.3,
+    "median_pos": 2000.0
+   },
+   {
+    "var": "bgyrr306",
+    "label": "amount spent in last 12 months on festivals/celebrations/iddir/community contrib",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 98.0,
+    "median_pos": 2000.0
+   },
+   {
+    "var": "bgyrr311",
+    "label": "amount spent in last 12 months on one-off family events",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 33.5,
+    "median_pos": 1500.0
+   },
+   {
+    "var": "spyrr301",
+    "label": "amount spent in last 12 months on clothing - adult men",
+    "n": 1931,
+    "nonmiss": 1887,
+    "pct_nonmiss": 97.7,
+    "pct_pos": 96.9,
+    "median_pos": 1000.0
+   },
+   {
+    "var": "spyrr302",
+    "label": "amount spent in last 12 months on clothing - adult women",
+    "n": 1931,
+    "nonmiss": 1927,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 97.4,
+    "median_pos": 1000.0
+   },
+   {
+    "var": "spyrr303",
+    "label": "amount spent in last 12 months on clothing - girls (not school uniform)",
+    "n": 1931,
+    "nonmiss": 1541,
+    "pct_nonmiss": 79.8,
+    "pct_pos": 97.0,
+    "median_pos": 1000.0
+   },
+   {
+    "var": "spyrr304",
+    "label": "amount spent in last 12 months on clothing - boys (not schooll uniform)",
+    "n": 1931,
+    "nonmiss": 1602,
+    "pct_nonmiss": 83.0,
+    "pct_pos": 97.6,
+    "median_pos": 900.0
+   },
+   {
+    "var": "spyrr305",
+    "label": "amount spent in last 12 months on footwear - adult men",
+    "n": 1931,
+    "nonmiss": 1886,
+    "pct_nonmiss": 97.7,
+    "pct_pos": 97.2,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr306",
+    "label": "amount spent in last 12 months on footwear - adult women",
+    "n": 1931,
+    "nonmiss": 1927,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 97.0,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spyrr307",
+    "label": "amount spent in last 12 months on footwear - girls",
+    "n": 1931,
+    "nonmiss": 1541,
+    "pct_nonmiss": 79.8,
+    "pct_pos": 94.8,
+    "median_pos": 120.0
+   },
+   {
+    "var": "spyrr308",
+    "label": "amount spent in last 12 months on footwear - boys",
+    "n": 1931,
+    "nonmiss": 1608,
+    "pct_nonmiss": 83.3,
+    "pct_pos": 94.3,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spyrr309",
+    "label": "amount spent in last 12 months on school uniform - boys",
+    "n": 1931,
+    "nonmiss": 1613,
+    "pct_nonmiss": 83.5,
+    "pct_pos": 69.7,
+    "median_pos": 500.0
+   },
+   {
+    "var": "spyrr310",
+    "label": "amount spent in last 12 months on school uniform - girls",
+    "n": 1931,
+    "nonmiss": 1526,
+    "pct_nonmiss": 79.0,
+    "pct_pos": 66.6,
+    "median_pos": 450.0
+   },
+   {
+    "var": "spyrr311",
+    "label": "amount spent in last 12 months on school fees or donations to school - boys",
+    "n": 1931,
+    "nonmiss": 1641,
+    "pct_nonmiss": 85.0,
+    "pct_pos": 43.1,
+    "median_pos": 1300.0
+   },
+   {
+    "var": "spyrr312",
+    "label": "amount spent in last 12 months on school fees or donations to school - girls",
+    "n": 1931,
+    "nonmiss": 1553,
+    "pct_nonmiss": 80.4,
+    "pct_pos": 34.8,
+    "median_pos": 960.0
+   },
+   {
+    "var": "spyrr324",
+    "label": "amount spent in last 12 months on school fees or donations to school - adult men",
+    "n": 1931,
+    "nonmiss": 1575,
+    "pct_nonmiss": 81.6,
+    "pct_pos": 1.8,
+    "median_pos": 2000.0
+   },
+   {
+    "var": "spyrr325",
+    "label": "amount spent in last 12 months on school fees or donations to school - adult wom",
+    "n": 1931,
+    "nonmiss": 1593,
+    "pct_nonmiss": 82.5,
+    "pct_pos": 1.2,
+    "median_pos": 2500.0
+   },
+   {
+    "var": "spyrr313",
+    "label": "amount spent in last 12 months on payment for tuition - boys",
+    "n": 1931,
+    "nonmiss": 1647,
+    "pct_nonmiss": 85.3,
+    "pct_pos": 22.3,
+    "median_pos": 600.0
+   },
+   {
+    "var": "spyrr314",
+    "label": "amount spent in last 12 months on payment for tuition - girls",
+    "n": 1931,
+    "nonmiss": 1559,
+    "pct_nonmiss": 80.7,
+    "pct_pos": 21.0,
+    "median_pos": 600.0
+   },
+   {
+    "var": "spyrr315",
+    "label": "amount spent in last 12 months on school books and stationery",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 98.5,
+    "median_pos": 500.0
+   },
+   {
+    "var": "spyrr316",
+    "label": "amount spent in last 12 months on transport to school",
+    "n": 1931,
+    "nonmiss": 1930,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 25.8,
+    "median_pos": 1500.0
+   },
+   {
+    "var": "spyrr317",
+    "label": "amount spent in last 12 months on medical consultations and treatment",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 91.5,
+    "median_pos": 300.0
+   },
+   {
+    "var": "spyrr318",
+    "label": "amount spent in last 12 months on medicine or drugs direct from the pharmacy",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 96.5,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "spyrr319",
+    "label": "amount spent in last 12 months on traditional medicines",
+    "n": 1931,
+    "nonmiss": 1928,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 4.3,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr320",
+    "label": "amount spent in last 12 months on other medical expenses",
+    "n": 1931,
+    "nonmiss": 1928,
+    "pct_nonmiss": 99.8,
+    "pct_pos": 21.3,
+    "median_pos": 300.0
+   },
+   {
+    "var": "spyrr321",
+    "label": "amount spent in last 12 months on cinema/entertainment/video/tv show",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 62.9,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "spyrr322",
+    "label": "amount spent in last 12 months on presents or treats for children",
+    "n": 1931,
+    "nonmiss": 1929,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 32.2,
+    "median_pos": 300.0
+   },
+   {
+    "var": "spyrr323",
+    "label": "amount spent in last 12 months on jewellery",
+    "n": 1931,
+    "nonmiss": 1929,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 13.9,
+    "median_pos": 2800.0
+   },
+   {
+    "var": "spyrr326",
+    "label": "amount spent in last 12 months on other transport costs for adults or children",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 87.5,
+    "median_pos": 900.0
+   },
+   {
+    "var": "spyrr327",
+    "label": "amount spent in last 12 months on other non-food items",
+    "n": 1931,
+    "nonmiss": 1930,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 30.1,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spnmr303",
+    "label": "of money spent on clothing for girls - how much was for name?",
+    "n": 1931,
+    "nonmiss": 948,
+    "pct_nonmiss": 49.1,
+    "pct_pos": 94.8,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr304",
+    "label": "of money spent on clothing for boys - how much was for name?",
+    "n": 1931,
+    "nonmiss": 1063,
+    "pct_nonmiss": 55.0,
+    "pct_pos": 95.5,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr307",
+    "label": "of money spent on footwear for girls - how much was for name?",
+    "n": 1931,
+    "nonmiss": 922,
+    "pct_nonmiss": 47.7,
+    "pct_pos": 92.8,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr308",
+    "label": "of money spent on footwear for boys - how much was for name?",
+    "n": 1931,
+    "nonmiss": 1055,
+    "pct_nonmiss": 54.6,
+    "pct_pos": 94.8,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr309",
+    "label": "of money spent on school uniform (boys) - how much was for name?",
+    "n": 1931,
+    "nonmiss": 855,
+    "pct_nonmiss": 44.3,
+    "pct_pos": 93.1,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr310",
+    "label": "of money spent on school uniform (girls) - how much was for name?",
+    "n": 1931,
+    "nonmiss": 671,
+    "pct_nonmiss": 34.7,
+    "pct_pos": 88.5,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr311",
+    "label": "of money spent on schooling fees (boys) - how much was for name?",
+    "n": 1931,
+    "nonmiss": 541,
+    "pct_nonmiss": 28.0,
+    "pct_pos": 87.2,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr312",
+    "label": "of money spent on schooling fees (girls) - how much was for name?",
+    "n": 1931,
+    "nonmiss": 358,
+    "pct_nonmiss": 18.5,
+    "pct_pos": 81.0,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr313",
+    "label": "of money spent on tuition fees (boys) - how much was for name?",
+    "n": 1931,
+    "nonmiss": 290,
+    "pct_nonmiss": 15.0,
+    "pct_pos": 84.8,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr314",
+    "label": "of money spent on tuition fees (girls) - how much was for name?",
+    "n": 1931,
+    "nonmiss": 245,
+    "pct_nonmiss": 12.7,
+    "pct_pos": 86.1,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr315",
+    "label": "of money spent on school books and stationery - how much was for name?",
+    "n": 1931,
+    "nonmiss": 1894,
+    "pct_nonmiss": 98.1,
+    "pct_pos": 98.3,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr316",
+    "label": "of money spent on transport to school - how much was for name?",
+    "n": 1931,
+    "nonmiss": 470,
+    "pct_nonmiss": 24.3,
+    "pct_pos": 76.2,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr317",
+    "label": "of money spent on medical consultation & treatment - how much was for name?",
+    "n": 1931,
+    "nonmiss": 1727,
+    "pct_nonmiss": 89.4,
+    "pct_pos": 72.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr318",
+    "label": "of money spent on medicines or drugs direct from the pharmacy - how much was for",
+    "n": 1931,
+    "nonmiss": 1801,
+    "pct_nonmiss": 93.3,
+    "pct_pos": 74.2,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr319",
+    "label": "of money spent on traditional medicines - how much was for name?",
+    "n": 1931,
+    "nonmiss": 75,
+    "pct_nonmiss": 3.9,
+    "pct_pos": 60.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr320",
+    "label": "of money spent on other medical expenditure - how much was for name?",
+    "n": 1931,
+    "nonmiss": 396,
+    "pct_nonmiss": 20.5,
+    "pct_pos": 56.6,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr321",
+    "label": "of money spent on cinema/entertainment/video/tv show - how much was for name?",
+    "n": 1931,
+    "nonmiss": 1178,
+    "pct_nonmiss": 61.0,
+    "pct_pos": 69.6,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr322",
+    "label": "of money spent on presents or treats for children - how much was for name?",
+    "n": 1931,
+    "nonmiss": 619,
+    "pct_nonmiss": 32.1,
+    "pct_pos": 94.7,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr323",
+    "label": "of money spent on jewellery - how much was for name?",
+    "n": 1931,
+    "nonmiss": 248,
+    "pct_nonmiss": 12.8,
+    "pct_pos": 46.4,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr326",
+    "label": "of money spent on other transport costs - how much was for name?",
+    "n": 1931,
+    "nonmiss": 1649,
+    "pct_nonmiss": 85.4,
+    "pct_pos": 84.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr327",
+    "label": "of money spent on other non-food items - how much was for name?",
+    "n": 1931,
+    "nonmiss": 576,
+    "pct_nonmiss": 29.8,
+    "pct_pos": 78.5,
+    "median_pos": 1.0
+   },
+   {
+    "var": "hhsize",
+    "label": "household size",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 5.0
+   },
+   {
+    "var": "foodexp",
+    "label": "Monthly food consumption, current rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 2730.0
+   },
+   {
+    "var": "nfoodexp",
+    "label": "Monthly nonfood consumption, current rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 2245.83
+   },
+   {
+    "var": "totalexp",
+    "label": "Monthly total consumption, current rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 5101.5
+   },
+   {
+    "var": "ltotalexp",
+    "label": "Monthly total consumption (limited basket), current rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 3060.33
+   },
+   {
+    "var": "foodexppc",
+    "label": "Monthly food consumption per capita, current rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 536.0
+   },
+   {
+    "var": "foodexpr",
+    "label": "Monthly food consumption, real 2006 rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 2202.02
+   },
+   {
+    "var": "nfoodexppc",
+    "label": "Monthly nonfood consumption per capita, current rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 432.83
+   },
+   {
+    "var": "nfoodexpr",
+    "label": "Monthly nonfood consumption, real 2006 rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 1826.25
+   },
+   {
+    "var": "totalexppc",
+    "label": "Monthly total consumption per capita, current rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 997.9
+   },
+   {
+    "var": "totalexpr",
+    "label": "Monthly total consumption, real 2006 rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 4112.74
+   },
+   {
+    "var": "totalexprpc",
+    "label": "Monthly total consumption per capita, real 2006 rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 812.35
+   },
+   {
+    "var": "ltotalexppc",
+    "label": "Monthly total consumption per capita (limited basket), current rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 603.5
+   },
+   {
+    "var": "ltotalexpr",
+    "label": "Monthly total consumption (limited basket), real 2006 rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 2443.68
+   },
+   {
+    "var": "ltotalexprpc",
+    "label": "Monthly total consumption per capita (limited basket), real 2006 rupees",
+    "n": 1931,
+    "nonmiss": 1931,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 488.87
+   }
+  ]
+ },
+ "pe_yc": {
+  "file": "rawdata/yl_r3/UKDA-6853-stata/stata/stata13/r3_yc/peru/pe_yc_householdlevel.dta",
+  "n": 2052,
+  "vars": [
+   {
+    "var": "spndr301",
+    "label": "in the last 30 days how much have you spent on - tobacco/cigarettes",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 12.8,
+    "median_pos": 5.0
+   },
+   {
+    "var": "spndr302",
+    "label": "in the last 30 days how much have you spent on - personal hygiene",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 98.9,
+    "median_pos": 20.45
+   },
+   {
+    "var": "spndr303",
+    "label": "in the last 30 days how much have you spent on - firewood, parrafin, gas, batter",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 71.6,
+    "median_pos": 32.0
+   },
+   {
+    "var": "spndr304",
+    "label": "in the last 30 days how much have you spent on - internet",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 6.8,
+    "median_pos": 35.0
+   },
+   {
+    "var": "spndr305",
+    "label": "in the last 30 days how much have you spent on - transport, local and between to",
+    "n": 2052,
+    "nonmiss": 1932,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 75.0,
+    "median_pos": 40.0
+   },
+   {
+    "var": "spndr306",
+    "label": "in the last 30 days how much have you spent on - security",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 1.6,
+    "median_pos": 15.0
+   },
+   {
+    "var": "spndr325",
+    "label": "in the last 30 days how much have you spent on - telephone (landline)",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 15.4,
+    "median_pos": 35.0
+   },
+   {
+    "var": "spndr326",
+    "label": "in the last 30 days how much have you spent on - cell phone",
+    "n": 2052,
+    "nonmiss": 1931,
+    "pct_nonmiss": 94.1,
+    "pct_pos": 56.2,
+    "median_pos": 15.0
+   },
+   {
+    "var": "spndr327",
+    "label": "in the last 30 days how much have you spent on - electricity",
+    "n": 2052,
+    "nonmiss": 1932,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 81.4,
+    "median_pos": 20.0
+   },
+   {
+    "var": "spndr328",
+    "label": "in the last 30 days how much have you spent on - water supply",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 77.6,
+    "median_pos": 10.0
+   },
+   {
+    "var": "spndr329",
+    "label": "in the last 30 days how much have you spent on - rent of your house or flat",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 10.6,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spndr330",
+    "label": "in the last 30 days how much have you spent on - maintenance, repairs on your ho",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 5.2,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spndr331",
+    "label": "in the last 30 days how much have you spent on - household cleaning materials",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 94.1,
+    "median_pos": 15.0
+   },
+   {
+    "var": "spndr332",
+    "label": "in the last 30 days how much have you spent on - rental for your businesss",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 4.4,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spndr333",
+    "label": "in the last 30 days how much have you spent on - cable tv",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 13.5,
+    "median_pos": 31.5
+   },
+   {
+    "var": "spndr334",
+    "label": "in the last 30 days how much have you spent on - servant",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 2.6,
+    "median_pos": 180.0
+   },
+   {
+    "var": "spndr335",
+    "label": "in the last 30 days how much have you spent on - other",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 3.3,
+    "median_pos": 20.0
+   },
+   {
+    "var": "spndr336",
+    "label": "what is the money value of the total amount purchased by the hh in the last 30 d",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 5.5,
+    "median_pos": 25.0
+   },
+   {
+    "var": "spndr314",
+    "label": "in the last 12 months how much have you spent on - licenses (for businesss)",
+    "n": 2052,
+    "nonmiss": 1932,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 3.1,
+    "median_pos": 159.0
+   },
+   {
+    "var": "spndr319",
+    "label": "in the last 12 months how much have you spent on - vehicle maintenance",
+    "n": 2052,
+    "nonmiss": 1930,
+    "pct_nonmiss": 94.1,
+    "pct_pos": 11.9,
+    "median_pos": 300.0
+   },
+   {
+    "var": "spndr342",
+    "label": "in the last 12 months how much have you spent on - access to the legal system",
+    "n": 2052,
+    "nonmiss": 1932,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 3.1,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spndr352",
+    "label": "in the last 12 months how much have you spent on - tips, backhanders, bribes to ",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 2.1,
+    "median_pos": 57.5
+   },
+   {
+    "var": "spndr362",
+    "label": "in the last 12 months how much have you spent on - festivals, parties, celebrati",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 5.7,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spndr311",
+    "label": "in the last 12 months how much have you spent on - departure of a household memb",
+    "n": 2052,
+    "nonmiss": 1933,
+    "pct_nonmiss": 94.2,
+    "pct_pos": 5.7,
+    "median_pos": 180.0
+   },
+   {
+    "var": "spndr322",
+    "label": "in the last 12 months how much have you spent on - rates, local government payme",
+    "n": 2052,
+    "nonmiss": 1927,
+    "pct_nonmiss": 93.9,
+    "pct_pos": 7.9,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr301",
+    "label": "in last 12 mths amount spent on - clothes for adult males",
+    "n": 2052,
+    "nonmiss": 1461,
+    "pct_nonmiss": 71.2,
+    "pct_pos": 100.0,
+    "median_pos": 120.0
+   },
+   {
+    "var": "spyrr302",
+    "label": "in last 12 mths amount spent on - clothes for adult females",
+    "n": 2052,
+    "nonmiss": 1588,
+    "pct_nonmiss": 77.4,
+    "pct_pos": 100.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr32a",
+    "label": "in last 12 mths amount spent on - clothes for adults",
+    "n": 2052,
+    "nonmiss": 37,
+    "pct_nonmiss": 1.8,
+    "pct_pos": 100.0,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr303",
+    "label": "in last 12 mths amount spent on - clothes for girls",
+    "n": 2052,
+    "nonmiss": 1432,
+    "pct_nonmiss": 69.8,
+    "pct_pos": 100.0,
+    "median_pos": 110.0
+   },
+   {
+    "var": "spyrr304",
+    "label": "in last 12 mths amount spent on - clothes for boys",
+    "n": 2052,
+    "nonmiss": 1400,
+    "pct_nonmiss": 68.2,
+    "pct_pos": 100.0,
+    "median_pos": 110.0
+   },
+   {
+    "var": "spyrr3tl",
+    "label": "in last 12 mths amount spent on - clothes for children",
+    "n": 2052,
+    "nonmiss": 21,
+    "pct_nonmiss": 1.0,
+    "pct_pos": 100.0,
+    "median_pos": 250.0
+   },
+   {
+    "var": "spyrr305",
+    "label": "in last 12 mths amount spent on - footwear for men",
+    "n": 2052,
+    "nonmiss": 1371,
+    "pct_nonmiss": 66.8,
+    "pct_pos": 100.0,
+    "median_pos": 60.0
+   },
+   {
+    "var": "spyrr306",
+    "label": "in last 12 mths amount spent on - footwear for women",
+    "n": 2052,
+    "nonmiss": 1555,
+    "pct_nonmiss": 75.8,
+    "pct_pos": 100.0,
+    "median_pos": 50.0
+   },
+   {
+    "var": "spyrr307",
+    "label": "in last 12 mths amount spent on - footwear for girls",
+    "n": 2052,
+    "nonmiss": 1391,
+    "pct_nonmiss": 67.8,
+    "pct_pos": 100.0,
+    "median_pos": 55.0
+   },
+   {
+    "var": "spyrr308",
+    "label": "in last 12 mths amount spent on - footwear for boys",
+    "n": 2052,
+    "nonmiss": 1365,
+    "pct_nonmiss": 66.5,
+    "pct_pos": 99.9,
+    "median_pos": 60.0
+   },
+   {
+    "var": "spyrr309",
+    "label": "in last 12 mths amount spent on - school uniform boys",
+    "n": 2052,
+    "nonmiss": 1146,
+    "pct_nonmiss": 55.8,
+    "pct_pos": 100.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr310",
+    "label": "in last 12 mths amount spent on - school uniform girls",
+    "n": 2052,
+    "nonmiss": 1116,
+    "pct_nonmiss": 54.4,
+    "pct_pos": 100.0,
+    "median_pos": 90.0
+   },
+   {
+    "var": "spyrr311",
+    "label": "in last 12 mths amount spent on - matriculation, school fees",
+    "n": 2052,
+    "nonmiss": 720,
+    "pct_nonmiss": 35.1,
+    "pct_pos": 100.0,
+    "median_pos": 90.0
+   },
+   {
+    "var": "spyrr312",
+    "label": "in last 12 mths amount spent on - other payments to schools",
+    "n": 2052,
+    "nonmiss": 1466,
+    "pct_nonmiss": 71.4,
+    "pct_pos": 100.0,
+    "median_pos": 20.0
+   },
+   {
+    "var": "spyrr313",
+    "label": "in last 12 mths amount spent on - payment for private classes",
+    "n": 2052,
+    "nonmiss": 144,
+    "pct_nonmiss": 7.0,
+    "pct_pos": 100.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr315",
+    "label": "in last 12 mths amount spent on - books, school stationery",
+    "n": 2052,
+    "nonmiss": 1888,
+    "pct_nonmiss": 92.0,
+    "pct_pos": 100.0,
+    "median_pos": 192.0
+   },
+   {
+    "var": "spyrr316",
+    "label": "in last 12 mths amount spent on - transport to school",
+    "n": 2052,
+    "nonmiss": 111,
+    "pct_nonmiss": 5.4,
+    "pct_pos": 100.0,
+    "median_pos": 315.0
+   },
+   {
+    "var": "spyr316b",
+    "label": "in last 12 mths amount spent on - other educational expenses",
+    "n": 2052,
+    "nonmiss": 249,
+    "pct_nonmiss": 12.1,
+    "pct_pos": 100.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr317",
+    "label": "in last 12 mths amount spent on - medical consult fees, consultation, treatment",
+    "n": 2052,
+    "nonmiss": 803,
+    "pct_nonmiss": 39.1,
+    "pct_pos": 100.0,
+    "median_pos": 80.0
+   },
+   {
+    "var": "spyrr318",
+    "label": "in last 12 mths amount spent on - purchase of other medicine",
+    "n": 2052,
+    "nonmiss": 1233,
+    "pct_nonmiss": 60.1,
+    "pct_pos": 100.0,
+    "median_pos": 60.0
+   },
+   {
+    "var": "spyrr319",
+    "label": "in last 12 mths amount spent on - cinema, entertainment",
+    "n": 2052,
+    "nonmiss": 830,
+    "pct_nonmiss": 40.4,
+    "pct_pos": 100.0,
+    "median_pos": 30.0
+   },
+   {
+    "var": "spyrr320",
+    "label": "in last 12 mths amount spent on - presents for children",
+    "n": 2052,
+    "nonmiss": 748,
+    "pct_nonmiss": 36.5,
+    "pct_pos": 100.0,
+    "median_pos": 80.0
+   },
+   {
+    "var": "spyrr321",
+    "label": "in last 12 mths amount spent on - jewellery",
+    "n": 2052,
+    "nonmiss": 311,
+    "pct_nonmiss": 15.2,
+    "pct_pos": 100.0,
+    "median_pos": 30.0
+   },
+   {
+    "var": "spyrr322",
+    "label": "in last 12 mths amount spent on - other transport costs",
+    "n": 2052,
+    "nonmiss": 400,
+    "pct_nonmiss": 19.5,
+    "pct_pos": 100.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr323",
+    "label": "in last 12 mths amount spent on - other costs/transfer",
+    "n": 2052,
+    "nonmiss": 357,
+    "pct_nonmiss": 17.4,
+    "pct_pos": 100.0,
+    "median_pos": 500.0
+   },
+   {
+    "var": "spyrr324",
+    "label": "in last 12 mths amount spent on - other items",
+    "n": 2052,
+    "nonmiss": 141,
+    "pct_nonmiss": 6.9,
+    "pct_pos": 100.0,
+    "median_pos": 210.0
+   },
+   {
+    "var": "spyrr325",
+    "label": "in last 12 mths amount spent on - home improvements",
+    "n": 2052,
+    "nonmiss": 445,
+    "pct_nonmiss": 21.7,
+    "pct_pos": 100.0,
+    "median_pos": 590.0
+   },
+   {
+    "var": "spyrr326",
+    "label": "in last 12 mths amount spent on - debt relief",
+    "n": 2052,
+    "nonmiss": 510,
+    "pct_nonmiss": 24.9,
+    "pct_pos": 100.0,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "spyrr327",
+    "label": "in last 12 mths amount spent on - other items",
+    "n": 2052,
+    "nonmiss": 22,
+    "pct_nonmiss": 1.1,
+    "pct_pos": 100.0,
+    "median_pos": 125.0
+   },
+   {
+    "var": "spyrr328",
+    "label": "in last 12 mths amount spent on - other items",
+    "n": 2052,
+    "nonmiss": 0,
+    "pct_nonmiss": 0.0,
+    "pct_pos": 0.0,
+    "median_pos": null
+   },
+   {
+    "var": "spnmr303",
+    "label": "how much expenditure was specifically for name - clothes for girls",
+    "n": 2052,
+    "nonmiss": 1430,
+    "pct_nonmiss": 69.7,
+    "pct_pos": 62.6,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr304",
+    "label": "how much expenditure was specifically for name - clothes for boys",
+    "n": 2052,
+    "nonmiss": 1401,
+    "pct_nonmiss": 68.3,
+    "pct_pos": 64.0,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr3tl",
+    "label": "how much expenditure was specifically for name - clothes for children",
+    "n": 2052,
+    "nonmiss": 21,
+    "pct_nonmiss": 1.0,
+    "pct_pos": 100.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr307",
+    "label": "how much expenditure was specifically for name - footwear for girls",
+    "n": 2052,
+    "nonmiss": 1384,
+    "pct_nonmiss": 67.4,
+    "pct_pos": 62.7,
+    "median_pos": 2.5
+   },
+   {
+    "var": "spnmr308",
+    "label": "how much expenditure was specifically for name - footwear for boys",
+    "n": 2052,
+    "nonmiss": 1364,
+    "pct_nonmiss": 66.5,
+    "pct_pos": 65.2,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr309",
+    "label": "how much expenditure was specifically for name - school uniform boys",
+    "n": 2052,
+    "nonmiss": 1145,
+    "pct_nonmiss": 55.8,
+    "pct_pos": 69.9,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr310",
+    "label": "how much expenditure was specifically for name - school uniform girls",
+    "n": 2052,
+    "nonmiss": 1112,
+    "pct_nonmiss": 54.2,
+    "pct_pos": 68.6,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr311",
+    "label": "how much expenditure was specifically for name - matriculation, school fees",
+    "n": 2052,
+    "nonmiss": 716,
+    "pct_nonmiss": 34.9,
+    "pct_pos": 93.2,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr312",
+    "label": "how much expenditure was specifically for name - other payments to schools",
+    "n": 2052,
+    "nonmiss": 1459,
+    "pct_nonmiss": 71.1,
+    "pct_pos": 95.2,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr313",
+    "label": "how much expenditure was specifically for name - payment for private classes",
+    "n": 2052,
+    "nonmiss": 143,
+    "pct_nonmiss": 7.0,
+    "pct_pos": 83.9,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr315",
+    "label": "how much expenditure was specifically for name - books, school stationery",
+    "n": 2052,
+    "nonmiss": 1881,
+    "pct_nonmiss": 91.7,
+    "pct_pos": 98.8,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr316",
+    "label": "how much expenditure was specifically for name - transport to school",
+    "n": 2052,
+    "nonmiss": 110,
+    "pct_nonmiss": 5.4,
+    "pct_pos": 91.8,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnm316b",
+    "label": "how much expenditure was specifically for name - other educational expenses",
+    "n": 2052,
+    "nonmiss": 246,
+    "pct_nonmiss": 12.0,
+    "pct_pos": 46.3,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr317",
+    "label": "how much expenditure was specifically for name - medical consult fees, consultat",
+    "n": 2052,
+    "nonmiss": 801,
+    "pct_nonmiss": 39.0,
+    "pct_pos": 50.6,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr318",
+    "label": "how much expenditure was specifically for name - purchase of other medicine",
+    "n": 2052,
+    "nonmiss": 1225,
+    "pct_nonmiss": 59.7,
+    "pct_pos": 61.6,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr319",
+    "label": "how much expenditure was specifically for name - cinema, entertainment",
+    "n": 2052,
+    "nonmiss": 824,
+    "pct_nonmiss": 40.2,
+    "pct_pos": 71.1,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr320",
+    "label": "how much expenditure was specifically for name - presents for children",
+    "n": 2052,
+    "nonmiss": 744,
+    "pct_nonmiss": 36.3,
+    "pct_pos": 85.5,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr321",
+    "label": "how much expenditure was specifically for name - jewellery",
+    "n": 2052,
+    "nonmiss": 310,
+    "pct_nonmiss": 15.1,
+    "pct_pos": 43.5,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr322",
+    "label": "how much expenditure was specifically for name - other transport costs",
+    "n": 2052,
+    "nonmiss": 397,
+    "pct_nonmiss": 19.3,
+    "pct_pos": 44.3,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr323",
+    "label": "how much expenditure was specifically for name - other costs/transfer",
+    "n": 2052,
+    "nonmiss": 357,
+    "pct_nonmiss": 17.4,
+    "pct_pos": 25.5,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr324",
+    "label": "how much expenditure was specifically for name - other items",
+    "n": 2052,
+    "nonmiss": 140,
+    "pct_nonmiss": 6.8,
+    "pct_pos": 25.0,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr325",
+    "label": "how much expenditure was specifically for name - home improvements",
+    "n": 2052,
+    "nonmiss": 444,
+    "pct_nonmiss": 21.6,
+    "pct_pos": 15.5,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr326",
+    "label": "how much expenditure was specifically for name - debt relief",
+    "n": 2052,
+    "nonmiss": 511,
+    "pct_nonmiss": 24.9,
+    "pct_pos": 11.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr327",
+    "label": "how much expenditure was specifically for name - other items",
+    "n": 2052,
+    "nonmiss": 22,
+    "pct_nonmiss": 1.1,
+    "pct_pos": 18.2,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr328",
+    "label": "how much expenditure was specifically for name - other items",
+    "n": 2052,
+    "nonmiss": 0,
+    "pct_nonmiss": 0.0,
+    "pct_pos": 0.0,
+    "median_pos": null
+   },
+   {
+    "var": "hhsize",
+    "label": "how many people live in this household?",
+    "n": 2052,
+    "nonmiss": 1943,
+    "pct_nonmiss": 94.7,
+    "pct_pos": 100.0,
+    "median_pos": 5.0
+   },
+   {
+    "var": "foodexp",
+    "label": "monthly current expenditure in food items, in soles",
+    "n": 2052,
+    "nonmiss": 1942,
+    "pct_nonmiss": 94.6,
+    "pct_pos": 99.5,
+    "median_pos": 507.3
+   },
+   {
+    "var": "nfoodexp",
+    "label": "monthly current expenditure in non-food items, in soles",
+    "n": 2052,
+    "nonmiss": 1943,
+    "pct_nonmiss": 94.7,
+    "pct_pos": 99.4,
+    "median_pos": 285.83
+   },
+   {
+    "var": "totalexp",
+    "label": "total monthly current expenditure, in soles",
+    "n": 2052,
+    "nonmiss": 1943,
+    "pct_nonmiss": 94.7,
+    "pct_pos": 99.5,
+    "median_pos": 816.0
+   },
+   {
+    "var": "foodexp_pc",
+    "label": "monthly expenditure in food items per capita, in curr soles",
+    "n": 2052,
+    "nonmiss": 1942,
+    "pct_nonmiss": 94.6,
+    "pct_pos": 99.5,
+    "median_pos": 99.89
+   },
+   {
+    "var": "nfoodexp_pc",
+    "label": "monthly expenditure in non-food items per capita, in curr soles",
+    "n": 2052,
+    "nonmiss": 1943,
+    "pct_nonmiss": 94.7,
+    "pct_pos": 99.4,
+    "median_pos": 57.33
+   },
+   {
+    "var": "totalexp_pc",
+    "label": "total monthly expenditure per capita, in curr soles",
+    "n": 2052,
+    "nonmiss": 1943,
+    "pct_nonmiss": 94.7,
+    "pct_pos": 99.5,
+    "median_pos": 162.91
+   },
+   {
+    "var": "foodexp_r",
+    "label": "monthly expenditure on food items, in real 2006 soles",
+    "n": 2052,
+    "nonmiss": 1940,
+    "pct_nonmiss": 94.5,
+    "pct_pos": 99.5,
+    "median_pos": 537.38
+   },
+   {
+    "var": "nfoodexp_r",
+    "label": "monthly expenditure on non-food items, in real 2006 soles",
+    "n": 2052,
+    "nonmiss": 1941,
+    "pct_nonmiss": 94.6,
+    "pct_pos": 99.4,
+    "median_pos": 302.65
+   },
+   {
+    "var": "totalexp_r",
+    "label": "total monthly expenditure, in real 2006 soles",
+    "n": 2052,
+    "nonmiss": 1941,
+    "pct_nonmiss": 94.6,
+    "pct_pos": 99.5,
+    "median_pos": 877.34
+   },
+   {
+    "var": "totalexp_rpc",
+    "label": "total monthly expenditure per capita, in real 2006 soles",
+    "n": 2052,
+    "nonmiss": 1941,
+    "pct_nonmiss": 94.6,
+    "pct_pos": 99.5,
+    "median_pos": 171.28
+   }
+  ]
+ },
+ "vn_yc": {
+  "file": "rawdata/yl_r3/UKDA-6853-stata/stata/stata13/r3_yc/vietnam/vn_yc_householdlevel.dta",
+  "n": 1961,
+  "vars": [
+   {
+    "var": "spndr301",
+    "label": "amount purchased by household in last 30 days of - tobacco, cigarettes, etc.",
+    "n": 1961,
+    "nonmiss": 1953,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 62.7,
+    "median_pos": 90.0
+   },
+   {
+    "var": "spndr302",
+    "label": "amount purchased by household in last 30 days of - personal care items",
+    "n": 1961,
+    "nonmiss": 1955,
+    "pct_nonmiss": 99.7,
+    "pct_pos": 99.9,
+    "median_pos": 60.0
+   },
+   {
+    "var": "spndr303",
+    "label": "amount purchased by household in last 30 days of - firewood/kerosene/gas/batteri",
+    "n": 1961,
+    "nonmiss": 1954,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 66.4,
+    "median_pos": 70.0
+   },
+   {
+    "var": "spndr304",
+    "label": "amount purchased by household in last 30 days of - internet use",
+    "n": 1961,
+    "nonmiss": 1953,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 59.4,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spndr305",
+    "label": "amount purchased by household in last 30 days of - public transport",
+    "n": 1961,
+    "nonmiss": 1953,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 13.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spndr306",
+    "label": "amount purchased by household in last 30 days of - security guards/house maid",
+    "n": 1961,
+    "nonmiss": 1948,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 9.1,
+    "median_pos": 50.0
+   },
+   {
+    "var": "spndr307",
+    "label": "amount purchased by household in last 30 days of - petrol for motorcycles/cars",
+    "n": 1961,
+    "nonmiss": 1944,
+    "pct_nonmiss": 99.1,
+    "pct_pos": 30.1,
+    "median_pos": 150.0
+   },
+   {
+    "var": "bgyrr307",
+    "label": "household spent in the last 12 months on - rent (house for residence)",
+    "n": 1961,
+    "nonmiss": 1937,
+    "pct_nonmiss": 98.8,
+    "pct_pos": 2.1,
+    "median_pos": 3600.0
+   },
+   {
+    "var": "bgyrr312",
+    "label": "household spent in the last 12 months on - minor repairs & home maintenance",
+    "n": 1961,
+    "nonmiss": 1952,
+    "pct_nonmiss": 99.5,
+    "pct_pos": 13.1,
+    "median_pos": 3000.0
+   },
+   {
+    "var": "bgyrr322",
+    "label": "household spent in the last 12 months on - major repairs & building new house",
+    "n": 1961,
+    "nonmiss": 1954,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 13.8,
+    "median_pos": 27000.0
+   },
+   {
+    "var": "bgyrr320",
+    "label": "household spent in the last 12 months on - cleaning materials",
+    "n": 1961,
+    "nonmiss": 1955,
+    "pct_nonmiss": 99.7,
+    "pct_pos": 88.4,
+    "median_pos": 120.0
+   },
+   {
+    "var": "bgyrr313",
+    "label": "household spent in the last 12 months on - rent (business/market stall)",
+    "n": 1961,
+    "nonmiss": 1933,
+    "pct_nonmiss": 98.6,
+    "pct_pos": 9.0,
+    "median_pos": 2400.0
+   },
+   {
+    "var": "bgyrr314",
+    "label": "household spent in the last 12 months on - business license",
+    "n": 1961,
+    "nonmiss": 1939,
+    "pct_nonmiss": 98.9,
+    "pct_pos": 14.5,
+    "median_pos": 207.0
+   },
+   {
+    "var": "bgyrr315",
+    "label": "household spent in the last 12 months on - water supply",
+    "n": 1961,
+    "nonmiss": 1948,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 24.8,
+    "median_pos": 480.0
+   },
+   {
+    "var": "bgyrr316",
+    "label": "household spent in the last 12 months on - electricity rates",
+    "n": 1961,
+    "nonmiss": 1952,
+    "pct_nonmiss": 99.5,
+    "pct_pos": 95.9,
+    "median_pos": 720.0
+   },
+   {
+    "var": "bgyrr317",
+    "label": "household spent in the last 12 months on - telephone rates/mobile phone plan",
+    "n": 1961,
+    "nonmiss": 1947,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 82.4,
+    "median_pos": 1200.0
+   },
+   {
+    "var": "bgyrr319",
+    "label": "household spent in the last 12 months on - vehicle maintenance",
+    "n": 1961,
+    "nonmiss": 1948,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 83.3,
+    "median_pos": 350.0
+   },
+   {
+    "var": "bgyrr321",
+    "label": "household spent in the last 12 months on - fees and paperwork",
+    "n": 1961,
+    "nonmiss": 1954,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 12.3,
+    "median_pos": 50.0
+   },
+   {
+    "var": "bgyrr304",
+    "label": "household spent in the last 12 months on - legal advice, support, aid",
+    "n": 1961,
+    "nonmiss": 1953,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 0.3,
+    "median_pos": 20.0
+   },
+   {
+    "var": "bgyrr305",
+    "label": "household spent in the last 12 months on - bribes",
+    "n": 1961,
+    "nonmiss": 1952,
+    "pct_nonmiss": 99.5,
+    "pct_pos": 2.8,
+    "median_pos": 500.0
+   },
+   {
+    "var": "bgyrr306",
+    "label": "household spent in the last 12 months on - festivals/celebrations/community cont",
+    "n": 1961,
+    "nonmiss": 1953,
+    "pct_nonmiss": 99.6,
+    "pct_pos": 71.5,
+    "median_pos": 100.0
+   },
+   {
+    "var": "bgyrr311",
+    "label": "household spent in the last 12 months on - one-off family events",
+    "n": 1961,
+    "nonmiss": 1952,
+    "pct_nonmiss": 99.5,
+    "pct_pos": 8.1,
+    "median_pos": 2000.0
+   },
+   {
+    "var": "spyrr301",
+    "label": "spent in the last 12 months on - clothing for adult males",
+    "n": 1961,
+    "nonmiss": 1917,
+    "pct_nonmiss": 97.8,
+    "pct_pos": 93.0,
+    "median_pos": 300.0
+   },
+   {
+    "var": "spyrr302",
+    "label": "spent in the last 12 months on - clothing for adult females",
+    "n": 1961,
+    "nonmiss": 1950,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 94.9,
+    "median_pos": 400.0
+   },
+   {
+    "var": "spyrr303",
+    "label": "spent in the last 12 months on - clothing for girls",
+    "n": 1961,
+    "nonmiss": 1684,
+    "pct_nonmiss": 85.9,
+    "pct_pos": 82.1,
+    "median_pos": 300.0
+   },
+   {
+    "var": "spyrr304",
+    "label": "spent in the last 12 months on - clothing for boys",
+    "n": 1961,
+    "nonmiss": 1726,
+    "pct_nonmiss": 88.0,
+    "pct_pos": 84.1,
+    "median_pos": 300.0
+   },
+   {
+    "var": "spyrr305",
+    "label": "spent in the last 12 months on - footwear for adult men",
+    "n": 1961,
+    "nonmiss": 1917,
+    "pct_nonmiss": 97.8,
+    "pct_pos": 95.3,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr306",
+    "label": "spent in the last 12 months on - footwear for adult women",
+    "n": 1961,
+    "nonmiss": 1950,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 97.9,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr307",
+    "label": "spent in the last 12 months on - footwear for girls",
+    "n": 1961,
+    "nonmiss": 1682,
+    "pct_nonmiss": 85.8,
+    "pct_pos": 82.0,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr308",
+    "label": "spent in the last 12 months on - footwear for boys",
+    "n": 1961,
+    "nonmiss": 1724,
+    "pct_nonmiss": 87.9,
+    "pct_pos": 83.6,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr309",
+    "label": "spent in the last 12 months on - school uniform for boys",
+    "n": 1961,
+    "nonmiss": 1705,
+    "pct_nonmiss": 86.9,
+    "pct_pos": 61.8,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spyrr310",
+    "label": "spent in the last 12 months on - school uniform for girls",
+    "n": 1961,
+    "nonmiss": 1677,
+    "pct_nonmiss": 85.5,
+    "pct_pos": 62.2,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spyrr311",
+    "label": "spent in the last 12 months on - schooling fees or donations to school (boys)",
+    "n": 1961,
+    "nonmiss": 1702,
+    "pct_nonmiss": 86.8,
+    "pct_pos": 63.9,
+    "median_pos": 234.0
+   },
+   {
+    "var": "spyrr312",
+    "label": "spent in the last 12 months on - schooling fees or donations to school (girls)",
+    "n": 1961,
+    "nonmiss": 1667,
+    "pct_nonmiss": 85.0,
+    "pct_pos": 64.5,
+    "median_pos": 250.0
+   },
+   {
+    "var": "spyrr324",
+    "label": "spent in the last 12 months on - schooling fees or donations to school (adult me",
+    "n": 1961,
+    "nonmiss": 1784,
+    "pct_nonmiss": 91.0,
+    "pct_pos": 3.6,
+    "median_pos": 3000.0
+   },
+   {
+    "var": "spyrr325",
+    "label": "spent in the last 12 months on - schooling fees or donations to school (adult wo",
+    "n": 1961,
+    "nonmiss": 1790,
+    "pct_nonmiss": 91.3,
+    "pct_pos": 3.7,
+    "median_pos": 3000.0
+   },
+   {
+    "var": "spyrr313",
+    "label": "spent in the last 12 months on - payment for extra tuition (boys)",
+    "n": 1961,
+    "nonmiss": 1697,
+    "pct_nonmiss": 86.5,
+    "pct_pos": 46.8,
+    "median_pos": 540.0
+   },
+   {
+    "var": "spyrr314",
+    "label": "spent in the last 12 months on - payment for extra tuition (girls)",
+    "n": 1961,
+    "nonmiss": 1665,
+    "pct_nonmiss": 84.9,
+    "pct_pos": 47.6,
+    "median_pos": 575.0
+   },
+   {
+    "var": "spyrr315",
+    "label": "spent in the last 12 months on - school books and stationery",
+    "n": 1961,
+    "nonmiss": 1947,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 95.8,
+    "median_pos": 300.0
+   },
+   {
+    "var": "spyrr316",
+    "label": "spent in the last 12 months on - transport to school",
+    "n": 1961,
+    "nonmiss": 1942,
+    "pct_nonmiss": 99.0,
+    "pct_pos": 14.7,
+    "median_pos": 80.0
+   },
+   {
+    "var": "spyrr317",
+    "label": "spent in the last 12 months on - medical consultation & treatment",
+    "n": 1961,
+    "nonmiss": 1951,
+    "pct_nonmiss": 99.5,
+    "pct_pos": 51.5,
+    "median_pos": 250.0
+   },
+   {
+    "var": "spyrr318",
+    "label": "spent in the last 12 months on - prescribed and non-prescribed drugs",
+    "n": 1961,
+    "nonmiss": 1955,
+    "pct_nonmiss": 99.7,
+    "pct_pos": 92.2,
+    "median_pos": 500.0
+   },
+   {
+    "var": "spyr319a",
+    "label": "spent in the last 12 months on - voluntary & students' insurance or pooled money",
+    "n": 1961,
+    "nonmiss": 1934,
+    "pct_nonmiss": 98.6,
+    "pct_pos": 63.5,
+    "median_pos": 150.0
+   },
+   {
+    "var": "spyr319b",
+    "label": "spent in the last 12 months on - receipt of aid for members who were sick, contr",
+    "n": 1961,
+    "nonmiss": 1947,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 15.1,
+    "median_pos": 500.0
+   },
+   {
+    "var": "spyrr320",
+    "label": "spent in the last 12 months on - other medical expenditure",
+    "n": 1961,
+    "nonmiss": 1948,
+    "pct_nonmiss": 99.3,
+    "pct_pos": 21.9,
+    "median_pos": 100.0
+   },
+   {
+    "var": "spyrr321",
+    "label": "spent in the last 12 months on - cinema/entertainment/video/tv",
+    "n": 1961,
+    "nonmiss": 1943,
+    "pct_nonmiss": 99.1,
+    "pct_pos": 19.7,
+    "median_pos": 60.0
+   },
+   {
+    "var": "spyrr322",
+    "label": "spent in the last 12 months on - presents or treats for children",
+    "n": 1961,
+    "nonmiss": 1950,
+    "pct_nonmiss": 99.4,
+    "pct_pos": 31.5,
+    "median_pos": 200.0
+   },
+   {
+    "var": "spyrr323",
+    "label": "spent in the last 12 months on - jewellery",
+    "n": 1961,
+    "nonmiss": 1943,
+    "pct_nonmiss": 99.1,
+    "pct_pos": 8.0,
+    "median_pos": 725.0
+   },
+   {
+    "var": "spyrr326",
+    "label": "spent in the last 12 months on - other transport costs",
+    "n": 1961,
+    "nonmiss": 1944,
+    "pct_nonmiss": 99.1,
+    "pct_pos": 26.1,
+    "median_pos": 300.0
+   },
+   {
+    "var": "spyrr327",
+    "label": "spent in the last 12 months on - other non-food expenditure",
+    "n": 1961,
+    "nonmiss": 1942,
+    "pct_nonmiss": 99.0,
+    "pct_pos": 85.9,
+    "median_pos": 1000.0
+   },
+   {
+    "var": "spnmr303",
+    "label": "spent on items for name - clothing for girls",
+    "n": 1961,
+    "nonmiss": 1112,
+    "pct_nonmiss": 56.7,
+    "pct_pos": 83.5,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr304",
+    "label": "spent on items for name - clothing for boys",
+    "n": 1961,
+    "nonmiss": 1156,
+    "pct_nonmiss": 58.9,
+    "pct_pos": 85.3,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr307",
+    "label": "spent on items for name - footwear for girls",
+    "n": 1961,
+    "nonmiss": 1104,
+    "pct_nonmiss": 56.3,
+    "pct_pos": 85.1,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr308",
+    "label": "spent on items for name - footwear for boys",
+    "n": 1961,
+    "nonmiss": 1143,
+    "pct_nonmiss": 58.3,
+    "pct_pos": 86.0,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr309",
+    "label": "spent on items for name - school uniform for boys",
+    "n": 1961,
+    "nonmiss": 968,
+    "pct_nonmiss": 49.4,
+    "pct_pos": 86.3,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr310",
+    "label": "spent on items for name - school uniform for girls",
+    "n": 1961,
+    "nonmiss": 919,
+    "pct_nonmiss": 46.9,
+    "pct_pos": 85.0,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr311",
+    "label": "spent on items for name - schooling fees or donations to school (boys)",
+    "n": 1961,
+    "nonmiss": 965,
+    "pct_nonmiss": 49.2,
+    "pct_pos": 85.7,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr312",
+    "label": "spent on items for name - schooling fees or donations to school (girls)",
+    "n": 1961,
+    "nonmiss": 946,
+    "pct_nonmiss": 48.2,
+    "pct_pos": 82.1,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr313",
+    "label": "spent on items for name - payment for extra tuition (boys)",
+    "n": 1961,
+    "nonmiss": 755,
+    "pct_nonmiss": 38.5,
+    "pct_pos": 81.5,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr314",
+    "label": "spent on items for name - payment for extra tuition (girls)",
+    "n": 1961,
+    "nonmiss": 733,
+    "pct_nonmiss": 37.4,
+    "pct_pos": 76.1,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr315",
+    "label": "spent on items for name - school books and stationery",
+    "n": 1961,
+    "nonmiss": 1863,
+    "pct_nonmiss": 95.0,
+    "pct_pos": 99.1,
+    "median_pos": 3.0
+   },
+   {
+    "var": "spnmr316",
+    "label": "spent on items for name - transport to school",
+    "n": 1961,
+    "nonmiss": 410,
+    "pct_nonmiss": 20.9,
+    "pct_pos": 42.2,
+    "median_pos": 4.0
+   },
+   {
+    "var": "spnmr317",
+    "label": "spent on items for name - medical consultation & treatment",
+    "n": 1961,
+    "nonmiss": 1094,
+    "pct_nonmiss": 55.8,
+    "pct_pos": 48.5,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr318",
+    "label": "spent on items for name - prescribed and non-prescribed drugs",
+    "n": 1961,
+    "nonmiss": 1803,
+    "pct_nonmiss": 91.9,
+    "pct_pos": 82.4,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr320",
+    "label": "spent on items for name - other medical expenditure",
+    "n": 1961,
+    "nonmiss": 539,
+    "pct_nonmiss": 27.5,
+    "pct_pos": 30.8,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr321",
+    "label": "spent on items for name - cinema/entertainment/video/tv",
+    "n": 1961,
+    "nonmiss": 529,
+    "pct_nonmiss": 27.0,
+    "pct_pos": 62.4,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr322",
+    "label": "spent on items for name - presents or treats for children",
+    "n": 1961,
+    "nonmiss": 706,
+    "pct_nonmiss": 36.0,
+    "pct_pos": 81.6,
+    "median_pos": 2.0
+   },
+   {
+    "var": "spnmr323",
+    "label": "spent on items for name - jewellery",
+    "n": 1961,
+    "nonmiss": 318,
+    "pct_nonmiss": 16.2,
+    "pct_pos": 23.0,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr326",
+    "label": "spent on items for name - other transport costs",
+    "n": 1961,
+    "nonmiss": 615,
+    "pct_nonmiss": 31.4,
+    "pct_pos": 31.1,
+    "median_pos": 1.0
+   },
+   {
+    "var": "spnmr327",
+    "label": "spent on items for name - any other non-food expenditure",
+    "n": 1961,
+    "nonmiss": 1637,
+    "pct_nonmiss": 83.5,
+    "pct_pos": 13.7,
+    "median_pos": 1.0
+   },
+   {
+    "var": "foodexp",
+    "label": "monthly current expenditure in food items, in '000 vnd",
+    "n": 1961,
+    "nonmiss": 1961,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.7,
+    "median_pos": 1717.0
+   },
+   {
+    "var": "nfoodexp",
+    "label": "monthly current expenditure in non-food items, in '000 vnd",
+    "n": 1961,
+    "nonmiss": 1961,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.8,
+    "median_pos": 872.92
+   },
+   {
+    "var": "totalexp",
+    "label": "total monthly current expenditure, in '000 vnd",
+    "n": 1961,
+    "nonmiss": 1961,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.8,
+    "median_pos": 2630.96
+   },
+   {
+    "var": "foodexp_pc",
+    "label": "monthly expenditure in food items per capita, in curr '000 vnd",
+    "n": 1961,
+    "nonmiss": 1961,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.7,
+    "median_pos": 382.14
+   },
+   {
+    "var": "nfoodexp_pc",
+    "label": "monthly expenditure in non-food items per capita, in curr '000 vnd",
+    "n": 1961,
+    "nonmiss": 1961,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.8,
+    "median_pos": 200.9
+   },
+   {
+    "var": "totalexp_pc",
+    "label": "total monthly expenditure per capita, in curr '000 vnd",
+    "n": 1961,
+    "nonmiss": 1961,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 99.8,
+    "median_pos": 602.64
+   },
+   {
+    "var": "foodexp_r",
+    "label": "monthly expenditure on food items, in real 2006 vnd",
+    "n": 1961,
+    "nonmiss": 1960,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 99.7,
+    "median_pos": 1138.88
+   },
+   {
+    "var": "nfoodexp_r",
+    "label": "monthly expenditure on non-food items, in real 2006 vnd",
+    "n": 1961,
+    "nonmiss": 1960,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 99.8,
+    "median_pos": 582.65
+   },
+   {
+    "var": "totalexp_r",
+    "label": "total monthly expenditure, in real 2006 vnd",
+    "n": 1961,
+    "nonmiss": 1960,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 99.8,
+    "median_pos": 1740.27
+   },
+   {
+    "var": "totalexp_rpc",
+    "label": "total monthly expenditure per capita, in real 2006 vnd",
+    "n": 1961,
+    "nonmiss": 1960,
+    "pct_nonmiss": 99.9,
+    "pct_pos": 99.8,
+    "median_pos": 399.22
+   },
+   {
+    "var": "hhsize",
+    "label": "household size",
+    "n": 1961,
+    "nonmiss": 1961,
+    "pct_nonmiss": 100.0,
+    "pct_pos": 100.0,
+    "median_pos": 4.0
+   }
+  ]
+ }
+}
