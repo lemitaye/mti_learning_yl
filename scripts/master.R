@@ -32,7 +32,7 @@ local({
     "estimation.R", "export_res.R", "table_main.R", "cluster_inference.R", "table_rev.R"
   ))
   required_paths <- c(
-    "potential_research-Young_Lives.Rproj", "raw_data",
+    "mti_learning_yl.Rproj", "raw_data",
     "MTI__learning_and_job_outcomes/tables", pipeline_scripts
   )
   missing_paths <- required_paths[!file.exists(required_paths)]

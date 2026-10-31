@@ -21,7 +21,7 @@ Archive/            Superseded drafts, exploratory scripts, notes. NOT used by t
 
 ## Running the analysis
 
-RStudio project (`potential_research-Young_Lives.Rproj`). **All script paths are relative to the project root**, so set the working directory there. `scripts/master.R` is the working orchestrator — it loads packages once, then sources the pipeline in order. Required packages: `tidyverse`, `haven`, `scales`, `stargazer`, `AER`, `lfe`, `fastDummies`, `xtable`, and `starpolishr` (GitHub: `remotes::install_github("ChandlerLutz/starpolishr")`).
+RStudio project (`mti_learning_yl.Rproj`). **All script paths are relative to the project root**, so set the working directory there. `scripts/master.R` is the working orchestrator — it loads packages once, then sources the pipeline in order. Required packages: `tidyverse`, `haven`, `scales`, `stargazer`, `AER`, `lfe`, `fastDummies`, `xtable`, and `starpolishr` (GitHub: `remotes::install_github("ChandlerLutz/starpolishr")`).
 
 Pipeline order (encoded in `master.R`):
 

@@ -1,5 +1,8 @@
 # Mother Tongue Instruction, Learning and Employment: Evidence from Ethiopia
 
+Repository: [lemitaye/mti_learning_yl](https://github.com/lemitaye/mti_learning_yl).
+Local project: `My Drive/Research/mti_learning_yl`.
+
 Replication code and manuscript for the paper by **Teferi Mergo** (University of
 Waterloo) and **Lemi Daba** (University of Maryland). The study estimates the causal effect
 of mother-tongue instruction (MTI) on cognitive test scores and employment using
@@ -20,7 +23,7 @@ the 2012–13 School Survey, via an **IV / 2SLS** design.
 ├── MTI__learning_and_job_outcomes/    The manuscript (LaTeX; the live Overleaf project)
 ├── Archive/                           Superseded drafts, exploratory scripts, and notes (NOT needed to reproduce results)
 ├── CLAUDE.md                          Guidance for AI coding assistants
-└── potential_research-Young_Lives.Rproj
+└── mti_learning_yl.Rproj
 ```
 
 The manuscript folder is self-contained (its own `tables/`, `figures/`, `refs.bib`).

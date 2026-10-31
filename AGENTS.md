@@ -29,7 +29,7 @@ additional background, but check its descriptions against the actual code.
 | `output/tables/`, `output/figures/` | Staging areas for generated results, with one direct-to-manuscript exception below. |
 | `other/referee_comment_Applied_Econ/` | Two referee reports; preserve the originals. |
 | `Archive/` | Historical scripts, drafts, reports, notes, and a nested collaboration repository. Consult for provenance when useful; keep inactive and preserve history. |
-| `potential_research-Young_Lives.Rproj` | RStudio project; use the repository root as the working directory. |
+| `mti_learning_yl.Rproj` | RStudio project; use the repository root as the working directory. |
 
 `main.tex` includes `abstract`, `intro`, `literature`, `data`, `strategy`,
 `results`, `robustness`, and `conclusion`. At the initial audit, `literature.tex`
