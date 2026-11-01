@@ -6,7 +6,7 @@
 # https://stat.ethz.ch/CRAN/web/packages/AER/AER.pdf
 # https://economics.mit.edu/sites/default/files/2023-06/wirev_092218-_corrected_0.pdf
 local({
-  source("code/08_cluster_inference.R", local = TRUE)
+  source("code/helpers/cluster_inference.R", local = TRUE)
   cluster_audits <- list()
   args <- commandArgs(trailingOnly = TRUE)
   out_file <- if (length(args)) args[[1]] else 'output/tables/tableII_mod.tex'
@@ -129,7 +129,7 @@ local({
   writeLines(L, out_file)
   # Explicit output arguments remain isolated (useful for tests and previews).
   if (!length(args)) {
-    source("code/04_export_paths.R", local = TRUE)
+    source("code/helpers/export_paths.R", local = TRUE)
     mirror_output(out_file, "tables")
   }
   diagnostics_file <- sub('\\.tex$', '_diagnostics.csv', out_file)

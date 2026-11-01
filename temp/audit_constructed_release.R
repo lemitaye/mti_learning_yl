@@ -2,7 +2,7 @@
 # Candidate renamed fields are diagnostics, not an approved harmonization rule.
 local({
   args <- commandArgs(trailingOnly=TRUE)
-  source('temp/raw_data_catalog.R',local=TRUE)
+  source('code/helpers/raw_data_catalog.R',local=TRUE)
   old <- if(length(args)>0) args[1] else raw_data_files[['constructed_legacy']]
   new <- if(length(args)>1) args[2] else raw_data_files[['constructed_r1_r7']]
   a<-haven::read_dta(old);b<-haven::read_dta(new);b<-b[b$round<=5,]

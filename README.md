@@ -16,6 +16,7 @@ the 2012–13 School Survey, via an **IV / 2SLS** design.
 ```
 .
 ├── code/                    Active R pipeline (Rscript code/_master.R)
+├── code/helpers/            Shared pipeline dependencies
 ├── rawdata/                 Read-only Young Lives releases and legacy inputs
 ├── data/                    Processed analysis CSVs
 ├── output/                  Generated results and audit reports (git-ignored)
@@ -148,7 +149,7 @@ Run `./temp/results_viewer/build.sh` to refresh its figure and compile
 
 ## Regional clustering for Table 2
 
-`07_table_main.R` now calls `code/08_cluster_inference.R`. It retains original
+`07_table_main.R` now calls `code/helpers/cluster_inference.R`. It retains original
 conventional inference for comparison and adds CR2/Satterthwaite regional
 inference, clustered AR tests and an enumerated within-region-orthogonalized AR
 sign-flip sensitivity check. `clubSandwich` is now a required package and is
@@ -173,7 +174,7 @@ rerun regressions. Original Table 2 significance is not robust to clustering.
 Generated LaTeX tables and the employment figure are retained in `output/` and
 also mirrored to `tables/` and `figures/` in the Dropbox project
 `/Users/user/Library/CloudStorage/Dropbox/Apps/Overleaf/MTI and Employment - Revision (AE)`.
-`code/04_export_paths.R` centralizes this behavior. Override with
+`code/helpers/export_paths.R` centralizes this behavior. Override with
 `Sys.setenv(MTI_OVERLEAF_DIR = "/another/project")`; set it to `""` to disable
 external exports (also use this for isolated analysis tests). A missing or
 unwritable destination produces a warning and retains local results.
@@ -191,7 +192,7 @@ system dependency. The default pipeline now needs no local manuscript folder.
 
 The active layout now follows the supplied release folders (`yl_r1` through
 `yl_r7`, phone/school surveys, and `yl_const_r1_r7`).
-`temp/raw_data_catalog.R` is the authoritative path map for active scripts.
+`code/helpers/raw_data_catalog.R` is the authoritative path map for active scripts.
 The current models retain their original rounds and use
 `rawdata/legacy_constructed_r1_r5/ethiopia_constructed.dta`. The new constructed
 release changes historical values/missingness and schema: **do not substitute it
@@ -199,7 +200,7 @@ for the legacy input or assume the releases are interchangeable**. This choice
 was explicitly requested to preserve replication.
 
 Round 7 and the latest constructed release are inventoried separately by
-`temp/inventory_round7.R`; this exports aggregate schema/row counts only and
+`code/helpers/inventory_round7.R`; this exports aggregate schema/row counts only and
 does not fit new models or change employment outcomes. All original raw files,
 including documentation not found by filename in the new release, remain in
 an ignored recoverable snapshot under `_archive/raw_data_snapshots/`.
@@ -241,24 +242,27 @@ four analysis CSVs, table bodies and diagnostics are unchanged. Figure text
 matches, targeted path/export/clustering checks pass, and the viewer compiles
 to 11 pages. Logs and comparison evidence: `output/layout_cleanup_audit/`.
 
-## Script order and temporary helpers
+## Script order and shared helpers
 
 Run `Rscript code/_master.R` from the repository root. Analysis scripts are
-numbered in the order first sourced, including nested helpers:
+listed below in the order first sourced, including nested helpers. Core scripts
+retain their existing numbers; shared helpers live in `code/helpers/`:
 
 1. `code/01_extract_clean.R`
 2. `code/02_cleaning_yc.R`
 3. `code/03_descriptives.R`
-4. `code/04_export_paths.R` (loaded by descriptive/table exporters)
+4. `code/helpers/export_paths.R` (loaded by descriptive/table exporters)
 5. `code/05_estimation.R`
 6. `code/06_export_res.R`
 7. `code/07_table_main.R` (sourced by the regression exporter)
-8. `code/08_cluster_inference.R` (loaded by the Table 2 generator)
+8. `code/helpers/cluster_inference.R` (loaded by the Table 2 generator)
 9. `code/09_table_rev.R`
 
-The raw-data catalog, Round 7 inventory and two release-audit scripts live
-directly in `temp/`. The catalog and inventory remain pipeline dependencies;
-keep them available. The release audits are standalone utilities. The master
-loads the catalog during setup and inventories Round 7 after data extraction.
+The raw-data catalog, Round 7 inventory, export-path helper and regional
+inference helper live in `code/helpers/`. These are required pipeline code.
+Only the two standalone release-audit scripts remain directly in `temp/`;
+tests and the personal viewer also remain there. The active pipeline has no
+source dependencies in `temp/`. The master loads the catalog during setup
+and inventories Round 7 after data extraction.
 Numbering describes source order, not standalone execution: regression exports
 still require fitted objects from estimation in the same R session.

@@ -32,12 +32,12 @@ local({
   # Fail early if launched from the wrong directory or an incomplete checkout.
   pipeline_scripts <- file.path("code", c(
     "01_extract_clean.R", "02_cleaning_yc.R", "03_descriptives.R",
-    "04_export_paths.R", "05_estimation.R", "06_export_res.R",
-    "07_table_main.R", "08_cluster_inference.R", "09_table_rev.R"
+    "helpers/export_paths.R", "05_estimation.R", "06_export_res.R",
+    "07_table_main.R", "helpers/cluster_inference.R", "09_table_rev.R"
   ))
   required_paths <- c(
     "README.md", "rawdata", pipeline_scripts,
-    "temp/raw_data_catalog.R", "temp/inventory_round7.R"
+    "code/helpers/raw_data_catalog.R", "code/helpers/inventory_round7.R"
   )
   missing_paths <- required_paths[!file.exists(required_paths)]
   if (length(missing_paths)) {
@@ -48,7 +48,7 @@ local({
   }
 
   # Check legacy replication inputs and newly added Round 7 resources.
-  source("temp/raw_data_catalog.R", local = TRUE)
+  source("code/helpers/raw_data_catalog.R", local = TRUE)
   missing_inputs <- raw_data_files[!file.exists(raw_data_files)]
   if (length(missing_inputs)) stop("Raw inputs missing: ",
     paste(missing_inputs, collapse = ", "), call. = FALSE)
@@ -130,7 +130,7 @@ source("code/01_extract_clean.R", echo = TRUE, max = 1000)  # -> data/aa_samp.cs
 source("code/02_cleaning_yc.R",   echo = TRUE, max = 1000)  # -> data/ylsample_yc.csv, data/schsur_yl_joined.csv (younger cohort)
 
 # Inventory new releases separately; they do not enter the current models.
-source("temp/inventory_round7.R")
+source("code/helpers/inventory_round7.R")
 
 # ---- 2. Descriptives: Table 1 + Figure 1 ------------------------------------
 message("Step 2/4: generating descriptive tables and figures.")

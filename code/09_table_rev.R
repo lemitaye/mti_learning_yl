@@ -106,7 +106,7 @@ dir.create(dirname(out_file), recursive = TRUE, showWarnings = FALSE)
 writeLines(L, out_file)
 if (!length(args)) {
   local({
-    source("code/04_export_paths.R", local = TRUE)
+    source("code/helpers/export_paths.R", local = TRUE)
     mirror_output("output/tables/table_rev.tex", "tables")
   })
 }

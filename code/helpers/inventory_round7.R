@@ -1,7 +1,7 @@
 # Validate availability and inventory the new Ethiopian resources without changing
 # the existing R1--R5 analysis. No participant-level output is written.
 local({
-  source('temp/raw_data_catalog.R', local = TRUE)
+  source('code/helpers/raw_data_catalog.R', local = TRUE)
   paths <- c(list.files(raw_data_files[['round7_ethiopia']],
                        pattern = '[.]dta$', full.names = TRUE),
              raw_data_files[['constructed_r1_r7']])

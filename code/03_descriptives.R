@@ -371,7 +371,7 @@ print(
 
 # Local outputs are complete before attempting the optional Dropbox mirror.
 local({
-  source("code/04_export_paths.R", local = TRUE)
+  source("code/helpers/export_paths.R", local = TRUE)
   mirror_output("output/tables/tableI.tex", "tables")
   mirror_output("output/figures/employ_gr.pdf", "figures")
 })
