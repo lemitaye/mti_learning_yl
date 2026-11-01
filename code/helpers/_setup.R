@@ -16,7 +16,8 @@ local({
   ))
   required_paths <- c(
     "README.md", "rawdata", pipeline_scripts,
-    "code/helpers/raw_data_catalog.R", "code/helpers/inventory_round7.R"
+    "code/helpers/raw_data_catalog.R", "code/helpers/inventory_round7.R",
+    "code/helpers/extraction_helpers.R"
   )
   missing_paths <- required_paths[!file.exists(required_paths)]
   if (length(missing_paths)) {

@@ -355,3 +355,25 @@ still require fitted objects from estimation in the same R session.
 Session setup lives in `code/helpers/_setup.R`, sourced first by
 `code/_master.R`. It clears workspace objects, validates paths, installs missing
 packages and attaches dependencies. Setup variables remain private to `local()`.
+
+## Cleaning-script refactor and constructed-release check
+
+The two extraction scripts now share `code/helpers/extraction_helpers.R` for
+explicit survey-code lookups and the MTI schooling cap. Intermediate frames
+use descriptive names, inactive alternatives are removed, and the school-test
+joins specify their survey keys. The cleanup preserves the legacy samples,
+recode rules and output column order. All four CSVs and all 49 model snapshots
+match the prior results. The historical `Amaharic` spelling and missing-grade
+fallback remain unchanged because repairing them would be a separate analysis
+change.
+
+`temp/compare_constructed_analysis_inputs.R` compares the R1--R7 constructed
+release in an isolated directory with external exports disabled. It documents
+provisional aliases, reconstructs the death flag from labelled interview status,
+and restricts to R1--R5. The schooling alias changes definition; it is a
+sensitivity mapping, not an approved replacement. The latest `elecq` is missing
+for every R1--R5 record, leaving zero complete cases for all four Table 2
+specifications (legacy N: 437/279/334/192). Other historical fields also change.
+Keep legacy constructed data as the production default; do not drop the
+electricity control or fill values silently to obtain estimates. Audit evidence
+is in `output/cleaning_refactor_audit/`.
