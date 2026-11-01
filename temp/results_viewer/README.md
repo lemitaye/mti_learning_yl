@@ -15,7 +15,7 @@ scales, plus a LaTeX distribution with latexmk and standard packages listed in
 main.tex. It uses pdfLaTeX and Latin Modern, with no system font dependency.
 
 The build refreshes only the viewer's employment PDF from existing processed
-data, reusing the `non_aa_samp` and `employ_gr` expressions in 03_descriptives.R.
+data, reusing the `non_aa_sample` and `employ_gr` expressions in 03_descriptives.R.
 It uses the base PDF device because Cairo/XQuartz is unavailable locally.
 It does not run regressions, rewrite manuscript files, or copy staged results
 into the manuscript. Tables are included directly from their source files and

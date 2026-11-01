@@ -292,3 +292,21 @@ specifications (legacy N: 437/279/334/192). Other historical fields also change.
 Keep legacy constructed data as the production default; do not drop the
 electricity control or fill values silently to obtain estimates. Audit evidence
 is in `output/cleaning_refactor_audit/`.
+
+## Descriptive, estimation and export script polish
+
+`code/helpers/analysis_helpers.R` centralizes older-cohort CSV loading, factor
+conversion, the zero-language-score filter and available-case standardization.
+The descriptive script builds Table 1 through reusable summary functions and
+an ordered label map. The estimation script groups related fits using outcome
+maps and explicit formula builders; original fitted-model identifiers remain
+available to the export script. Intermediate frames have descriptive names.
+Unexported exploratory output and inactive alternatives have been removed.
+The exporter shares panel formatting and notes while preserving its original
+column order and known historical heading issues.
+
+Against a fresh baseline, all 49 coefficient/covariance/N snapshots, Table 1
+data, and Figure 1 data/layers match (tolerance 1e-12). Exported table bodies
+and diagnostics are unchanged apart from Table 1 trailing whitespace. The
+viewer uses the shared loader when refreshing its figure. Validation evidence
+is in `output/analysis_polish_audit/`; external analysis exports were disabled.
