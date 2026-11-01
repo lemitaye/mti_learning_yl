@@ -351,3 +351,7 @@ source dependencies in `temp/`. The master loads the catalog during setup
 and inventories Round 7 after data extraction.
 Numbering describes source order, not standalone execution: regression exports
 still require fitted objects from estimation in the same R session.
+
+Session setup lives in `code/helpers/_setup.R`, sourced first by
+`code/_master.R`. It clears workspace objects, validates paths, installs missing
+packages and attaches dependencies. Setup variables remain private to `local()`.
