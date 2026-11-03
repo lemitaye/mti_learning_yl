@@ -601,3 +601,10 @@ The method assumptions and limitations are in
 bootstrap samples passes. Eight bootstrap p-values are .25--.375. The new
 `table_pooled_robustness.tex` is mirrored to and included in revision main.tex.
 Previous tables remain. YC frozen exposure remains explicitly exploratory.
+
+
+Latest pooled robustness update: cohort dummy is included in all eight models.
+Column 1 omits the round dummy; columns 2--4 include it. Columns 1 and 2 use
+identical observations. Column 3 excludes Amhara, and column 4 relaxes OC's
+historical score gate. All bootstrap/CR2 diagnostics have been re-estimated.
+The previous cohort-plus-round specification (column 2) is reproduced.

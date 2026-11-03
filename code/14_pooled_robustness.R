@@ -7,6 +7,10 @@ source("code/helpers/wild_iv_few_regions.R")
 source("code/helpers/export_paths.R")
 audit_dir <- "temp/pooled_robustness"
 dir.create(audit_dir, recursive = TRUE, showWarnings = FALSE)
+reference_file <- file.path(audit_dir, "diagnostics.csv")
+reference <- if (file.exists(reference_file)) {
+  read.csv(reference_file) |> filter(column == 2)
+} else NULL
 input_file <- "data/r7/r5_r7_appended.rds"
 input_hash <- tools::md5sum(input_file)
 data <- readRDS(input_file) |>
@@ -16,14 +20,14 @@ data <- readRDS(input_file) |>
 base_controls <- paste(
   "chsex + zbfa + stunting + caredu_r1 + careage_r1",
   "+ factor(caresex_r1) + hhsize + wi_new + hq_new + cd_new",
-  "+ elecq_new + ownlandhse_r1 + factor(foodsec_r3) + round7"
+  "+ elecq_new + ownlandhse_r1 + factor(foodsec_r3) + cohort_young"
 )
 plans <- tribble(
-  ~specification, ~cohort_dummy, ~exclude_amhara, ~relax_score_gate,
-  "Baseline", FALSE, FALSE, FALSE,
-  "Cohort dummy", TRUE, FALSE, FALSE,
-  "Exclude Amhara", FALSE, TRUE, FALSE,
-  "Relax score gate", FALSE, FALSE, TRUE
+  ~specification, ~round_dummy, ~exclude_amhara, ~relax_score_gate,
+  "No round dummy", FALSE, FALSE, FALSE,
+  "Round dummy", TRUE, FALSE, FALSE,
+  "Exclude Amhara", TRUE, TRUE, FALSE,
+  "Relax score gate", TRUE, FALSE, TRUE
 )
 results <- list()
 models <- list()
@@ -42,7 +46,7 @@ for (outcome in c("wage_employII", "wage_employ")) {
       sample <- sample |> filter(region != "Amhara")
     }
     controls <- paste0(base_controls,
-      if (plan$cohort_dummy) " + cohort_young" else "")
+      if (plan$round_dummy) " + round7" else "")
     variables <- all.vars(as.formula(paste(
       outcome, "~ IMTI + E_is +", controls
     )))
@@ -70,7 +74,7 @@ for (outcome in c("wage_employII", "wage_employ")) {
       tibble(
         outcome = outcome, column = column,
         specification = plan$specification,
-        cohort_dummy = plan$cohort_dummy,
+        cohort_dummy = TRUE, round_dummy = plan$round_dummy,
         exclude_amhara = plan$exclude_amhara,
         relax_score_gate = plan$relax_score_gate,
         iv_beta = coefficient[1], iv_se = coefficient[2],
@@ -84,13 +88,18 @@ for (outcome in c("wage_employII", "wage_employ")) {
   }
 }
 stats <- bind_rows(results)
-# Match baseline coefficients and N to the existing pooled comparison.
-previous <- read.csv("temp/r5_r7_regression_comparison/diagnostics.csv") |>
-  filter(panel == "B", column <= 2)
-check <- stats |> filter(column == 1)
-stopifnot(isTRUE(all.equal(check$iv_beta, previous$iv_beta,
-  tolerance = 1e-9, check.attributes = FALSE)),
-  identical(as.integer(check$n), as.integer(previous$n)))
+# Only the round dummy changes in columns 1 and 2; samples must match.
+for (outcome in unique(stats$outcome)) {
+  stopifnot(identical(keys[[paste0(outcome, "_1")]],
+                      keys[[paste0(outcome, "_2")]]))
+}
+# Column 2 retains the previous cohort-plus-round model exactly.
+if (!is.null(reference)) {
+  check <- stats |> filter(column == 2)
+  stopifnot(isTRUE(all.equal(check$iv_beta, reference$iv_beta,
+    tolerance = 1e-9, check.attributes = FALSE)),
+    identical(as.integer(check$n), as.integer(reference$n)))
+}
 stopifnot(identical(input_hash, tools::md5sum(input_file)))
 write_csv(stats, file.path(audit_dir, "diagnostics.csv"))
 write_csv(bind_rows(cluster_audit), file.path(audit_dir, "cluster_audit.csv"))
