@@ -1,5 +1,10 @@
 # Called by 12_compare_r5_r7_regressions.R with stats and plans in memory.
 fmt <- function(x, digits = 3) formatC(x, format = "f", digits = digits)
+stars <- function(p) {
+  case_when(p < .01 ~ "$^{***}$", p < .05 ~ "$^{**}$",
+            p < .10 ~ "$^{*}$", TRUE ~ "")
+}
+
 row <- function(label, values) {
   paste0(label, " & ", paste(values, collapse = " & "), " \\\\")
 }
@@ -9,7 +14,7 @@ lines <- c(
   "\\caption{Employment IV estimates: R5 replication and R5--R7 pooling}",
   "\\label{tab:r5r7compare}",
   "\\linespread{1}\\selectfont",
-  "\\begin{threeparttable}\\scriptsize",
+  "\\begin{threeparttable}\\small",
   "\\begin{tabular}{lrrrr}\\toprule",
   " & \\multicolumn{2}{c}{Non-Addis} &",
   "\\multicolumn{2}{c}{Also excluding Amhara} \\\\",
@@ -19,24 +24,21 @@ lines <- c(
 )
 for (panel_id in plans$panel) {
   s <- stats |> filter(panel == panel_id)
-  title <- plans$description[plans$panel == panel_id]
+  title <- switch(panel_id,
+    A = "Round 5: older cohort",
+    B = "Rounds 5 and 7: older cohort",
+    C = "Rounds 5 and 7: both cohorts (exploratory)"
+  )
   lines <- c(lines,
     paste0("\\multicolumn{5}{l}{\\textbf{Panel ", panel_id,
            ": ", title, "}} \\\\") ,
-    row("MTI (2SLS)", fmt(s$iv_beta)),
-    row("Conventional SE", paste0("(", fmt(s$iv_se), ")")),
-    row("Regional CR2 SE", fmt(s$iv_se_CR2)),
-    row("CR2/Satterthwaite $p$", fmt(s$iv_p_CR2)),
-    row("Satterthwaite d.f.", fmt(s$iv_df_CR2, 2)),
-    row("AR $p$ (CR2)", fmt(s$AR_p_CR2_beta0)),
-    row("Excluded-instrument $F$ (conventional)", fmt(s$first_stage_F, 2)),
-    row("R5 / R7 observations", paste0(s$n_r5, " / ", s$n_r7)),
-    row("Young-cohort observations", s$n_young),
-    row("Total observations / participants",
-        paste0(s$n, " / ", s$participants)),
-    row("Round / cohort dummies",
-        rep(switch(panel_id, A = "No / No", B = "Yes / No",
-                   C = "Yes / Yes"), 4)),
+    row("$MTIuse$", paste0(fmt(s$iv_beta), stars(s$iv_p))),
+    row("", paste0("(", fmt(s$iv_se), ")")),
+    row("Excluded-instrument $F$", fmt(s$first_stage_F, 2)),
+    row("Controls", rep("Yes", 4)),
+    row("Round dummy", rep(ifelse(panel_id == "A", "No", "Yes"), 4)),
+    row("Cohort dummy", rep(ifelse(panel_id == "C", "Yes", "No"), 4)),
+    row("Observations", as.character(s$n)),
     "\\midrule"
   )
 }
@@ -55,13 +57,9 @@ lines <- c(lines,
   "R5 YC employment is unavailable, so Panel C adds YC only in R7.",
   "Panel C is exploratory: YC completed-primary MTI remains unvalidated.",
   "Pooling assumes a common MTI slope; no participant fixed effects.",
-  "\\item Region CR2 accounts for dependence across repeated IDs within",
-  "historical policy regions, with only four/three clusters. Wald",
-  "inference requires adequate identification; AR tests beta=0.",
-  "Sign-flip AR uses within-region-orthogonalized scores and discards",
-  "between-region variation; it requires independent regions and",
-  "approximately symmetric scores, with very coarse attainable p-values.",
-  "No exact finite-sample or instrument-validity guarantee is implied.",
+  "\\item Conventional standard errors in parentheses. Stars use",
+  "conventional inference: *** $p<0.01$, ** $p<0.05$, * $p<0.10$.",
+  "Regional inference diagnostics are retained separately.",
   "\\end{tablenotes}\\end{threeparttable}\\end{table}"
 )
 file <- "output/tables/table_r5_r7_comparison.tex"
