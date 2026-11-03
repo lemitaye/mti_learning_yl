@@ -516,3 +516,10 @@ The standalone script is also readable section-by-section in RStudio.
 Validation compared every column (including attributes and missingness) with
 the pre-refactor RDS: all 2,038 records and 212 columns match exactly. The dual
 export test passes with backups stored under `temp/overleaf_backups/`.
+
+
+R7 audit extraction: `code/auxiliary/audit_r7_cross_section.R` now holds the
+aggregate exports, dictionary, candidate counts and final integrity audit.
+The main R7 build sources it after saving the dataset; run the main script
+for the complete workflow. Keep R7 main/helper/audit code within 80 columns,
+with blank lines between distinct operations and multiline long calls.
