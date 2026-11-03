@@ -216,3 +216,7 @@ other/referee_comment_Applied_Econ/Review_ Article Applied Economics.pdf
 # Recoverable raw-data snapshots (restricted survey data, never commit).
 /_archive/raw_data_snapshots/
 temp/results_viewer/main.synctex(busy)
+
+# Separate participant-level R7 derived files (licensed survey data).
+/data/r7/
+/temp

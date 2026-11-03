@@ -452,3 +452,48 @@ have one E_is value and one policy region; standalone phone-only IV is not
 identified. Preserve raw activity labels: R5/R7 code 19 is housemaid, 20 other
 non-agriculture; R7 aliases 21/22 map to self-employed crops/livestock (1/4).
 The legacy production sample/results remain unchanged.
+
+
+## R7 in-person master: both cohorts (2026-11-03)
+
+Run `Rscript code/10_build_r7_cross_section.R`, then
+`python3 code/auxiliary/build_r7_cross_section_report.py` from the project root.
+The separate `data/r7/r7_inperson_analysis.rds` / `.csv` has one row per
+`child_id`: 632 OC and 1,406 YC (2,038 total), in person only. All 193 raw phone
+IDs are excluded. Derived participant files are ignored by Git. No legacy
+CSV, existing result, main workflow or Overleaf output is replaced.
+
+All YC histories link directly to the existing legacy lookup; one OC history
+is recovered in an isolated extraction with the historical deceased filter
+relaxed. Existing historical values take precedence and are checked unchanged.
+The master retains every in-person respondent; eligibility/completeness are
+flags. OC's original language-score gate applies only to the comparison flag,
+not the master; YC does not acquire this gate. Historical fields use `_hist`.
+
+Annual/weekly job outcomes preserve the original positive/exclusion rules;
+explicit all-respondent alternatives have different denominators. Current
+roster size requires completed resident rosters. Raw original-definition
+housing, services, durables and wealth reconstructions match the imported
+R7 indices on all paired observed cases. Raw missing components propagate;
+imported and strictly reconstructed fields remain separate. Original-definition
+R7 WI/HQ are sourced from un-suffixed constructed `wi`/`hq`, not `_new`.
+
+YC employment outcomes and the employment-control battery are available or
+constructible, with observation-level missingness. Frozen-R5-MTI non-Addis
+candidate complete cases are salary/wage 862/604 YC and 352/266 OC; replacing
+R3 food situation with R7 gives YC 864/606 and OC 352/266. No regressions fitted.
+The common control completeness includes caregiver sex for both cohorts.
+
+**Review YC treatment before estimation:** 1,047 YC have R5 schooling below
+eight or missing. The provisional `IMTI_r7_schooling_candidate` differs from
+frozen IMTI on 458 paired YC cases; it preserves original language/policy rules
+and is not a validated exposure measure. Check qualifications, inconsistent
+schooling reports and language/policy timing. Raw R7 YC reading items are
+retained (1,138 any / 945 all 12 nonmissing); the score stays missing pending a
+validated key and comparability assessment. No common fresh R7 maths battery
+is supplied. R6 remains deferred.
+
+Full findings: `output/r7_cross_section_build/build_report.html`; aggregate
+availability, source-code labels, sample counts and integrity audits are
+alongside it. Recheck exact-sample first stages and few-region inference when
+estimating the new cohort/round specifications.
