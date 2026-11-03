@@ -395,3 +395,28 @@ data, and Figure 1 data/layers match (tolerance 1e-12). Exported table bodies
 and diagnostics are unchanged apart from Table 1 trailing whitespace. The
 viewer uses the shared loader when refreshing its figure. Validation evidence
 is in `output/analysis_polish_audit/`; external analysis exports were disabled.
+
+## Constructed-release replication audit (2026-11-03)
+
+Run `Rscript code/auxiliary/compare_constructed_releases.R` from the project
+root for an isolated legacy/updated comparison; see
+`output/constructed_release_comparison/comparison_report.html`. All four stored
+analysis CSVs, 49 prior model snapshots and ten staged table/diagnostic files
+match a fresh legacy run. Updated-only inputs, with documented provisional
+aliases and R1--R5 restriction, leave zero complete cases for all 49 models
+and both Table 3 association fits because historical electricity is absent.
+A separately labelled hybrid diagnostic carrying forward only legacy electricity
+makes all 49 models estimable, but 32 coefficient vectors and 26 sample sizes
+change; it is not updated-release-only replication. Schooling definitions also
+change. The production legacy default remains intact. Audit workers disable
+Overleaf exports and preserve production data/results; no raw inputs are edited.
+
+Electricity follow-up: `code/auxiliary/investigate_constructed_electricity.R`
+writes `output/electricity_investigation/electricity_investigation.html`.
+The updated services-index identity recovers 14,117 historical electricity
+values, all matching legacy data. Original R3 OC/YC household `elecq` reproduces
+all 2,999 legacy R3 values/missingness (2,858 observed), allowing reconstruction
+without importing the legacy constructed control. The supplied updated
+construction code is unavailable; an assembly/retention omission is the working
+diagnosis, not a confirmed depositor explanation. No production repair is
+implemented; schooling-definition and other release differences remain.
