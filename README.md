@@ -387,3 +387,33 @@ factorial pairs. The remaining four younger-cohort fits reflect one Addis
 Ababa R3 concrete-block household (wallr3=25): hq_new rises .60 to .85 and
 wi_new .733333 to .816667, consistent with TN63's documented revision.
 Production data, staged outputs and Overleaf exports remain unchanged.
+
+## Planned R6/R7 separate cross sections (2026-11-03)
+
+User decision: retain the legacy R1--R5 constructed release for the existing
+sample and results. Investigate R6 and R7 as separate cross sections; do not
+switch the current sample to the updated constructed release or require a
+balanced panel. The materials/plan report is
+`output/r6_r7_extension_feasibility/extension_feasibility_report.html`.
+Reproduce with `Rscript code/auxiliary/inventory_extension_rounds.R` and
+`python3 code/auxiliary/build_extension_feasibility_report.py`.
+
+Fifty Ethiopian raw modules and 68 documentation/archive files are inventoried.
+A 16-block crosswalk recommends an older-cohort employment extension using
+frozen legacy treatment/instrument/background and a single target call per R6
+cross section. Call 2 (2020) is the provisional primary choice; Call 5 (2021)
+is a separate sensitivity and has no Tigray records in the inspected raw core.
+R6/R7 weekly employment is feasible; the existing annual R5 first-activity
+outcome is not exactly equivalent. R7 annual activity-type detail is available
+in person, not in the inspected phone core. New OC cognitive outcomes and a
+full common contemporary wealth/control battery are unavailable across modes.
+
+Before building samples, reconcile the R6 raw/constructed participation flags:
+774 raw Call 2 OC IDs match cohort IDs, but 182 have constructed incall=0
+(181 record primary consent=yes). This is an unresolved eligibility discrepancy,
+not permission to include all raw rows or discard them automatically. R7 files
+have 2,038 in-person plus 193 phone records, no cross-mode duplicate IDs;
+report prose says 205 phone while its table agrees with total 2,231. Keep that
+12-case discrepancy explicit. Historical-control coverage counts are ceilings,
+not final outcome-specific N. No new regressions were estimated or manuscript
+outputs changed in this feasibility audit.
