@@ -634,3 +634,19 @@ remains historical. `IMTI` remains frozen at R5 and YC exposure is flagged for
 review; this preparation does not validate completed YC exposure or fit IVs.
 Aggregate checks/notes live in `temp/r7_append_preparation/`; the check code is
 `code/auxiliary/audit_r5_r7_append.R`. Original source CSVs remain unchanged.
+
+
+## R5/R7 IV comparison
+
+`Rscript code/12_compare_r5_r7_regressions.R` reads only the appended RDS
+for fitting. It reproduces Table 2's four OC R5 employment IV coefficients,
+SEs, N and first-stage F at tolerance 1e-9, then pools rounds with a round
+dummy for OC, and adds an exploratory both-cohort panel with cohort dummy.
+YC exposure remains frozen/unvalidated and YC enters employment only in R7.
+The OC historical R4 language-score gate is retained in both rounds.
+No participant fixed effects are used. Exact samples, models and regional
+CR2/AR diagnostics are in `temp/r5_r7_regression_comparison/`.
+`code/auxiliary/write_r5_r7_comparison.R` writes the new
+`output/tables/table_r5_r7_comparison.tex`, mirrored to the revision project.
+The revision main.tex includes it after Table 2, with prior source backed up
+under temp/overleaf_backups. Existing manuscript tables are preserved.
