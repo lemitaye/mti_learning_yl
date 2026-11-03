@@ -608,3 +608,29 @@ aggregate exports, dictionary, candidate counts and final integrity audit.
 The main R7 build sources it after saving the dataset; run the main script
 for the complete workflow. Keep R7 main/helper/audit code within 80 columns,
 with blank lines between distinct operations and multiline long calls.
+
+
+## Compatible R5/R7 employment files
+
+Run `Rscript code/11_prepare_r5_r7_analysis.R` after the R7 master build.
+It writes labelled tibbles and CSVs under `data/r7/`: `r7_append_ready`,
+`r5_append_ready`, and `r5_r7_appended` (same extensions .rds/.csv).
+The common employment schema preserves legacy variable names and exclusions.
+Round indicators: `round` (5/7), `round7` (0/1); cohort: `yc` and
+`cohort_young` (0 old/1 young), plus character `cohort` (old/young).
+The appended key is `(child_id, round)`; repeated IDs across rounds are valid.
+
+All 2,904 original R5 lookup rows and 2,038 in-person R7 rows are retained.
+Existing R5 YC employment is structurally missing. These files impose no
+complete-case or historical language-score gate. Apply legacy gates explicitly
+when comparing old estimation samples. Historical R4 scores are named with
+`_r4` to avoid presenting them as fresh outcomes. No R7 grade/qualification is
+silently substituted for the broader legacy completed-schooling scale.
+
+R7 `hhsize`, `wi_new`, `hq_new`, `cd_new`, `sv_new`, `elecq_new` use current
+R7 measures with original definitions; the R5 rows retain their original R3
+controls. `household_measurement_round` records this timing. `foodsec_r3`
+remains historical. `IMTI` remains frozen at R5 and YC exposure is flagged for
+review; this preparation does not validate completed YC exposure or fit IVs.
+Aggregate checks/notes live in `temp/r7_append_preparation/`; the check code is
+`code/auxiliary/audit_r5_r7_append.R`. Original source CSVs remain unchanged.
