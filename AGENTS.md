@@ -420,3 +420,26 @@ without importing the legacy constructed control. The supplied updated
 construction code is unavailable; an assembly/retention omission is the working
 diagnosis, not a confirmed depositor explanation. No production repair is
 implemented; schooling-definition and other release differences remain.
+
+## Replication with original R3 electricity (2026-11-03)
+
+`code/auxiliary/reconstruct_round3_electricity.R` provides
+`reconstruct_round3_electricity()`, which joins original OC/YC R3 household
+`elecq` by `childid`, checks cohort and key uniqueness, and populates the
+compatibility field `elecq_new` for R3 only. The updated `elecq` source column
+and other rounds are unchanged. It preserves 141 missing values (one source
+response plus 140 unmatched households); 2,858 values are observed.
+
+Run `Rscript code/auxiliary/compare_constructed_releases.R output/constructed_release_comparison_r3_electricity`.
+The audit now includes `updated_raw_r3`, reruns the full pipeline and regional
+inference in isolation, and saves `raw_r3_replication_report.html` and ten
+revised table/diagnostic outputs under `raw_r3_tables/`. All 49 models and both
+Table 3 association fits are estimable. All four extracted CSVs and all 49
+model snapshots match the prior hybrid diagnostic, using original household
+sources rather than legacy constructed electricity. Against the legacy
+baseline, 17 coefficient/covariance vectors and 23 model sample sizes match;
+32 vectors and 26 sample sizes differ. Main Table 2 N changes from
+437/279/334/192 to 442/283/337/194. All four revised CR2 p-values exceed 0.05.
+The provisional schooling alias is still a substantive definition difference.
+The production catalog, analysis CSVs, staged results and Overleaf exports
+remain unchanged; this is an isolated replication check, not a default-input switch.

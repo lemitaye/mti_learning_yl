@@ -9,6 +9,7 @@ local({
   dir.create(out, recursive = TRUE, showWarnings = FALSE)
   out <- normalizePath(out)
   source("code/helpers/raw_data_catalog.R", local = TRUE)
+  source("code/auxiliary/reconstruct_round3_electricity.R", local = TRUE)
   inputs <- normalizePath(raw_data_files[c("constructed_legacy", "constructed_r1_r7")])
   # Freeze production results and code; all execution happens in temporary copies.
   protected <- c(inputs, list.files("data", full.names = TRUE, recursive = TRUE),
@@ -52,6 +53,18 @@ local({
   candidate <- historical
   candidate$deceased <- ifelse(candidate$status == 2, 1, NA_real_)
   for (v in names(aliases)) candidate[[v]] <- candidate[[aliases[[v]]]]
+  reconstruction <- reconstruct_round3_electricity(candidate, root)
+  csv(reconstruction$audit, "raw_r3_electricity_join_audit.csv")
+  csv(reconstruction$sources, "raw_r3_electricity_sources.csv")
+  r3_rows <- candidate$round == 3
+  raw_electricity <- reconstruction$data$elecq_new[r3_rows]
+  legacy_electricity <- old$elecq_new[r3_rows]
+  observed <- !is.na(raw_electricity) & !is.na(legacy_electricity)
+  csv(data.frame(round3_records = sum(r3_rows), observed = sum(!is.na(raw_electricity)),
+    missing = sum(is.na(raw_electricity)),
+    legacy_value_mismatches = sum(raw_electricity[observed] != legacy_electricity[observed]),
+    legacy_missingness_mismatches = sum(is.na(raw_electricity) != is.na(legacy_electricity))),
+    "raw_r3_electricity_validation.csv")
   primitive <- function(x) { attributes(x) <- NULL; x }
   differences <- list()
   labels <- list()
@@ -169,14 +182,14 @@ local({
       eval(expression, envir = environment())
     }
     saveRDS(lapply(models, pack), "channel_models.rds")
-    if (commandArgs(trailingOnly = TRUE)[2L] == "legacy") {
+    if (commandArgs(trailingOnly = TRUE)[2L] %in% c("legacy", "updated_raw_r3")) {
       # Restore the standard fitters before the table-specific diagnostics.
       rm(lm, felm)
       # Refit without wrappers to preserve the calls inspected by stargazer.
       source("code/05_estimation.R")
       source("code/06_export_res.R")
       source("code/09_table_rev.R")
-      writeLines("Full legacy pipeline and table-specific diagnostics completed.", "pipeline_status.txt")
+      writeLines("Full pipeline and table-specific diagnostics completed.", "pipeline_status.txt")
     } else {
       writeLines("Diagnostic models recorded; regression table export skipped.", "pipeline_status.txt")
     }
@@ -188,7 +201,7 @@ local({
   # Evaluate at the worker's global level: source() defaults and model names
   # then follow the production scripts' shared-workspace behavior.
   writeLines(c("worker <-", deparse(worker), "eval(body(worker), envir = .GlobalEnv)"), worker_file)
-  modes <- c("legacy", "direct", "updated", "hybrid_electricity")
+  modes <- c("legacy", "direct", "updated", "hybrid_electricity", "updated_raw_r3")
   directories <- setNames(file.path(work, modes), modes)
   statuses <- integer()
   for (mode in names(directories)) {
@@ -211,6 +224,7 @@ local({
       # Diagnostic only: carry forward the legacy electricity control.
       # All other constructed fields retain the updated release's values.
       if (mode == "hybrid_electricity") trial$elecq_new <- old$elecq_new
+      if (mode == "updated_raw_r3") trial <- reconstruction$data
       saveRDS(trial, file.path(sandbox, "constructed_candidate.rds"))
       for (script in c("01_extract_clean.R", "02_cleaning_yc.R")) {
         path <- file.path(sandbox, "code", script)
@@ -229,7 +243,8 @@ local({
     message(mode, " worker exit status: ", status)
   }
   stopifnot(statuses[["legacy"]] == 0L, statuses[["updated"]] == 0L,
-    statuses[["direct"]] != 0L, statuses[["hybrid_electricity"]] == 0L)
+    statuses[["direct"]] != 0L, statuses[["hybrid_electricity"]] == 0L,
+    statuses[["updated_raw_r3"]] == 0L)
   csv(data.frame(run = names(statuses), exit_status = unname(statuses)), "run_status.csv")
   old_models <- readRDS(file.path(directories[["legacy"]], "models49.rds"))
   new_models <- readRDS(file.path(directories[["updated"]], "models49.rds"))
@@ -247,6 +262,12 @@ local({
   hybrid_models <- readRDS(file.path(directories[["hybrid_electricity"]], "models49.rds"))
   hybrid_comparison <- model_comparison(old_models, hybrid_models)
   csv(hybrid_comparison, "hybrid_electricity_model_comparison.csv")
+  raw_models <- readRDS(file.path(directories[["updated_raw_r3"]], "models49.rds"))
+  raw_comparison <- model_comparison(old_models, raw_models)
+  raw_vs_hybrid <- model_comparison(hybrid_models, raw_models)
+  csv(raw_comparison, "raw_r3_model_replication.csv")
+  csv(raw_vs_hybrid, "raw_r3_vs_previous_hybrid.csv")
+  saveRDS(raw_models, file.path(out, "raw_r3_model_snapshots.rds"))
   channels_old <- readRDS(file.path(directories[["legacy"]], "channel_models.rds"))
   channels_new <- readRDS(file.path(directories[["updated"]], "channel_models.rds"))
   names(channels_old) <- names(channels_new) <- c("Table3_whole", "Table3_excluding_Amhara")
@@ -254,6 +275,10 @@ local({
   hybrid_channels <- readRDS(file.path(directories[["hybrid_electricity"]], "channel_models.rds"))
   names(hybrid_channels) <- names(channels_old)
   csv(model_comparison(channels_old, hybrid_channels), "hybrid_electricity_channel_comparison.csv")
+  raw_channels <- readRDS(file.path(directories[["updated_raw_r3"]], "channel_models.rds"))
+  names(raw_channels) <- names(channels_old)
+  csv(model_comparison(channels_old, raw_channels), "raw_r3_channel_replication.csv")
+  saveRDS(raw_channels, file.path(out, "raw_r3_channel_snapshots.rds"))
   main_models <- c("iv6", "iv1", "iv6_nonAm", "iv1_nonAm")
   main_results <- do.call(rbind, lapply(seq_along(main_models), function(i) {
     name <- main_models[i]; a <- old_models[[name]]; b <- hybrid_models[[name]]
@@ -270,6 +295,18 @@ local({
   }))
   rownames(main_results) <- NULL
   csv(main_results, "table2_release_comparison.csv")
+  raw_main_results <- do.call(rbind, lapply(seq_along(main_models), function(i) {
+    name <- main_models[i]; a <- old_models[[name]]; b <- raw_models[[name]]
+    j <- grep("IMTI", names(a$coef), fixed = TRUE)
+    k <- grep("IMTI", names(b$coef), fixed = TRUE)
+    stopifnot(b$ok, length(j) == 1L, length(k) == 1L)
+    data.frame(column = i, outcome = main_results$outcome[i], sample = main_results$sample[i],
+      legacy_n = a$n, legacy_beta = unname(a$coef[j]), legacy_se = sqrt(diag(a$vcov))[j],
+      updated_raw_r3_n = b$n, updated_raw_r3_beta = unname(b$coef[k]),
+      updated_raw_r3_se = sqrt(diag(b$vcov))[k])
+  }))
+  rownames(raw_main_results) <- NULL
+  csv(raw_main_results, "raw_r3_table2_comparison.csv")
   # Compare current stored analysis CSVs with a fresh legacy extraction.
   analysis_files <- c("aa_samp.csv", "non_aa_samp.csv", "ylsample_yc.csv", "schsur_yl_joined.csv")
   current <- do.call(rbind, lapply(analysis_files, function(f) data.frame(file = f,
@@ -297,10 +334,36 @@ local({
   }
   field_changes <- do.call(rbind, field_changes)
   csv(field_changes, "analysis_variable_changes.csv")
+  raw_field_changes <- do.call(rbind, lapply(analysis_files, function(f) {
+    a <- read.csv(file.path(directories[["legacy"]], "data", f))
+    b <- read.csv(file.path(directories[["updated_raw_r3"]], "data", f))
+    id <- if ("child_id" %in% names(a)) "child_id" else "childid"
+    stopifnot(!anyDuplicated(a[[id]]), !anyDuplicated(b[[id]]))
+    matched <- match(a[[id]], b[[id]]); keep <- !is.na(matched)
+    do.call(rbind, lapply(intersect(names(a), names(b)), function(v) {
+      x <- a[[v]][keep]; y <- b[[v]][matched[keep]]
+      valid <- !is.na(x) & !is.na(y)
+      equal <- is.na(x) & is.na(y); equal[valid] <- x[valid] == y[valid]
+      data.frame(dataset = f, variable = v, legacy_n = nrow(a), updated_n = nrow(b),
+        common_n = sum(keep), legacy_only = sum(!keep), updated_only = sum(!b[[id]] %in% a[[id]]),
+        changed = sum(!equal), missingness_changed = sum(is.na(x) != is.na(y)))
+    }))
+  }))
+  csv(raw_field_changes, "raw_r3_analysis_variable_changes.csv")
+  raw_hybrid_inputs <- do.call(rbind, lapply(analysis_files, function(f) data.frame(dataset = f,
+    raw_r3_matches_hybrid_inputs = identical(
+      readLines(file.path(directories[["updated_raw_r3"]], "data", f)),
+      readLines(file.path(directories[["hybrid_electricity"]], "data", f))))))
+  csv(raw_hybrid_inputs, "raw_r3_vs_hybrid_analysis_data.csv")
+  stopifnot(all(raw_hybrid_inputs$raw_r3_matches_hybrid_inputs),
+    all(raw_vs_hybrid$coefficients_match), all(raw_vs_hybrid$covariance_matches),
+    all(raw_vs_hybrid$legacy_n == raw_vs_hybrid$updated_n))
   a <- readRDS(file.path(directories[["legacy"]], "descriptives.rds"))
   b <- readRDS(file.path(directories[["updated"]], "descriptives.rds"))
   csv(a$table1, "table1_legacy.csv"); csv(b$table1, "table1_updated.csv")
   csv(a$figure, "figure1_legacy.csv"); csv(b$figure, "figure1_updated.csv")
+  raw_desc <- readRDS(file.path(directories[["updated_raw_r3"]], "descriptives.rds"))
+  csv(raw_desc$table1, "raw_r3_table1.csv"); csv(raw_desc$figure, "raw_r3_figure1.csv")
   summary <- data.frame(
     check = c("historical_child_round_keys_match", "fresh_legacy_CSVs_match_stored",
       "table1_matches", "figure1_data_match", "49_models_estimable_updated"),
@@ -338,11 +401,28 @@ local({
           isTRUE(all.equal(read.csv(path), read.csv(stored), tolerance = 1e-10)))
   }))
   csv(staged_checks, "legacy_matches_stored_tables.csv")
+  dir.create(file.path(out, "raw_r3_tables"), showWarnings = FALSE)
+  raw_table_files <- list.files(file.path(directories[["updated_raw_r3"]], "output/tables"), full.names = TRUE)
+  stopifnot(all(file.copy(raw_table_files, file.path(out, "raw_r3_tables"), overwrite = TRUE)))
+  csv(do.call(rbind, lapply(raw_table_files, function(path) {
+    baseline <- file.path(out, "legacy_tables", basename(path))
+    data.frame(file = basename(path),
+      matches_legacy = if (grepl("\\.tex$", path)) identical(normalize_table(path), normalize_table(baseline)) else
+        isTRUE(all.equal(read.csv(path), read.csv(baseline), tolerance = 1e-10)))
+  })), "raw_r3_table_replication.csv")
+  legacy_diagnostics <- read.csv(file.path(out, "legacy_tables/tableII_mod_diagnostics.csv"))
+  raw_diagnostics <- read.csv(file.path(out, "raw_r3_tables/tableII_mod_diagnostics.csv"))
+  selected_diagnostics <- c("column", "n", "first_stage_F", "first_stage_F_HC1", "partial_R2",
+    "iv_se_CR2", "iv_df_CR2", "iv_p_CR2", "AR_p_CR2_beta0")
+  diagnostics_comparison <- merge(legacy_diagnostics[selected_diagnostics],
+    raw_diagnostics[selected_diagnostics], by = "column", suffixes = c("_legacy", "_updated"))
+  csv(diagnostics_comparison, "raw_r3_table2_diagnostics_comparison.csv")
   file.copy(file.path(directories[["legacy"]], "session.txt"), file.path(out, "session.txt"))
   saveRDS(old_models, file.path(out, "legacy_model_snapshots.rds"))
   # Confirm the production inputs and outputs remain untouched.
   after_hash <- tools::md5sum(protected)
   stopifnot(identical(before_hash, after_hash))
+  stopifnot(identical(unname(tools::md5sum(reconstruction$sources$path)), reconstruction$sources$md5))
   csv(data.frame(file = names(before_hash), md5_before = unname(before_hash),
     md5_after = unname(after_hash), unchanged = unname(before_hash == after_hash)), "production_integrity.csv")
   writeLines(c(paste("Project:", root), paste("Isolated worker directory:", work),
@@ -351,6 +431,8 @@ local({
     "Updated-only run: no model controls dropped; no legacy values filled.",
     "Hybrid diagnostic: only elecq_new carried forward from the matched legacy child-round record.",
     "Hybrid estimates are not updated-release-only replication.",
+    "updated_raw_r3: Round 3 elecq_new comes only from original OC/YC household elecq; source and unmatched NAs retained.",
+    "updated_raw_r3: no electricity values for other rounds changed; the updated elecq source column is untouched.",
     "Temporary workers are removed with the R temporary directory at process exit."),
     file.path(out, "run_provenance.txt"))
   html_escape <- function(x) {
@@ -438,5 +520,72 @@ local({
     "<ul>", sprintf("<li><a href='%s'>%s</a></li>", files, files), "</ul></body></html>"
   )
   writeLines(enc2utf8(report), file.path(out, "comparison_report.html"), useBytes = TRUE)
+  raw_summary <- data.frame(check = c("models_estimable", "coefficient_vectors_match_legacy",
+    "covariance_matrices_match_legacy", "model_sample_sizes_match_legacy", "models_match_previous_hybrid",
+    "table1_matches_legacy", "figure1_matches_legacy"),
+    matches = c(sum(raw_comparison$updated_estimable), sum(raw_comparison$coefficients_match),
+      sum(raw_comparison$covariance_matches), sum(raw_comparison$legacy_n == raw_comparison$updated_n),
+      sum(raw_vs_hybrid$coefficients_match & raw_vs_hybrid$covariance_matches),
+      as.integer(isTRUE(all.equal(a$table1, raw_desc$table1, tolerance = 1e-10))),
+      as.integer(isTRUE(all.equal(a$figure, raw_desc$figure, tolerance = 1e-10)))))
+  csv(raw_summary, "raw_r3_replication_summary.csv")
+  raw_table1_comparison <- merge(a$table1[, c("variable", "obs_nonaa", "mean_nonaa", "obs_aa", "mean_aa")],
+    raw_desc$table1[, c("variable", "obs_nonaa", "mean_nonaa", "obs_aa", "mean_aa")],
+    by = "variable", suffixes = c("_legacy", "_updated"), sort = FALSE)
+  raw_main_display <- raw_main_results
+  for (v in c("legacy_beta", "legacy_se", "updated_raw_r3_beta", "updated_raw_r3_se")) {
+    raw_main_display[[v]] <- sprintf("%.6f", raw_main_display[[v]])
+  }
+  raw_report <- c(
+    "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'>",
+    "<meta name='viewport' content='width=device-width, initial-scale=1'>",
+    "<title>Replication with original Round 3 electricity</title>",
+    "<style>body{font:16px/1.55 system-ui,sans-serif;max-width:1400px;margin:36px auto;padding:0 24px;color:#223044}h1{line-height:1.2}h2{margin-top:32px}a{color:#175d8b}.finding{background:#edf4f8;padding:16px 22px;border-left:4px solid #507b98}.scroll{overflow:auto}table{border-collapse:collapse;font-size:13px;width:100%}td,th{border:1px solid #dbe3eb;padding:8px;text-align:left}th{background:#e7eff6}code{overflow-wrap:anywhere}</style></head><body>",
+    "<h1>Updated constructed data with original Round 3 electricity</h1>",
+    "<div class='finding'><p><strong>The electricity control is successfully reconstructed, preserving missing values.</strong> The updated-release analysis is now estimable, but it does not exactly reproduce all legacy results. No electricity values are imported from the legacy constructed file in this run.</p></div>",
+    "<h2>Electricity reconstruction</h2>",
+    "<p>The original R3 older- and younger-cohort household <code>elecq</code> fields are joined onto constructed R3 records using <code>childid</code>, with cohort and unique-key checks. The compatibility name <code>elecq_new</code> is populated only for R3. The updated release's <code>elecq</code> column and all other rounds are untouched. Missing source responses and absent source households remain NA. No missing value is recoded to zero, and no legacy electricity value is used to fill an observation.</p>",
+    html_table(reconstruction$audit),
+    "<p>There are 2,858 observed values, one missing source response and 140 unmatched household records, leaving 141 missing values among 2,999 R3 panel records. Comparison with the legacy R3 control finds no value or missingness mismatches; that comparison is validation, not a source of values.</p>",
+    "<h2>Replication results</h2>", html_table(raw_summary),
+    "<p>All 49 fitted models and both additional Table 3 OLS association models are estimated. The full pipeline is also rerun without audit wrappers, producing tables and updated first-stage and regional CR2/Satterthwaite diagnostics in a separate directory. Sample definitions, model formulas and the provisional schooling mapping are otherwise unchanged.</p>",
+    "<h3>Table 2 employment estimates</h3>", html_table(raw_main_display),
+    "<p>SEs above are the existing conventional felm SEs. They should not be interpreted as allowing regional dependence.</p>",
+    "<h3>Table 2 first-stage and regional inference diagnostics</h3>", html_table(diagnostics_comparison),
+    "<p>CR2 uses the same few-region procedures as the current pipeline. Its degrees of freedom and p-values must be interpreted with the existing small-cluster qualifications; conventional stars are not a substitute for regional inference.</p>",
+    "<h3>All existing model specifications</h3>",
+    html_table(raw_comparison[, c("model", "legacy_n", "updated_n", "coefficients_match", "covariance_matches")]),
+    "<h3>Table 3 OLS association fits</h3>",
+    html_table(model_comparison(channels_old, raw_channels)[, c("model", "legacy_n", "updated_n", "coefficients_match", "covariance_matches")]),
+    "<h2>Relationship to the previous diagnostic</h2>",
+    "<p>All four extracted analysis CSVs and all 49 coefficient/covariance/N snapshots match the earlier hybrid-electricity diagnostic. This occurs because the original R3 indicator exactly reproduces the electricity input used in that diagnostic. The current reconstruction obtains those values from original household data; it no longer relies on legacy constructed electricity.</p>",
+    "<h2>Remaining data differences</h2>",
+    "<p>The provisional <code>hghgrade = hghschoolgrade</code> mapping is retained only to run the comparison. Highest school grade completed differs from the broader legacy schooling measure; its implications for schooling outcomes, MTI exposure and language assignment still need a substantive decision. Other historical values, missingness and sample membership also change. Reconstructing electricity does not resolve those differences.</p>",
+    html_table(raw_field_changes[raw_field_changes$variable %in% display_fields,
+      c("dataset", "variable", "legacy_n", "updated_n", "common_n", "changed", "missingness_changed")]),
+    "<h3>Table 1 observation counts and means</h3>", html_table(raw_table1_comparison),
+    "<p>Table 1 and Figure 1 still differ from the legacy baseline. Detailed data and all table comparisons are linked below. Existing manuscript Tables 4-5 generator differences remain a separate limitation; this is a comparison of the current reproducible pipeline.</p>",
+    "<h2>Outputs and reproduction</h2>",
+    "<p>Raw inputs, the production input catalog, processed CSVs and staged manuscript results are unchanged. Every worker disables Overleaf export. Revised tables and diagnostics are retained under <a href='raw_r3_tables/tableII_mod.tex'>raw_r3_tables/</a>; baseline tables are retained under legacy_tables/.</p>",
+    "<p>Reconstruction helper: <code>code/auxiliary/reconstruct_round3_electricity.R</code>. Reproduce from the project root:</p>",
+    "<pre>Rscript code/auxiliary/compare_constructed_releases.R output/constructed_release_comparison_r3_electricity</pre><ul>",
+    sprintf("<li><a href='%s'>%s</a></li>",
+      c("raw_r3_electricity_join_audit.csv", "raw_r3_electricity_validation.csv", "raw_r3_electricity_sources.csv",
+        "raw_r3_model_replication.csv", "raw_r3_channel_replication.csv", "raw_r3_table2_comparison.csv",
+        "raw_r3_table2_diagnostics_comparison.csv", "raw_r3_tables/tableII_mod_diagnostics.csv",
+        "raw_r3_vs_previous_hybrid.csv", "raw_r3_vs_hybrid_analysis_data.csv", "raw_r3_analysis_variable_changes.csv",
+        "raw_r3_table_replication.csv", "raw_r3_table1.csv", "raw_r3_figure1.csv", "legacy_matches_previous_models.csv",
+        "legacy_matches_stored_data.csv", "legacy_matches_stored_tables.csv", "production_integrity.csv",
+        "updated_raw_r3_run.log", "run_provenance.txt", "comparison_report.html"),
+      c("Electricity join audit", "Electricity validation against legacy", "Original source checksums",
+        "All 49 model comparisons", "Table 3 model comparisons", "Table 2 coefficients and SEs",
+        "Table 2 diagnostic comparisons", "Revised Table 2 full diagnostics", "Model agreement with prior diagnostic",
+        "Analysis-input agreement with prior diagnostic", "Analysis variable changes", "Generated table comparisons",
+        "Updated Table 1 data", "Updated Figure 1 data", "Baseline model validation", "Baseline data validation",
+        "Baseline table validation", "Production integrity checks", "Reconstruction-run log", "Run provenance",
+        "Original updated-only and hybrid comparisons")),
+    "</ul></body></html>"
+  )
+  writeLines(enc2utf8(raw_report), file.path(out, "raw_r3_replication_report.html"), useBytes = TRUE)
   message("Audit completed: ", out)
 })
