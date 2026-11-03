@@ -650,3 +650,39 @@ CR2/AR diagnostics are in `temp/r5_r7_regression_comparison/`.
 `output/tables/table_r5_r7_comparison.tex`, mirrored to the revision project.
 The revision main.tex includes it after Table 2, with prior source backed up
 under temp/overleaf_backups. Existing manuscript tables are preserved.
+
+
+Latest comparison specification: cohort dummy removed from the pooled model;
+Panel A is R5 OC replication and Panel B pools R5 OC with R7 both cohorts,
+controlling for round only in addition to the original covariates. R5
+replication remains verified. Both panels retain conventional SEs/stars and
+ordinary N. Regional diagnostics remain in the temp comparison audit.
+
+Run `Rscript code/13_pooled_summary_statistics.R` for pooled Table 1,
+`output/tables/tableI_pooled.tex`, mirrored to the revision project and used
+by its main.tex instead of the preserved legacy Table 1. Available-case
+statistics use R5 OC plus R7 both cohorts, the original OC language-score
+gate, no new YC score gate, and no regression complete-case restriction.
+The table adds old/young cohort and R7 shares. Scores and highest grade are
+explicitly historical R4/R5 measures; household-control timing is documented.
+Audit data: `temp/pooled_summary_statistics/`. Both updated tables compile
+without overflow in the two-page preview there.
+
+
+## Pooled-only robustness and wild IV bootstrap
+
+Run `Rscript code/14_pooled_robustness.R`. The separate table compares baseline,
+cohort control, excluding Amhara, and relaxed OC historical language-score
+gate, all pooling R5/R7 both cohorts with round dummy and original controls.
+Conventional SEs/stars remain. Additional rows report region-cluster CR2,
+Wang--Zhang (2024) W-B-S null-imposed IV bootstrap p-values, unrestricted-centred
+bootstrap coefficient dispersion (not a calibrated small-G SE correction),
+and the existing local weak-IV-robust wild AR score sensitivity. Enumerate all
+16/8 region sign vectors. This is not an automatic cure for only 4/3 regions.
+The method assumptions and limitations are in
+`temp/pooled_robustness/method_notes.txt`. The helper is
+`code/helpers/wild_iv_few_regions.R`; the auxiliary table writer is
+`code/auxiliary/write_pooled_robustness.R`. An independent AER/HC0 check of 24
+bootstrap samples passes. Eight bootstrap p-values are .25--.375. The new
+`table_pooled_robustness.tex` is mirrored to and included in revision main.tex.
+Previous tables remain. YC frozen exposure remains explicitly exploratory.

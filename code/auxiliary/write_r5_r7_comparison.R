@@ -22,22 +22,21 @@ lines <- c(
   " & Salary & Wage & Salary & Wage \\\\",
   "\\midrule"
 )
-for (panel_id in plans$panel) {
+for (panel_id in c("A", "B")) {
+  display_panel <- panel_id
   s <- stats |> filter(panel == panel_id)
   title <- switch(panel_id,
     A = "Round 5: older cohort",
-    B = "Rounds 5 and 7: older cohort",
-    C = "Rounds 5 and 7: both cohorts (exploratory)"
+    B = "Rounds 5 and 7: both cohorts (exploratory)"
   )
   lines <- c(lines,
-    paste0("\\multicolumn{5}{l}{\\textbf{Panel ", panel_id,
+    paste0("\\multicolumn{5}{l}{\\textbf{Panel ", display_panel,
            ": ", title, "}} \\\\") ,
     row("$MTIuse$", paste0(fmt(s$iv_beta), stars(s$iv_p))),
     row("", paste0("(", fmt(s$iv_se), ")")),
     row("Excluded-instrument $F$", fmt(s$first_stage_F, 2)),
     row("Controls", rep("Yes", 4)),
     row("Round dummy", rep(ifelse(panel_id == "A", "No", "Yes"), 4)),
-    row("Cohort dummy", rep(ifelse(panel_id == "C", "Yes", "No"), 4)),
     row("Observations", as.character(s$n)),
     "\\midrule"
   )
@@ -54,8 +53,8 @@ lines <- c(lines,
   "\\item Older-cohort rows retain the original nonzero/nonmissing R4",
   "language-score gate in both rounds; YC does not acquire that gate.",
   "R7 is in person only. Complete cases are selected per outcome.",
-  "R5 YC employment is unavailable, so Panel C adds YC only in R7.",
-  "Panel C is exploratory: YC completed-primary MTI remains unvalidated.",
+  "R5 YC employment is unavailable, so Panel B adds YC only in R7.",
+  "Panel B is exploratory: YC completed-primary MTI remains unvalidated.",
   "Pooling assumes a common MTI slope; no participant fixed effects.",
   "\\item Conventional standard errors in parentheses. Stars use",
   "conventional inference: *** $p<0.01$, ** $p<0.05$, * $p<0.10$.",

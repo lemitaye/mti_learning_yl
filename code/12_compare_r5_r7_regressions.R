@@ -26,9 +26,8 @@ base_controls <- paste(
 plans <- tribble(
   ~panel, ~description, ~additional,
   "A", "R5 older cohort: replication", "",
-  "B", "R5 + R7 older cohort", " + round7",
-  "C", "R5 + R7 both cohorts: exploratory frozen YC exposure",
-  " + round7 + cohort_young"
+  "B", "R5 + R7 both cohorts: exploratory frozen YC exposure",
+  " + round7"
 )
 
 # Fix the complete-case sample before both stages and inference checks.
@@ -45,7 +44,6 @@ for (panel_id in plans$panel) {
     if (panel_id == "A") {
       sample <- sample |> filter(round == 5, yc == 0)
     }
-    if (panel_id == "B") sample <- sample |> filter(yc == 0)
     if (column > 2) sample <- sample |> filter(region != "Amhara")
     variables <- all.vars(as.formula(paste(
       outcome, "~ IMTI + E_is +", controls
