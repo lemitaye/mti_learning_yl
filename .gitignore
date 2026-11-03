@@ -220,3 +220,21 @@ temp/results_viewer/main.synctex(busy)
 # Separate participant-level R7 derived files (licensed survey data).
 /data/r7/
 /temp
+
+# Local audits, codebooks and backups moved from output/.
+/temp/analysis_polish_audit/
+/temp/cleaning_refactor_audit/
+/temp/codebooks/
+/temp/constructed_difference_attribution/
+/temp/constructed_release_comparison/
+/temp/constructed_release_comparison_r3_electricity/
+/temp/electricity_investigation/
+/temp/helpers_organization_audit/
+/temp/layout_cleanup_audit/
+/temp/overleaf_backups/
+/temp/overleaf_project_recovery/
+/temp/r6_r7_extension_feasibility/
+/temp/r7_extension_reassessment/
+/temp/raw_data_update_audit/
+/temp/script_organization_audit/
+/temp/r7_cross_section_build/

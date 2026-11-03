@@ -6,7 +6,7 @@
 local({
   root <- normalizePath('.')
   source('code/helpers/raw_data_catalog.R', local = TRUE)
-  audit <- file.path(root, 'output/cleaning_refactor_audit')
+  audit <- file.path(root, 'temp/cleaning_refactor_audit')
   dir.create(audit, recursive = TRUE, showWarnings = FALSE)
   sandbox <- tempfile('latest_release_sensitivity-', tmpdir = audit)
   dir.create(sandbox, recursive = TRUE)

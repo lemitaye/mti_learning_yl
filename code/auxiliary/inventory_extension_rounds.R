@@ -1,7 +1,7 @@
 # Run from the project root. Aggregate metadata/availability only; production files are read-only.
 # Rscript code/auxiliary/inventory_extension_rounds.R
 local({
-root <- getwd(); args<-commandArgs(trailingOnly=TRUE);out<-if(length(args))args[1]else 'output/r6_r7_extension_feasibility';dir.create(out,recursive=TRUE,showWarnings=FALSE)
+root <- getwd(); args<-commandArgs(trailingOnly=TRUE);out<-if(length(args))args[1]else 'temp/r6_r7_extension_feasibility';dir.create(out,recursive=TRUE,showWarnings=FALSE)
 roots<-c('rawdata/yl_r6_phone_1st_2nd_3rd','rawdata/yl_r6_phone_4th_5th','rawdata/yl_r7')
 files<-unlist(lapply(roots,list.files,pattern='\\.dta$',recursive=TRUE,full.names=TRUE))
 files<-files[grepl('/et_',files)&!grepl('telephone|email',basename(files))]

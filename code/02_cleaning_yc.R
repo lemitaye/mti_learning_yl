@@ -9,7 +9,7 @@
 # Run from the repository root after code/helpers/_setup.R (or via _master.R).
 # Replication uses the legacy constructed release. New R1--R7 fields have changed
 # definitions and require a separate sensitivity comparison before substitution.
-# Release comparison audit: output/cleaning_refactor_audit/README.txt.
+# Release comparison audit: temp/cleaning_refactor_audit/README.txt.
 # Sample filters, missing-value handling and historical treatment rules are
 # intentionally preserved; this cleanup changes presentation and intermediate names.
 # =============================================================================

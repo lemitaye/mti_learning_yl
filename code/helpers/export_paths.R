@@ -35,7 +35,7 @@ mirror_output <- function(files, kind = c("tables", "figures")) {
         # Separate projects' version histories while preserving older backups.
         # The normalized project folder name identifies this destination.
         project_key <- gsub("[^A-Za-z0-9._-]", "_", basename(normalizePath(destination)))
-        backup_dir <- file.path("output", "overleaf_backups", project_key, kind)
+        backup_dir <- file.path("temp", "overleaf_backups", project_key, kind)
         dir.create(backup_dir, recursive = TRUE, showWarnings = FALSE)
         backup <- file.path(backup_dir, paste0(basename(target), ".", hash(target), ".bak"))
         if (!file.exists(backup) && !file.copy(target, backup))

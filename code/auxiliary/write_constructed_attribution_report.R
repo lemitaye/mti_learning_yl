@@ -1,6 +1,6 @@
 # Summarize the aggregate outputs of attribute_constructed_differences.R.
 # Rscript code/auxiliary/write_constructed_attribution_report.R [audit_directory]
-write_constructed_attribution_report <- function(out = "output/constructed_difference_attribution") {
+write_constructed_attribution_report <- function(out = "temp/constructed_difference_attribution") {
   read <- function(name) read.csv(file.path(out, name), stringsAsFactors = FALSE)
   csv <- function(x, name) write.csv(x, file.path(out, name), row.names = FALSE)
   summary <- read("scenario_summary.csv")
@@ -154,5 +154,5 @@ write_constructed_attribution_report <- function(out = "output/constructed_diffe
 }
 if (sys.nframe() == 0L) {
   args <- commandArgs(trailingOnly = TRUE)
-  write_constructed_attribution_report(if (length(args)) args[1L] else "output/constructed_difference_attribution")
+  write_constructed_attribution_report(if (length(args)) args[1L] else "temp/constructed_difference_attribution")
 }

@@ -5,7 +5,7 @@
 local({
   root <- normalizePath(".")
   args <- commandArgs(trailingOnly = TRUE)
-  out <- if (length(args)) args[1L] else "output/constructed_release_comparison"
+  out <- if (length(args)) args[1L] else "temp/constructed_release_comparison"
   dir.create(out, recursive = TRUE, showWarnings = FALSE)
   out <- normalizePath(out)
   source("code/helpers/raw_data_catalog.R", local = TRUE)
@@ -372,7 +372,7 @@ local({
       isTRUE(all.equal(a$figure, b$figure, tolerance = 1e-10)), all(models$updated_estimable)))
   csv(summary, "replication_summary.csv")
   # Validate baseline model snapshots against the previous verified analysis.
-  previous_file <- file.path(root, "output/analysis_polish_audit/before_models.rds")
+  previous_file <- file.path(root, "temp/analysis_polish_audit/before_models.rds")
   if (file.exists(previous_file)) {
     previous <- readRDS(previous_file)
     csv(do.call(rbind, lapply(names(old_models), function(nm) {
@@ -516,7 +516,7 @@ local({
     "<ol><li>Resolve historical electricity availability. Verify or reconstruct the R3 control from the original round-specific source or obtain a corrected constructed file. R7 electricity should not be backfilled into earlier rounds.</li><li>Choose and document how to reconstruct the broader legacy schooling measure, or explicitly adopt the revised schooling definition and treat the resulting estimates as a new analysis. Check its effects on IMTI, language assignment and sample selection.</li><li>Review the remaining historical value/missingness and death-status differences, then rerun complete-case, first-stage and regional inference diagnostics before updating manuscript results.</li></ol>",
     "<p>The production catalog continues to use the legacy input while this comparison is reviewed. This audit establishes replication of current code and staged outputs; the previously documented manuscript Tables 4-5 generator mismatch remains a separate issue.</p>",
     "<h2 id='evidence'>Reproducibility and evidence</h2>",
-    "<p>Run <code>Rscript code/auxiliary/compare_constructed_releases.R</code> from the project root. The script writes this report and aggregate evidence to <code>output/constructed_release_comparison/</code>, executes in temporary copies, and disables external exports in every worker. Source input checksums and before/after production checksums are recorded.</p>",
+    "<p>Run <code>Rscript code/auxiliary/compare_constructed_releases.R</code> from the project root. The script writes this report and aggregate evidence to <code>temp/constructed_release_comparison/</code>, executes in temporary copies, and disables external exports in every worker. Source input checksums and before/after production checksums are recorded.</p>",
     "<ul>", sprintf("<li><a href='%s'>%s</a></li>", files, files), "</ul></body></html>"
   )
   writeLines(enc2utf8(report), file.path(out, "comparison_report.html"), useBytes = TRUE)
@@ -568,7 +568,7 @@ local({
     "<h2>Outputs and reproduction</h2>",
     "<p>Raw inputs, the production input catalog, processed CSVs and staged manuscript results are unchanged. Every worker disables Overleaf export. Revised tables and diagnostics are retained under <a href='raw_r3_tables/tableII_mod.tex'>raw_r3_tables/</a>; baseline tables are retained under legacy_tables/.</p>",
     "<p>Reconstruction helper: <code>code/auxiliary/reconstruct_round3_electricity.R</code>. Reproduce from the project root:</p>",
-    "<pre>Rscript code/auxiliary/compare_constructed_releases.R output/constructed_release_comparison_r3_electricity</pre><ul>",
+    "<pre>Rscript code/auxiliary/compare_constructed_releases.R temp/constructed_release_comparison_r3_electricity</pre><ul>",
     sprintf("<li><a href='%s'>%s</a></li>",
       c("raw_r3_electricity_join_audit.csv", "raw_r3_electricity_validation.csv", "raw_r3_electricity_sources.csv",
         "raw_r3_model_replication.csv", "raw_r3_channel_replication.csv", "raw_r3_table2_comparison.csv",

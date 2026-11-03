@@ -179,7 +179,7 @@ also mirrored to `tables/` and `figures/` in the Dropbox project
 external exports (also use this for isolated analysis tests). A missing or
 unwritable destination produces a warning and retains local results.
 Existing changed destination files are backed up by content hash under
-`output/overleaf_backups/` before replacement. This includes legacy exports
+`temp/overleaf_backups/` before replacement. This includes legacy exports
 whose specifications/headings differ from the historical manuscript tables.
 Only generated tables/figures are mirrored; manuscript prose, raw data and CSV
 diagnostics are not copied. Table 3 now writes `output/tables/table_rev.tex`; the archived local manuscript
@@ -205,7 +205,7 @@ does not fit new models or change employment outcomes. All original raw files,
 including documentation not found by filename in the new release, remain in
 an ignored recoverable snapshot under `_archive/raw_data_snapshots/`.
 Audit reports, the source-to-local SHA-256 manifest, and the pre-migration
-analysis baseline are under `output/raw_data_update_audit/`. The reusable
+analysis baseline are under `temp/raw_data_update_audit/`. The reusable
 `temp/audit_raw_release.R` compares matched Stata files; its command-line
 arguments specify both roots, a crosswalk CSV, and the report location.
 `temp/audit_constructed_release.R` reports historical differences without
@@ -218,7 +218,7 @@ checks. Of 1,058 legacy non-constructed Stata files, 1,050 match exactly; seven
 Peru files and one Vietnam file differ. No parse errors remain. All current
 Ethiopia inputs and all 49 fitted-model snapshots are unchanged; the four
 processed CSVs and generated table bodies/diagnostics match the baseline.
-See `output/raw_data_update_audit/README.txt` and `replication_verification.json`.
+See `temp/raw_data_update_audit/README.txt` and `replication_verification.json`.
 Latest constructed data have multiple Round 6 calls per child: do not assume
 `childid` plus `round` uniquely identifies records throughout R1--R7.
 
@@ -227,8 +227,8 @@ the pre-revision archive. Its eight tables and employment figure were restored
 from the backups preceding the first automated export. The helper rejects any
 attempt to export there, including through `MTI_OVERLEAF_DIR`. Revision exports
 go to `MTI and Employment - Revision (AE)`; version backups are now namespaced
-by destination folder under `output/overleaf_backups/`. Restoration evidence and
-a recovery snapshot are in `output/overleaf_project_recovery/`.
+by destination folder under `temp/overleaf_backups/`. Restoration evidence and
+a recovery snapshot are in `temp/overleaf_project_recovery/`.
 
 ## Folder reorganization verification (2026-10-31)
 
@@ -240,7 +240,7 @@ The full pipeline completed with Dropbox exports disabled. All 49 model
 coefficient/covariance/sample-size snapshots match the verified baseline; all
 four analysis CSVs, table bodies and diagnostics are unchanged. Figure text
 matches, targeted path/export/clustering checks pass, and the viewer compiles
-to 11 pages. Logs and comparison evidence: `output/layout_cleanup_audit/`.
+to 11 pages. Logs and comparison evidence: `temp/layout_cleanup_audit/`.
 
 ## Script order and shared helpers
 
@@ -291,7 +291,7 @@ for every R1--R5 record, leaving zero complete cases for all four Table 2
 specifications (legacy N: 437/279/334/192). Other historical fields also change.
 Keep legacy constructed data as the production default; do not drop the
 electricity control or fill values silently to obtain estimates. Audit evidence
-is in `output/cleaning_refactor_audit/`.
+is in `temp/cleaning_refactor_audit/`.
 
 ## Descriptive, estimation and export script polish
 
@@ -309,13 +309,13 @@ Against a fresh baseline, all 49 coefficient/covariance/N snapshots, Table 1
 data, and Figure 1 data/layers match (tolerance 1e-12). Exported table bodies
 and diagnostics are unchanged apart from Table 1 trailing whitespace. The
 viewer uses the shared loader when refreshing its figure. Validation evidence
-is in `output/analysis_polish_audit/`; external analysis exports were disabled.
+is in `temp/analysis_polish_audit/`; external analysis exports were disabled.
 
 ## Constructed-release replication audit (2026-11-03)
 
 Run `Rscript code/auxiliary/compare_constructed_releases.R` from the project
 root for an isolated legacy/updated comparison; see
-`output/constructed_release_comparison/comparison_report.html`. All four stored
+`temp/constructed_release_comparison/comparison_report.html`. All four stored
 analysis CSVs, 49 prior model snapshots and ten staged table/diagnostic files
 match a fresh legacy run. Updated-only inputs, with documented provisional
 aliases and R1--R5 restriction, leave zero complete cases for all 49 models
@@ -327,7 +327,7 @@ change. The production legacy default remains intact. Audit workers disable
 Overleaf exports and preserve production data/results; no raw inputs are edited.
 
 Electricity follow-up: `code/auxiliary/investigate_constructed_electricity.R`
-writes `output/electricity_investigation/electricity_investigation.html`.
+writes `temp/electricity_investigation/electricity_investigation.html`.
 The updated services-index identity recovers 14,117 historical electricity
 values, all matching legacy data. Original R3 OC/YC household `elecq` reproduces
 all 2,999 legacy R3 values/missingness (2,858 observed), allowing reconstruction
@@ -345,7 +345,7 @@ compatibility field `elecq_new` for R3 only. The updated `elecq` source column
 and other rounds are unchanged. It preserves 141 missing values (one source
 response plus 140 unmatched households); 2,858 values are observed.
 
-Run `Rscript code/auxiliary/compare_constructed_releases.R output/constructed_release_comparison_r3_electricity`.
+Run `Rscript code/auxiliary/compare_constructed_releases.R temp/constructed_release_comparison_r3_electricity`.
 The audit now includes `updated_raw_r3`, reruns the full pipeline and regional
 inference in isolation, and saves `raw_r3_replication_report.html` and ten
 revised table/diagnostic outputs under `raw_r3_tables/`. All 49 models and both
@@ -363,7 +363,7 @@ remain unchanged; this is an isolated replication check, not a default-input swi
 
 Run `Rscript code/auxiliary/attribute_constructed_differences.R`, then
 `Rscript code/auxiliary/write_constructed_attribution_report.R`.
-The report is `output/constructed_difference_attribution/remaining_differences_report.html`.
+The report is `temp/constructed_difference_attribution/remaining_differences_report.html`.
 Nineteen isolated scenarios identify the differences in the current pipeline.
 Diagnostic restoration of five blocks (`hghgrade`; `preprim`/`agegr1`;
 `entype`; `deceased`; `wi_new`/`hq_new`) reproduces all four analysis datasets'
@@ -394,7 +394,7 @@ User decision: retain the legacy R1--R5 constructed release for the existing
 sample and results. Investigate R6 and R7 as separate cross sections; do not
 switch the current sample to the updated constructed release or require a
 balanced panel. The materials/plan report is
-`output/r6_r7_extension_feasibility/extension_feasibility_report.html`.
+`temp/r6_r7_extension_feasibility/extension_feasibility_report.html`.
 Reproduce with `Rscript code/auxiliary/inventory_extension_rounds.R` and
 `python3 code/auxiliary/build_extension_feasibility_report.py`.
 
@@ -422,7 +422,7 @@ outputs changed in this feasibility audit.
 
 User narrowed scope to R7; R6 feasibility is postponed. Earlier-round treatment
 and background are allowed; fresh childhood measurements are not prerequisites.
-See `output/r7_extension_reassessment/r7_reassessment_report.html`, generated
+See `temp/r7_extension_reassessment/r7_reassessment_report.html`, generated
 by `code/auxiliary/audit_r7_extension.R` and
 `code/auxiliary/build_r7_reassessment_report.py`.
 
@@ -493,7 +493,26 @@ retained (1,138 any / 945 all 12 nonmissing); the score stays missing pending a
 validated key and comparability assessment. No common fresh R7 maths battery
 is supplied. R6 remains deferred.
 
-Full findings: `output/r7_cross_section_build/build_report.html`; aggregate
+Full findings: `temp/r7_cross_section_build/build_report.html`; aggregate
 availability, source-code labels, sample counts and integrity audits are
 alongside it. Recheck exact-sample first stages and few-region inference when
 estimating the new cohort/round specifications.
+
+
+## Audit locations and R7 coding conventions (2026-11-03)
+
+Audit/report folders, codebooks and Overleaf backup/recovery folders previously
+under `output/` now live under `temp/` and are individually ignored by Git.
+Keep `output/tables/` and `output/figures/` as the active result staging paths.
+Update generators and readers together when moving an audit folder; do not
+rewrite archived evidence copies merely to change a historical path.
+
+`code/10_build_r7_cross_section.R` follows the R4DS/tidyverse style and DIME
+readability principles: named sections, descriptive objects, explicit keyed
+joins, `mutate()`/`case_when()` recodes, and grouped/long-form audit summaries.
+`code/helpers/r7_build_helpers.R` contains historical lookup recovery and the
+explicit provisional MTI rules; dynamic parsing/evaluation is no longer used.
+The standalone script is also readable section-by-section in RStudio.
+Validation compared every column (including attributes and missingness) with
+the pre-refactor RDS: all 2,038 records and 212 columns match exactly. The dual
+export test passes with backups stored under `temp/overleaf_backups/`.

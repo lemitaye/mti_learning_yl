@@ -7,7 +7,7 @@ local({
              raw_data_files[['constructed_r1_r7']])
   if (length(paths) < 2) stop('Round 7 modules or constructed release are missing.')
   inventory <- list(); schemas <- list()
-  dir.create('output/raw_data_update_audit', recursive = TRUE, showWarnings = FALSE)
+  dir.create('temp/raw_data_update_audit', recursive = TRUE, showWarnings = FALSE)
   for (i in seq_along(paths)) {
     dat <- haven::read_dta(paths[i])
     inventory[[i]] <- data.frame(file = paths[i], rows = nrow(dat), columns = ncol(dat))
@@ -17,10 +17,10 @@ local({
     if (identical(paths[i], unname(raw_data_files[['constructed_r1_r7']]))) {
       stopifnot(all(1:7 %in% dat$round))
       write.csv(as.data.frame(table(round = dat$round)),
-                'output/raw_data_update_audit/constructed_r1_r7_round_counts.csv', row.names = FALSE)
+                'temp/raw_data_update_audit/constructed_r1_r7_round_counts.csv', row.names = FALSE)
     }
   }
-  write.csv(do.call(rbind, inventory), 'output/raw_data_update_audit/round7_inventory.csv', row.names = FALSE)
-  write.csv(do.call(rbind, schemas), 'output/raw_data_update_audit/round7_schema.csv', row.names = FALSE)
+  write.csv(do.call(rbind, inventory), 'temp/raw_data_update_audit/round7_inventory.csv', row.names = FALSE)
+  write.csv(do.call(rbind, schemas), 'temp/raw_data_update_audit/round7_schema.csv', row.names = FALSE)
   message('Round 7 resources inventoried; existing estimation rounds are unchanged.')
 })

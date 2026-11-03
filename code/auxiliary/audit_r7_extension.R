@@ -3,7 +3,7 @@
 local({
 source('code/helpers/raw_data_catalog.R',local=TRUE)
 protected<-c(unname(raw_data_files[c('constructed_legacy','constructed_r1_r7')]),list.files('data',full.names=TRUE),'code/helpers/raw_data_catalog.R');hashes<-tools::md5sum(protected)
-args<-commandArgs(trailingOnly=TRUE);out<-if(length(args))args[1]else 'output/r7_extension_reassessment';dir.create(out,recursive=TRUE,showWarnings=FALSE)
+args<-commandArgs(trailingOnly=TRUE);out<-if(length(args))args[1]else 'temp/r7_extension_reassessment';dir.create(out,recursive=TRUE,showWarnings=FALSE)
 a<-haven::read_dta(raw_data_files[['constructed_legacy']]);c<-haven::read_dta(raw_data_files[['constructed_r1_r7']]);core<-list();audit<-list();coverage<-list()
 valid<-function(x){!is.na(x)&!as.numeric(x)%in%c(-99,-88,-79,-77,77,79,88,99)}
 for(co in c('oc','yc')) for(mode in c('in_person','phone')){

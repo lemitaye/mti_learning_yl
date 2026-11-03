@@ -3,7 +3,7 @@ import csv
 from html import escape
 from pathlib import Path
 
-OUT = Path('output/r7_cross_section_build')
+OUT = Path('temp/r7_cross_section_build')
 
 def read(name):
     with (OUT / name).open() as f:

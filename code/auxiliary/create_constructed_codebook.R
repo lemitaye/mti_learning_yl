@@ -15,7 +15,7 @@ if (!file.exists(source_file) && length(args) == 0L) {
   )
 }
 output_file <- if (length(args) >= 2L) args[2L] else file.path(
-  "output", "codebooks", "ethiopia_constructed_r1r7_codebook.html"
+  "temp", "codebooks", "ethiopia_constructed_r1r7_codebook.html"
 )
 for (package in c("haven", "sjPlot")) {
   if (!requireNamespace(package, quietly = TRUE)) {

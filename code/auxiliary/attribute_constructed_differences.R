@@ -5,7 +5,7 @@
 local({
   root <- normalizePath(".")
   args <- commandArgs(trailingOnly = TRUE)
-  out <- if (length(args)) args[1L] else "output/constructed_difference_attribution"
+  out <- if (length(args)) args[1L] else "temp/constructed_difference_attribution"
   dir.create(out, recursive = TRUE, showWarnings = FALSE)
   out <- normalizePath(out)
   source("code/helpers/raw_data_catalog.R", local = TRUE)
@@ -135,8 +135,8 @@ local({
   }
   csv(do.call(rbind, data_summaries), "restored_analysis_data_matches.csv")
   baseline <- snapshots[["legacy_reference"]]
-  prior <- readRDS("output/constructed_release_comparison_r3_electricity/legacy_model_snapshots.rds")
-  prior_new <- readRDS("output/constructed_release_comparison_r3_electricity/raw_r3_model_snapshots.rds")
+  prior <- readRDS("temp/constructed_release_comparison_r3_electricity/legacy_model_snapshots.rds")
+  prior_new <- readRDS("temp/constructed_release_comparison_r3_electricity/raw_r3_model_snapshots.rds")
   model_equal <- function(a, b) isTRUE(all.equal(a$coef, b$coef, tolerance = 1e-10)) &&
     isTRUE(all.equal(a$vcov, b$vcov, tolerance = 1e-10)) && a$n == b$n
   stopifnot(all(vapply(names(baseline), function(m) model_equal(baseline[[m]], prior[[m]]), logical(1))),

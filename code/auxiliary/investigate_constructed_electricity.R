@@ -4,7 +4,7 @@
 local({
   stopifnot(requireNamespace("haven", quietly = TRUE))
   source("code/helpers/raw_data_catalog.R", local = TRUE)
-  out <- "output/electricity_investigation"
+  out <- "temp/electricity_investigation"
   dir.create(out, recursive = TRUE, showWarnings = FALSE)
   old_path <- raw_data_files[["constructed_legacy"]]
   new_path <- raw_data_files[["constructed_r1_r7"]]

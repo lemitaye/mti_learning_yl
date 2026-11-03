@@ -2,7 +2,7 @@
 import csv
 from pathlib import Path
 from html import escape
-out=Path('output/r7_extension_reassessment')
+out=Path('temp/r7_extension_reassessment')
 def read(n):
     with (out/n).open() as f:return list(csv.DictReader(f))
 def table(rows,cols=None):

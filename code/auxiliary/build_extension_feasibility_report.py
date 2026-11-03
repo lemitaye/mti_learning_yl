@@ -5,7 +5,7 @@ from pathlib import Path
 import csv
 from html import escape
 
-out = Path('output/r6_r7_extension_feasibility')
+out = Path('temp/r6_r7_extension_feasibility')
 def read(name):
     with (out / name).open() as f:
         return list(csv.DictReader(f))

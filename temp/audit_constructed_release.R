@@ -27,7 +27,7 @@ local({
         missingness_changed=sum(is.na(x)!=is.na(y)))
     }
   }
-  dir.create('output/raw_data_update_audit',recursive=TRUE,showWarnings=FALSE)
-  write.csv(do.call(rbind,output),'output/raw_data_update_audit/constructed_differences_by_round.csv',row.names=FALSE)
+  dir.create('temp/raw_data_update_audit',recursive=TRUE,showWarnings=FALSE)
+  write.csv(do.call(rbind,output),'temp/raw_data_update_audit/constructed_differences_by_round.csv',row.names=FALSE)
   message('Historical keys match; differences reported without substituting new values into current models.')
 })
