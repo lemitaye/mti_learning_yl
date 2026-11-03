@@ -520,5 +520,10 @@ saveRDS(master, file.path(destination, "r7_inperson_analysis.rds"))
 
 source("code/auxiliary/audit_r7_cross_section.R", local = TRUE)
 
+# Add descriptive and categorical metadata to the R-native output.
+source("code/auxiliary/label_r7_cross_section.R", local = TRUE)
+master <- label_r7_cross_section(master, audit_dir)
+saveRDS(master, file.path(destination, "r7_inperson_analysis.rds"))
+
 message("Created R7 master: ", nrow(master),
   " in-person participants; CSV and RDS in ", destination)
