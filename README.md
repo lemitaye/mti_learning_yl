@@ -358,3 +358,32 @@ baseline, 17 coefficient/covariance vectors and 23 model sample sizes match;
 The provisional schooling alias is still a substantive definition difference.
 The production catalog, analysis CSVs, staged results and Overleaf exports
 remain unchanged; this is an isolated replication check, not a default-input switch.
+
+## Attribution of remaining release differences (2026-11-03)
+
+Run `Rscript code/auxiliary/attribute_constructed_differences.R`, then
+`Rscript code/auxiliary/write_constructed_attribution_report.R`.
+The report is `output/constructed_difference_attribution/remaining_differences_report.html`.
+Nineteen isolated scenarios identify the differences in the current pipeline.
+Diagnostic restoration of five blocks (`hghgrade`; `preprim`/`agegr1`;
+`entype`; `deceased`; `wi_new`/`hq_new`) reproduces all four analysis datasets'
+values, all 49 coefficient/covariance/N snapshots, both Table 3 fits and
+Table 1/Figure 1 at tolerance 1e-10. These restorations attribute changes;
+they are not approved harmonization or a production-input switch.
+
+Main employment differences are fully accounted for by schooling and death
+status: no legacy complete cases are lost; schooling supplies 4/3/2/1 new
+complete cases and the revised death status adds one case to each column.
+IMTI also changes on 34/13/32/11 shared complete cases, while their outcomes
+and E_is are unchanged. Seven death-flag child-round changes affect five
+participants. The older-cohort re-entry is in Oromia with original R5 salary
+activity 13; both legacy-deceased/updated-interviewed R5 participants have raw
+R5 child interview records, although exact death timing is not established.
+
+All newly missing `preprim`, `agegr1`, and `entype` observations have inround=0.
+Early-school background missingness affects six fitted models in the updated
+comparison; entype has no independent effect across the eight matched
+factorial pairs. The remaining four younger-cohort fits reflect one Addis
+Ababa R3 concrete-block household (wallr3=25): hq_new rises .60 to .85 and
+wi_new .733333 to .816667, consistent with TN63's documented revision.
+Production data, staged outputs and Overleaf exports remain unchanged.
