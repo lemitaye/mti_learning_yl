@@ -417,3 +417,38 @@ report prose says 205 phone while its table agrees with total 2,231. Keep that
 12-case discrepancy explicit. Historical-control coverage counts are ceilings,
 not final outcome-specific N. No new regressions were estimated or manuscript
 outputs changed in this feasibility audit.
+
+## R7-only reassessment: outcomes and current controls (2026-11-03)
+
+User narrowed scope to R7; R6 feasibility is postponed. Earlier-round treatment
+and background are allowed; fresh childhood measurements are not prerequisites.
+See `output/r7_extension_reassessment/r7_reassessment_report.html`, generated
+by `code/auxiliary/audit_r7_extension.R` and
+`code/auxiliary/build_r7_reassessment_report.py`.
+
+R5 questionnaire PDF page 36, section 5.2, confirms activities are ranked by
+annual time spent, most important first. This resolves the prior report's
+uncertainty about ACTIDR5=1 versus R7's annual main-activity selection rule.
+R7 OC in-person: 451 annual workers all have annual activity types; 181 report
+no annual work. The primary feasible extension is annual in-person employment
+with historic treatment/background plus contemporaneous household controls.
+Candidate non-Addis N: salary/wage 358/271 with frozen controls; 352/266 when
+updating household size, wealth/housing/CD/electricity (also 352/266 if updating
+food situation). No new model estimates have been fitted.
+
+Use R7 wi/hq (without _new) to align the legacy wall-material definition:
+legacy R5 wi_new/hq_new match those newer un-suffixed fields on all 2,613
+paired observed R5 records. R7 _new variants adopt concrete blocks as good walls.
+Constructed R7 hhsize is entirely missing; reconstruct current livhser7=1 roster
+members including index participant, requiring cmplthhr7=1. OC size is available
+for 626/632 in-person and 64/64 phone cases under that rule.
+
+Phone annual job types are absent. OC phone constructed indices/electricity
+are populated despite no matching housing/assets/electricity questions in the
+short raw instruments; their contemporaneous provenance is unverified and
+must not be assumed. A both-mode weekly/current-job sensitivity can update
+size/food while retaining historic wealth. Linked phone-only non-Addis samples
+have one E_is value and one policy region; standalone phone-only IV is not
+identified. Preserve raw activity labels: R5/R7 code 19 is housemaid, 20 other
+non-agriculture; R7 aliases 21/22 map to self-employed crops/livestock (1/4).
+The legacy production sample/results remain unchanged.
