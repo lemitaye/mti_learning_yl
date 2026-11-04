@@ -65,12 +65,19 @@ child_characteristics <- cohort_data %>%
     chethnic = factor(label_survey_codes(chethnic, survey_code_labels$ethnicity))
   )
 
-# Use the first reported R5 activity; employment definitions below retain exclusions.
+# Retain each reported R5 activity in columns suffixed by its activity ID.
 main_activity <- round5_activity_data %>%
   select(
-    child_id = CHILDCODE, no_activ = ACTIDR5, type_activ = ACTR5
-  ) %>%
-  filter(no_activ == 1)
+    child_id = CHILDCODE, activ_id = ACTIDR5, type_activ = ACTR5, work_for = ACTOWNR5,
+    payment_form = PYMRECR5, pay_cash_amt = ERNCSHR5, pay_kind_amt = ERNKNDR5,
+    pay_period = HWPAIDR5, still_work = PRFACTR5
+  ) |> 
+  pivot_wider(
+    id_cols = child_id,
+    names_from = activ_id,
+    values_from = -c(child_id, activ_id),
+    names_glue = "{.value}_{activ_id}"
+  )
 
 # ---- Round-specific covariates (retain names used by the regressions) --------
 round5_covariates <- cohort_data %>%
@@ -134,7 +141,7 @@ primary_language_data <- round4_covariates %>%
   ) %>% select(-hghgrade_r4)
 
 # Preserve the left-join sequence and resulting row/column order.
-analysis_data <- child_characteristics %>%
+analysis_data_0 <- child_characteristics %>%
   left_join(primary_language_data, by = "child_id") %>%
   left_join(round1_covariates, by = "child_id") %>%
   left_join(round2_covariates, by = "child_id") %>%
@@ -143,7 +150,7 @@ analysis_data <- child_characteristics %>%
   left_join(round5_covariates, by = "child_id") %>%
   left_join(main_activity, by = "child_id")
 
-analysis_data <- analysis_data %>%
+analysis_data_1 <- analysis_data_0 %>%
   mutate(
     region = coalesce(region_r3, region_r2, region_r1),
 
@@ -171,45 +178,60 @@ analysis_data <- analysis_data %>%
     )
   )
 
-analysis_data <- analysis_data %>%
+# type_activ                                                                              n
+#    <dbl+lbl>                                                                           <int>
+#  1  1 [Self Employed (Food crops)]                                                       162
+#  2  2 [Self Employed (Non-food, including horticulture, sericulture and floriculture)]    10
+#  3  3 [Self Employed (Aquaculture]                                                         7
+#  4  4 [Self Employed.(Livestock)]                                                         21
+#  5  5 [Wage Employment (Agriculture)]                                                     13
+#  6  6 [Annual Farm Servant]                                                                3
+#  7  7 [Other (allied) agriculture]                                                         6
+#  8  8 [Self Employed (Manufacturing)]                                                      1
+#  9  9 [Self Employed (Services)]                                                          31
+# 10 10 [Self Employed (Business)]                                                         100
+# 11 11 [Self Employed (Other non-Agriculture)]                                             29
+# 12 12 [Wage Employment (Unsalaried;Non-agriculture)]                                      90
+# 13 13 [Regular Salaried Employment]                                                      123
+# 14 19 [House maid/Yebet Serategna]                                                        22
+# 15 20 [Other non- agriculture specify]                                                    22
+# 16 NA                                                                                    349
+
+analysis_data_2 <- analysis_data_1 %>%
   mutate(
-    active = case_when(
-      hwork_r5 == 0 ~ 0,
-      hwork_r5 > 0 ~ 1
+    active = as.integer(if_any(type_activ_1:type_activ_4, ~ !is.na(.x))),
+    self_agri = case_when(
+      if_any(type_activ_1:type_activ_4, ~ .x %in% c(1, 2, 3, 4)) ~ 1,
+      TRUE ~ 0
     ),
 
-    # Wage: activity 5/12/13; salary (wage_employII): activity 13 only.
+    wage_agri = case_when(
+      if_any(type_activ_1:type_activ_4, ~ .x %in% c(5, 6, 7)) ~ 1,
+      TRUE ~ 0
+    ),
+
+    self_nonag = case_when(
+      if_any(type_activ_1:type_activ_4, ~ .x %in% c(8, 9, 10, 11)) ~ 1,
+      TRUE ~ 0
+    ),
+
     wage_employ = case_when(
-      type_activ %in% c(5, 12, 13) ~ 1,
-      is.na(type_activ) & is.na(active) ~ NA_real_,
-      type_activ %in% c(1, 2, 3, 4, 8, 9, 10, 11, 19) ~ NA_real_,
+      if_any(type_activ_1:type_activ_4, ~ .x %in% c(12, 19)) ~ 1,
       TRUE ~ 0
     ),
-    self_employ = case_when(
-      type_activ %in% c(1, 2, 3, 4, 8, 9, 10, 11) ~ 1,
-      is.na(type_activ) & is.na(active) ~ NA_real_,
-      type_activ %in% c(5, 12, 13, 19) ~ NA_real_,
+
+    salary_employ = case_when(
+      if_any(type_activ_1:type_activ_4, ~ .x %in% c(13)) ~ 1,
       TRUE ~ 0
     ),
-    wage_employII = case_when(
-      type_activ %in% c(13) ~ 1,
-      is.na(type_activ) & is.na(active) ~ NA_real_,
-      type_activ %in% c(8, 9, 10, 11, 19) ~ NA_real_,
-      TRUE ~ 0
-    ),
-    self_employII = case_when(
-      type_activ %in% c(8, 9, 10, 11) ~ 1,
-      is.na(type_activ) & is.na(active) ~ NA_real_,
-      type_activ %in% c(13, 19) ~ NA_real_,
-      TRUE ~ 0
-    ),
+    
     chsex = factor(label_survey_codes(chsex, survey_code_labels$sex)),
     rural_3 = case_when(
       typesite_r3 == 1 ~ 0, typesite_r3 == 2 ~ 1
     )
   )
 
-analysis_data <- analysis_data %>%
+analysis_data_3 <- analysis_data_2 %>%
   mutate(
     # MTI exposure caps and instrument rules are unchanged.
     IMTI = case_when(
@@ -252,14 +274,14 @@ analysis_data <- analysis_data %>%
     )
   )
 
-analysis_data <- analysis_data %>%
+analysis_data_final <- analysis_data_3 %>%
   select(-starts_with(c("region_r", "hghgrade_r")))
 
 # ---- Export Addis and non-Addis analysis samples -----------------------------
-aa_samp <- analysis_data %>%
+aa_samp <- analysis_data_final %>%
   filter(region == "Addis Ababa")
 
-non_aa_samp <- analysis_data %>%
+non_aa_samp <- analysis_data_final %>%
   filter(region != "Addis Ababa")
 
 write_csv(aa_samp, "data/aa_samp.csv")
