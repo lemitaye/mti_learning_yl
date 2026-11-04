@@ -647,3 +647,36 @@ ACTMSTR5 in olderchild (dictionary p48) stores selected activity-type codes;
 48/641 paired values differ from ACTR5 at ACTIDR5=1. This qualifies earlier
 statements equating first-listed R5 activity with final main activity. Existing
 outcome definitions and results remain unchanged pending a separate audit.
+
+
+## November 4: user-revised R5 activity schema
+
+The extraction now retains four R5 activity slots and supplies salary_employ,
+wage_employ, self_agri, wage_agri and self_nonag. Salary is code13 in ANY
+slot; wage is code12/19 in ANY slot. These are substantive user changes,
+not aliases of the former first-activity outcomes or their exclusions.
+
+Master dependencies now use salary_employ in descriptives, estimation and
+Table 2; self_nonag replaces the old nonfarm outcome name. Per the user's
+explicit choice, `prepare_employment_outcomes()` in analysis_helpers.R
+reconstructs combined `self_employ` from self_agri OR self_nonag. It preserves
+unknowns unless one component is a known positive. Existing numeric model
+IDs are retained so 06_export_res.R consumes the correct model objects.
+Addis's existing first-activity exclusion now references type_activ_1.
+
+05_estimation.R retains the user's direct RDS sample loading (no automatic
+R4 score gate). 07_table_main.R now uses the same RDS input and sample rule.
+03_descriptives.R and 09_table_rev.R retain their existing R4 score gates;
+their filters were not changed as part of the naming repair. Table 2 notes
+now describe the any-activity taxonomy and no longer hardcode older regional
+inference conclusions. The R7 historical-recovery helper now saves OC
+analysis_data_final, matching the user's renamed extraction object.
+
+Full _master.R completed in temp/variable_schema_update/master_run/ with
+MTI_OVERLEAF_DIR='' (see master.log). All active R scripts parse; combined
+self-employment matches codes1-4/8-11 in any raw slot and NA logic was checked.
+All 32 pre-existing live data/results files retain their checksums. Only
+isolated validation artifacts were regenerated; no live/Overleaf outputs
+were overwritten. Existing standalone R7/pooled files retain the previous
+first/main-activity definitions; updating those is a separate harmonization
+step, because renaming would not make the new R5 definitions equivalent.

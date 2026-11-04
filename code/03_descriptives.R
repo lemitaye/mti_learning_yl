@@ -10,8 +10,8 @@
 #
 # Both samples exclude zero/missing R4 language scores. Summary statistics use
 # available cases separately by variable, not a single complete-case sample.
-# Salary (activity 13) is included in broader wage employment (5/12/13);
-# their missing-value/exclusion rules and therefore denominators differ.
+# Outcomes follow the revised any-activity definitions from extraction.
+# Salary and wage indicators can overlap across different activity slots.
 # =============================================================================
 
 rm(list = ls())
@@ -24,7 +24,7 @@ non_aa_sample <- read_analysis_sample("data/non_aa_samp.csv")
 employ_gr <- non_aa_sample %>%
   group_by(region) %>%
   summarise(
-    salary_employ_pct = mean(wage_employII, na.rm = TRUE),
+    salary_employ_pct = mean(salary_employ, na.rm = TRUE),
     wage_employ_pct = mean(wage_employ, na.rm = TRUE)
   ) %>%
   pivot_longer(
@@ -66,7 +66,7 @@ prepare_summary_input <- function(data, include_regions = FALSE) {
       hhsize, wi_new, hq_new, cd_new, elecq_new, ownlandhse_r1,
       any_of(if (include_regions) "region" else character()),
       raw_maths, raw_lang, hghgrade_final_num, wage_employ,
-      salary_employ = wage_employII,
+      salary_employ,
       any_of(if (include_regions) "rural_3" else character())
     )
   if (include_regions) {

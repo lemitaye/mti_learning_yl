@@ -43,7 +43,7 @@ table2_cluster_checks <- function(sample, outcome, controls, reference_beta) {
   p_sign <- mean(bootstrap >= observed - 1e-10 * max(1, observed))
   stopifnot(p_sign >= 2 / 2^G)
   informative <- as.numeric(rowsum(z_local^2, group)) > 1e-12
-  # Tigray has constant E_is here: local orthogonalization leaves no signal.
+  # Zero-information regions have no residual instrument signal.
   # Zero-information clusters duplicate patterns and further coarsen p-values.
   effective_min <- 2 / 2^sum(informative)
   audit <- data.frame(region = levels(group), n = as.integer(table(group)),

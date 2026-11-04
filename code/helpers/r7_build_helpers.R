@@ -28,7 +28,7 @@ recover_r7_history <- function(root, audit_dir) {
     "suppressPackageStartupMessages(library(haven))",
       "Sys.setenv(MTI_OVERLEAF_DIR='')",
     "source('code/01_extract_clean.R')",
-      "write.csv(analysis_data,'data/full_oc.csv',row.names=FALSE)",
+      "write.csv(analysis_data_final,'data/full_oc.csv',row.names=FALSE)",
     "source('code/02_cleaning_yc.R')",
       "write.csv(analysis_data,'data/full_yc.csv',row.names=FALSE)"
   )

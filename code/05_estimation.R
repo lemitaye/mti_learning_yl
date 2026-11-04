@@ -3,7 +3,7 @@
 # Project: Mother Tongue Instruction, Learning and Employment
 # Authors: Teferi Mergo and Lemi Daba
 #
-# Inputs: four analysis CSVs from 01_extract_clean.R and 02_cleaning_yc.R.
+# Inputs: older-cohort RDS and younger-cohort CSV analysis samples.
 # Outputs: fitted models consumed by 06_export_res.R in the SAME R session.
 # Run from the repository root after helpers/_setup.R, or via _master.R.
 #
@@ -16,8 +16,10 @@
 rm(list = ls())
 source("code/helpers/analysis_helpers.R")
 
-aa_sample <- readRDS("data/aa_samp.rds")
-non_aa_sample <- readRDS("data/non_aa_samp.rds")
+aa_sample <- prepare_employment_outcomes(readRDS("data/aa_samp.rds"))
+non_aa_sample <- prepare_employment_outcomes(
+  readRDS("data/non_aa_samp.rds")
+)
 
 # ---- Formula builders: preserve distinct reduced-form and IV controls -------
 reduced_form_controls <- c(
@@ -45,14 +47,15 @@ make_iv_formula <- function(outcome, additional = character()) {
                    "| 0 | (IMTI ~ E_is)"))
 }
 
-# Outcomes retain the legacy numeric model identifiers used by the exporter.
+# Numeric model IDs stay stable for the existing table exporter.
+# The Addis restriction still refers to the FIRST activity slot.
 employment_cognitive_outcomes <- c(
   "wage_employ", "self_employ", "raw_maths", "raw_lang",
-  "hghgrade_final_num", "wage_employII", "self_employII", "std_maths", "std_lang"
+  "hghgrade_final_num", "salary_employ", "self_nonag", "std_maths", "std_lang"
 )
 reduced_form_outcomes <- c(
   "wage_employ", "raw_maths", "raw_lang", "hghgrade_final_num",
-  "wage_employII", "std_maths", "std_lang"
+  "salary_employ", "std_maths", "std_lang"
 )
 
 # ---- Initial first stage: the existing region-clustered exploratory fit -----
@@ -71,7 +74,7 @@ non_aa_sample <- non_aa_sample %>%
 # ---- Addis Ababa reduced forms ----------------------------------------------
 aa_reduced_form_models <- lapply(reduced_form_outcomes, function(outcome) {
   lm(make_reduced_form(outcome, "E_is", "entype_r4"),
-     data = aa_sample, subset = (type_activ != 19))
+     data = aa_sample, subset = (type_activ_1 != 19))
 })
 names(aa_reduced_form_models) <- paste0("rf", seq_along(reduced_form_outcomes), "aa")
 list2env(aa_reduced_form_models, envir = environment())
@@ -95,7 +98,7 @@ list2env(non_amhara_iv_models, envir = environment())
 # The self-employment fit iv2aa was historically omitted for rank problems.
 aa_iv_indices <- c(1, 3:9)
 aa_iv_models <- lapply(employment_cognitive_outcomes[aa_iv_indices], function(outcome) {
-  felm(make_iv_formula(outcome, "entype_r4"), data = aa_sample, subset = (type_activ != 19))
+  felm(make_iv_formula(outcome, "entype_r4"), data = aa_sample, subset = (type_activ_1 != 19))
 })
 names(aa_iv_models) <- paste0("iv", aa_iv_indices, "aa")
 list2env(aa_iv_models, envir = environment())

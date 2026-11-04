@@ -11,15 +11,14 @@ local({
   args <- commandArgs(trailingOnly = TRUE)
   out_file <- if (length(args)) args[[1]] else 'output/tables/tableII_mod.tex'
   dir.create(dirname(out_file), recursive = TRUE, showWarnings = FALSE)
-  dat <- readr::read_csv('data/non_aa_samp.csv', show_col_types = FALSE)
+  dat <- readRDS('data/non_aa_samp.rds')
   dat[] <- lapply(dat, function(x) if (is.character(x)) factor(x) else x)
-  dat <- dat[!is.na(dat$raw_lang) & dat$raw_lang != 0, ]
   controls <- paste(
     'chsex + zbfa + stunting + caredu_r1 + careage_r1 + factor(caresex_r1)',
     '+ hhsize + wi_new + hq_new + cd_new + elecq_new + ownlandhse_r1',
     '+ factor(foodsec_r3)'
   )
-  outcomes <- rep(c('wage_employII', 'wage_employ'), 2)
+  outcomes <- rep(c('salary_employ', 'wage_employ'), 2)
   results <- lapply(seq_along(outcomes), function(i) {
     y <- outcomes[[i]]
     sample <- if (i > 2) dat[dat$region != 'Amhara', ] else dat
@@ -110,7 +109,8 @@ local({
     paste0('\\item \\textit{Notes:} Controls are child sex, BMI-for-age z-score, stunting, ',
       'caregiver education, age and sex, household size, wealth, housing-quality and ',
       'consumer-durables indices, electricity, land ownership, and food-security categories. ',
-      'Each first stage uses the exact corresponding second-stage sample.'),
+      'Outcomes use any of the four R5 activity slots: salary code 13; ',
+      'wage codes 12 or 19. Each first stage uses its second-stage sample.'),
     paste0('\\item Panels A--B retain conventional/HC1 inference for comparison. ',
       'First-stage $F$ tests the excluded instrument conditional on controls. Partial $R^2$ ',
       'measures its incremental explanatory power. One instrument identifies one endogenous regressor; ',
@@ -118,11 +118,11 @@ local({
     paste0('\\item Panel C: region-clustered CR2 with coefficient-specific Satterthwaite d.f.; ',
       'Wald inference also requires adequate identification. AR tests $H_0:\\beta_{MTI}=0$. Sign-flip AR residualizes the ',
       'instrument on controls within each region and enumerates all Rademacher patterns. ',
-      'It discards between-region variation; Tigray has no residual instrument variation. ',
-      'With only three/two informative regions, minimum two-sided $p$-values are .250/.500. ',
+      'It discards between-region variation. The number of informative regions ',
+      'and sign patterns determines the coarse resolution of its p-values. ',
       'Independent regions, conditional instrument validity and approximately symmetric cluster ',
       'scores are required; enumeration is not an exact finite-sample guarantee. ',
-      'No Panel C test rejects at 5\\%; salary significance is not robust to clustering.'),
+      'Interpret conventional stars alongside the regional diagnostics.'),
     '\\item Conventional standard errors are in parentheses. *** Significant at 1\\%, ** at 5\\%, * at 10\\%.',
     '\\end{tablenotes}', '\\end{threeparttable}', '\\end{table}'
   )
