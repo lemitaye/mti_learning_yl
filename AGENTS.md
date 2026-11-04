@@ -799,3 +799,25 @@ Independent raw-record and24draw AER bootstrap checks pass; shared model
 specifications agree. Updated Table1, R5Table2, pooled comparison and pooled
 robustness are mirrored into the revision project. The three-page preview
 was compiled and visually checked. The R5 source scripts were not changed.
+
+
+## Employment indicators and exclusive Table 1 display (2026-11-04)
+
+13_pooled_summary_statistics.R now adds farm self-employment, farm wage,
+nonfarm self-employment, combined self-employment, inactive/no-recorded-work
+and multiple-category indicators to Table 1. The ANY-activity R5 indicators
+are not mutually exclusive:143score-gated R5 observations have multiple
+categories. Combined self-employment also overlaps its component indicators.
+These original indicators and all regression outcomes remain unchanged.
+
+A Table 1 continuation, tableI_employment_partition.tex, groups each record
+once: five single-category groups, multiple categories, other recorded work,
+interviewed/no recorded activity and R5non-interview. Both regional samples'
+shares sum to1 exactly before rounding, verified per record and per group.
+Inactive/no reported work is explicitly distinguished from nonresponse in
+the exclusive partition. R7's lack of measured overlaps is due to MAIN-only
+coverage, not evidence that secondary employment does not exist.
+
+The continuation is mirrored to Overleaf and included after tableI_pooled
+with caption's ContinuedFloat. Two-page preview and aggregate checks are in
+temp/pooled_summary_statistics/. All existing data and regressions preserved.

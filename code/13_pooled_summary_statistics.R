@@ -30,12 +30,67 @@ sample <- sample |>
     amhara = region == "Amhara", oromia = region == "Oromia",
     snnp = region == "SNNP", tigray = region == "Tigray"
   )
+# Any-activity indicators can overlap across different R5 jobs.
+employment_variables <- c(
+  "self_agri", "wage_agri", "self_nonag", "wage_employ", "salary_employ"
+)
+sample <- sample |>
+  mutate(
+    employment_categories = rowSums(pick(all_of(employment_variables))),
+    inactive_proxy = active == 0,
+    multiple_categories = employment_categories > 1,
+    employment_partition = case_when(
+      round == 5 & r5_interview_observed == 0 ~ "not_interviewed",
+      active == 0 ~ "no_activity",
+      employment_categories > 1 ~ "multiple",
+      employment_categories == 0 ~ "other_work",
+      self_agri == 1 ~ "self_agri_only",
+      wage_agri == 1 ~ "wage_agri_only",
+      self_nonag == 1 ~ "self_nonag_only",
+      wage_employ == 1 ~ "wage_only",
+      salary_employ == 1 ~ "salary_only"
+    )
+  )
+partition_labels <- c(
+  self_agri_only = "Agricultural self-employment only",
+  wage_agri_only = "Agricultural wage work only",
+  self_nonag_only = "Nonfarm self-employment only",
+  wage_only = "Nonfarm wage work only",
+  salary_only = "Salary employment only",
+  multiple = "Multiple employment categories",
+  other_work = "Other recorded work",
+  no_activity = "Interviewed: no reported activity",
+  not_interviewed = "R5 not interviewed"
+)
+stopifnot(!anyNA(sample$employment_partition))
+for (category in names(partition_labels)) {
+  sample[[paste0("exclusive_", category)]] <-
+    sample$employment_partition == category
+}
+partition_columns <- paste0("exclusive_", names(partition_labels))
+stopifnot(all(rowSums(sample[partition_columns]) == 1))
+coverage_audit <- sample |>
+  group_by(round, cohort) |>
+  summarise(
+    observations = n(), multiple_categories = sum(multiple_categories),
+    partition_sum = mean(rowSums(pick(all_of(partition_columns)))),
+    .groups = "drop"
+  )
+write_csv(coverage_audit,
+          file.path(audit_dir, "employment_partition_check.csv"))
+
 labels <- c(
   older = "Older cohort", younger = "Younger cohort", in_r7 = "Round 7",
   male = "Male participant", grade_r5 = "Highest grade completed (R5)",
   raw_maths_r4 = "Maths test score (R4 raw)",
   raw_lang_r4 = "Language test score (R4 raw)",
-  wage_employ = "Wage employed", salary_employ = "Salary employed",
+  wage_employ = "Nonfarm wage employed", salary_employ = "Salary employed",
+  self_agri = "Agricultural self-employed",
+  wage_agri = "Agricultural wage employed",
+  self_nonag = "Nonfarm self-employed",
+  self_employ = "Combined self-employed (farm/nonfarm)",
+  inactive_proxy = "Inactive / no reported activity",
+  multiple_categories = "Multiple employment categories",
   zbfa = "BMI-for-age z-score (R1)", stunted = "Stunted (R1)",
   caregiver_female = "Female caregiver (R1)",
   careage_r1 = "Caregiver age (R1)",
@@ -96,21 +151,18 @@ for (variable_name in names(labels)) {
 lines <- c(lines,
   "\\bottomrule\\end{tabular}",
   "\\begin{tablenotes}\\scriptsize",
-  "\\item Notes: Pooled employment-design sample: R5 older cohort and",
-  "R7 both cohorts, in person only in R7. Older-cohort observations",
-  "retain the nonzero/nonmissing R4 language-score gate in both rounds;",
-  "no such gate is imposed on YC. R5 YC employment is unavailable.",
-  "N is participant-round observations available separately per variable;",
-  "participants may appear twice. SDs are omitted for logical indicators.",
-  "\\item Caregiver and nutrition measures are R1, region/rurality and",
-  "land ownership retain original historic timing. Household resources",
-  "are R3 in R5 rows and current R7 in R7 rows, using original definitions.",
-  "Schooling is frozen R5 attainment and test scores are historical R4",
-  "measures; repeated baseline values are not new R7 learning outcomes.",
-  "Revised salary=13 and wage=12/19: ANY reported activity in R5,",
-  "annual MAIN activity in R7. Secondary job types are unobserved in R7;",
-  "these indicators therefore have only partially comparable coverage.",
-  "R5 absent activity records follow the supplied zero-coding rules.",
+  "\\item Pooled R5 older cohort and R7 both cohorts; in-person R7 only.",
+  "OC retains the historical R4 score gate; YC does not. N is available",
+  "participant-round observations. Logical indicators have no displayed SD.",
+  "\\item Employment indicators can overlap across R5 jobs; combined",
+  "self-employment also overlaps its farm/nonfarm components. Inactive/no",
+  "reported activity includes R5 non-interviews under the supplied coding.",
+  "The continuation reports an exclusive partition whose shares sum to one.",
+  "\\item Salary=13, nonfarm wage=12/19, agricultural self-work=1--4,",
+  "agricultural wage=5--7, nonfarm self-work=8--11. R5 covers ANY reported",
+  "activity, R7 MAIN only; R7 secondary job types are unavailable.",
+  "\\item R1 caregiver/nutrition, R3 geography and R5 schooling/R4 scores",
+  "are historical. Resources are R3 in R5 rows and current R7 in R7 rows.",
   "No regression complete-case restriction is imposed.",
   "\\end{tablenotes}\\end{threeparttable}\\end{table}"
 )
@@ -118,3 +170,60 @@ file <- "output/tables/tableI_pooled.tex"
 writeLines(lines, file)
 mirror_output(file, "tables")
 print(count(sample, round, cohort))
+
+
+# Continue Table 1 with an exhaustive, mutually exclusive display grouping.
+# This does not change any employment dummy used in the regressions.
+partition_stats <- map_dfr(c("Non-Addis", "Addis"), function(group) {
+  d <- sample |> filter(if (group == "Addis") {
+    region == "Addis Ababa"
+  } else region != "Addis Ababa")
+  map_dfr(names(partition_labels), function(category) {
+    x <- d[[paste0("exclusive_", category)]]
+    tibble(group = group, category = category, n = length(x),
+           mean = mean(x))
+  })
+})
+write_csv(partition_stats,
+          file.path(audit_dir, "exclusive_employment_shares.csv"))
+stopifnot(all(abs(tapply(partition_stats$mean, partition_stats$group,
+                        sum) - 1) < 1e-12))
+lines <- c(
+  "% Continuation of pooled Table 1; requires the caption package.",
+  "\\begin{table}[!htbp]\\centering\\ContinuedFloat",
+  "\\caption{Summary statistics (continued): employment groups}",
+  "\\label{tab:employment-partition}",
+  "\\linespread{1}\\selectfont",
+  "\\begin{threeparttable}\\footnotesize",
+  "\\begin{tabular}{lrrrr}\\toprule",
+  row(c("", "\\multicolumn{2}{c}{Non-Addis}",
+        "\\multicolumn{2}{c}{Addis}")),
+  row(c("", "N", "Share", "N", "Share")), "\\midrule"
+)
+for (category_name in names(partition_labels)) {
+  a <- partition_stats |>
+    filter(group == "Non-Addis", category == category_name)
+  b <- partition_stats |>
+    filter(group == "Addis", category == category_name)
+  lines <- c(lines, row(c(partition_labels[[category_name]],
+                         a$n, fmt(a$mean), b$n, fmt(b$mean))))
+}
+lines <- c(lines,
+  "\\midrule", row(c("Sum of shares", "", "1.000", "", "1.000")),
+  "\\bottomrule\\end{tabular}\\begin{tablenotes}\\scriptsize",
+  "\\item Same sample as Table 1. Each observation belongs to one group.",
+  "Only means membership in exactly one of the five employment categories;",
+  "respondents in two or more are assigned to Multiple employment categories.",
+  "Other recorded work means active but outside those five categories.",
+  "R5 non-interviews are shown separately from interviewed participants",
+  "with no reported activity. Rounded category shares may not add exactly.",
+  "\\item R5 categories use any reported activity; R7 uses main activity",
+  "only. The absence of R7 overlaps reflects its limited measurement scope,",
+  "not evidence that R7 respondents had no secondary jobs.",
+  "This display grouping does not alter the regression outcomes.",
+  "\\end{tablenotes}\\end{threeparttable}\\end{table}"
+)
+file <- "output/tables/tableI_employment_partition.tex"
+writeLines(lines, file)
+mirror_output(file, "tables")
+print(coverage_audit)
