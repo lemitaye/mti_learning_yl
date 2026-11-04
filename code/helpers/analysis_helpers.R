@@ -2,7 +2,12 @@
 # Factors retain alphabetical observed levels, matching CSV reloads in the
 # original pipeline. The language-score filter is applied before standardizing.
 read_analysis_sample <- function(path) {
-  read_csv(path, show_col_types = FALSE) %>%
+  sample_data <- if (tolower(tools::file_ext(path)) == "rds") {
+    readRDS(path)
+  } else {
+    read_csv(path, show_col_types = FALSE)
+  }
+  sample_data %>%
     mutate(across(where(is.character), as.factor)) %>%
     filter(raw_lang != 0)
 }

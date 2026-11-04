@@ -16,8 +16,8 @@
 rm(list = ls())
 source("code/helpers/analysis_helpers.R")
 
-aa_sample <- read_analysis_sample("data/aa_samp.csv")
-non_aa_sample <- read_analysis_sample("data/non_aa_samp.csv")
+aa_sample <- readRDS("data/aa_samp.rds")
+non_aa_sample <- readRDS("data/non_aa_samp.rds")
 
 # ---- Formula builders: preserve distinct reduced-form and IV controls -------
 reduced_form_controls <- c(

@@ -279,10 +279,17 @@ analysis_data_final <- analysis_data_3 %>%
 
 # ---- Export Addis and non-Addis analysis samples -----------------------------
 aa_samp <- analysis_data_final %>%
-  filter(region == "Addis Ababa")
+  filter(region == "Addis Ababa") %>%
+  as_tibble()
 
 non_aa_samp <- analysis_data_final %>%
-  filter(region != "Addis Ababa")
+  filter(region != "Addis Ababa") %>%
+  as_tibble()
 
+# RDS preserves column attributes, including existing variable/value labels.
+saveRDS(aa_samp, "data/aa_samp.rds")
+saveRDS(non_aa_samp, "data/non_aa_samp.rds")
+
+# Retain CSV exports for the existing downstream analysis scripts.
 write_csv(aa_samp, "data/aa_samp.csv")
 write_csv(non_aa_samp, "data/non_aa_samp.csv")
