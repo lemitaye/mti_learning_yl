@@ -775,3 +775,11 @@ legacy manuscript tables and the user-modified _master pipeline are unchanged.
 Audit, backups and four-page verified preview:temp/pooled_sample_revision/.
 Validate via code/auxiliary/validate_selected_pooled_sample.R; old validation
 entrypoint now forwards to that check. Bootstrap AER/HC0 checks pass.
+
+
+Table1 and revised Table2 notes were shortened for referee-facing presentation.
+Keep only sample/measurement definitions, essential control and instrument
+information, and SE/significance conventions in the LaTeX notes. Detailed
+construction history, validation, and methodological qualifications remain in
+the temp audit reports and project guidance. Coefficients and samples did not
+change. Preview:temp/shortened_table_notes/preview.pdf (compiled/visually checked).
