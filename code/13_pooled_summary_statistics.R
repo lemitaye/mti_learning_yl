@@ -35,7 +35,7 @@ labels <- c(
   male = "Male participant", grade_r5 = "Highest grade completed (R5)",
   raw_maths_r4 = "Maths test score (R4 raw)",
   raw_lang_r4 = "Language test score (R4 raw)",
-  wage_employ = "Wage employed", wage_employII = "Salary employed",
+  wage_employ = "Wage employed", salary_employ = "Salary employed",
   zbfa = "BMI-for-age z-score (R1)", stunted = "Stunted (R1)",
   caregiver_female = "Female caregiver (R1)",
   careage_r1 = "Caregiver age (R1)",
@@ -107,8 +107,11 @@ lines <- c(lines,
   "are R3 in R5 rows and current R7 in R7 rows, using original definitions.",
   "Schooling is frozen R5 attainment and test scores are historical R4",
   "measures; repeated baseline values are not new R7 learning outcomes.",
-  "Salary is included in wage employment, with different exclusions",
-  "and denominators. No regression complete-case restriction is imposed.",
+  "Revised salary=13 and wage=12/19: ANY reported activity in R5,",
+  "annual MAIN activity in R7. Secondary job types are unobserved in R7;",
+  "these indicators therefore have only partially comparable coverage.",
+  "R5 absent activity records follow the supplied zero-coding rules.",
+  "No regression complete-case restriction is imposed.",
   "\\end{tablenotes}\\end{threeparttable}\\end{table}"
 )
 file <- "output/tables/tableI_pooled.tex"

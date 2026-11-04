@@ -16,13 +16,13 @@ counts <- combined |>
   group_by(round, cohort) |>
   summarise(
     rows = n(),
-    salary_observed = sum(!is.na(wage_employII)),
+    salary_observed = sum(!is.na(salary_employ)),
     wage_observed = sum(!is.na(wage_employ)),
     .groups = "drop"
   )
 write_csv(counts, file.path(audit_dir, "sample_counts.csv"))
 writeLines(c(
-  "Employment extension: shared names and original activity exclusions.",
+  "Revised categories: R5 any activity; R7 main only (partial coverage).",
   "R7 includes every in-person respondent; no phone respondents are added.",
   "R5 inputs are preserved verbatim; R7 current resources use old definitions.",
   "R5 household controls were measured in R3, R7 controls in R7.",

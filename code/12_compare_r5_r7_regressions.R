@@ -15,8 +15,7 @@ input_hash <- tools::md5sum(input_file)
 data <- readRDS(input_file) |>
   mutate(across(where(is.numeric), ~ as.numeric(haven::zap_labels(.x)))) |>
   mutate(across(where(is.character), as.factor)) |>
-  filter(region != "Addis Ababa") |>
-  filter(yc == 1 | (!is.na(raw_lang_r4) & raw_lang_r4 != 0))
+  filter(region != "Addis Ababa")
 
 base_controls <- paste(
   "chsex + zbfa + stunting + caredu_r1 + careage_r1",
@@ -27,7 +26,7 @@ plans <- tribble(
   ~panel, ~description, ~additional,
   "A", "R5 older cohort: replication", "",
   "B", "R5 + R7 both cohorts: exploratory frozen YC exposure",
-  " + round7"
+  " + round7 + cohort_young"
 )
 
 # Fix the complete-case sample before both stages and inference checks.
@@ -39,10 +38,14 @@ for (panel_id in plans$panel) {
   plan <- plans |> filter(panel == panel_id)
   controls <- paste0(base_controls, plan$additional)
   for (column in 1:4) {
-    outcome <- c("wage_employII", "wage_employ")[(column - 1) %% 2 + 1]
+    outcome <- c("salary_employ", "wage_employ")[(column - 1) %% 2 + 1]
     sample <- data
     if (panel_id == "A") {
       sample <- sample |> filter(round == 5, yc == 0)
+    }
+    if (panel_id == "B") {
+      sample <- sample |>
+        filter(yc == 1 | (!is.na(raw_lang_r4) & raw_lang_r4 != 0))
     }
     if (column > 2) sample <- sample |> filter(region != "Amhara")
     variables <- all.vars(as.formula(paste(

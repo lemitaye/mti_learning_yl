@@ -765,3 +765,37 @@ isolated validation artifacts were regenerated; no live/Overleaf outputs
 were overwritten. Existing standalone R7/pooled files retain the previous
 first/main-activity definitions; updating those is a separate harmonization
 step, because renaming would not make the new R5 definitions equivalent.
+
+
+## Revised R5 / R7 partial-coverage harmonization (2026-11-04)
+
+User explicitly chose revised R5 ANY activity vs R7 MAIN activity, because
+R7 records no secondary activity types. Harmonization aligns category codes
+and valid-zero rules only: salary13, wage12/19, self_agri1-4, wage_agri5-7,
+self_nonag8-11, combined self_employ. R7aliases21/22 map to1/4.
+10_build adds new *_employ_r7 and farm/nonfarm fields, retaining prior legacy
+outcomes separately. 11_prepare writes the revised names, labelled tibbles,
+coverage flags, R5 participation flag and R7 secondary-job count. It uses
+current R5 RDS inputs. Retain all2038in-person R7 and4942appended rows.
+R5YC employment remains structurally missing; no phone records are included.
+
+12comparison,13summary and14robustness now use salary_employ/wage_employ
+with new definitions and explicit partial-coverage notes. 07's current R5
+benchmark was refreshed for comparison verification. Pooled fits retain
+cohort controls, with round switched off/on per robustness design. Standard
+SEs/stars, bootstrap/CR2 diagnostics and Overleaf tables are refreshed.
+R5comparison follows current05RDS no-score-gate sample; pooled main models
+retain the OC historical score gate, with its relaxation separately shown.
+
+Material limits:274R7respondents report additional annual jobs without type
+information. User's new R5 rules also code176OC non-interviews as zero;
+that convention is preserved and flagged, not silently corrected. YC MTI
+exposure is still frozen/exploratory. All alternative estimates must state
+these coverage/selection limitations. No current pooled outcome is a full
+R7any-job measure.
+
+Details/backups/validation: temp/r7_outcome_harmonization/findings.txt.
+Independent raw-record and24draw AER bootstrap checks pass; shared model
+specifications agree. Updated Table1, R5Table2, pooled comparison and pooled
+robustness are mirrored into the revision project. The three-page preview
+was compiled and visually checked. The R5 source scripts were not changed.

@@ -296,6 +296,34 @@ for (cohort in c("oc", "yc")) {
       cohort_data[[paste0(outcome, "_", window, "_allrespondents_r7")]] <- y
     }
   }
+  # Revised R5 category definitions, observed on MAIN activity only in R7.
+  # Unlike legacy outcomes above, valid other activities are zero.
+  # Do not interpret main-activity zero as absence of a secondary job.
+  revised_codes <- list(
+    self_agri = 1:4, wage_agri = 5:7, self_nonag = 8:11,
+    wage_employ = c(12, 19), salary_employ = 13
+  )
+  annual_type <- cohort_data$activity_annual_r7
+  for (outcome in names(revised_codes)) {
+    target <- paste0(outcome, "_r7")
+    cohort_data[[target]] <- case_when(
+      annual_type %in% revised_codes[[outcome]] ~ 1,
+      !is.na(annual_type) ~ 0,
+      cohort_data$worked_annual_r7 == 0 ~ 0,
+      TRUE ~ NA_real_
+    )
+    define_variable(
+      target, "Raw typwrk12r7 and annual work screens", "R7",
+      paste("Annual MAIN activity:", outcome,
+            "using revised R5 codes; secondary activities unobserved")
+    )
+  }
+  cohort_data$self_employ_r7 <- pmax(
+    cohort_data$self_agri_r7, cohort_data$self_nonag_r7
+  )
+  cohort_data$outcome_coverage_r7 <- "annual_main_activity_only"
+  cohort_data$secondary_activity_types_observed_r7 <- FALSE
+
   for (variable in c("employer12r7", "employer7r7", "econsec12r7",
     "econsec7r7", "cntrctwk7r7")) {
     values <- setdiff(as_numeric_code(attr(raw[[variable]], "labels")), c(-99,

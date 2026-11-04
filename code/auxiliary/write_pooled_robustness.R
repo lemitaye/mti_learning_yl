@@ -21,9 +21,9 @@ lines <- c(
             "Excl. Amhara", "No score gate")),
   row("", paste0("(", 1:4, ")")), "\\midrule"
 )
-for (outcome in c("wage_employII", "wage_employ")) {
+for (outcome in c("salary_employ", "wage_employ")) {
   s <- stats |> filter(.data$outcome == .env$outcome)
-  title <- if (outcome == "wage_employII") {
+  title <- if (outcome == "salary_employ") {
     "Panel A: Salary employment"
   } else "Panel B: Wage employment"
   lines <- c(lines,
@@ -53,6 +53,9 @@ lines <- c(lines,
   "R4 language-score gate for OC. YC is never subject to that score gate.",
   "Controls use current R7 household resources and original R3 resources",
   "in R5 rows. MTI is frozen at R5; YC exposure remains exploratory.",
+  "Salary=13 and wage=12/19 in ANY reported R5 activity, MAIN only in R7.",
+  "Secondary job types are unobserved in R7: coverage is partial.",
+  "R5 absent activity records follow the supplied zero-coding rules.",
   "\\item Parentheses and stars use conventional inference:",
   "*** $p<0.01$, ** $p<0.05$, * $p<0.10$.",
   "Wild bootstrap follows Wang--Zhang (2024), Algorithm 1 (2SLS),",

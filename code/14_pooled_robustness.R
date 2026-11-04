@@ -7,10 +7,6 @@ source("code/helpers/wild_iv_few_regions.R")
 source("code/helpers/export_paths.R")
 audit_dir <- "temp/pooled_robustness"
 dir.create(audit_dir, recursive = TRUE, showWarnings = FALSE)
-reference_file <- file.path(audit_dir, "diagnostics.csv")
-reference <- if (file.exists(reference_file)) {
-  read.csv(reference_file) |> filter(column == 2)
-} else NULL
 input_file <- "data/r7/r5_r7_appended.rds"
 input_hash <- tools::md5sum(input_file)
 data <- readRDS(input_file) |>
@@ -34,7 +30,7 @@ models <- list()
 bootstrap_draws <- list()
 keys <- list()
 cluster_audit <- list()
-for (outcome in c("wage_employII", "wage_employ")) {
+for (outcome in c("salary_employ", "wage_employ")) {
   for (column in seq_len(nrow(plans))) {
     plan <- plans[column, ]
     sample <- data
@@ -93,13 +89,7 @@ for (outcome in unique(stats$outcome)) {
   stopifnot(identical(keys[[paste0(outcome, "_1")]],
                       keys[[paste0(outcome, "_2")]]))
 }
-# Column 2 retains the previous cohort-plus-round model exactly.
-if (!is.null(reference)) {
-  check <- stats |> filter(column == 2)
-  stopifnot(isTRUE(all.equal(check$iv_beta, reference$iv_beta,
-    tolerance = 1e-9, check.attributes = FALSE)),
-    identical(as.integer(check$n), as.integer(reference$n)))
-}
+# Reference to the old first-activity fits is not meaningful after recoding.
 stopifnot(identical(input_hash, tools::md5sum(input_file)))
 write_csv(stats, file.path(audit_dir, "diagnostics.csv"))
 write_csv(bind_rows(cluster_audit), file.path(audit_dir, "cluster_audit.csv"))
