@@ -30,36 +30,31 @@ sample <- sample |>
     amhara = region == "Amhara", oromia = region == "Oromia",
     snnp = region == "SNNP", tigray = region == "Tigray"
   )
-# Any-activity indicators can overlap across different R5 jobs.
+# Summary display: R5 first-ranked slot; R7 annual main activity.
+# Regression outcomes remain the previously approved any/main indicators.
 employment_variables <- c(
   "self_agri", "wage_agri", "self_nonag", "wage_employ", "salary_employ"
 )
 sample <- sample |>
   mutate(
     employment_categories = rowSums(pick(all_of(employment_variables))),
-    inactive_proxy = active == 0,
-    multiple_categories = employment_categories > 1,
     employment_partition = case_when(
       round == 5 & r5_interview_observed == 0 ~ "not_interviewed",
       active == 0 ~ "no_activity",
-      employment_categories > 1 ~ "multiple",
-      employment_categories == 0 ~ "other_work",
-      self_agri == 1 ~ "self_agri_only",
-      wage_agri == 1 ~ "wage_agri_only",
-      self_nonag == 1 ~ "self_nonag_only",
-      wage_employ == 1 ~ "wage_only",
-      salary_employ == 1 ~ "salary_only"
+      type_activ_1 %in% c(1:4, 8:11) ~ "self_employed",
+      type_activ_1 %in% c(5:7, 12, 19) ~ "wage_employed",
+      type_activ_1 == 13 ~ "salary_employed",
+      type_activ_1 %in% c(15, 20) ~ "other_work",
+      TRUE ~ "activity_unknown"
     )
   )
 partition_labels <- c(
-  self_agri_only = "Agricultural self-employment only",
-  wage_agri_only = "Agricultural wage work only",
-  self_nonag_only = "Nonfarm self-employment only",
-  wage_only = "Nonfarm wage work only",
-  salary_only = "Salary employment only",
-  multiple = "Multiple employment categories",
+  self_employed = "Self-employed (farm/nonfarm)",
+  wage_employed = "Wage employed (farm/nonfarm)",
+  salary_employed = "Salary employed",
   other_work = "Other recorded work",
   no_activity = "Interviewed: no reported activity",
+  activity_unknown = "First activity type unknown",
   not_interviewed = "R5 not interviewed"
 )
 stopifnot(!anyNA(sample$employment_partition))
@@ -72,7 +67,8 @@ stopifnot(all(rowSums(sample[partition_columns]) == 1))
 coverage_audit <- sample |>
   group_by(round, cohort) |>
   summarise(
-    observations = n(), multiple_categories = sum(multiple_categories),
+    observations = n(),
+    multiple_before_ranking = sum(employment_categories > 1),
     partition_sum = mean(rowSums(pick(all_of(partition_columns)))),
     .groups = "drop"
   )
@@ -84,13 +80,13 @@ labels <- c(
   male = "Male participant", grade_r5 = "Highest grade completed (R5)",
   raw_maths_r4 = "Maths test score (R4 raw)",
   raw_lang_r4 = "Language test score (R4 raw)",
-  wage_employ = "Nonfarm wage employed", salary_employ = "Salary employed",
-  self_agri = "Agricultural self-employed",
-  wage_agri = "Agricultural wage employed",
-  self_nonag = "Nonfarm self-employed",
-  self_employ = "Combined self-employed (farm/nonfarm)",
-  inactive_proxy = "Inactive / no reported activity",
-  multiple_categories = "Multiple employment categories",
+  exclusive_wage_employed = "Wage employed (farm/nonfarm)",
+  exclusive_salary_employed = "Salary employed",
+  exclusive_self_employed = "Self-employed (farm/nonfarm)",
+  exclusive_other_work = "Other recorded work",
+  exclusive_no_activity = "Interviewed: no reported activity",
+  exclusive_activity_unknown = "First activity type unknown",
+  exclusive_not_interviewed = "R5 not interviewed",
   zbfa = "BMI-for-age z-score (R1)", stunted = "Stunted (R1)",
   caregiver_female = "Female caregiver (R1)",
   careage_r1 = "Caregiver age (R1)",
@@ -154,13 +150,14 @@ lines <- c(lines,
   "\\item Pooled R5 older cohort and R7 both cohorts; in-person R7 only.",
   "OC retains the historical R4 score gate; YC does not. N is available",
   "participant-round observations. Logical indicators have no displayed SD.",
-  "\\item Employment indicators can overlap across R5 jobs; combined",
-  "self-employment also overlaps its farm/nonfarm components. Inactive/no",
-  "reported activity includes R5 non-interviews under the supplied coding.",
-  "The continuation reports an exclusive partition whose shares sum to one.",
-  "\\item Salary=13, nonfarm wage=12/19, agricultural self-work=1--4,",
-  "agricultural wage=5--7, nonfarm self-work=8--11. R5 covers ANY reported",
-  "activity, R7 MAIN only; R7 secondary job types are unavailable.",
+  "\\item Employment shares use the first-ranked R5 activity",
+  "and R7 annual main activity. For R5 multiple jobs, only the first slot",
+  "determines the displayed category. Wage combines codes5--7/12/19;",
+  "self-employment combines1--4/8--11; salary is13. Other work is15/20.",
+  "No activity, unknown first type and non-interviews remain separate.",
+  "The exhaustive display shares sum to one before rounding.",
+  "\\item These summary shares do not redefine regression outcomes,",
+  "which retain R5 ANY-activity and R7 MAIN-activity coverage.",
   "\\item R1 caregiver/nutrition, R3 geography and R5 schooling/R4 scores",
   "are historical. Resources are R3 in R5 rows and current R7 in R7 rows.",
   "No regression complete-case restriction is imposed.",
@@ -212,14 +209,13 @@ lines <- c(lines,
   "\\midrule", row(c("Sum of shares", "", "1.000", "", "1.000")),
   "\\bottomrule\\end{tabular}\\begin{tablenotes}\\scriptsize",
   "\\item Same sample as Table 1. Each observation belongs to one group.",
-  "Only means membership in exactly one of the five employment categories;",
-  "respondents in two or more are assigned to Multiple employment categories.",
-  "Other recorded work means active but outside those five categories.",
-  "R5 non-interviews are shown separately from interviewed participants",
-  "with no reported activity. Rounded category shares may not add exactly.",
-  "\\item R5 categories use any reported activity; R7 uses main activity",
-  "only. The absence of R7 overlaps reflects its limited measurement scope,",
-  "not evidence that R7 respondents had no secondary jobs.",
+  "R5 uses its first-ranked activity even when later activities differ.",
+  "R7 classification uses annual main activity. Wage combines agricultural",
+  "and nonfarm wage work; self-employment combines farm and nonfarm work.",
+  "Other recorded work uses codes15/20. Active respondents with an unknown",
+  "first activity type are kept in a separate unknown group, not re-ranked.",
+  "R5 non-interviews are separate from interviewed/no-reported-activity.",
+  "Shares may differ slightly from one when individually rounded.",
   "This display grouping does not alter the regression outcomes.",
   "\\end{tablenotes}\\end{threeparttable}\\end{table}"
 )

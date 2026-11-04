@@ -821,3 +821,17 @@ coverage, not evidence that secondary employment does not exist.
 The continuation is mirrored to Overleaf and included after tableI_pooled
 with caption's ContinuedFloat. Two-page preview and aggregate checks are in
 temp/pooled_summary_statistics/. All existing data and regressions preserved.
+
+
+## First-ranked summary employment groups (2026-11-04)
+
+Per user instruction, summary employment groups now use type_activ_1 for R5
+and the annual main activity for R7. Multiple R5 activities are resolved by
+first-slot priority, not by any-job membership. The summary combines farm
+and nonfarm wage (codes5-7/12/19) and combines farm/nonfarm self-employment
+(codes1-4/8-11). Salary remains13. Separate farm/nonfarm and multiple-category
+rows have been removed. Unknown first types are not replaced by later slots;
+other work, no recorded activity and R5 non-interviews remain distinct.
+Both main Table1 and its continuation use these same exclusive display
+indicators; shares sum to1. Regression any/main outcomes remain unchanged.
+Code:13_pooled_summary_statistics.R. Overleaf summary tables refreshed.
