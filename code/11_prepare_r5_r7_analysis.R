@@ -7,6 +7,7 @@ library(tidyverse)
 library(haven)
 source("code/helpers/analysis_helpers.R")
 source("code/helpers/raw_data_catalog.R")
+source("code/helpers/pooled_employment_sample.R")
 
 # 1. Inputs and shared employment schema -----------------------------------
 output_dir <- "data/r7"
@@ -210,9 +211,24 @@ r5_analysis <- apply_labels(r5_analysis)
 r7_analysis <- apply_labels(r7_analysis)
 combined <- bind_rows(r5_analysis, r7_analysis)
 
-# 5. Validate and export: retain all rows; model deletion remains explicit ---
+# 5. Audit preservation before applying approved sample exclusions.
 source("code/auxiliary/audit_r5_r7_append.R", local = TRUE)
+combined_full <- classify_pooled_employment(combined)
+write_csv(count(combined_full, round, cohort, employment_group,
+                pooled_sample_eligible),
+          file.path(audit_dir, "employment_sample_exclusions.csv"))
+saveRDS(combined_full,
+        file.path(output_dir, "r5_r7_appended_full.rds"))
 
+# User choice: use first-ranked/main activity for ALL employment outcomes.
+combined <- combined_full |>
+  filter(pooled_sample_eligible) |>
+  prepare_pooled_outcomes(basis = "ranked")
+r5_analysis <- combined |> filter(round == 5)
+r7_analysis <- combined |> filter(round == 7)
+stopifnot(!anyDuplicated(paste(combined$child_id, combined$round)))
+write_csv(count(combined, round, cohort, employment_group),
+          file.path(audit_dir, "selected_sample_counts.csv"))
 for (name in c("r5_analysis", "r7_analysis", "combined")) {
   filename <- switch(name,
     r5_analysis = "r5_append_ready",
@@ -222,3 +238,19 @@ for (name in c("r5_analysis", "r7_analysis", "combined")) {
   saveRDS(get(name), file.path(output_dir, paste0(filename, ".rds")))
   write_csv(get(name), file.path(output_dir, paste0(filename, ".csv")))
 }
+write_csv(combined |>
+  group_by(round, cohort) |>
+  summarise(rows = n(), salary_observed = sum(!is.na(salary_employ)),
+            wage_observed = sum(!is.na(wage_employ)), .groups = "drop"),
+  file.path(audit_dir, "sample_counts.csv"))
+writeLines(c(
+  "Selected sample: first-ranked R5 / annual main R7 activity.",
+  "Exclude R5 non-interviews, unknown first types and other work.",
+  "R5 YC has no employment outcome and is not in this analysis sample.",
+  "Full pre-selection file: data/r7/r5_r7_appended_full.rds.",
+  "Combined wage codes5-7/12/19; salary13; self-work1-4/8-11.",
+  "Outcome dummies and inactivity are mutually exclusive and exhaustive.",
+  "Historical score gates and complete-case filters are applied downstream.",
+  "YC exposure remains frozen at R5 and exploratory."
+), file.path(audit_dir, "README.txt"))
+print(count(combined, round, cohort))

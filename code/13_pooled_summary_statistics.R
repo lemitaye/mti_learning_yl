@@ -4,6 +4,7 @@
 
 library(tidyverse)
 source("code/helpers/export_paths.R")
+source("code/helpers/pooled_employment_sample.R")
 audit_dir <- "temp/pooled_summary_statistics"
 dir.create(audit_dir, recursive = TRUE, showWarnings = FALSE)
 
@@ -30,32 +31,16 @@ sample <- sample |>
     amhara = region == "Amhara", oromia = region == "Oromia",
     snnp = region == "SNNP", tigray = region == "Tigray"
   )
-# Summary display: R5 first-ranked slot; R7 annual main activity.
-# Regression outcomes remain the previously approved any/main indicators.
-employment_variables <- c(
-  "self_agri", "wage_agri", "self_nonag", "wage_employ", "salary_employ"
-)
+# Same exclusions as the pooled regressions; first-ranked/main display.
 sample <- sample |>
-  mutate(
-    employment_categories = rowSums(pick(all_of(employment_variables))),
-    employment_partition = case_when(
-      round == 5 & r5_interview_observed == 0 ~ "not_interviewed",
-      active == 0 ~ "no_activity",
-      type_activ_1 %in% c(1:4, 8:11) ~ "self_employed",
-      type_activ_1 %in% c(5:7, 12, 19) ~ "wage_employed",
-      type_activ_1 == 13 ~ "salary_employed",
-      type_activ_1 %in% c(15, 20) ~ "other_work",
-      TRUE ~ "activity_unknown"
-    )
-  )
+  classify_pooled_employment() |>
+  filter(pooled_sample_eligible) |>
+  mutate(employment_partition = employment_group)
 partition_labels <- c(
   self_employed = "Self-employed (farm/nonfarm)",
   wage_employed = "Wage employed (farm/nonfarm)",
   salary_employed = "Salary employed",
-  other_work = "Other recorded work",
-  no_activity = "Interviewed: no reported activity",
-  activity_unknown = "First activity type unknown",
-  not_interviewed = "R5 not interviewed"
+  no_activity = "Inactive / no reported activity"
 )
 stopifnot(!anyNA(sample$employment_partition))
 for (category in names(partition_labels)) {
@@ -68,7 +53,7 @@ coverage_audit <- sample |>
   group_by(round, cohort) |>
   summarise(
     observations = n(),
-    multiple_before_ranking = sum(employment_categories > 1),
+
     partition_sum = mean(rowSums(pick(all_of(partition_columns)))),
     .groups = "drop"
   )
@@ -83,10 +68,7 @@ labels <- c(
   exclusive_wage_employed = "Wage employed (farm/nonfarm)",
   exclusive_salary_employed = "Salary employed",
   exclusive_self_employed = "Self-employed (farm/nonfarm)",
-  exclusive_other_work = "Other recorded work",
-  exclusive_no_activity = "Interviewed: no reported activity",
-  exclusive_activity_unknown = "First activity type unknown",
-  exclusive_not_interviewed = "R5 not interviewed",
+  exclusive_no_activity = "Inactive / no reported activity",
   zbfa = "BMI-for-age z-score (R1)", stunted = "Stunted (R1)",
   caregiver_female = "Female caregiver (R1)",
   careage_r1 = "Caregiver age (R1)",
@@ -154,10 +136,11 @@ lines <- c(lines,
   "and R7 annual main activity. For R5 multiple jobs, only the first slot",
   "determines the displayed category. Wage combines codes5--7/12/19;",
   "self-employment combines1--4/8--11; salary is13. Other work is15/20.",
-  "No activity, unknown first type and non-interviews remain separate.",
+  "R5 non-interviews, unknown first types and other work are excluded.",
   "The exhaustive display shares sum to one before rounding.",
-  "\\item These summary shares do not redefine regression outcomes,",
-  "which retain R5 ANY-activity and R7 MAIN-activity coverage.",
+  "\\item These employment groups also define the regression outcomes,",
+  "which now use the same R5 first-ranked / R7 main activity classification",
+  "and sample exclusions, with combined farm/nonfarm wage (5--7/12/19).",
   "\\item R1 caregiver/nutrition, R3 geography and R5 schooling/R4 scores",
   "are historical. Resources are R3 in R5 rows and current R7 in R7 rows.",
   "No regression complete-case restriction is imposed.",
@@ -212,11 +195,9 @@ lines <- c(lines,
   "R5 uses its first-ranked activity even when later activities differ.",
   "R7 classification uses annual main activity. Wage combines agricultural",
   "and nonfarm wage work; self-employment combines farm and nonfarm work.",
-  "Other recorded work uses codes15/20. Active respondents with an unknown",
-  "first activity type are kept in a separate unknown group, not re-ranked.",
-  "R5 non-interviews are separate from interviewed/no-reported-activity.",
+  "Other work (15/20), unknown first types and R5 non-interviews are excluded.",
   "Shares may differ slightly from one when individually rounded.",
-  "This display grouping does not alter the regression outcomes.",
+  "This grouping also defines the revised regression employment outcomes.",
   "\\end{tablenotes}\\end{threeparttable}\\end{table}"
 )
 file <- "output/tables/tableI_employment_partition.tex"

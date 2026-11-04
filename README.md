@@ -750,3 +750,28 @@ other work, no recorded activity and R5 non-interviews remain distinct.
 Both main Table1 and its continuation use these same exclusive display
 indicators; shares sum to1. Regression any/main outcomes remain unchanged.
 Code:13_pooled_summary_statistics.R. Overleaf summary tables refreshed.
+
+
+## Selected pooled first-ranked/main sample (2026-11-04)
+
+User confirmed all regression employment indicators should match the summary:
+R5 first-ranked slot, R7 annual main activity. Salary13, combined farm/nonfarm
+wage5-7/12/19, combined self-work1-4/8-11, plus inactive. They sum to1 per row.
+The common helper pooled_employment_sample.R applies the approved exclusion
+of R5 non-interviews, unknown first types and other work. No secondary job
+can override slot1. This supersedes earlier ANY-activity pooled models.
+
+11_prepare saves selected append-ready files and the full pre-selection file
+r5_r7_appended_full.rds. 222 newly rejected records plus1915 R5YC unavailable
+outcomes are excluded, leaving2805 (789R5OC/621R7OC/1395R7YC). Source R5 files
+and the full2038R7 in-person master are preserved. Original indicators remain
+in diagnostic columns. Do not feed the full source file into selected models.
+
+Updated13summary and12/14regressions use the same exclusions. Summary after
+score gate:2301non-Addis/376Addis. Pooled baseline N2025; no-Amhara1759;
+no-score-gate2094. Cohort control throughout; round off/on retained. Revised
+R5 comparison is re-estimation, not historical Table2 replication. Other
+legacy manuscript tables and the user-modified _master pipeline are unchanged.
+Audit, backups and four-page verified preview:temp/pooled_sample_revision/.
+Validate via code/auxiliary/validate_selected_pooled_sample.R; old validation
+entrypoint now forwards to that check. Bootstrap AER/HC0 checks pass.
