@@ -620,3 +620,30 @@ All 120 unknowns have legacy R5 inround=0 and no raw activity record.
 All R7 missing employment outcomes are deliberate activity exclusions.
 These means use outcome-specific comparison groups, not all respondents.
 No recode or regression was changed by the audit.
+
+
+Complete source-file codebooks: run
+`Rscript code/auxiliary/create_raw_source_codebooks.R` and open
+`temp/codebooks/raw_sources/index.html`. Nineteen HTML codebooks cover all
+7,571 source variables, including 95 entirely missing fields. Sources include
+both constructed releases, raw outcome/cognitive/household files for both
+cohorts, and school-survey inputs. Supplementary phone-exclusion, electricity
+reconstruction and school-context inputs are marked explicitly. Each codebook
+retains source variable/value labels and missingness. Combined/per-file
+metadata CSVs and checksummed source manifests accompany the HTML index.
+No participant records or string response values are exported. Scope is all
+Stata inputs to the current local construction, plus marked validation/context
+sources; provider-internal upstream constructed-data inputs and R6 are outside
+this collection. Coverage and all index links were verified.
+
+
+ACTIDR5 clarification: `code/auxiliary/investigate_actidr5.R` and findings
+under `temp/actidr5_investigation/`. Questionnaire PDF p36 orders three paid
+or unpaid activity slots by importance in time spent, but separately selects
+the main activity in Q10 using CAPI time. Raw ACTIDR5=4 has three records
+outside the three-slot questionnaire; provenance is undocumented. Dictionary
+PDF p89 calls ACTIDR5 Paid Activities without numeric value definitions.
+ACTMSTR5 in olderchild (dictionary p48) stores selected activity-type codes;
+48/641 paired values differ from ACTR5 at ACTIDR5=1. This qualifies earlier
+statements equating first-listed R5 activity with final main activity. Existing
+outcome definitions and results remain unchanged pending a separate audit.
