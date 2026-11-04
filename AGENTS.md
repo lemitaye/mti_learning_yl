@@ -693,3 +693,15 @@ Column 1 omits the round dummy; columns 2--4 include it. Columns 1 and 2 use
 identical observations. Column 3 excludes Amhara, and column 4 relaxes OC's
 historical score gate. All bootstrap/CR2 diagnostics have been re-estimated.
 The previous cohort-plus-round specification (column 2) is reproduced.
+
+
+Employment missingness audit: run
+`Rscript code/auxiliary/audit_employment_missingness.R`.
+Findings and aggregate counts are in `temp/employment_missingness/`.
+Table 1 missing outcomes are fully attributed to legacy activity exclusions
+and R5 nonresponse: non-Addis wage/salary 1,127/548 missing, including 92
+nonrespondents each; Addis 89/80 missing, including 28 nonrespondents each.
+All 120 unknowns have legacy R5 inround=0 and no raw activity record.
+All R7 missing employment outcomes are deliberate activity exclusions.
+These means use outcome-specific comparison groups, not all respondents.
+No recode or regression was changed by the audit.
