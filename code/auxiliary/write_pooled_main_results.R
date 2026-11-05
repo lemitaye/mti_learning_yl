@@ -1,37 +1,51 @@
-# Run after scripts 12 and 14 to combine their matching Panel B estimates.
+# Fit and export the pooled-only results using lean complete cases.
 library(tidyverse)
 source("code/helpers/export_paths.R")
 
-main_dir <- "temp/r5_r7_regression_comparison"
-wild_dir <- "temp/pooled_robustness"
-main <- read_csv(file.path(main_dir, "diagnostics.csv"), show_col_types = FALSE) |>
-  filter(panel == "B") |>
-  arrange(column)
-wild <- read_csv(file.path(wild_dir, "diagnostics.csv"), show_col_types = FALSE) |>
-  filter(round_dummy)
+source("code/helpers/wild_iv_few_regions.R")
 
-# Match the exact estimation rows and model results before using bootstrap SEs.
-main_keys <- readRDS(file.path(main_dir, "estimation_keys.rds"))
-wild_keys <- readRDS(file.path(wild_dir, "estimation_keys.rds"))
-stats <- main |>
-  left_join(
-    wild |> select(outcome, excluding_Amhara = exclude_amhara,
-                   wild_column = column, wild_boot_se, wild_boot_p,
-                   wild_beta = iv_beta, wild_F = first_stage_F, wild_n = n),
-    by = c("outcome", "excluding_Amhara"),
-    relationship = "one-to-one"
-  )
-stopifnot(
-  nrow(stats) == 4L, !anyNA(stats$wild_boot_se),
-  all(stats$n == stats$wild_n),
-  isTRUE(all.equal(stats$iv_beta, stats$wild_beta)),
-  isTRUE(all.equal(stats$first_stage_F, stats$wild_F))
+terms <- c(
+  "chsex", "stunting", "caredu_r1", "hhsize", "wi_new",
+  "round7", "cohort_young"
 )
-for (i in seq_len(nrow(stats))) {
-  a <- main_keys[[paste0("B_", stats$column[i])]]
-  b <- wild_keys[[paste(stats$outcome[i], stats$wild_column[i], sep = "_")]]
-  stopifnot(identical(a, select(b, all_of(names(a)))))
+outcomes <- c("salary_employ", "wage_employ")
+required <- c(terms, outcomes, "IMTI", "E_is", "region", "child_id")
+controls <- paste(terms, collapse = " + ")
+
+sample <- readRDS("data/r7/r5_r7_appended.rds") |>
+  mutate(across(where(is.numeric), ~ as.numeric(haven::zap_labels(.x)))) |>
+  filter(
+    region != "Addis Ababa", round == 7 | yc == 0,
+    yc == 1 | (!is.na(raw_lang_r4) & raw_lang_r4 != 0)
+  ) |>
+  drop_na(all_of(required))
+stopifnot(!anyDuplicated(sample[c("child_id", "round")]))
+
+fit_group <- function(data) {
+  first_stage <- lm(reformulate(c("E_is", terms), "IMTI"), data = data)
+  fs <- coef(summary(first_stage))["E_is", ]
+  stopifnot(nobs(first_stage) == nrow(data))
+
+  map_dfr(outcomes, function(outcome) {
+    model <- lfe::felm(as.formula(paste(
+      outcome, "~", controls, "| 0 | (IMTI ~ E_is)"
+    )), data = data)
+    stopifnot(model$N == nrow(data))
+    iv <- tail(summary(model)$coefficients, 1)[1, ]
+    wild <- wild_iv_few_regions(data, outcome, controls, unname(iv[1]))
+    bind_cols(
+      tibble(
+        first_stage_beta = unname(fs[1]),
+        first_stage_se = unname(fs[2]),
+        first_stage_F = unname(fs[3]^2),
+        iv_beta = unname(iv[1]), iv_se = unname(iv[2]),
+        iv_p = unname(iv[4]), n = nrow(data)
+      ),
+      wild$stats
+    )
+  })
 }
+stats <- bind_rows(fit_group(sample), fit_group(filter(sample, region != "Amhara")))
 
 fmt <- function(x, digits = 3) formatC(x, format = "f", digits = digits)
 ending <- strrep(intToUtf8(92), 2)
@@ -47,7 +61,6 @@ stars <- case_when(
   stats$iv_p < .10 ~ "$^{*}$",
   TRUE ~ ""
 )
-first_stage_se <- abs(stats$first_stage_beta) / sqrt(stats$first_stage_F)
 
 file <- "output/tables/table_pooled_main_results.tex"
 writeLines(c(
@@ -62,22 +75,22 @@ writeLines(c(
   "\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}",
   row("", rep(c("Salary", "Wage"), 2)),
   "\\midrule",
-  heading("Panel A: First stage (MTI exposure)"),
-  row("Predicted MTI ($E_{is}$)", fmt(stats$first_stage_beta)),
-  row("", paste0("(", fmt(first_stage_se), ")")),
-  row("Excluded-instrument $F$", fmt(stats$first_stage_F, 2)),
-  "\\midrule",
-  heading("Panel B: Second stage (employment)"),
+  heading("Panel A: 2SLS (employment)"),
   row("$MTIuse$", paste0(fmt(stats$iv_beta), stars)),
   row("", paste0("(", fmt(stats$iv_se), ")")),
   row("Wild bootstrap SE", fmt(stats$wild_boot_se)),
   row("Wild bootstrap $p$", fmt(stats$wild_boot_p)),
+  "\\midrule",
+  heading("Panel B: First stage (MTI exposure)"),
+  row("Predicted MTI ($E_{is}$)", fmt(stats$first_stage_beta)),
+  row("", paste0("(", fmt(stats$first_stage_se), ")")),
+  row("Excluded-instrument $F$", fmt(stats$first_stage_F, 2)),
   row("Observations", stats$n),
   "\\bottomrule\\end{tabular}",
   "\\begin{tablenotes}\\footnotesize",
-  "\\item The fixed non-Addis sample pools the R5 older cohort and both",
-  "cohorts interviewed in person in R7. Both stages include baseline-reduced",
-  "controls and round and cohort indicators. First-stage estimates are repeated",
+  "\\item The lean complete-case non-Addis sample pools the R5 older cohort and both",
+  "cohorts interviewed in person in R7. Both stages control for sex, R1 stunting",
+  "and caregiver education, household size, wealth, round, and cohort. First-stage estimates are repeated",
   "because salary and wage models use the same observations within each group.",
   "Parentheses show conventional SEs. Stars use conventional inference",
   "($^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$). Second-stage wild bootstrap",
