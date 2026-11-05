@@ -206,7 +206,6 @@ Young-Lives---Collaboration/
 # macOS Finder metadata
 .DS_Store
 # Raw Young Lives inputs: large, read-only, redistributed separately (see README)
-rawdata/
 other/referee_comment_Applied_Econ/Review Report.pdf
 other/referee_comment_Applied_Econ/Review_ Article Applied Economics.pdf
 
@@ -218,7 +217,6 @@ other/referee_comment_Applied_Econ/Review_ Article Applied Economics.pdf
 temp/results_viewer/main.synctex(busy)
 
 # Separate participant-level R7 derived files (licensed survey data).
-/data/r7/
 /temp
 
 # Local audits, codebooks and backups moved from output/.
@@ -238,4 +236,7 @@ temp/results_viewer/main.synctex(busy)
 /temp/raw_data_update_audit/
 /temp/script_organization_audit/
 /temp/r7_cross_section_build/
-/data
+
+# Local research inputs and derived data.
+/data/
+/rawdata/

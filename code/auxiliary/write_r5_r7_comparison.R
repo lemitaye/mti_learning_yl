@@ -27,7 +27,7 @@ for (panel_id in c("A", "B")) {
   s <- stats |> filter(panel == panel_id)
   title <- switch(panel_id,
     A = "Round 5: older cohort",
-    B = "Rounds 5 and 7: both cohorts (exploratory)"
+    B = "Rounds 5 and 7: both cohorts"
   )
   lines <- c(lines,
     paste0("\\multicolumn{5}{l}{\\textbf{Panel ", display_panel,
