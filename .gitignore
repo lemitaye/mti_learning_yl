@@ -240,3 +240,7 @@ temp/results_viewer/main.synctex(busy)
 # Local research inputs and derived data.
 /data/
 /rawdata/
+data/aa_samp.csv
+data/non_aa_samp.csv
+rawdata/yl_r5/UKDA-8357-stata/mrdoc/pdf/8357_r5_ethiopia_data_dictionaries.pdf
+rawdata/yl_r5/UKDA-8357-stata/mrdoc/pdf/8357_r5_ethiopia_questionnaires.pdf

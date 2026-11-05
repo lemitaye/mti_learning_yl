@@ -69,14 +69,11 @@ labels <- c(
   exclusive_salary_employed = "Salary employed",
   exclusive_self_employed = "Self-employed (farm/nonfarm)",
   exclusive_no_activity = "Inactive / no reported activity",
-  zbfa = "BMI-for-age z-score (R1)", stunted = "Stunted (R1)",
-  caregiver_female = "Female caregiver (R1)",
-  careage_r1 = "Caregiver age (R1)",
+  stunted = "Stunted (R1)",
   caredu_r1 = "Caregiver highest grade (R1)",
   hhsize = "Household size", wi_new = "Wealth index",
   hq_new = "Housing quality index", cd_new = "Consumer durables index",
   elecq_new = "Access to electricity",
-  ownlandhse_r1 = "Owns land under house (R1)",
   rural = "Rural residence (R3)", amhara = "Amhara", oromia = "Oromia",
   snnp = "SNNP", tigray = "Tigray"
 )

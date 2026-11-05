@@ -18,9 +18,8 @@ data <- readRDS(input_file) |>
   filter(region != "Addis Ababa")
 
 base_controls <- paste(
-  "chsex + zbfa + stunting + caredu_r1 + careage_r1",
-  "+ factor(caresex_r1) + hhsize + wi_new + hq_new + cd_new",
-  "+ elecq_new + ownlandhse_r1 + factor(foodsec_r3)"
+  "chsex + stunting + caredu_r1 + hhsize + wi_new",
+  "+ hq_new + cd_new + elecq_new + factor(foodsec_r3)"
 )
 plans <- tribble(
   ~panel, ~description, ~additional,
