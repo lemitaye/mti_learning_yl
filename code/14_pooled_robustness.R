@@ -11,7 +11,7 @@ input_file <- "data/r7/r5_r7_appended.rds"
 input_hash <- tools::md5sum(input_file)
 source("code/helpers/fixed_employment_sample.R")
 data <- fixed_employment_sample() |> filter(region != "Addis Ababa")
-base_controls <- paste(c(baseline_reduced_terms, "cohort_young"), collapse = " + ")
+base_controls <- paste(c(lean_terms, "cohort_young"), collapse = " + ")
 plans <- tribble(
   ~specification, ~round_dummy, ~exclude_amhara,
   "No round dummy", FALSE, FALSE,

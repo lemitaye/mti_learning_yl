@@ -14,7 +14,7 @@ input_hash <- tools::md5sum(input_file)
 source("code/helpers/fixed_employment_sample.R")
 
 data <- fixed_employment_sample() |> filter(region != "Addis Ababa")
-base_controls <- paste(baseline_reduced_terms, collapse = " + ")
+base_controls <- paste(lean_terms, collapse = " + ")
 plans <- tribble(
   ~panel, ~description, ~additional,
   "A", "R5 older cohort: replication", "",

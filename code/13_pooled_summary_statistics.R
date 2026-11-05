@@ -1,5 +1,5 @@
 # Table 1 for the pooled employment design: R5 OC and R7 both cohorts.
-# Use the fixed baseline-reduced estimation sample.
+# Use the fixed lean estimation sample.
 # R5 YC employment is structurally missing and is excluded from this design.
 
 library(tidyverse)
@@ -72,8 +72,6 @@ labels <- c(
   stunted = "Stunted (R1)",
   caredu_r1 = "Caregiver highest grade (R1)",
   hhsize = "Household size", wi_new = "Wealth index",
-  hq_new = "Housing quality index", cd_new = "Consumer durables index",
-  elecq_new = "Access to electricity",
   rural = "Rural residence (R3)", amhara = "Amhara", oromia = "Oromia",
   snnp = "SNNP", tigray = "Tigray"
 )
@@ -128,7 +126,7 @@ lines <- c(lines,
   "\\begin{tablenotes}\\scriptsize",
   "\\item Notes: R5 older cohort and R7 both cohorts; R7 in-person",
   "interviews only. Older-cohort observations require an observed, nonzero",
-  "R4 language score. The sample is complete for the baseline-reduced model.",
+  "R4 language score. The sample is complete for the lean model.",
   "N counts available observations for each descriptive measure;",
   "blank SDs indicate variables reported as proportions.",
   "\\item R1--R5 measurements are identified in row labels. Household",

@@ -7,16 +7,17 @@ source("code/helpers/export_paths.R")
 
 source("code/helpers/fixed_employment_sample.R")
 baseline_reduced <- c(baseline_reduced_terms, "round7", "cohort_young")
-lean <- setdiff(baseline_reduced, c(
-  "hq_new", "cd_new", "elecq_new", "factor(foodsec_r3)"
-))
-extra_numeric <- c("zbfa", "careage_r1", "ownlandhse_r1")
+lean <- c(lean_terms, "round7", "cohort_young")
+baseline_extra <- c("hq_new", "cd_new", "elecq_new")
+full_extra <- c("zbfa", "careage_r1", "ownlandhse_r1")
+extra_numeric <- c(baseline_extra, full_extra)
+baseline_reduced <- c(baseline_reduced, paste0(baseline_extra, "_missing"))
 full <- c(
-  baseline_reduced, extra_numeric, "factor(caresex_r1)",
-  paste0(extra_numeric, "_missing")
+  baseline_reduced, full_extra, "factor(caresex_r1)",
+  paste0(full_extra, "_missing")
 )
 specifications <- list(
-  "Full (missingness adjusted)" = full,
+  "Full" = full,
   "Baseline-reduced" = baseline_reduced,
   "Lean" = lean
 )
@@ -29,6 +30,7 @@ sample <- fixed_employment_sample() |>
   mutate(
     across(all_of(extra_numeric), is.na, .names = "{.col}_missing"),
     across(all_of(extra_numeric), ~ replace_na(.x, 0)),
+    foodsec_r3 = factor(replace_na(as.character(foodsec_r3), "Missing")),
     caresex_r1 = factor(if_else(is.na(caresex_r1), "Missing",
                                as.character(caresex_r1)))
   )
@@ -38,7 +40,7 @@ constant_indicators <- paste0(extra_numeric, "_missing")
 constant_indicators <- constant_indicators[
   !vapply(sample[constant_indicators], any, logical(1))
 ]
-specifications[[1]] <- setdiff(specifications[[1]], constant_indicators)
+specifications <- map(specifications, setdiff, constant_indicators)
 
 fit_model <- function(outcome, terms) {
   controls <- paste(terms, collapse = " + ")

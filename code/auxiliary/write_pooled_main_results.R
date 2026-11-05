@@ -4,22 +4,11 @@ source("code/helpers/export_paths.R")
 
 source("code/helpers/wild_iv_few_regions.R")
 
-terms <- c(
-  "chsex", "stunting", "caredu_r1", "hhsize", "wi_new",
-  "round7", "cohort_young"
-)
+source("code/helpers/fixed_employment_sample.R")
+terms <- c(lean_terms, "round7", "cohort_young")
 outcomes <- c("salary_employ", "wage_employ")
-required <- c(terms, outcomes, "IMTI", "E_is", "region", "child_id")
 controls <- paste(terms, collapse = " + ")
-
-sample <- readRDS("data/r7/r5_r7_appended.rds") |>
-  mutate(across(where(is.numeric), ~ as.numeric(haven::zap_labels(.x)))) |>
-  filter(
-    region != "Addis Ababa", round == 7 | yc == 0,
-    yc == 1 | (!is.na(raw_lang_r4) & raw_lang_r4 != 0)
-  ) |>
-  drop_na(all_of(required))
-stopifnot(!anyDuplicated(sample[c("child_id", "round")]))
+sample <- fixed_employment_sample() |> filter(region != "Addis Ababa")
 
 fit_group <- function(data) {
   first_stage <- lm(reformulate(c("E_is", terms), "IMTI"), data = data)
@@ -37,6 +26,7 @@ fit_group <- function(data) {
       tibble(
         first_stage_beta = unname(fs[1]),
         first_stage_se = unname(fs[2]),
+        first_stage_p = unname(fs[4]),
         first_stage_F = unname(fs[3]^2),
         iv_beta = unname(iv[1]), iv_se = unname(iv[2]),
         iv_p = unname(iv[4]), n = nrow(data)
@@ -55,10 +45,10 @@ row <- function(label, values) {
 heading <- function(label) {
   paste0("\\multicolumn{5}{l}{\\textbf{", label, "}} ", ending)
 }
-stars <- case_when(
-  stats$iv_p < .01 ~ "$^{***}$",
-  stats$iv_p < .05 ~ "$^{**}$",
-  stats$iv_p < .10 ~ "$^{*}$",
+stars <- function(p) case_when(
+  p < .01 ~ "$^{***}$",
+  p < .05 ~ "$^{**}$",
+  p < .10 ~ "$^{*}$",
   TRUE ~ ""
 )
 
@@ -76,15 +66,20 @@ writeLines(c(
   row("", rep(c("Salary", "Wage"), 2)),
   "\\midrule",
   heading("Panel A: 2SLS (employment)"),
-  row("$MTIuse$", paste0(fmt(stats$iv_beta), stars)),
+  row("$MTIuse$", paste0(fmt(stats$iv_beta), stars(stats$iv_p))),
   row("", paste0("(", fmt(stats$iv_se), ")")),
   row("Wild bootstrap SE", fmt(stats$wild_boot_se)),
   row("Wild bootstrap $p$", fmt(stats$wild_boot_p)),
   "\\midrule",
   heading("Panel B: First stage (MTI exposure)"),
-  row("Predicted MTI ($E_{is}$)", fmt(stats$first_stage_beta)),
+  row("Predicted MTI ($E_{is}$)", paste0(
+    fmt(stats$first_stage_beta), stars(stats$first_stage_p)
+  )),
   row("", paste0("(", fmt(stats$first_stage_se), ")")),
   row("Excluded-instrument $F$", fmt(stats$first_stage_F, 2)),
+  "\\addlinespace",
+  row("Round dummy", rep("Yes", nrow(stats))),
+  row("Cohort dummy", rep("Yes", nrow(stats))),
   row("Observations", stats$n),
   "\\bottomrule\\end{tabular}",
   "\\begin{tablenotes}\\footnotesize",
