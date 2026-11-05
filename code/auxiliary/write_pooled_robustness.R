@@ -16,10 +16,10 @@ lines <- c(
   "\\linespread{1}\\selectfont",
   "\\begin{threeparttable}\\scriptsize",
   "\\setlength{\\tabcolsep}{4pt}",
-  "\\begin{tabular}{lrrrr}\\toprule",
+  "\\begin{tabular}{lrrr}\\toprule",
   row("", c("No round dummy", "Round dummy",
-            "Excl. Amhara", "No score gate")),
-  row("", paste0("(", 1:4, ")")), "\\midrule"
+            "Excl. Amhara")),
+  row("", paste0("(", 1:3, ")")), "\\midrule"
 )
 for (outcome in c("salary_employ", "wage_employ")) {
   s <- stats |> filter(.data$outcome == .env$outcome)
@@ -27,7 +27,7 @@ for (outcome in c("salary_employ", "wage_employ")) {
     "Panel A: Salary employment"
   } else "Panel B: Wage employment"
   lines <- c(lines,
-    paste0("\\multicolumn{5}{l}{\\textbf{", title, "}} ", ending),
+    paste0("\\multicolumn{4}{l}{\\textbf{", title, "}} ", ending),
     row("$MTIuse$", paste0(fmt(s$iv_beta), stars(s$iv_p))),
     row("", paste0("(", fmt(s$iv_se), ")")),
     row("Wild bootstrap SE (dispersion)", fmt(s$wild_boot_se)),
@@ -47,10 +47,8 @@ lines <- c(lines,
   "\\bottomrule\\end{tabular}",
   "\\begin{tablenotes}\\scriptsize",
   "\\item All columns pool R5 older and R7 both cohorts; R7 in person only.",
-  "Cohort dummy and original controls are included throughout. Column 1",
-  "omits the round dummy; columns 2--4 include it. Column 3 drops Amhara;",
-  "column 4 relaxes the historical",
-  "R4 language-score gate for OC. YC is never subject to that score gate.",
+  "All models use the fixed baseline-reduced sample and cohort indicators.",
+  "Column 1 omits the round indicator. Column 3 excludes Amhara.",
   "Controls use current R7 household resources and original R3 resources",
   "in R5 rows. MTI is frozen at R5; YC exposure remains exploratory.",
   "Salary=13; combined farm/nonfarm wage=5--7/12/19.",

@@ -9,21 +9,14 @@ audit_dir <- "temp/pooled_robustness"
 dir.create(audit_dir, recursive = TRUE, showWarnings = FALSE)
 input_file <- "data/r7/r5_r7_appended.rds"
 input_hash <- tools::md5sum(input_file)
-data <- readRDS(input_file) |>
-  mutate(across(where(is.numeric), ~ as.numeric(haven::zap_labels(.x)))) |>
-  mutate(across(where(is.character), as.factor)) |>
-  filter(region != "Addis Ababa")
-base_controls <- paste(
-  "chsex + zbfa + stunting + caredu_r1 + careage_r1",
-  "+ factor(caresex_r1) + hhsize + wi_new + hq_new + cd_new",
-  "+ elecq_new + ownlandhse_r1 + factor(foodsec_r3) + cohort_young"
-)
+source("code/helpers/fixed_employment_sample.R")
+data <- fixed_employment_sample() |> filter(region != "Addis Ababa")
+base_controls <- paste(c(baseline_reduced_terms, "cohort_young"), collapse = " + ")
 plans <- tribble(
-  ~specification, ~round_dummy, ~exclude_amhara, ~relax_score_gate,
-  "No round dummy", FALSE, FALSE, FALSE,
-  "Round dummy", TRUE, FALSE, FALSE,
-  "Exclude Amhara", TRUE, TRUE, FALSE,
-  "Relax score gate", TRUE, FALSE, TRUE
+  ~specification, ~round_dummy, ~exclude_amhara,
+  "No round dummy", FALSE, FALSE,
+  "Round dummy", TRUE, FALSE,
+  "Exclude Amhara", TRUE, TRUE
 )
 results <- list()
 models <- list()
@@ -34,19 +27,11 @@ for (outcome in c("salary_employ", "wage_employ")) {
   for (column in seq_len(nrow(plans))) {
     plan <- plans[column, ]
     sample <- data
-    if (!plan$relax_score_gate) {
-      sample <- sample |>
-        filter(yc == 1 | (!is.na(raw_lang_r4) & raw_lang_r4 != 0))
-    }
     if (plan$exclude_amhara) {
       sample <- sample |> filter(region != "Amhara")
     }
     controls <- paste0(base_controls,
       if (plan$round_dummy) " + round7" else "")
-    variables <- all.vars(as.formula(paste(
-      outcome, "~ IMTI + E_is +", controls
-    )))
-    sample <- sample[complete.cases(sample[, variables]), ]
     model <- lfe::felm(as.formula(paste(
       outcome, "~", controls, "| 0 | (IMTI ~ E_is)"
     )), data = sample)
@@ -72,7 +57,6 @@ for (outcome in c("salary_employ", "wage_employ")) {
         specification = plan$specification,
         cohort_dummy = TRUE, round_dummy = plan$round_dummy,
         exclude_amhara = plan$exclude_amhara,
-        relax_score_gate = plan$relax_score_gate,
         iv_beta = coefficient[1], iv_se = coefficient[2],
         iv_p = coefficient[4], n = nrow(sample),
         n_r5 = sum(sample$round == 5), n_r7 = sum(sample$round == 7),

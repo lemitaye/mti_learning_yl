@@ -5,33 +5,40 @@ source("code/helpers/wild_iv_few_regions.R")
 source("code/helpers/cluster_inference.R")
 source("code/helpers/export_paths.R")
 
-lean <- c(
-  "chsex", "stunting", "caredu_r1", "hhsize", "wi_new",
-  "round7", "cohort_young"
-)
-baseline_reduced <- c(
-  lean, "hq_new", "cd_new", "elecq_new", "factor(foodsec_r3)"
-)
+source("code/helpers/fixed_employment_sample.R")
+baseline_reduced <- c(baseline_reduced_terms, "round7", "cohort_young")
+lean <- setdiff(baseline_reduced, c(
+  "hq_new", "cd_new", "elecq_new", "factor(foodsec_r3)"
+))
+extra_numeric <- c("zbfa", "careage_r1", "ownlandhse_r1")
 full <- c(
-  baseline_reduced, "zbfa", "careage_r1", "factor(caresex_r1)",
-  "ownlandhse_r1"
+  baseline_reduced, extra_numeric, "factor(caresex_r1)",
+  paste0(extra_numeric, "_missing")
 )
 specifications <- list(
-  "Full" = full,
+  "Full (missingness adjusted)" = full,
   "Baseline-reduced" = baseline_reduced,
   "Lean" = lean
 )
 outcomes <- c("salary_employ", "wage_employ")
-required <- all.vars(reformulate(c(full, outcomes, "IMTI", "E_is")))
 
-# Use the same participant-round rows for both outcomes and all models.
-sample <- readRDS("data/r7/r5_r7_appended.rds") |>
-  mutate(across(where(is.numeric), ~ as.numeric(haven::zap_labels(.x)))) |>
-  filter(
-    region != "Addis Ababa",
-    yc == 1 | (!is.na(raw_lang_r4) & raw_lang_r4 != 0)
-  ) |>
-  drop_na(all_of(required))
+# Keep the fixed sample when adding controls with missing values.
+# Zero fills are paired with indicators, and caregiver sex has a missing level.
+sample <- fixed_employment_sample() |>
+  filter(region != "Addis Ababa") |>
+  mutate(
+    across(all_of(extra_numeric), is.na, .names = "{.col}_missing"),
+    across(all_of(extra_numeric), ~ replace_na(.x, 0)),
+    caresex_r1 = factor(if_else(is.na(caresex_r1), "Missing",
+                               as.character(caresex_r1)))
+  )
+
+# Skip constant missingness indicators in the fitted sample.
+constant_indicators <- paste0(extra_numeric, "_missing")
+constant_indicators <- constant_indicators[
+  !vapply(sample[constant_indicators], any, logical(1))
+]
+specifications[[1]] <- setdiff(specifications[[1]], constant_indicators)
 
 fit_model <- function(outcome, terms) {
   controls <- paste(terms, collapse = " + ")

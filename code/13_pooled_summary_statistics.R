@@ -1,5 +1,5 @@
 # Table 1 for the pooled employment design: R5 OC and R7 both cohorts.
-# Available cases by variable; do not impose regression complete cases.
+# Use the fixed baseline-reduced estimation sample.
 # R5 YC employment is structurally missing and is excluded from this design.
 
 library(tidyverse)
@@ -8,13 +8,13 @@ source("code/helpers/pooled_employment_sample.R")
 audit_dir <- "temp/pooled_summary_statistics"
 dir.create(audit_dir, recursive = TRUE, showWarnings = FALSE)
 
-sample <- readRDS("data/r7/r5_r7_appended.rds") |>
-  mutate(across(where(is.numeric), ~ as.numeric(haven::zap_labels(.x)))) |>
-  filter(round == 7 | yc == 0) |>
-  filter(yc == 1 | (!is.na(raw_lang_r4) & raw_lang_r4 != 0))
+source("code/helpers/fixed_employment_sample.R")
+sample <- fixed_employment_sample()
 
 # Highest grade is historical R5 attainment, not an invented R7 equivalent.
-lookup <- readRDS("data/r7/r7_inperson_analysis.rds") |>
+lookup <- read_csv("data/r7/r7_inperson_analysis.csv",
+                   col_select = c(child_id, hghgrade_final_num_hist),
+                   show_col_types = FALSE) |>
   transmute(child_id, grade_r5 = hghgrade_final_num_hist)
 legacy <- bind_rows(
   read.csv("data/aa_samp.csv"), read.csv("data/non_aa_samp.csv"),
@@ -128,7 +128,8 @@ lines <- c(lines,
   "\\begin{tablenotes}\\scriptsize",
   "\\item Notes: R5 older cohort and R7 both cohorts; R7 in-person",
   "interviews only. Older-cohort observations require an observed, nonzero",
-  "R4 language score. N denotes available participant-round observations;",
+  "R4 language score. The sample is complete for the baseline-reduced model.",
+  "N counts available observations for each descriptive measure;",
   "blank SDs indicate variables reported as proportions.",
   "\\item R1--R5 measurements are identified in row labels. Household",
   "resources are measured in R3 for R5 observations and in R7 for R7",

@@ -11,16 +11,10 @@ dir.create(audit_dir, recursive = TRUE, showWarnings = FALSE)
 input_file <- "data/r7/r5_r7_appended.rds"
 input_hash <- tools::md5sum(input_file)
 
-# Drop display attributes for fitting; retain the original numeric codes.
-data <- readRDS(input_file) |>
-  mutate(across(where(is.numeric), ~ as.numeric(haven::zap_labels(.x)))) |>
-  mutate(across(where(is.character), as.factor)) |>
-  filter(region != "Addis Ababa")
+source("code/helpers/fixed_employment_sample.R")
 
-base_controls <- paste(
-  "chsex + stunting + caredu_r1 + hhsize + wi_new",
-  "+ hq_new + cd_new + elecq_new + factor(foodsec_r3)"
-)
+data <- fixed_employment_sample() |> filter(region != "Addis Ababa")
+base_controls <- paste(baseline_reduced_terms, collapse = " + ")
 plans <- tribble(
   ~panel, ~description, ~additional,
   "A", "R5 older cohort: replication", "",
@@ -42,15 +36,7 @@ for (panel_id in plans$panel) {
     if (panel_id == "A") {
       sample <- sample |> filter(round == 5, yc == 0)
     }
-    if (panel_id == "B") {
-      sample <- sample |>
-        filter(yc == 1 | (!is.na(raw_lang_r4) & raw_lang_r4 != 0))
-    }
     if (column > 2) sample <- sample |> filter(region != "Amhara")
-    variables <- all.vars(as.formula(paste(
-      outcome, "~ IMTI + E_is +", controls
-    )))
-    sample <- sample[complete.cases(sample[, variables]), ]
     model <- lfe::felm(as.formula(paste(
       outcome, "~", controls, "| 0 | (IMTI ~ E_is)"
     )), data = sample)
