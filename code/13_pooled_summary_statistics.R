@@ -93,7 +93,7 @@ write_csv(statistics, file.path(audit_dir, "summary_statistics.csv"))
 write_csv(count(sample, round, cohort, region),
           file.path(audit_dir, "sample_counts.csv"))
 
-# Export in the original N/mean/SD layout, separately by Addis residence.
+# Export means and SDs with one sample count per group.
 ending <- strrep(intToUtf8(92), 2)
 row <- function(values) paste(paste(values, collapse = " & "), ending)
 fmt <- function(value) ifelse(is.na(value), "", sprintf("%.3f", value))
@@ -105,30 +105,35 @@ lines <- c(
   "\\linespread{1}\\selectfont",
   "\\begin{threeparttable}\\footnotesize",
   "\\setlength{\\tabcolsep}{3pt}",
-  "\\begin{tabular}{lrrrrrr}\\toprule",
-  row(c("", "\\multicolumn{3}{c}{Non-Addis sample}",
-        "\\multicolumn{3}{c}{Addis sample}")),
-  "\\cmidrule(lr){2-4}\\cmidrule(lr){5-7}",
-  row(c("", "N", "Mean", "SD", "N", "Mean", "SD")),
+  "\\begin{tabular}{lrrrr}\\toprule",
+  row(c("", "\\multicolumn{2}{c}{Non-Addis sample}",
+        "\\multicolumn{2}{c}{Addis sample}")),
+  "\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}",
+  row(c("", "Mean", "SD", "Mean", "SD")),
   "\\midrule"
 )
 for (variable_name in names(labels)) {
   s <- statistics |> filter(variable == variable_name)
   a <- s |> filter(group == "Non-Addis")
   b <- s |> filter(group == "Addis")
+  binary <- is.logical(sample[[variable_name]])
+  label <- paste0(labels[[variable_name]], if (binary) " (0/1)" else "")
   lines <- c(lines, row(c(
-    labels[[variable_name]], a$n, fmt(a$mean), fmt(a$sd),
-    b$n, fmt(b$mean), fmt(b$sd)
+    label, fmt(a$mean), if (binary) "--" else fmt(a$sd),
+    fmt(b$mean), if (binary) "--" else fmt(b$sd)
   )))
 }
+n_addis <- sum(sample$region == "Addis Ababa")
 lines <- c(lines,
+  "\\midrule",
+  row(c("N", nrow(sample) - n_addis, "", n_addis, "")),
   "\\bottomrule\\end{tabular}",
   "\\begin{tablenotes}\\scriptsize",
   "\\item Notes: R5 older cohort and R7 both cohorts; R7 in-person",
   "interviews only. Older-cohort observations require an observed, nonzero",
   "R4 language score. The sample is complete for the lean model.",
-  "N counts available observations for each descriptive measure;",
-  "blank SDs indicate variables reported as proportions.",
+  "N counts participant-round observations in each sample. Statistics use",
+  "available values. Dashes indicate binary variables.",
   "\\item R1--R5 measurements are identified in row labels. Household",
   "resources are measured in R3 for R5 observations and in R7 for R7",
   "observations. Employment groups are defined in the continuation.",
