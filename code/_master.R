@@ -43,9 +43,9 @@ message("Step 3/4: estimating models and exporting regression tables.")
 source("code/05_estimation.R",    echo = TRUE, max = 1000)  # fits all models into the workspace
 source("code/06_export_res.R",    echo = TRUE, max = 1000)  # -> staged tables, including tableII_mod.tex with IV diagnostics
 
-# ---- 4. Table 3: "Likely Channels" (local output and Dropbox) ------
-message("Step 4/4: regenerating manuscript Table 3.")
-source("code/09_table_rev.R",     echo = TRUE, max = 1000)  # -> output/tables/table_rev.tex and Dropbox tables/
+# ---- 4. Refresh the three supplementary tables from the pooled build --------
+message("Step 4/4: updating supplementary tables on the lean sample.")
+source("code/16_pooled_supplementary_results.R", local = TRUE)
 
 # ---- Done -------------------------------------------------------------------
 # Results remain in output/ and mirror to the revision Overleaf project unless
