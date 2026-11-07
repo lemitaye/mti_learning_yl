@@ -20,41 +20,8 @@ source("code/helpers/analysis_helpers.R")
 aa_sample <- read_analysis_sample("data/aa_samp.csv")
 non_aa_sample <- read_analysis_sample("data/non_aa_samp.csv")
 
-# ---- Figure 1: available-case employment means by region --------------------
-employ_gr <- non_aa_sample %>%
-  group_by(region) %>%
-  summarise(
-    salary_employ_pct = mean(salary_employ, na.rm = TRUE),
-    wage_employ_pct = mean(wage_employ, na.rm = TRUE)
-  ) %>%
-  pivot_longer(
-    c(salary_employ_pct, wage_employ_pct),
-    names_to = "employ_type",
-    values_to = "pct_employ"
-  ) %>%
-  mutate(
-    employ_type = factor(employ_type,
-                         levels = c("salary_employ_pct", "wage_employ_pct"),
-                         labels = c("Salary Employed", "Wage Employed"))
-  ) %>%
-  ggplot(aes(fct_reorder(region, pct_employ), pct_employ, fill = employ_type)) +
-  geom_col(position = "dodge") +
-  scale_y_continuous(labels = percent) +
-  coord_flip() +
-  labs(
-    x = "", y = "Percent Employed",
-    fill = "Employment Type"
-  )
-
-# Base PDF avoids the optional Cairo/XQuartz system dependency.
-ggsave(
-  filename = "output/figures/employ_gr.pdf",
-  plot = employ_gr,
-  device = grDevices::pdf,
-  width = 200,
-  height = 120,
-  units = "mm"
-)
+# ---- Figure 1: employment groups on the pooled lean sample -------------------
+source("code/auxiliary/plot_employment_categories.R", local = new.env())
 
 # ---- Table 1: build comparable variable sets --------------------------------
 prepare_summary_input <- function(data, include_regions = FALSE) {
