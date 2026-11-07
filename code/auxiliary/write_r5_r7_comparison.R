@@ -34,6 +34,8 @@ for (panel_id in c("A", "B")) {
            ": ", title, "}} \\\\") ,
     row("$MTIuse$", paste0(fmt(s$iv_beta), stars(s$iv_p))),
     row("", paste0("(", fmt(s$iv_se), ")")),
+    row("Wild bootstrap SE", fmt(s$wild_boot_se)),
+    row("Wild bootstrap $p$", fmt(s$wild_boot_p)),
     row("Excluded-instrument $F$", fmt(s$first_stage_F, 2)),
     row("Controls", rep("Yes", 4)),
     row("Round dummy", rep(ifelse(panel_id == "A", "No", "Yes"), 4)),
@@ -55,7 +57,7 @@ lines <- c(lines,
   "Both panels require a nonzero, observed R4",
   "language score for the older cohort. The younger cohort enters in R7 only.",
   "\\item Conventional standard errors in parentheses; *** $p<0.01$,",
-  "** $p<0.05$, * $p<0.10$. Regional inference is reported separately.",
+  "** $p<0.05$, * $p<0.10$. The wild bootstrap uses region-level sign flips.",
   "\\end{tablenotes}\\end{threeparttable}\\end{table}"
 )
 file <- "output/tables/table_r5_r7_comparison.tex"

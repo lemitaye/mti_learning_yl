@@ -37,7 +37,7 @@ cognitive <- sample |>
 cognitive_terms <- c(lean_terms, "cohort_young")
 employment_terms <- c(cognitive_terms, "round7")
 
-fit <- function(data, outcome, predictor, terms, iv = FALSE) {
+fit <- function(data, outcome, predictor, terms, iv = FALSE, wild_ols = FALSE) {
   formula <- reformulate(c(predictor, terms), outcome)
   data <- drop_na(data, all_of(c(all.vars(formula), if (iv) "E_is")))
   if (iv) {
@@ -50,7 +50,20 @@ fit <- function(data, outcome, predictor, terms, iv = FALSE) {
   stopifnot(nobs(model) == nrow(data))
   coefficients <- coef(summary(model))
   stopifnot(predictor %in% rownames(coefficients))
-  c(beta = coefficients[predictor, 1], se = coefficients[predictor, 2],
+  wild_se <- NA_real_
+  if (wild_ols) {
+    # Enumerate regional sign flips of unrestricted OLS residuals.
+    group <- factor(data$region)
+    design <- model.matrix(model)
+    decomposition <- qr(design)
+    signs <- as.matrix(expand.grid(rep(list(c(-1, 1)), nlevels(group))))
+    shifts <- apply(signs, 1, function(weights) {
+      perturbation <- residuals(model) * weights[as.integer(group)]
+      qr.coef(decomposition, perturbation)[match(predictor, colnames(design))]
+    })
+    wild_se <- sqrt(mean((shifts - mean(shifts))^2))
+  }
+  c(wild_se = wild_se, beta = coefficients[predictor, 1], se = coefficients[predictor, 2],
     p = coefficients[predictor, 4], n = nrow(data),
     r2 = if (!iv) summary(model)$r.squared else NA_real_)
 }
@@ -88,8 +101,8 @@ write_table <- function(name, caption, label, headers, body, notes) {
 non_addis <- filter(cognitive, !addis, raw_lang_r4 != 0) |>
   mutate(std_lang = as.numeric(scale(raw_lang_r4)))
 channels <- cbind(
-  fit(non_addis, "std_lang", "inst", cognitive_terms),
-  fit(filter(non_addis, region != "Amhara"), "std_lang", "inst", cognitive_terms)
+  fit(non_addis, "std_lang", "inst", employment_terms, wild_ols = TRUE),
+  fit(filter(non_addis, region != "Amhara"), "std_lang", "inst", employment_terms, wild_ols = TRUE)
 )
 
 headers <- c("Maths z-score", "Language z-score", "Salary employed", "Wage employed")
@@ -97,8 +110,7 @@ outcomes <- c("std_maths", "std_lang", "salary_employ", "wage_employ")
 run_addis <- function(iv) {
   map(seq_along(outcomes), function(i) {
     data <- if (i <= 2) filter(cognitive, addis) else filter(sample, region == "Addis Ababa")
-    terms <- if (i <= 2) cognitive_terms else employment_terms
-    fit(data, outcomes[i], if (iv) "IMTI" else "E_is", terms, iv)
+    fit(data, outcomes[i], if (iv) "IMTI" else "E_is", employment_terms, iv)
   }) |> do.call(what = cbind, args = _)
 }
 addis_rf <- run_addis(FALSE)
@@ -128,19 +140,27 @@ exports <- c(
     "table_rev", "Testing Likely Channels: MTI and Cognitive Ability", "tab:rev",
     c("Whole Sample", "Excluding Amhara"),
     c(model_rows("$E_{is} \\times MTIuse$", channels),
+      row("Wild bootstrap SE", fmt(channels["wild_se", ])),
+      row("Round dummy", rep("Yes", 2)), row("Cohort dummy", rep("Yes", 2)),
       row("Observations", channels["n", ])),
     paste("Outcome is the standardized R4 verbal score in the non-Addis sample.",
           "Lean controls include sex, R1 stunting and caregiver education,",
-          "R3 household size and wealth, and a cohort indicator.",
+          "R3 household size and wealth, and round and cohort indicators.",
+          "Round denotes the retained employment record. Wild bootstrap SEs",
+          "use exhaustive region-level sign flips.",
           "Each participant enters once. The coefficient is an association.")
   ),
   write_table(
     "tableIII", "Estimates for Addis Ababa", "tab:aareg", headers,
     c("\\multicolumn{5}{l}{\\textbf{Panel A: Reduced form}} \\\\",
-      model_rows("$E_{is}$", addis_rf), "\\midrule",
+      model_rows("$E_{is}$", addis_rf), row("Wild bootstrap SE", rep("--", 4)), "\\midrule",
       "\\multicolumn{5}{l}{\\textbf{Panel B: 2SLS}} \\\\",
-      model_rows("$MTIuse$", addis_iv), row("Observations", addis_iv["n", ])),
-    common
+      model_rows("$MTIuse$", addis_iv), row("Wild bootstrap SE", rep("--", 4)),
+      "\\addlinespace",
+      row("Round dummy", rep("Yes", 4)), row("Cohort dummy", rep("Yes", 4)),
+      row("Observations", addis_iv["n", ])),
+    paste(common, "In cognitive models, round denotes the retained employment",
+          "record. Region-level bootstrap SEs are unavailable with one region.")
   ),
   write_table(
     "tableV", "Comparing Tigray and Oromia", "tab:oromtig", headers,

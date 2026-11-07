@@ -4,6 +4,7 @@
 
 library(tidyverse)
 source("code/helpers/cluster_inference.R")
+source("code/helpers/wild_iv_few_regions.R")
 source("code/helpers/export_paths.R")
 
 audit_dir <- "temp/r5_r7_regression_comparison"
@@ -50,6 +51,7 @@ for (panel_id in plans$panel) {
     cluster <- table2_cluster_checks(
       sample, outcome, controls, unname(coefficient[1])
     )
+    wild <- wild_iv_few_regions(sample, outcome, controls, unname(coefficient[1]))
     key <- paste(panel_id, column, sep = "_")
     models[[key]] <- model
     sample_keys[[key]] <- sample |> select(child_id, round, yc)
@@ -67,7 +69,7 @@ for (panel_id in plans$panel) {
         n = nrow(sample), participants = n_distinct(sample$child_id),
         n_r5 = sum(sample$round == 5), n_r7 = sum(sample$round == 7),
         n_young = sum(sample$yc == 1)
-      ), cluster$stats
+      ), cluster$stats, wild$stats
     )
   }
 }
