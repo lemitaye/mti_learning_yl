@@ -15,7 +15,6 @@ panel <- function(outcome, title) {
     row("$MTIuse$", paste0(fmt(s$beta), stars(s$p))),
     row("", paste0("(", fmt(s$se), ")")),
     row("Wild bootstrap SE", fmt(s$wild_boot_se)),
-    row("Wild bootstrap $p$", fmt(s$wild_boot_p)),
     row("Wild AR score $p$", fmt(s$AR_p_sign_beta0)),
     row("Excluded-instrument $F$", fmt(s$first_stage_F, 2)),
     row("Observations", s$n)
@@ -48,8 +47,8 @@ writeLines(c(
   "\\item Parentheses and stars use conventional inference",
   "($^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$). Wild inference enumerates",
   "all 16 Rademacher sign patterns across four regions. The bootstrap SE is",
-  "the dispersion of unrestricted draws. The studentized bootstrap and",
-  "Anderson--Rubin score $p$-values test a zero coefficient.",
+  "the dispersion of unrestricted draws.",
+  "The Anderson--Rubin score $p$-values test a zero coefficient.",
   "\\end{tablenotes}\\end{threeparttable}\\end{table}"
 ), file)
 mirror_output(file, "tables")

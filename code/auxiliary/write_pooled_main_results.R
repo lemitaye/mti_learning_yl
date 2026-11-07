@@ -69,7 +69,6 @@ writeLines(c(
   row("$MTIuse$", paste0(fmt(stats$iv_beta), stars(stats$iv_p))),
   row("", paste0("(", fmt(stats$iv_se), ")")),
   row("Wild bootstrap SE", fmt(stats$wild_boot_se)),
-  row("Wild bootstrap $p$", fmt(stats$wild_boot_p)),
   "\\midrule",
   heading("Panel B: First stage (MTI exposure)"),
   row("Predicted MTI ($E_{is}$)", paste0(

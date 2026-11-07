@@ -35,7 +35,6 @@ for (panel_id in c("A", "B")) {
     row("$MTIuse$", paste0(fmt(s$iv_beta), stars(s$iv_p))),
     row("", paste0("(", fmt(s$iv_se), ")")),
     row("Wild bootstrap SE", fmt(s$wild_boot_se)),
-    row("Wild bootstrap $p$", fmt(s$wild_boot_p)),
     row("Excluded-instrument $F$", fmt(s$first_stage_F, 2)),
     row("Controls", rep("Yes", 4)),
     row("Round dummy", rep(ifelse(panel_id == "A", "No", "Yes"), 4)),
