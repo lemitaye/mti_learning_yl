@@ -869,12 +869,13 @@ construction history, validation, and methodological qualifications remain in
 the temp audit reports and project guidance. Coefficients and samples did not
 change. Preview:temp/shortened_table_notes/preview.pdf (compiled/visually checked).
 
-## Revised Table 5: test-score 2SLS (2026-11-20)
+## Test-score 2SLS (2026-11-20)
 
-`code/17_test_score_results.R` is the active Table 5 generator. It stages and
+`code/17_test_score_results.R` generates the active test-score table. It stages and
 mirrors `table_test_score_iv.tex` for manuscript label `tab:rev`. The older
-`table_rev.tex` is a historical OLS artifact. Table 5 uses the pooled R5/R7
-employment design and estimator through `code/helpers/fixed_employment_sample.R`.
+`table_rev.tex` is a historical OLS artifact. The test-score table uses the
+pooled R5/R7 employment design and estimator through
+`code/helpers/fixed_employment_sample.R`.
 Panel A reports 2SLS and Panel B reports the first stage. Keep the pooled
 specification's round-specific household controls and participant-round rows. R4
 scores are standardized once per eligible non-Addis participant and missing
@@ -882,3 +883,21 @@ scores restrict both stages within each column. The same R4 score can enter
 both rounds in the pooled sample. No second-stage coefficient rejects at 5%
 using the regional wild bootstrap. Interpret the estimates in light of the
 few regions and the test scores being measured before the R5 exposure cutoff.
+
+## Combined main employment table
+
+Run `Rscript code/12_compare_r5_r7_regressions.R` to stage and mirror
+`table_r5_r7_comparison.tex` (manuscript label `tab:r5r7compare`).
+The landscape table nests the sample and employment outcome under each
+round grouping. Panel A reports 2SLS and Panel B reports the corresponding
+first stages. The manuscript uses this table in place of the two overlapping
+employment tables. The standalone pooled table is a historical export.
+
+## Addis Ababa wild bootstrap
+
+`code/16_pooled_supplementary_results.R` reports Addis Ababa wild-bootstrap
+SEs using 9,999 seeded participant-level Rademacher draws. All records for a
+participant share one sign in each draw. The just-identified 2SLS draws use
+paired outcome and treatment reduced forms with common signs. This procedure
+assumes independence across participants. The Tigray–Oromia comparison is
+excluded from the active manuscript.

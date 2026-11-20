@@ -784,7 +784,7 @@ construction history, validation, and methodological qualifications remain in
 the temp audit reports and project guidance. Coefficients and samples did not
 change. Preview:temp/shortened_table_notes/preview.pdf (compiled/visually checked).
 
-## Revised Table 5: MTI and test scores
+## MTI and test scores
 
 Run `Rscript code/17_test_score_results.R` from the project root. The master
 pipeline also runs it in the supplementary-table step. The script stages
@@ -792,11 +792,20 @@ pipeline also runs it in the supplementary-table step. The script stages
 The manuscript keeps the label `tab:rev` and inputs the new file in place of
 the historical `table_rev.tex`.
 
-Table 5 uses the pooled R5/R7 employment specification, restricted to the
-observations with the corresponding R4 mathematics or verbal score. Panel A
-reports 2SLS and Panel B reports the first stage, following Table 3's layout.
+The test-score table uses the pooled R5/R7 employment specification, restricted
+to observations with the corresponding R4 mathematics or verbal score. Panel A
+reports 2SLS and Panel B reports the first stage.
 Scores are standardized using one record per eligible non-Addis participant.
-Pooled estimation keeps Table 4's participant-round unit and retrospective
-scores can therefore enter twice. Both stages use the same outcome-specific
+Pooled estimation uses participant-round observations, so retrospective scores
+can enter twice. Both stages use the same outcome-specific
 rows. The table reports conventional SEs, the excluded-instrument F, and
 second-stage regional wild-bootstrap SEs and p-values.
+
+## Combined main employment table
+
+Run `Rscript code/12_compare_r5_r7_regressions.R` to stage and mirror
+`table_r5_r7_comparison.tex` (manuscript label `tab:r5r7compare`).
+The landscape table nests the sample and employment outcome under each
+round grouping. Panel A reports 2SLS and Panel B reports the corresponding
+first stages. The manuscript uses this table in place of the two overlapping
+employment tables. The standalone pooled table is a historical export.

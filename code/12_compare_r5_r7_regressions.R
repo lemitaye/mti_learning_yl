@@ -47,6 +47,7 @@ for (panel_id in names(panels)) {
         excluding_Amhara = column > 2,
         iv_beta = coefficient[1], iv_se = coefficient[2],
         iv_p = coefficient[4], first_stage_beta = fs[1],
+        first_stage_se = fs[2], first_stage_p = fs[4],
         first_stage_F = unname(fs[3]^2),
         partial_R2 = 1 - sum(resid(fit$first_stage)^2) /
           sum(resid(restricted)^2),

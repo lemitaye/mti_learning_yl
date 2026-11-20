@@ -96,6 +96,40 @@ addis_rf <- run_addis(FALSE)
 addis_iv <- run_addis(TRUE)
 stopifnot(identical(addis_rf["n", ], addis_iv["n", ]))
 
+# Fixed-design wild bootstrap of the unrestricted outcome and treatment
+# reduced forms. A shared sign preserves within-participant and cross-equation
+# residual dependence. In the just-identified model the ratio is the 2SLS slope.
+addis_bootstrap <- function(data, outcome, draws = 9999L) {
+  variables <- c(outcome, "IMTI", "E_is", employment_terms)
+  data <- drop_na(data, all_of(variables))
+  design <- model.matrix(reformulate(c(employment_terms, "E_is")), data)
+  reduced_forms <- lm.fit(design, cbind(data[[outcome]], data$IMTI))
+  instrument <- qr.resid(qr(model.matrix(reformulate(employment_terms), data)),
+                         data$E_is)
+  slopes <- reduced_forms$coefficients["E_is", ]
+  contributions <- rowsum(
+    reduced_forms$residuals * (instrument / sum(instrument^2)),
+    data$child_id
+  )
+  weights <- matrix(sample(c(-1, 1), nrow(contributions) * draws, replace = TRUE),
+                    nrow = nrow(contributions))
+  bootstrap <- sweep(crossprod(contributions, weights), 1, slopes, "+")
+  iv <- bootstrap[1, ] / bootstrap[2, ]
+  stopifnot(all(is.finite(iv)))
+  c(rf_se = sd(bootstrap[1, ]), iv_se = sd(iv), rf_beta = slopes[1],
+    iv_beta = slopes[1] / slopes[2], n = nrow(data))
+}
+
+wild <- withr::with_seed(20261120L, map(seq_along(outcomes), function(i) {
+  data <- if (i <= 2) filter(cognitive, addis) else filter(sample, region == "Addis Ababa")
+  addis_bootstrap(data, outcomes[i])
+}) |> do.call(what = cbind, args = _))
+stopifnot(
+  identical(wild["n", ], addis_iv["n", ]),
+  isTRUE(all.equal(wild["rf_beta", ], addis_rf["beta", ], tolerance = 1e-10)),
+  isTRUE(all.equal(wild["iv_beta", ], addis_iv["beta", ], tolerance = 1e-10))
+)
+
 regional <- map(seq_along(outcomes), function(i) {
   data <- if (i <= 2) cognitive else sample
   data <- filter(data, region %in% c("Tigray", "Oromia")) |>
@@ -116,16 +150,20 @@ common <- paste(
 )
 exports <- c(
   write_table(
-    "tableIII", "Estimates for Addis Ababa", "tab:aareg", headers,
+    "tableIII", "Estimates for Addis Ababa", "tab:aareg",
+    c("Maths z-score", "Language z-score", "Salary", "Wage"),
     c("\\multicolumn{5}{l}{\\textbf{Panel A: Reduced form}} \\\\",
-      model_rows("$E_{is}$", addis_rf), row("Wild bootstrap SE", rep("--", 4)), "\\midrule",
+      model_rows("$E_{is}$", addis_rf), row("Wild bootstrap SE", fmt(wild["rf_se", ])),
+      "\\midrule",
       "\\multicolumn{5}{l}{\\textbf{Panel B: 2SLS}} \\\\",
-      model_rows("$MTIuse$", addis_iv), row("Wild bootstrap SE", rep("--", 4)),
+      model_rows("$MTIuse$", addis_iv), row("Wild bootstrap SE", fmt(wild["iv_se", ])),
       "\\addlinespace",
       row("Round dummy", rep("Yes", 4)), row("Cohort dummy", rep("Yes", 4)),
       row("Observations", addis_iv["n", ])),
     paste(common, "In cognitive models, round denotes the retained employment",
-          "record. Region-level bootstrap SEs are unavailable with one region.")
+          "record. Wild bootstrap SEs use 9,999 participant-level sign draws,",
+          "assuming independence across participants. The 2SLS bootstrap uses",
+          "the same signs for the outcome and treatment reduced forms.")
   ),
   write_table(
     "tableV", "Comparing Tigray and Oromia", "tab:oromtig", headers,
