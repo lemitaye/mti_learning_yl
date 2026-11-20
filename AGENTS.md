@@ -25,7 +25,7 @@ guidance in the archive is background only; check it against the active code.
 | Dropbox/Overleaf | Manuscript revision and protected original; destinations described below. |
 | `code/` | Active R extraction, cleaning, estimation, and export code. |
 | `rawdata/` | Original Stata inputs, questionnaires, dictionaries, and survey documentation. Read-only; new files are git-ignored, but some release documentation is already tracked. Do not redistribute survey inputs. |
-| `data/` | Four tracked analysis CSVs generated from raw inputs. Changes are substantive research artifacts. |
+| `data/` | Four analysis CSVs generated from raw inputs. Older-cohort CSVs are local and ignored by Git. Changes are substantive research artifacts. |
 | `output/tables/`, `output/figures/` | Staging areas for generated results, mirrored to the revision project as described below. |
 | `other/referee_comment_Applied_Econ/` | Two referee reports; preserve the originals. |
 | `_archive/` | Historical scripts, drafts, reports, notes, and a nested collaboration repository. Consult for provenance when useful; keep inactive and preserve history. |
