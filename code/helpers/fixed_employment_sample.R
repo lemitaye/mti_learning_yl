@@ -23,3 +23,30 @@ fixed_employment_sample <- function() {
   stopifnot(!anyDuplicated(data[c("child_id", "round")]))
   data
 }
+
+# The revised main-results and test-score tables use these same panel designs.
+main_results_panels <- function(data) {
+  data <- dplyr::filter(data, region != "Addis Ababa")
+  list(
+    A = list(data = dplyr::filter(data, round == 5, yc == 0),
+             terms = lean_terms, title = "Round 5: older cohort"),
+    B = list(data = data, terms = c(lean_terms, "round7", "cohort_young"),
+             title = "Rounds 5 and 7: both cohorts")
+  )
+}
+
+fit_main_results_iv <- function(data, outcome, terms) {
+  controls <- paste(terms, collapse = " + ")
+  first_stage <- lm(reformulate(c("E_is", terms), "IMTI"), data = data,
+                    na.action = na.fail)
+  model <- lfe::felm(as.formula(paste(
+    outcome, "~", controls, "| 0 | (IMTI ~ E_is)"
+  )), data = data, na.action = na.fail)
+  stopifnot(model$N == nobs(first_stage), model$N == nrow(data))
+  list(
+    model = model,
+    first_stage = first_stage,
+    fs = coef(summary(first_stage))["E_is", ],
+    iv = coef(summary(model))["`IMTI(fit)`", ]
+  )
+}

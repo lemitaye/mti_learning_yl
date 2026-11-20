@@ -46,6 +46,7 @@ source("code/06_export_res.R",    echo = TRUE, max = 1000)  # -> staged tables, 
 # ---- 4. Refresh the three supplementary tables from the pooled build --------
 message("Step 4/4: updating supplementary tables on the lean sample.")
 source("code/16_pooled_supplementary_results.R", local = TRUE)
+source("code/17_test_score_results.R", local = TRUE)
 
 # ---- Done -------------------------------------------------------------------
 # Results remain in output/ and mirror to the revision Overleaf project unless

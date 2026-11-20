@@ -1,4 +1,4 @@
-# Update the channels, Addis, and Tigray–Oromia tables on the lean sample.
+# Update the Addis and Tigray–Oromia tables on the lean sample.
 library(tidyverse)
 source("code/helpers/fixed_employment_sample.R")
 source("code/helpers/export_paths.R")
@@ -29,15 +29,14 @@ cognitive <- sample |>
   group_by(addis = region == "Addis Ababa") |>
   mutate(
     std_maths = as.numeric(scale(raw_maths_r4)),
-    std_lang = as.numeric(scale(raw_lang_r4)),
-    inst = E_is * IMTI
+    std_lang = as.numeric(scale(raw_lang_r4))
   ) |>
   ungroup()
 
 cognitive_terms <- c(lean_terms, "cohort_young")
 employment_terms <- c(cognitive_terms, "round7")
 
-fit <- function(data, outcome, predictor, terms, iv = FALSE, wild_ols = FALSE) {
+fit <- function(data, outcome, predictor, terms, iv = FALSE) {
   formula <- reformulate(c(predictor, terms), outcome)
   data <- drop_na(data, all_of(c(all.vars(formula), if (iv) "E_is")))
   if (iv) {
@@ -50,20 +49,7 @@ fit <- function(data, outcome, predictor, terms, iv = FALSE, wild_ols = FALSE) {
   stopifnot(nobs(model) == nrow(data))
   coefficients <- coef(summary(model))
   stopifnot(predictor %in% rownames(coefficients))
-  wild_se <- NA_real_
-  if (wild_ols) {
-    # Enumerate regional sign flips of unrestricted OLS residuals.
-    group <- factor(data$region)
-    design <- model.matrix(model)
-    decomposition <- qr(design)
-    signs <- as.matrix(expand.grid(rep(list(c(-1, 1)), nlevels(group))))
-    shifts <- apply(signs, 1, function(weights) {
-      perturbation <- residuals(model) * weights[as.integer(group)]
-      qr.coef(decomposition, perturbation)[match(predictor, colnames(design))]
-    })
-    wild_se <- sqrt(mean((shifts - mean(shifts))^2))
-  }
-  c(wild_se = wild_se, beta = coefficients[predictor, 1], se = coefficients[predictor, 2],
+  c(beta = coefficients[predictor, 1], se = coefficients[predictor, 2],
     p = coefficients[predictor, 4], n = nrow(data),
     r2 = if (!iv) summary(model)$r.squared else NA_real_)
 }
@@ -98,13 +84,6 @@ write_table <- function(name, caption, label, headers, body, notes) {
   mirror_output(file, "tables")
 }
 
-non_addis <- filter(cognitive, !addis, raw_lang_r4 != 0) |>
-  mutate(std_lang = as.numeric(scale(raw_lang_r4)))
-channels <- cbind(
-  fit(non_addis, "std_lang", "inst", employment_terms, wild_ols = TRUE),
-  fit(filter(non_addis, region != "Amhara"), "std_lang", "inst", employment_terms, wild_ols = TRUE)
-)
-
 headers <- c("Maths z-score", "Language z-score", "Salary employed", "Wage employed")
 outcomes <- c("std_maths", "std_lang", "salary_employ", "wage_employ")
 run_addis <- function(iv) {
@@ -137,20 +116,6 @@ common <- paste(
 )
 exports <- c(
   write_table(
-    "table_rev", "Testing Likely Channels: MTI and Cognitive Ability", "tab:rev",
-    c("Whole Sample", "Excluding Amhara"),
-    c(model_rows("$E_{is} \\times MTIuse$", channels),
-      row("Wild bootstrap SE", fmt(channels["wild_se", ])),
-      row("Round dummy", rep("Yes", 2)), row("Cohort dummy", rep("Yes", 2)),
-      row("Observations", channels["n", ])),
-    paste("Outcome is the standardized R4 verbal score in the non-Addis sample.",
-          "Lean controls include sex, R1 stunting and caregiver education,",
-          "R3 household size and wealth, and round and cohort indicators.",
-          "Round denotes the retained employment record. Wild bootstrap SEs",
-          "use exhaustive region-level sign flips.",
-          "Each participant enters once. The coefficient is an association.")
-  ),
-  write_table(
     "tableIII", "Estimates for Addis Ababa", "tab:aareg", headers,
     c("\\multicolumn{5}{l}{\\textbf{Panel A: Reduced form}} \\\\",
       model_rows("$E_{is}$", addis_rf), row("Wild bootstrap SE", rep("--", 4)), "\\midrule",
@@ -171,7 +136,6 @@ exports <- c(
   )
 )
 stopifnot(all(exports) || !nzchar(Sys.getenv("MTI_OVERLEAF_DIR", unset = "enabled")))
-print(channels)
 print(addis_rf)
 print(addis_iv)
 print(regional)

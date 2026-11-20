@@ -14,46 +14,30 @@ input_hash <- tools::md5sum(input_file)
 
 source("code/helpers/fixed_employment_sample.R")
 
-data <- fixed_employment_sample() |> filter(region != "Addis Ababa")
-base_controls <- paste(lean_terms, collapse = " + ")
-plans <- tribble(
-  ~panel, ~description, ~additional,
-  "A", "R5 older cohort: replication", "",
-  "B", "R5 + R7 both cohorts: exploratory frozen YC exposure",
-  " + round7 + cohort_young"
-)
+panels <- main_results_panels(fixed_employment_sample())
 
 # Fix the complete-case sample before both stages and inference checks.
 results <- list()
 models <- list()
 cluster_audits <- list()
 sample_keys <- list()
-for (panel_id in plans$panel) {
-  plan <- plans |> filter(panel == panel_id)
-  controls <- paste0(base_controls, plan$additional)
+for (panel_id in names(panels)) {
+  panel <- panels[[panel_id]]
+  controls <- paste(panel$terms, collapse = " + ")
   for (column in 1:4) {
     outcome <- c("salary_employ", "wage_employ")[(column - 1) %% 2 + 1]
-    sample <- data
-    if (panel_id == "A") {
-      sample <- sample |> filter(round == 5, yc == 0)
-    }
+    sample <- panel$data
     if (column > 2) sample <- sample |> filter(region != "Amhara")
-    model <- lfe::felm(as.formula(paste(
-      outcome, "~", controls, "| 0 | (IMTI ~ E_is)"
-    )), data = sample)
-    first_stage <- lm(as.formula(paste(
-      "IMTI ~ E_is +", controls
-    )), data = sample)
+    fit <- fit_main_results_iv(sample, outcome, panel$terms)
     restricted <- lm(as.formula(paste("IMTI ~", controls)), data = sample)
-    coefficient <- tail(summary(model)$coefficients, 1)[1, ]
-    fs <- summary(first_stage)$coefficients["E_is", ]
-    stopifnot(model$N == nobs(first_stage))
+    coefficient <- fit$iv
+    fs <- fit$fs
     cluster <- table2_cluster_checks(
       sample, outcome, controls, unname(coefficient[1])
     )
     wild <- wild_iv_few_regions(sample, outcome, controls, unname(coefficient[1]))
     key <- paste(panel_id, column, sep = "_")
-    models[[key]] <- model
+    models[[key]] <- fit$model
     sample_keys[[key]] <- sample |> select(child_id, round, yc)
     cluster_audits[[key]] <- cluster$audit |>
       mutate(panel = panel_id, column = column)
@@ -64,7 +48,7 @@ for (panel_id in plans$panel) {
         iv_beta = coefficient[1], iv_se = coefficient[2],
         iv_p = coefficient[4], first_stage_beta = fs[1],
         first_stage_F = unname(fs[3]^2),
-        partial_R2 = 1 - sum(resid(first_stage)^2) /
+        partial_R2 = 1 - sum(resid(fit$first_stage)^2) /
           sum(resid(restricted)^2),
         n = nrow(sample), participants = n_distinct(sample$child_id),
         n_r5 = sum(sample$round == 5), n_r7 = sum(sample$round == 7),

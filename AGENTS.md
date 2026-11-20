@@ -868,3 +868,17 @@ information, and SE/significance conventions in the LaTeX notes. Detailed
 construction history, validation, and methodological qualifications remain in
 the temp audit reports and project guidance. Coefficients and samples did not
 change. Preview:temp/shortened_table_notes/preview.pdf (compiled/visually checked).
+
+## Revised Table 5: test-score 2SLS (2026-11-20)
+
+`code/17_test_score_results.R` is the active Table 5 generator. It stages and
+mirrors `table_test_score_iv.tex` for manuscript label `tab:rev`. The older
+`table_rev.tex` is a historical OLS artifact. Table 5 uses the pooled R5/R7
+employment design and estimator through `code/helpers/fixed_employment_sample.R`.
+Panel A reports 2SLS and Panel B reports the first stage. Keep the pooled
+specification's round-specific household controls and participant-round rows. R4
+scores are standardized once per eligible non-Addis participant and missing
+scores restrict both stages within each column. The same R4 score can enter
+both rounds in the pooled sample. No second-stage coefficient rejects at 5%
+using the regional wild bootstrap. Interpret the estimates in light of the
+few regions and the test scores being measured before the R5 exposure cutoff.

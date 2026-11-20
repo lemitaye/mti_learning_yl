@@ -1,4 +1,4 @@
-# Called by 12_compare_r5_r7_regressions.R with stats and plans in memory.
+# Called by 12_compare_r5_r7_regressions.R with stats and panels in memory.
 fmt <- function(x, digits = 3) formatC(x, format = "f", digits = digits)
 stars <- function(p) {
   case_when(p < .01 ~ "$^{***}$", p < .05 ~ "$^{**}$",
@@ -22,13 +22,10 @@ lines <- c(
   " & Salary & Wage & Salary & Wage \\\\",
   "\\midrule"
 )
-for (panel_id in c("A", "B")) {
+for (panel_id in names(panels)) {
   display_panel <- panel_id
   s <- stats |> filter(panel == panel_id)
-  title <- switch(panel_id,
-    A = "Round 5: older cohort",
-    B = "Rounds 5 and 7: both cohorts"
-  )
+  title <- panels[[panel_id]]$title
   lines <- c(lines,
     paste0("\\multicolumn{5}{l}{\\textbf{Panel ", display_panel,
            ": ", title, "}} \\\\") ,
