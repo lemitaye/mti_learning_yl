@@ -224,12 +224,33 @@ analysis_data_2 <- analysis_data_1 %>%
       if_any(type_activ_1:type_activ_4, ~ .x %in% c(13)) ~ 1,
       TRUE ~ 0
     ),
+
+    private_employ = case_when(
+      if_any(work_for_1:work_for_4, ~ .x %in% c(1)) ~ 1,
+      TRUE ~ 0
+    ),
+
+    public_employ = case_when(
+      if_any(work_for_1:work_for_4, ~ .x %in% c(4)) ~ 1,
+      TRUE ~ 0
+    ),
     
     chsex = factor(label_survey_codes(chsex, survey_code_labels$sex)),
     rural_3 = case_when(
       typesite_r3 == 1 ~ 0, typesite_r3 == 2 ~ 1
     )
   )
+
+#   work_for_1                                                           n
+#   <dbl+lbl>                                                        <int>
+# 1  1 [A private company/enterprise or cooperative]                   132
+# 2  2 [Household member]                                              273
+# 3  3 [A private individual/ other household (excl. own household)]   114
+# 4  4 [Public sector/government]                                       33
+# 5  5 [A rural public works program]                                    1
+# 6  6 [Own account/ self-employed (own business or farm)]              84
+# 7  7 [Other, specify]                                                  4
+# 8 NA                                                                   6
 
 analysis_data_3 <- analysis_data_2 %>%
   mutate(

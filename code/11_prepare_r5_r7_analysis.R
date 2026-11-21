@@ -1,11 +1,12 @@
 # Prepare compatible employment cross sections for R5 and R7.
-# Run after code/10_build_r7_cross_section.R from the project root.
+# Run after refreshing the R5 extraction and building the R7 cross section.
 # R7 uses current household resources and frozen historical MTI assignment.
 # YC exposure remains flagged for review; no model is fitted here.
 
 library(tidyverse)
 library(haven)
 source("code/helpers/analysis_helpers.R")
+source("code/helpers/extraction_helpers.R")
 source("code/helpers/raw_data_catalog.R")
 source("code/helpers/pooled_employment_sample.R")
 
@@ -23,7 +24,13 @@ r5_older <- bind_rows(
   readRDS(legacy_files[1]), readRDS(legacy_files[2])
 ) |>
   prepare_employment_outcomes() |>
-  mutate(across(where(is.factor), as.character), yc = 0L)
+  mutate(
+    across(where(is.factor), as.character), yc = 0L,
+    private_employ_any_r5 = private_employ,
+    public_employ_any_r5 = public_employ,
+    private_employ = employer_type_indicator(work_for_1, active, 1L),
+    public_employ = employer_type_indicator(work_for_1, active, 4L)
+  )
 r5_younger <- read.csv(legacy_files[3]) |> mutate(yc = 1L)
 r5 <- bind_rows(r5_older, r5_younger)
 r7_source <- readRDS("data/r7/r7_inperson_analysis.rds")
@@ -41,6 +48,7 @@ current_variables <- c(
 outcomes <- c(
   "active", "self_agri", "wage_agri", "self_nonag",
   "wage_employ", "salary_employ", "self_employ",
+  "private_employ", "public_employ", "private_employ_any_r5", "public_employ_any_r5",
   paste0("type_activ_", 1:4)
 )
 shared_variables <- c(fixed_variables, current_variables, outcomes)
@@ -70,7 +78,10 @@ r7_analysis <- r7_source |>
     self_nonag = as.numeric(r7_source$self_nonag_r7),
     wage_employ = as.numeric(r7_source$wage_employ_r7),
     salary_employ = as.numeric(r7_source$salary_employ_r7),
-    self_employ = as.numeric(r7_source$self_employ_r7)
+    self_employ = as.numeric(r7_source$self_employ_r7),
+    private_employ = as.numeric(r7_source$private_employ_r7),
+    public_employ = as.numeric(r7_source$public_employ_r7),
+    private_employ_any_r5 = NA_real_, public_employ_any_r5 = NA_real_
   )
 
 # 3. Common indicators and explicit timing/provenance -----------------------
@@ -156,7 +167,8 @@ apply_labels <- function(data) {
   binary_variables <- c(
     "yc", "round7", "cohort_young", "active", "wage_employ",
     "salary_employ", "self_employ", "self_agri", "wage_agri",
-    "self_nonag", "elecq_new"
+    "self_nonag", "elecq_new", "private_employ", "public_employ",
+    "private_employ_any_r5", "public_employ_any_r5"
   )
   for (variable in binary_variables) {
     codes <- switch(variable,
@@ -192,6 +204,10 @@ apply_labels <- function(data) {
     wage_agri = "Agricultural wage (5-7): any R5; main R7",
     self_nonag = "Nonfarm self-work (8-11): any R5; main R7",
     self_employ = "Combined self-work: any R5; main R7",
+    private_employ = "Private company, enterprise or cooperative (1): first R5; main R7",
+    public_employ = "Government or public sector (4): first R5; main R7",
+    private_employ_any_r5 = "Private company, enterprise or cooperative (1): any R5 activity",
+    public_employ_any_r5 = "Government or public sector (4): any R5 activity",
     wi_new = "Original-definition wealth; R3 in R5 rows, R7 in R7 rows",
     hq_new = "Original-definition housing; R3 in R5 rows, R7 in R7 rows",
     cd_new = "Original ten durables; R3 in R5 rows, R7 in R7 rows",
@@ -213,7 +229,10 @@ combined <- bind_rows(r5_analysis, r7_analysis)
 
 # 5. Audit preservation before applying approved sample exclusions.
 source("code/auxiliary/audit_r5_r7_append.R", local = TRUE)
-combined_full <- classify_pooled_employment(combined)
+combined_full <- combined |>
+  mutate(across(c(private_employ, public_employ),
+                ~ if_else(round == 5 & r5_interview_observed %in% 0, NA_real_, .x))) |>
+  classify_pooled_employment()
 write_csv(count(combined_full, round, cohort, employment_group,
                 pooled_sample_eligible),
           file.path(audit_dir, "employment_sample_exclusions.csv"))
@@ -249,7 +268,11 @@ writeLines(c(
   "R5 YC has no employment outcome and is not in this analysis sample.",
   "Full pre-selection file: data/r7/r5_r7_appended_full.rds.",
   "Combined wage codes5-7/12/19; salary13; self-work1-4/8-11.",
-  "Outcome dummies and inactivity are mutually exclusive and exhaustive.",
+  "Salary, wage, self-work and inactivity are mutually exclusive and exhaustive.",
+  "Employer indicators use the first-ranked R5/annual main R7 activity.",
+  "Private company, enterprise or cooperative = code 1; government/public sector = code 4.",
+  "Workers with unknown employer are missing; known nonworkers are zero.",
+  "The any-job R5 sector indicators are retained separately.",
   "Historical score gates and complete-case filters are applied downstream.",
   "YC exposure remains frozen at R5 and exploratory."
 ), file.path(audit_dir, "README.txt"))

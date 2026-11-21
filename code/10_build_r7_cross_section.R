@@ -12,6 +12,7 @@ suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(haven))
 
 source("code/helpers/r7_build_helpers.R", local = TRUE)
+source("code/helpers/extraction_helpers.R", local = TRUE)
 
 source("code/helpers/raw_data_catalog.R", local = TRUE)
 
@@ -335,6 +336,17 @@ for (cohort in c("oc", "yc")) {
   cohort_data$public_sector_annual_r7 <- ifelse(is.na(
     cohort_data$employer12r7_clean), NA, as.integer(
     cohort_data$employer12r7_clean == 4))
+
+  cohort_data$private_employ_r7 <- employer_type_indicator(
+    cohort_data$employer12r7_clean, cohort_data$worked_annual_r7, 1L
+  )
+  cohort_data$public_employ_r7 <- employer_type_indicator(
+    cohort_data$employer12r7_clean, cohort_data$worked_annual_r7, 4L
+  )
+  define_variable("private_employ_r7", "Raw employer12r7 and annual work screens",
+    "R7", "Annual main job for a private company, enterprise or cooperative (code 1)")
+  define_variable("public_employ_r7", "Raw employer12r7 and annual work screens",
+    "R7", "Annual main job in government or the public sector (code 4)")
 
 
   # 3b. Contemporaneous household controls

@@ -901,3 +901,12 @@ participant share one sign in each draw. The just-identified 2SLS draws use
 paired outcome and treatment reduced forms with common signs. This procedure
 assumes independence across participants. The Tigray–Oromia comparison is
 excluded from the active manuscript.
+
+## R5/R7 employer-type indicators
+
+Refresh the older-cohort extraction before running scripts 10 and 11.
+The pooled `private_employ` and `public_employ` indicators use employer
+codes 1 and 4 on the first-ranked R5 activity and the annual main R7 job.
+Known nonworkers are zero and unknown employer types among workers stay
+missing. Keep the original R5 any-job measures under the `_any_r5` suffix
+in the pooled files. R5 younger-cohort employer outcomes are unavailable.

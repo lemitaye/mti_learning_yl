@@ -809,3 +809,18 @@ The landscape table nests the sample and employment outcome under each
 round grouping. Panel A reports 2SLS and Panel B reports the corresponding
 first stages. The manuscript uses this table in place of the two overlapping
 employment tables. The standalone pooled table is a historical export.
+
+## Public and private employer indicators
+
+From the project root, refresh the older-cohort extraction with
+`Rscript -e 'library(tidyverse); library(haven); source("code/01_extract_clean.R")'`,
+then run `Rscript code/10_build_r7_cross_section.R` and
+`Rscript code/11_prepare_r5_r7_analysis.R`. The in-person R7 build uses
+`employer12r7` for the annual main job. The pooled exports use `ACTOWNR5`
+for the first-ranked R5 activity and `employer12r7` for R7. Private employment
+covers companies, enterprises, and cooperatives (code 1). Public employment
+covers government and the public sector (code 4). These are employer-type
+indicators and can overlap salary or wage employment. Known nonworkers are
+coded zero, and unknown employer types among workers remain missing.
+The R5 any-job definitions are retained as `private_employ_any_r5` and
+`public_employ_any_r5` in the pooled schema.

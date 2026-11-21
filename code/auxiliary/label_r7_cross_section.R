@@ -39,6 +39,7 @@ label_r7_cross_section <- function(data, audit_dir) {
       "^(worked_|salary_|wage_|self_employment_|nonfarm_self_employment_)",
       variable
     ) || variable %in% c("ownhouse_r7", "public_sector_annual_r7",
+                            "private_employ_r7", "public_employ_r7",
                             "self_agri_r7", "self_nonag_r7",
                             "self_employ_r7")
     if (binary && !grepl("_hist$", variable)) {

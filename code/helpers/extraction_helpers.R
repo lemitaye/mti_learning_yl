@@ -22,3 +22,13 @@ label_survey_codes <- function(x, labels) {
 
 # Preserve missing values when capping schooling-based MTI exposure.
 top_code <- function(x, ceiling) if_else(x > ceiling, ceiling, x)
+
+# Employer type for a single ranked/main activity. Known nonworkers are zero.
+# A worker with an unknown employer type remains missing.
+employer_type_indicator <- function(employer, worked, target) {
+  dplyr::case_when(
+    worked == 0 ~ 0L,
+    worked == 1 & employer %in% 1:7 ~ as.integer(employer == target),
+    TRUE ~ NA_integer_
+  )
+}
